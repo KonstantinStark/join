@@ -23,4 +23,7 @@
     text-decoration: none;
 }
 
-.imp {}
+.imp {
+    display: flex;
+    flex-direction: column;
+}
