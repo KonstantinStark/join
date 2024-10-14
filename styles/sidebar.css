@@ -23,13 +23,19 @@
 .navbar-text {
     color: white;
     text-decoration: none;
-   
+}
+
+.privacy-legal-wrapper {
+    display: flex;
+    flex-direction: column;
     
 }
 
-.imp {
-    display: flex;
-    flex-direction: column;
+.footer-text {
+    
+    text-decoration: none;
+    color: white;
+
 }
 
 .main {
@@ -53,6 +59,23 @@ header {
     align-items: center;
     gap:10px;
     margin-bottom:20px;
+    width: 232px;
+    padding-left:50px;
+   
+}
 
+.sidebar-image-title-wrapper:hover {
+
+    background-color:#2A3D5B;
     
 }
+
+.sidebar-image-title-wrapper:active {
+
+    background-color:#091932;
+    
+}
+
+
+
+
