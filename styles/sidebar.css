@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom:15px;
 }
 
 .navbar-text {
@@ -28,13 +29,21 @@
 .privacy-legal-wrapper {
     display: flex;
     flex-direction: column;
-    
+    gap:10px;
+    margin-top:200px;
+    margin-bottom:20px;
 }
 
 .footer-text {
-    
+
     text-decoration: none;
     color: white;
+}
+
+.footer-text:hover {
+
+    font-size: 18px;
+    color:#29ABE2;
 
 }
 
@@ -61,6 +70,7 @@ header {
     margin-bottom:20px;
     width: 232px;
     padding-left:50px;
+    
    
 }
 
