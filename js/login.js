@@ -4,10 +4,10 @@ window.onload = function () {
 
     setTimeout(() => {
         logo.classList.add('logo-moved');
-    }, 1000);
+    }, 500);
 
     setTimeout(() => {
         loginContainer.classList.remove('hidden');
         loginContainer.classList.add('show-login');
-    }, 2000);
+    }, 1000);
 };
