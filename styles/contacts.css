@@ -2,18 +2,21 @@
     width: 456px;
     height: 89vh;
     border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    background-color: white;
+
 }
 
 .add-contact-btn {
     display: flex;
     align-items: center;
     background-color: #2C3E50;
-    /* Dunkelblauer Hintergrund */
     color: white;
-    /* Weißer Text */
     border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    border-radius: 10px;
+    padding: 10px 50px;
     font-size: 16px;
     cursor: pointer;
 }
