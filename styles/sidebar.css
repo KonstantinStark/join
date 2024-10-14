@@ -23,8 +23,8 @@
 .navbar-text {
     color: white;
     text-decoration: none;
-    text-align: center;
-    margin-bottom: 20px;
+   
+    
 }
 
 .imp {
@@ -46,3 +46,13 @@ header {
 .headline-header {
     margin-left: 50px;
 } 
+
+.sidebar-image-title-wrapper {
+
+    display:flex;
+    align-items: center;
+    gap:10px;
+    margin-bottom:20px;
+
+    
+}
