@@ -25,7 +25,7 @@ body {
 }
 
 .logo-moved {
-    width: 200px;
+    width: 300px;
     top: 20px;
     left: 20px;
     transform: translate(0, 0);
@@ -80,26 +80,18 @@ body {
 }
 
 .underline {
-    width: 100px;
+    width: 60px;
     height: 2px;
     background-color: #007BFF;
     margin: 10px 0;
 }
 
-.login-box input[type="password"] {
+input[type="password"] {
     background: url('./assets/img/lock-icon.png') no-repeat 10px center;
 }
 
-.login-box input[type="email"] {
+input[type="email"] {
     background: url('./assets/img/email-icon.png') no-repeat 10px center;
-}
-
-.password {
-    background: url('./assets/img/lock-icon.png');
-}
-
-.login-btn {
-    background-color: #007BFF;
 }
 
 .remember-container {
