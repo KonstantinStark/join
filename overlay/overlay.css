@@ -16,13 +16,14 @@
     height:594px;
     background-color: #2a3647;
     padding: 66px 46px 66px 46px;
+    gap:20px;
     
 }
 
 .contact-wrapper h1 {
 
     color:white;
-    font-size: 72px;
+    font-size: 64px;
 
 }
 
@@ -44,5 +45,33 @@
 
     display:flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width:453px;
+}
+
+.input-fields {
+
+    display: flex;
+    flex-direction: column;
+    width:422px;
+    height:215px;
+    gap:20px;
+}
+
+.name-initials {
+
+    width:120px;
+    height: 120px;
+    border-radius: 60%;
+    background-color: orange;
+}
+
+.circle-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left:60px;
 }
