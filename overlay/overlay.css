@@ -59,6 +59,12 @@
     gap:20px;
 }
 
+.input-fields input {
+
+    padding:8px;
+    border-radius: 20px;
+}
+
 .name-initials {
 
     width:120px;
@@ -74,4 +80,22 @@
     align-items: center;
     justify-content: center;
     margin-left:60px;
+    margin-right:40px;
+}
+
+.buttons-form-wrapper {
+
+    display: flex;
+    gap: 25px;
+    width:249px;
+    height:57px;
+}
+
+.buttons-form-wrapper button {
+
+    padding:8px;
+    width: 100px;
+    height:40px;
+    border-radius: 10px;
+    font-size:16px;
 }
