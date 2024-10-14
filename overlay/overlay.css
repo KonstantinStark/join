@@ -1,0 +1,48 @@
+
+.overlay-wrapper {
+
+    display:flex;
+   
+}
+
+.contact-wrapper {
+
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    width:453px;
+    height:594px;
+    background-color: #2a3647;
+    padding: 66px 46px 66px 46px;
+    
+}
+
+.contact-wrapper h1 {
+
+    color:white;
+    font-size: 72px;
+
+}
+
+.contact-wrapper img {
+
+    width:53.93px;
+    height:66.48px;
+}
+
+.highlight {
+
+    background-color:#29ABE2;
+    width:100px;
+    height:2px;
+ 
+}
+
+.form-wrapper {
+
+    display:flex;
+    flex-direction: column;
+    width:453px;
+}
