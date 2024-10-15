@@ -1,5 +1,5 @@
 function toggleOverlay() {
-    var overlay = document.getElementById('overlay');
+    let overlay = document.getElementById('overlay');
 
     if (overlay.classList.contains('d-none')) {
         overlay.classList.remove('d-none'); 
