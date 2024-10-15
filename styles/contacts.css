@@ -1,0 +1,200 @@
+.contact-list-wrapper {
+    width: 456px;
+    height: 89vh;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    background-color: white;
+
+}
+
+.add-contact-btn {
+    display: flex;
+    align-items: center;
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 50px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-contact-btn .icon {
+    margin-left: 8px;
+    width: 20px;
+    height: 20px;
+}
+
+.add-contact-btn:hover {
+    background-color: #34495E;
+    /* Etwas helleres Blau beim Hover */
+}
+
+
+
+
+/* Overlay */
+h2 {
+
+    color:white;
+    font-size:28px;
+}
+
+
+.overlay-wrapper {
+
+    display:flex;
+    border:1px solid black;
+    border-radius: 10px;
+    width:1200px;
+   
+   
+}
+
+.exit-overlay {
+
+    display:flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.contact-wrapper {
+
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    width:453px;
+    height:594px;
+    background-color: #2a3647;
+    padding: 66px 46px 66px 46px;
+    gap:20px;
+    
+    
+}
+
+.contact-wrapper h1 {
+
+    color:white;
+    font-size: 64px;
+
+}
+
+.contact-wrapper img {
+
+    width:53.93px;
+    height:66.48px;
+}
+
+.highlight {
+
+    background-color:#29ABE2;
+    width:100px;
+    height:2px;
+ 
+}
+
+.form-wrapper {
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:70px;    width:453px;
+    
+}
+
+.input-fields {
+
+    display: flex;
+    flex-direction: column;
+    width:422px;
+    height:215px;
+    gap:30px;
+    margin-top:80px;
+    margin-left:20px;
+}
+
+.input-fields input {
+
+    padding:14px;
+    border-radius: 10px;
+}
+
+.input-fields input:hover {
+
+    border:2px solid#29ABE2;
+}
+
+.input-fields input:focus {
+    border: 2px solid #29ABE2;
+    outline: none;
+}
+
+
+.name-initials {
+
+    width:120px;
+    height: 120px;
+    /* border-radius: 60%;
+    background-color: orange; */
+}
+
+.circle-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left:60px;
+    margin-right:40px;
+}
+
+.buttons-form-wrapper {
+
+    display: flex;
+    gap: 25px;
+    width:249px;
+    height:57px;
+    margin-top:20px;
+    margin-left:20px;
+}
+
+.buttons-form-wrapper button {
+
+    padding:8px;
+    width: 100px;
+    height:40px;
+    border-radius: 10px;
+    font-size:16px;
+    cursor: pointer;
+}
+
+.cancel-button {
+
+ display: flex;
+ 
+}
+
+.cancel-button img {
+
+    width:25px;
+    height:25px;
+    
+   }
+
+.buttons-span-image-wrapper {
+
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.create-contact-button button {
+
+    width:150px;
+    background-color: #2a3647;
+    color:white;
+}
