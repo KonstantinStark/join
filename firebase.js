@@ -60,14 +60,36 @@ async function loadUsers(path = '/users') {
 
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
-    contentListRef.innerHTML = ""; // Leere den aktuellen Inhalt
+    contentListRef.innerHTML = ""; // Clear the current content
 
-    // Schleife durch alle Users und füge sie hinzu
-    for (let i = 0; i < users.length; i++) {
-        let people = users[i];
+    console.log(users); // Check if users array is populated
+
+    // Loop through all users and add them to the list
+    for (let index = 0; index < users.length; index++) {
+        let people = users[index];
         contentListRef.innerHTML += /*html*/`
-        <div class="content-container">${people.name} <br>
+        <div onclick="editContact(${index})" class="content-container">${people.name} <br>
              ${people.email}</div>
         `;
     }
+}
+
+function editContact(index) {
+    console.log('editContact called for index:', index); // Debugging
+
+    let editContact = document.getElementById('edit-contacts');
+    // editContact.innerHTML = '';
+
+    let person = users[index]; // Get the specific user being edited
+
+    // Display edit form or fields for the selected user
+    editContact.innerHTML += /*html*/`
+        <div>
+          <p>Name:${person.name}</p>
+        </div>
+        <div>
+            <p>Email:${person.email}</p>
+        </div>
+        <button onclick="saveContact(${index})">Save</button>
+    `;
 }
