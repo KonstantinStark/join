@@ -63,7 +63,7 @@
             </header>
             <div class="contact-list-wrapper">
                 <div>
-                    <button class="add-contact-btn" onclick="addOverlay()">
+                    <button class="add-contact-btn" onclick="toggleOverlay()">
                         <span>Add new contact</span>
                         <img src="./assets/img/person_add.svg" class="icon">
                     </button>
@@ -75,9 +75,9 @@
         </div>
     </section>
     <section>
-        <div class="overlay">
+        <div class="overlay" id="overlay">
 
-            <div class="overlay-wrapper">
+            <div class="overlay-wrapper d-none">
 
                 <div class="contact-wrapper">
 
@@ -138,6 +138,8 @@
             </div>
         </div>
     </section>
+
+    <script src="./js/contacts.js"></script>
 </body>
 
 </html>
