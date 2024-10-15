@@ -1,3 +1,9 @@
+h2 {
+
+    color:white;
+    font-size:28px;
+}
+
 
 .overlay-wrapper {
 
@@ -126,4 +132,31 @@
     border-radius: 10px;
     font-size:16px;
     cursor: pointer;
+}
+
+.cancel-button {
+
+ display: flex;
+ 
+}
+
+.cancel-button img {
+
+    width:25px;
+    height:25px;
+    
+   }
+
+.buttons-span-image-wrapper {
+
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.create-contact-button button {
+
+    width:150px;
+    background-color: #2a3647;
+    color:white;
 }
