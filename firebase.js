@@ -68,8 +68,11 @@ function loadData() {
     for (let index = 0; index < users.length; index++) {
         let people = users[index];
         contentListRef.innerHTML += /*html*/`
-        <div onclick="editContact(${index})" class="content-container">${people.name} <br>
-             ${people.email}</div>
+        <div onclick="editContact(${index})" class="content-container"> <br>
+             
+             <p>Name: ${people.name}</p>
+             <p>E-mail: ${people.email}</p>
+             </div>
         `;
     }
 }

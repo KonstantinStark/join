@@ -1,9 +1,4 @@
-#edit-contacts {
 
-    border:4px solid green;
-    width:100px;
-    height:100px;
-}
 
 .contact-list-wrapper {
     width: 456px;
@@ -42,19 +37,26 @@
     display: flex;
 }
 
-.contact-text {
+.contact-list-wrapper {
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-contact-btn {
+
+    margin-bottom:35px;
+}
+
+.contact-text{
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 30px;
-    margin-left: 260px;
-    margin-bottom: 300px;
-
-    gap:30px;
-    padding-left:260px;
-    margin-bottom:300px;
-    
+    margin-left:400px;
+    margin-top:150px;
 
 }
 
@@ -76,8 +78,6 @@
     background-color: #29ABE2;
 
 }
-
-
 
 /* Overlay */
 
@@ -279,4 +279,14 @@ h2 {
     width: 150px;
     background-color: #2a3647;
     color: white;
+}
+
+
+/* template js  */
+
+#edit-contacts{
+
+    border:4px solid turquoise;
+    width:500px;
+    height:500px;
 }
