@@ -33,16 +33,18 @@
 }
 
 .body-wrapper {
-
-    display:flex;
-
+    display: flex;
 }
 
 .contact-text {
 
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    gap: 30px;
+    margin-left: 260px;
+    margin-bottom: 300px;
+
     gap:30px;
     padding-left:260px;
     margin-bottom:300px;
@@ -52,19 +54,19 @@
 
 .contact-text h1 {
 
-    color:black;
-    font-size:64px;
+    color: black;
+    font-size: 64px;
 }
 
 .contact-text h2 {
 
-    color:black;
+    color: black;
 }
 
 .seperator {
 
-    height:40px;
-    width:2px;
+    height: 40px;
+    width: 2px;
     background-color: #29ABE2;
 
 }
