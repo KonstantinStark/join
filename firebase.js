@@ -75,21 +75,54 @@ function loadData() {
 }
 
 function editContact(index) {
-    console.log('editContact called for index:', index); // Debugging
-
     let editContact = document.getElementById('edit-contacts');
-    // editContact.innerHTML = '';
+    let person = users[index]; // Holen Sie den Benutzer basierend auf dem Array-Index
 
-    let person = users[index]; // Get the specific user being edited
-
-    // Display edit form or fields for the selected user
+    editContact.innerHTML = ''; // Clear previous content
     editContact.innerHTML += /*html*/`
-        <div>
-          <p>Name:${person.name}</p>
+        <div id="contact-${index}">
+          <p>Name: ${person.name}</p>
+          <span>
+            <img src="" alt="">
+            <p onclick="edit(${index})">Edit</p>
+          </span>
+          <span>
+            <img src="" alt="">
+            <p onclick="deleteContact(${index})">Delete</p>
+          </span>
         </div>
+        
         <div>
-            <p>Email:${person.email}</p>
+            <p>Contact Information</p>
+            <p>Email: ${person.email}</p>
+            <p>Phone: ${person.phone}</p>
         </div>
-        <button onclick="saveContact(${index})">Save</button>
     `;
 }
+
+
+async function deleteContact(index) {
+    let person = users[index]; // Hole den spezifischen Benutzer aus dem Array
+
+    try {
+        // Lösche den Kontakt in Firebase, indem die Firebase-ID verwendet wird
+        let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, {
+            method: "DELETE",
+        });
+
+        // Überprüfe, ob die Anfrage erfolgreich war
+        if (response.ok) {
+            
+            document.getElementById(`contact-${index}`).remove();
+        } else {
+            console.error('Löschen fehlgeschlagen mit Status:', response.status);
+        }
+    } catch (error) {
+        console.error('Fehler beim Löschen des Kontakts:', error);
+    }
+}
+
+
+
+
+
