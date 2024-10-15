@@ -32,6 +32,45 @@
     /* Etwas helleres Blau beim Hover */
 }
 
+.body-wrapper {
+
+    display:flex;
+
+}
+
+.contact-text {
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:30px;
+    margin-left:260px;
+    margin-bottom:300px;
+    
+
+}
+
+.contact-text h1 {
+
+    color:black;
+    font-size:64px;
+}
+
+.contact-text h2 {
+
+    color:black;
+}
+
+.seperator {
+
+    height:40px;
+    width:2px;
+    background-color: #29ABE2;
+
+}
+
+
+
 /* Overlay */
 
 .overlay {
@@ -70,8 +109,6 @@ h2 {
     border-radius: 10px;
     width: 1200px;
     background-color: white;
-
-
 
 }
 
