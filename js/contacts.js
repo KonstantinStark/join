@@ -15,3 +15,9 @@ function toggleOverlay() {
     }
 }
 
+function exitOverlay() {
+
+    let overlay = document.getElementById('overlay');
+    overlay.classList.toggle('d-none');
+}
+

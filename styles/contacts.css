@@ -151,9 +151,18 @@ h2 {
 .contact-wrapper h1 {
 
     color: white;
-    font-size: 64px;
+    font-size: 56px;
 
 }
+
+.contact-wrapper h2 {
+
+    color: white;
+    font-size: 24px;
+
+}
+
+
 
 .contact-wrapper img {
 
@@ -179,7 +188,7 @@ h2 {
 
 }
 
-.input-fields {
+.name-input{
 
     display: flex;
     flex-direction: column;
