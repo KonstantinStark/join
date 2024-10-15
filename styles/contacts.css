@@ -8,11 +8,10 @@
 .contact-list-wrapper {
     width: 456px;
     height: 89vh;
-    border: 1px solid gray;
     display: flex;
-    justify-content: center;
     padding-top: 30px;
     background-color: white;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
 
 }
 
