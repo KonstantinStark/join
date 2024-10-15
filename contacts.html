@@ -14,7 +14,7 @@
     <style></style>
 </head>
 
-<body>
+<body onload="init()">
     <section class="all-side">
         <div class="sidebar">
 
@@ -62,38 +62,38 @@
                 <img src="" alt="">
             </header>
             <div class="body-wrapper">
-            <div class="contact-list-wrapper">
-                <div>
-                    <button class="add-contact-btn" onclick="toggleOverlay()">
-                        <span>Add new contact</span>
-                        <img src="./assets/img/person_add.svg" class="icon">
-                    </button>
+                <div class="contact-list-wrapper">
+                    <div>
+                        <button class="add-contact-btn" onclick="toggleOverlay()">
+                            <span>Add new contact</span>
+                            <img src="./assets/img/person_add.svg" class="icon">
+                        </button> <br>
+
+                        <div id="contact-list" class="contact-list">
+                        </div>
+
+                        <div class="contact-text">
+                            <h1>Contact</h1>
+                            <div class="seperator"></div>
+                            <h2>Better with a team</h2>
+                        </div>
+                    </div>
                 </div>
+                <div></div>
             </div>
-            <div class="contact-text">
-                <h1>Contact</h1>
-                <div class="seperator"></div>
-                <h2>Better with a team</h2>
-            </div>
-        </div>
-        </div>
-        <div></div>
-        </div>
         </div>
     </section>
+
     <section>
         <div class="overlay" id="overlay">
-
             <div class="overlay-wrapper d-none">
 
                 <div class="contact-wrapper">
-
                     <img src="/assets/img/joinlogo.png" alt="">
                     <h1>Add Contact
                         <h2>Tasks are better with a team</h2>
                         <div class="highlight"></div>
                     </h1>
-                    
                 </div>
                 <div class="circle-wrapper">
 
@@ -104,7 +104,7 @@
                 <div class="form-wrapper">
                     <form>
 
-                    
+
                         <div class="name-input-wrapper">
 
                             <div class="exit-overlay"><img src="/assets/img/overlay/Close.png" alt=""></div>
@@ -115,7 +115,7 @@
                                     <input required type="text" placeholder="Enter Name" id="name">
                                     <img src="/assets/img/overlay/person.svg" alt="">
                                 </div>
-                        
+
                                 <input required type="text" placeholder="Enter E-Mail" id="email">
                                 <input required type="text" placeholder="Enter Phonenumber" id="phone">
                             </div>
@@ -127,26 +127,27 @@
                                 <button>
 
                                     <div class="buttons-span-image-wrapper">
-                                    
-                                    <span class="cancel-button-span">Cancel</span>
 
-                                    <img src="/assets/img/overlay/Close.png" alt="">
+                                        <span class="cancel-button-span">Cancel</span>
+
+                                        <img src="/assets/img/overlay/Close.png" alt="">
 
                                     </div>
                                 </button>
-                                
+
                             </div>
                             <div class="create-contact-button">
-                                <button>Create Contact</button>
-                            </div>                             
+                                <button onclick="addUser()">Create Contact</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
+    <script src="firebase.js"></script>
     <script src="./js/contacts.js"></script>
+    <script src="./js/contact-template.js"></script>
 </body>
 
 </html>
