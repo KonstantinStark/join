@@ -32,55 +32,53 @@
     /* Etwas helleres Blau beim Hover */
 }
 
-
-
-
+Hallo Matze
 /* Overlay */
 
 .overlay {
     position: absolute;
     top: 200px;
     left: 235px;
-    width: 300px; 
-    height: 200px; 
-    background-color: rgba(0, 0, 0, 0.8); 
-    transition: transform 0.5s ease, opacity 0.5s ease; 
-    transform: translateX(100%); 
-    opacity: 0; 
+    width: 300px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: translateX(100%);
+    opacity: 0;
 }
 
 .overlay.show {
-    transform: translateX(0); 
-    opacity: 1; 
+    transform: translateX(0);
+    opacity: 1;
 }
 
 .d-none {
-    display: none; 
+    display: none;
 }
 
 
 h2 {
 
-    color:white;
-    font-size:28px;
+    color: white;
+    font-size: 28px;
 }
 
 
 .overlay-wrapper {
 
-    display:flex;
-    border:1px solid black;
+    display: flex;
+    border: 1px solid black;
     border-radius: 10px;
-    width:1200px;
+    width: 1200px;
     background-color: white;
-   
-   
-   
+
+
+
 }
 
 .exit-overlay {
 
-    display:flex;
+    display: flex;
     justify-content: flex-end;
     cursor: pointer;
 }
@@ -92,65 +90,66 @@ h2 {
     justify-content: center;
     flex-direction: column;
     justify-content: center;
-    width:453px;
-    height:594px;
+    width: 453px;
+    height: 594px;
     background-color: #2a3647;
     padding: 66px 46px 66px 46px;
-    gap:20px;
-    
-    
+    gap: 20px;
+
+
 }
 
 .contact-wrapper h1 {
 
-    color:white;
+    color: white;
     font-size: 64px;
 
 }
 
 .contact-wrapper img {
 
-    width:53.93px;
-    height:66.48px;
+    width: 53.93px;
+    height: 66.48px;
 }
 
 .highlight {
 
-    background-color:#29ABE2;
-    width:100px;
-    height:2px;
- 
+    background-color: #29ABE2;
+    width: 100px;
+    height: 2px;
+
 }
 
 .form-wrapper {
 
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top:70px;    width:453px;
-    
+    margin-top: 70px;
+    width: 453px;
+
 }
 
 .input-fields {
 
     display: flex;
     flex-direction: column;
-    width:422px;
-    height:215px;
-    gap:30px;
-    margin-top:80px;
-    margin-left:20px;
+    width: 422px;
+    height: 215px;
+    gap: 30px;
+    margin-top: 80px;
+    margin-left: 20px;
 }
 
 .input-fields input {
 
-    padding:14px;
+    padding: 14px;
     border-radius: 10px;
 }
 
 .input-fields input:hover {
 
-    border:2px solid#29ABE2;
+    border: 2px solid#29ABE2;
 }
 
 .input-fields input:focus {
@@ -161,7 +160,7 @@ h2 {
 
 .name-initials {
 
-    width:120px;
+    width: 120px;
     height: 120px;
     /* border-radius: 60%;
     background-color: orange; */
@@ -173,53 +172,53 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left:60px;
-    margin-right:40px;
+    margin-left: 60px;
+    margin-right: 40px;
 }
 
 .buttons-form-wrapper {
 
     display: flex;
     gap: 25px;
-    width:249px;
-    height:57px;
-    margin-top:20px;
-    margin-left:20px;
+    width: 249px;
+    height: 57px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .buttons-form-wrapper button {
 
-    padding:8px;
+    padding: 8px;
     width: 100px;
-    height:40px;
+    height: 40px;
     border-radius: 10px;
-    font-size:16px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .cancel-button {
 
- display: flex;
- 
+    display: flex;
+
 }
 
 .cancel-button img {
 
-    width:25px;
-    height:25px;
-    
-   }
+    width: 25px;
+    height: 25px;
+
+}
 
 .buttons-span-image-wrapper {
 
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 }
 
 .create-contact-button button {
 
-    width:150px;
+    width: 150px;
     background-color: #2a3647;
-    color:white;
+    color: white;
 }
