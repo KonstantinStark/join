@@ -90,6 +90,6 @@ function editContact(index) {
         <div>
             <p>Email:${person.email}</p>
         </div>
-        <button onclick="saveContact(${index})">Save</button>
+        <button onclick="saveContact(${index})">delete</button>
     `;
 }
