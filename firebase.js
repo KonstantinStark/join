@@ -85,7 +85,7 @@ function editContact(index) {
     editContact.innerHTML += /*html*/`
         <div id="contact-${index}">
             <img src="svg placeholder circle" alt="">
-          <h3>${person.name}</h3>
+          <h1>${person.name}</h1>
           <div class="delete-edit-contact-wrapper">
             <span>
                 <img src="" alt="">
@@ -102,7 +102,7 @@ function editContact(index) {
         
         <div>
             
-            <p><strong>Email: </strong> <br> ${person.email}</p>
+            <p><strong>Email: </strong> <br> ${person.email} </p>
             <p><strong>Phone:</strong> <br> ${person.phone}</p>
         </div>
     `;
