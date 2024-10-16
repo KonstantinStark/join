@@ -5,6 +5,7 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 // Initialisiert die Anwendung
 function init() {
     loadUsers();
+   
 }
 
 // Fügt einen neuen Benutzer hinzu
@@ -119,6 +120,8 @@ function editContact(index) {
             <p><strong>Phone:</strong><br> ${person.phone}</p>
         </div>
     </div>`;
+
+   
 }
 
 // Löscht einen Kontakt
@@ -153,11 +156,17 @@ function openEditOverlay(index) {
 }
 
 // Schließt das Overlay
-function exitOverlay() {
+function exitEditOverlay() {
     let overlay = document.getElementById('edit-overlay');
     overlay.classList.remove('show');
     setTimeout(() => overlay.classList.add('d-none'), 500);
 }
+
+// function exitOverlay() {
+//     let overlay = document.getElementById('edit-overlay');
+//     overlay.classList.remove('show');
+//     setTimeout(() => overlay.classList.add('d-none'), 500);
+// }
 
 // Befüllt das Bearbeitungs-Overlay mit den Kontaktdaten
 function editContactOverlay(index) {
@@ -169,7 +178,14 @@ function editContactOverlay(index) {
     // Den Index des Kontakts speichern, damit wir wissen, welchen Kontakt wir speichern
     document.getElementById('save-button').onclick = function () {
         saveUser(index);  // Aufruf von saveUser mit dem Index des zu bearbeitenden Kontakts
+
+        let overlay = document.getElementById('edit-overlay');
+        overlay.classList.add('d-none');
     };
+
+
+    editContact(index);
+    
 }
 
 // Speichert die Änderungen an einem Kontakt
@@ -200,6 +216,8 @@ async function saveUser(index) {
     } catch (error) {
         console.error('Fehler beim Update', error);
     }
+
+    editContact(index);
 }
 
 // Holt die aktualisierten Benutzerdaten aus dem Bearbeitungs-Overlay
@@ -211,5 +229,4 @@ function getUpdatedUserData(index) {
     };
 }
 
-// Start der Anwendung
-window.onload = init;
+
