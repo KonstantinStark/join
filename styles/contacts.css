@@ -207,7 +207,6 @@ h2 {
 
 .buttons-form-wrapper button {
     padding: 8px;
-    width: 100px;
     height: 40px;
     border-radius: 10px;
     font-size: 16px;
@@ -236,7 +235,7 @@ h2 {
 }
 
 .edit-contact-button button {
-    width: 78px;
+    width: 80px;
     background-color: #2a3647;
     color: white;
     display: flex;
