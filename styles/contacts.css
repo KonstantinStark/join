@@ -144,6 +144,8 @@ h2 {
     background-color: #2a3647;
     padding: 66px 46px 66px 46px;
     gap: 20px;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
 
 
 }
