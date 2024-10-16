@@ -5,12 +5,14 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 // Initialisiert die Anwendung
 function init() {
     loadUsers();
-
 }
 
 // Fügt einen neuen Benutzer hinzu
 async function addUser() {
     let newUser = getUserInput();
+
+    // Füge eine zufällige Farbe hinzu
+    newUser.color = getRandomColor();
 
     // Eingabefelder leeren
     resetInputFields();
@@ -25,8 +27,18 @@ function getUserInput() {
     return {
         name: document.getElementById("name").value,
         phone: document.getElementById("phone").value,
-        email: document.getElementById("email").value,
+        email: document.getElementById("email").value
     };
+}
+
+// Generiert eine zufällige Farbe in hexadezimalem Format
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 // Leert die Eingabefelder
@@ -60,7 +72,9 @@ async function loadUsers(path = '/users') {
                 id: key,
                 name: responseToJson[key]['name'],
                 phone: responseToJson[key]['phone'],
-                email: responseToJson[key]['email']
+                email: responseToJson[key]['email'],
+                // Setze Standardfarbe, falls keine vorhanden
+                color: responseToJson[key]['color'] || getRandomColor() // Fallback zu random color
             });
         });
         console.log('Users-Array', users);
@@ -72,63 +86,41 @@ async function loadUsers(path = '/users') {
 // Zeigt die Benutzer im Kontaktlistenbereich an
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
-    contentListRef.innerHTML = ""; // Clear the current content
+    contentListRef.innerHTML = "";
+    console.log(users);
 
-    // Sort the users alphabetically by name
-    let sortedUsers = users.sort((a, b) => a.name.localeCompare(b.name));
-
-    // Group users by the first letter of their name
-    let groupedUsers = {};
-
-    sortedUsers.forEach((user, userIndex) => {
-        let firstLetter = user.name[0].toUpperCase(); // Get the first letter of the user's name
-        if (!groupedUsers[firstLetter]) {
-            groupedUsers[firstLetter] = [];
-        }
-        // Store the user and their actual index in the main 'users' array
-        groupedUsers[firstLetter].push({ user, userIndex });
+    users.forEach((person, index) => {
+        contentListRef.innerHTML += /*html*/`
+        <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
+            <br>
+            <svg width="100" height="100">
+                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" /> <!-- Removed stroke -->
+            </svg>
+            <div class="name-email-contact-list-wrapper">
+                <p>${person.name}</p>
+                <p>${person.email}</p>
+            </div>
+        </div>`;
     });
-
-    // Generate HTML for each letter and its corresponding users
-    for (let letter in groupedUsers) {
-        // Add the letter as a heading
-        contentListRef.innerHTML += `<h2>${letter}</h2>`;
-
-        // Add each user under the corresponding letter
-        groupedUsers[letter].forEach(({ user, userIndex }) => {
-            contentListRef.innerHTML += /*html*/`
-            <div onclick="editContact(${userIndex})" class="content-container load-data-container" id="content-container-${userIndex}">
-                <br>
-                <svg width="100" height="100">
-                    <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-                </svg>
-                <div class="name-email-contact-list-wrapper">
-                    <p>${user.name}</p>
-                    <p>${user.email}</p>
-                </div>
-            </div>`;
-        });
-    }
 }
-
 
 // Bearbeitet einen Kontakt
 function editContact(index) {
     let editContactDiv = document.getElementById('edit-contacts');
     let person = users[index];
-
+    
     editContactDiv.innerHTML = '';
     editContactDiv.innerHTML += /*html*/`
    <div id="contact-${index}">
         <div class="svg-name-wrapper">
             <svg width="100" height="100">
-                <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" /> <!-- Removed stroke -->
             </svg>
             <div class="name-delete-edit-wrapper">
                 <h1>${person.name}</h1>
-                <div class="delete-edit-contact-wrapper">  
+                <div class="delete-edit-contact-wrapper">
                     <span>
-                        <p onclick="openEditOverlay(${index})"> <img class="contacts-icon" src="./assets/img/edit.svg"> Edit</p>                        
+                        <p onclick="openEditOverlay(${index})"> <img class="contacts-icon" src="./assets/img/edit.svg"> Edit</p>
                     </span>
                     <span>
                         <p onclick="deleteContact(${index})"> <img class="contacts-icon" src="./assets/img/delete.svg"> Delete</p>
@@ -142,8 +134,6 @@ function editContact(index) {
             <p><strong>Phone: <br> </strong>${person.phone}</p> <br>
         </div>
     </div>`;
-
-
 }
 
 // Löscht einen Kontakt
@@ -184,12 +174,6 @@ function exitEditOverlay() {
     setTimeout(() => overlay.classList.add('d-none'), 500);
 }
 
-// function exitOverlay() {
-//     let overlay = document.getElementById('edit-overlay');
-//     overlay.classList.remove('show');
-//     setTimeout(() => overlay.classList.add('d-none'), 500);
-// }
-
 // Befüllt das Bearbeitungs-Overlay mit den Kontaktdaten
 function editContactOverlay(index) {
     let person = users[index];
@@ -205,15 +189,12 @@ function editContactOverlay(index) {
         overlay.classList.add('d-none');
     };
 
-
     editContact(index);
-
 }
 
 // Speichert die Änderungen an einem Kontakt
 async function saveUser(index) {
     let updatedUser = getUpdatedUserData(index);
-
     let person = users[index];
 
     try {
@@ -227,11 +208,10 @@ async function saveUser(index) {
 
         if (response.ok) {
             // Die Änderungen in der lokalen Liste aktualisieren
-            users[index] = { id: person.id, ...updatedUser };  // Update mit id sicherstellen
+            users[index] = { id: person.id, ...updatedUser };
 
             // Die Oberfläche aktualisieren
             loadUsers();
-
         } else {
             console.error('Update fehlgeschlagen', response.status);
         }
@@ -247,6 +227,6 @@ function getUpdatedUserData(index) {
     return {
         name: document.getElementById("edit-name").value || users[index].name,  // Verwende alte Werte, wenn nichts geändert wurde
         phone: document.getElementById("edit-phone").value || users[index].phone,
-        email: document.getElementById("edit-email").value || users[index].email,
+        email: document.getElementById("edit-email").value || users[index].email
     };
 }
