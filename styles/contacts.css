@@ -4,7 +4,7 @@
     display: flex;
     padding-top: 30px;
     background-color: white;
-    position: relative; 
+    position: relative;
     z-index: 10;
     box-shadow: 5px 9px 10px 0 rgba(0, 0, 0, 0.2);
 }
@@ -52,11 +52,10 @@
 
 .contact-text {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 30px;
-    margin-left: 400px;
     margin-top: 120px;
+    margin-left: 60px;
 }
 
 .contact-text h1 {
@@ -293,12 +292,11 @@ h2 {
 #edit-contacts {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-left: 100px;
     border: 4px solid turquoise;
     width: 500px;
     height: 500px;
     gap: 20px;
+    margin-left: 60px;
 }
 
 .delete-edit-contact-wrapper {
