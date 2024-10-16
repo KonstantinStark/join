@@ -303,3 +303,10 @@ h2 {
     display: flex;
     gap:20px;
 }
+
+.svg-name-wrapper {
+
+    display: flex;
+    align-items: center;
+    gap:30px;
+}
