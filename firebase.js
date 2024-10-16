@@ -1,28 +1,18 @@
-// Globale Variablen
 let users = [];
 const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// Initialisiert die Anwendung
 function init() {
     loadUsers();
 }
 
-// Fügt einen neuen Benutzer hinzu
 async function addUser() {
     let newUser = getUserInput();
-
-    // Füge eine zufällige Farbe hinzu
     newUser.color = getRandomColor();
-
-    // Eingabefelder leeren
     resetInputFields();
-
-    // Neuen Benutzer zur Datenbank hinzufügen und die Benutzerliste neu laden
     await postData("/users", newUser);
     await loadUsers();
 }
 
-// Holt Benutzerdaten von den Eingabefeldern
 function getUserInput() {
     return {
         name: document.getElementById("name").value,
@@ -31,7 +21,6 @@ function getUserInput() {
     };
 }
 
-// Generiert eine zufällige Farbe in hexadezimalem Format
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color = '#';
@@ -41,14 +30,12 @@ function getRandomColor() {
     return color;
 }
 
-// Leert die Eingabefelder
 function resetInputFields() {
     document.getElementById("name").value = "";
     document.getElementById("phone").value = "";
     document.getElementById("email").value = "";
 }
 
-// POST-Anfrage an Firebase
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
         method: "POST",
@@ -59,11 +46,9 @@ async function postData(path = "", data = {}) {
     });
 }
 
-// Lädt die Benutzerdaten von Firebase
 async function loadUsers(path = '/users') {
     let userResponse = await fetch(FIREBASE_URL + path + '.json');
     let responseToJson = await userResponse.json();
-    console.log('Serverantwort', responseToJson);
 
     users = [];
     if (responseToJson) {
@@ -73,28 +58,24 @@ async function loadUsers(path = '/users') {
                 name: responseToJson[key]['name'],
                 phone: responseToJson[key]['phone'],
                 email: responseToJson[key]['email'],
-                // Setze Standardfarbe, falls keine vorhanden
-                color: responseToJson[key]['color'] || getRandomColor() // Fallback zu random color
+                color: responseToJson[key]['color'] || getRandomColor()
             });
         });
-        console.log('Users-Array', users);
     }
 
     loadData();
 }
 
-// Zeigt die Benutzer im Kontaktlistenbereich an
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
     contentListRef.innerHTML = "";
-    console.log(users);
 
     users.forEach((person, index) => {
-        contentListRef.innerHTML += /*html*/`
+        contentListRef.innerHTML += `
         <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
             <br>
             <svg width="100" height="100">
-                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" /> <!-- Removed stroke -->
+                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" />
             </svg>
             <div class="name-email-contact-list-wrapper">
                 <p>${person.name}</p>
@@ -104,17 +85,16 @@ function loadData() {
     });
 }
 
-// Bearbeitet einen Kontakt
 function editContact(index) {
     let editContactDiv = document.getElementById('edit-contacts');
     let person = users[index];
     
     editContactDiv.innerHTML = '';
-    editContactDiv.innerHTML += /*html*/`
+    editContactDiv.innerHTML += `
    <div id="contact-${index}">
         <div class="svg-name-wrapper">
             <svg width="100" height="100">
-                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" /> <!-- Removed stroke -->
+                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" />
             </svg>
             <div class="name-delete-edit-wrapper">
                 <h1>${person.name}</h1>
@@ -136,7 +116,6 @@ function editContact(index) {
     </div>`;
 }
 
-// Löscht einen Kontakt
 async function deleteContact(index) {
     let person = users[index];
     try {
@@ -155,35 +134,27 @@ async function deleteContact(index) {
     }
 }
 
-// Öffnet das Bearbeitungs-Overlay
 function openEditOverlay(index) {
     let overlay = document.getElementById('edit-overlay');
-
-    // Daten ins Overlay laden
     editContactOverlay(index);
-
-    // Overlay anzeigen
     overlay.classList.remove('d-none');
     setTimeout(() => overlay.classList.add('show'), 10);
 }
 
-// Schließt das Overlay
 function exitEditOverlay() {
     let overlay = document.getElementById('edit-overlay');
     overlay.classList.toggle('d-none');
     setTimeout(() => overlay.classList.add('d-none'), 500);
 }
 
-// Befüllt das Bearbeitungs-Overlay mit den Kontaktdaten
 function editContactOverlay(index) {
     let person = users[index];
     document.getElementById("edit-name").value = person.name;
     document.getElementById("edit-phone").value = person.phone;
     document.getElementById("edit-email").value = person.email;
 
-    // Den Index des Kontakts speichern, damit wir wissen, welchen Kontakt wir speichern
     document.getElementById('save-button').onclick = function () {
-        saveUser(index);  // Aufruf von saveUser mit dem Index des zu bearbeitenden Kontakts
+        saveUser(index);
 
         let overlay = document.getElementById('edit-overlay');
         overlay.classList.add('d-none');
@@ -192,14 +163,13 @@ function editContactOverlay(index) {
     editContact(index);
 }
 
-// Speichert die Änderungen an einem Kontakt
 async function saveUser(index) {
     let updatedUser = getUpdatedUserData(index);
     let person = users[index];
 
     try {
         let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, {
-            method: "PATCH",  // PATCH wird verwendet, um nur die geänderten Felder zu aktualisieren
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -207,10 +177,7 @@ async function saveUser(index) {
         });
 
         if (response.ok) {
-            // Die Änderungen in der lokalen Liste aktualisieren
             users[index] = { id: person.id, ...updatedUser };
-
-            // Die Oberfläche aktualisieren
             loadUsers();
         } else {
             console.error('Update fehlgeschlagen', response.status);
@@ -222,10 +189,9 @@ async function saveUser(index) {
     editContact(index);
 }
 
-// Holt die aktualisierten Benutzerdaten aus dem Bearbeitungs-Overlay
 function getUpdatedUserData(index) {
     return {
-        name: document.getElementById("edit-name").value || users[index].name,  // Verwende alte Werte, wenn nichts geändert wurde
+        name: document.getElementById("edit-name").value || users[index].name,
         phone: document.getElementById("edit-phone").value || users[index].phone,
         email: document.getElementById("edit-email").value || users[index].email
     };
