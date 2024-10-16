@@ -68,11 +68,20 @@ function loadData() {
     for (let index = 0; index < users.length; index++) {
         let people = users[index];
         contentListRef.innerHTML += /*html*/`
-        <div onclick="editContact(${index})" class="content-container"> <br>
+        <div onclick="editContact(${index})"class="content-container"> <br>
+
+        <svg width="100"
+                 height="100">
+                <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+                </svg>
+
+            <div class="name-email-contact-list-wrapper">
+             <p>${people.name}</p>
+             <p>${people.email}</p>
+        </div>
              
-             <p>Name: ${people.name}</p>
-             <p>E-mail: ${people.email}</p>
-             </div>
+         </div>
+         
         `;
     }
 }

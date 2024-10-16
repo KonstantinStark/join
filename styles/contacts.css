@@ -284,6 +284,10 @@ h2 {
 
 /* template js  */
 
+
+
+/* editContact function */
+
 #edit-contacts{
 
     display: flex;
@@ -309,4 +313,14 @@ h2 {
     display: flex;
     align-items: center;
     gap:30px;
+}
+
+/* loadData function */
+
+.content-container  {
+
+    display: flex;
+    align-items: center;
+
+
 }
