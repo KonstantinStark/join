@@ -158,7 +158,7 @@ function openEditOverlay(index) {
 // Schließt das Overlay
 function exitEditOverlay() {
     let overlay = document.getElementById('edit-overlay');
-    overlay.classList.remove('show');
+    overlay.classList.toggle('d-none');
     setTimeout(() => overlay.classList.add('d-none'), 500);
 }
 
@@ -209,7 +209,7 @@ async function saveUser(index) {
 
             // Die Oberfläche aktualisieren
             loadUsers();
-            exitOverlay();  // Overlay schließen
+            
         } else {
             console.error('Update fehlgeschlagen', response.status);
         }
