@@ -5,7 +5,6 @@
     padding-top: 30px;
     background-color: white;
     box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-
 }
 
 .add-contact-btn {
@@ -236,45 +235,6 @@ h2 {
     color: white;
 }
 
-
-/* template js  */
-
-
-
-/* editContact function */
-
-#edit-contacts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 100px;
-
-
-    border: 4px solid turquoise;
-    width: 500px;
-    height: 500px;
-    gap: 20px;
-}
-
-.delete-edit-contact-wrapper {
-    display: flex;
-    gap: 20px;
-}
-
-.svg-name-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-/* loadData function */
-
-.content-container {
-    display: flex;
-    align-items: center;
-}
-
-
 .input-container {
     position: relative;
 }
@@ -307,4 +267,40 @@ h2 {
 
 .cancel-button-img {
     padding-bottom: 4px;
+}
+
+
+/* template js  */
+
+
+
+/* editContact function */
+
+#edit-contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 100px;
+    border: 4px solid turquoise;
+    width: 500px;
+    height: 500px;
+    gap: 20px;
+}
+
+.delete-edit-contact-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.svg-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* loadData function */
+
+.content-container {
+    display: flex;
+    align-items: center;
 }
