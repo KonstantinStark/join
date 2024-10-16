@@ -107,10 +107,10 @@ h2 {
 
 .overlay-wrapper {
     display: flex;
-    border: 1px solid black;
     border-radius: 10px;
     width: 1200px;
     background-color: white;
+    margin-left: 550px;
 }
 
 .exit-overlay {
