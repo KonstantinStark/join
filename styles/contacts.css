@@ -4,11 +4,14 @@
     display: flex;
     padding-top: 30px;
     background-color: white;
-    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+    position: relative; 
+    z-index: 10;
+    box-shadow: 5px 9px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .contact-text-wrapper {
     background-color: #f6f7f8;
+    width: 100%;
 }
 
 .add-contact-btn {
