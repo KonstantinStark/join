@@ -235,6 +235,14 @@ h2 {
     color: white;
 }
 
+.edit-contact-button button {
+    width: 78px;
+    background-color: #2a3647;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
 .input-container {
     position: relative;
 }
