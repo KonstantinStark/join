@@ -8,72 +8,63 @@
     <link rel="stylesheet" href="./styles/standard.css">
     <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/contacts.css">
     <title>Contacts</title>
-    <style></style>
 </head>
 
 <body onload="init()">
     <section class="all-side">
         <div class="sidebar">
-
             <div class="side-join-logo">
-                <img src="./assets/img/joinlogo.png" alt="">
+                <img src="./assets/img/joinlogo.png" alt="Join Logo">
             </div>
 
             <div class="navbar">
-                <a href="">
+                <a href="#">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/summery.png" alt="">
-                        <span class="navbar-text"> Summary</span>
+                        <img src="./assets/img/summery.png" alt="Summary Icon">
+                        <span class="navbar-text">Summary</span>
                     </div>
                 </a>
-                <a href="">
+                <a href="#">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/task.png" alt="">
-                        <span class="navbar-text"> Add Task</span>
+                        <img src="./assets/img/task.png" alt="Add Task Icon">
+                        <span class="navbar-text">Add Task</span>
                     </div>
                 </a>
-                <a href="">
+                <a href="#">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/board.png" alt="">
-                        <span class="navbar-text"> Board</span>
+                        <img src="./assets/img/board.png" alt="Board Icon">
+                        <span class="navbar-text">Board</span>
                     </div>
                 </a>
-                <a href="">
+                <a href="#">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/contacts.png" alt="">
-                        <span class="navbar-text"> Contacts</span>
+                        <img src="./assets/img/contacts.png" alt="Contacts Icon">
+                        <span class="navbar-text">Contacts</span>
                     </div>
                 </a>
-
             </div>
 
             <div class="privacy-legal-wrapper">
-                <a href=""><span class="footer-text">Privacy Policy</span></a>
-                <a href=""><span class="footer-text">Legal notice</span></a>
+                <a href="#"><span class="footer-text">Privacy Policy</span></a>
+                <a href="#"><span class="footer-text">Legal Notice</span></a>
             </div>
         </div>
 
         <div class="main">
             <header>
                 <span class="headline-header">Kanban Project Management Tool</span>
-                <img src="" alt="">
-
             </header>
+
             <div class="body-wrapper">
                 <div class="contact-list-wrapper">
-                    <div>
-                        <button class="add-contact-btn" onclick="toggleOverlay()">
-                            <span>Add new contact</span>
-                            <img src="./assets/img/person_add.svg" class="icon">
-                        </button>
+                    <button class="add-contact-btn" onclick="toggleOverlay()">
+                        <span>Add new contact</span>
+                        <img src="./assets/img/person_add.svg" class="icon" alt="Add Person Icon">
+                    </button>
 
-                    </div>
-
-                    <div id="contact-list" class="contact-list">
-                    </div>
+                    <div id="contact-list" class="contact-list"></div>
                 </div>
 
                 <div class="contact-text-wrapper">
@@ -84,44 +75,34 @@
                     </div>
 
                     <div id="edit-contacts"></div>
-
                 </div>
-
-
-
             </div>
         </div>
     </section>
 
-
-    <!-- overlay when clicked on add new contact -->
+    <!-- Overlay for adding new contact -->
     <section>
-        <div class="overlay  d-none" id="overlay">
+        <div class="overlay d-none" id="overlay">
             <div class="overlay-wrapper">
-
                 <div class="contact-wrapper">
-                    <img src="./assets/img/joinlogo.png" alt="">
-                    <h1>Add Contact
-                        <h2>Tasks are better with a team</h2>
-                        <div class="highlight"></div>
-                    </h1>
+                    <img src="./assets/img/joinlogo.png" alt="Join Logo">
+                    <h1>Add Contact</h1>
+                    <h2>Tasks are better with a team</h2>
+                    <div class="highlight"></div>
                 </div>
 
                 <div class="circle-wrapper">
-
-                    <div class="name-initials"><img src="./assets/img/overlay/Group 13.png" alt=""></div>
-
+                    <div class="name-initials">
+                        <img src="./assets/img/overlay/Group 13.png" alt="Initials Icon">
+                    </div>
                 </div>
 
                 <div class="form-wrapper">
                     <form>
-
-
                         <div class="name-input-wrapper">
-
-                            <div class="exit-overlay" onclick="exitOverlay()"><img src="./assets/img/overlay/Close.png"
-                                    alt=""></div>
-
+                            <div class="exit-overlay" onclick="exitOverlay()">
+                                <img src="./assets/img/overlay/Close.png" alt="Close Icon">
+                            </div>
 
                             <div class="input-fields">
                                 <div class="name-input">
@@ -135,70 +116,9 @@
                                     </div>
                                     <div class="input-container">
                                         <img src="./assets/img/call.svg" alt="Phone Icon" class="input-icon">
-                                        <input required type="tel" placeholder="Enter your phonenumber" id="phone">
+                                        <input required type="tel" placeholder="Enter your phone number" id="phone">
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-
-                        <div class="buttons-form-wrapper">
-                            <div class="cancel-button">
-                                <button>
-
-                                    <div class="buttons-span-image-wrapper">
-
-                                        <span class="cancel-button-span">Cancel</span>
-
-                                        <img class="cancel-button-img" src="./assets/img/overlay/Close.png" alt="">
-
-                                    </div>
-                                </button>
-
-                            </div>
-                            <div class="create-contact-button">
-                                <button onclick="addUser()">Create Contact</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <!-- overlay when clicked on edit -->
-<section>
-    <div class="overlay  d-none" id="edit-overlay">
-        <div class="overlay-wrapper">
-
-            <div class="contact-wrapper">
-                <img src="./assets/img/joinlogo.png" alt="">
-                <h1>Edit Contact
-                    <div class="highlight"></div>
-                </h1>
-            </div>
-
-            <div class="circle-wrapper">
-                <div class="name-initials">
-                    <img src="./assets/img/overlay/Group 13.png" alt="">
-                </div>
-            </div>
-
-            <div class="form-wrapper">
-                <form>
-                    <div class="name-input-wrapper">
-                        <div class="exit-overlay" onclick="exitOverlay()">
-                            <img src="./assets/img/overlay/Close.png" alt="">
-                        </div>
-
-                        <div class="input-fields">
-                            <div class="name-input">
-                                <input required type="text" placeholder="Please enter your name" id="edit-name">
-                                <input required type="email" placeholder="Enter your e-mail" id="edit-email">
-                                <input required type="tel" placeholder="Enter your phonenumber" id="edit-phone">
                             </div>
                         </div>
 
@@ -207,23 +127,72 @@
                                 <button type="button" onclick="exitOverlay()">
                                     <div class="buttons-span-image-wrapper">
                                         <span class="cancel-button-span">Cancel</span>
+                                        <img class="cancel-button-img" src="./assets/img/overlay/Close.png" alt="Close Icon">
                                     </div>
                                 </button>
                             </div>
 
-                            <div class="edit-contact-button">
-                                <button type="button" id="save-button">
-                                    <span class="cancel-button-span">Save</span>
-                                    <img src="./assets/img/overlay/check.svg" alt="">
-                                </button>
+                            <div class="create-contact-button">
+                                <button type="button" onclick="addUser()">Create Contact</button>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Overlay for editing contact -->
+    <section>
+        <div class="overlay d-none" id="edit-overlay">
+            <div class="overlay-wrapper">
+                <div class="contact-wrapper">
+                    <img src="./assets/img/joinlogo.png" alt="Join Logo">
+                    <h1>Edit Contact</h1>
+                    <div class="highlight"></div>
+                </div>
+
+                <div class="circle-wrapper">
+                    <div class="name-initials">
+                        <img src="./assets/img/overlay/Group 13.png" alt="Initials Icon">
+                    </div>
+                </div>
+
+                <div class="form-wrapper">
+                    <form>
+                        <div class="name-input-wrapper">
+                            <div class="exit-overlay" onclick="exitOverlay()">
+                                <img src="./assets/img/overlay/Close.png" alt="Close Icon">
+                            </div>
+
+                            <div class="input-fields">
+                                <div class="name-input">
+                                    <input required type="text" placeholder="Please enter your name" id="edit-name">
+                                    <input required type="email" placeholder="Enter your e-mail" id="edit-email">
+                                    <input required type="tel" placeholder="Enter your phone number" id="edit-phone">
+                                </div>
+                            </div>
+
+                            <div class="buttons-form-wrapper">
+                                <div class="cancel-button">
+                                    <button type="button" onclick="exitOverlay()">
+                                        <span class="cancel-button-span" onclick="exitOverlay()">Cancel</span>
+                                    </button>
+                                </div>
+
+                                <div class="edit-contact-button">
+                                    <button type="button" id="save-button">
+                                        <span class="cancel-button-span">Save</span>
+                                        <img src="./assets/img/overlay/check.svg" alt="Check Icon">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="firebase.js"></script>
     <script src="./js/contacts.js"></script>
