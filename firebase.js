@@ -84,21 +84,26 @@ function editContact(index) {
     editContact.innerHTML = ''; // Clear previous content
     editContact.innerHTML += /*html*/`
         <div id="contact-${index}">
-          <p>Name: ${person.name}</p>
-          <span>
-            <img src="" alt="">
-            <p onclick="edit(${index})">Edit</p>
-          </span>
-          <span>
-            <img src="" alt="">
-            <p onclick="deleteContact(${index})">Delete</p>
-          </span>
+            <img src="svg placeholder circle" alt="">
+          <h3>${person.name}</h3>
+          <div class="delete-edit-contact-wrapper">
+            <span>
+                <img src="" alt="">
+                <p onclick="edit(${index})">Edit</p>
+            </span>
+            <span>
+                <img src="" alt="">
+                <p onclick="deleteContact(${index})">Delete</p>
+            </span>
+          </div>
         </div>
+
+        <p>Contact Information <br></p>
         
         <div>
-            <p>Contact Information</p>
-            <p>Email: ${person.email}</p>
-            <p>Phone: ${person.phone}</p>
+            
+            <p><strong>Email: </strong> <br> ${person.email}</p>
+            <p><strong>Phone:</strong> <br> ${person.phone}</p>
         </div>
     `;
 }
