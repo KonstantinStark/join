@@ -72,23 +72,45 @@ async function loadUsers(path = '/users') {
 // Zeigt die Benutzer im Kontaktlistenbereich an
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
-    contentListRef.innerHTML = "";
-    console.log(users);
+    contentListRef.innerHTML = ""; // Clear the current content
 
-    users.forEach((people, index) => {
-        contentListRef.innerHTML += /*html*/`
-        <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
-            <br>
-            <svg width="100" height="100">
-                <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-            </svg>
-            <div class="name-email-contact-list-wrapper">
-                <p>${people.name}</p>
-                <p>${people.email}</p>
-            </div>
-        </div>`;
+    // Sort the users alphabetically by name
+    let sortedUsers = users.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Group users by the first letter of their name
+    let groupedUsers = {};
+
+    sortedUsers.forEach(user => {
+        let firstLetter = user.name[0].toUpperCase(); // Get the first letter of the user's name
+        if (!groupedUsers[firstLetter]) {
+            groupedUsers[firstLetter] = [];
+        }
+        groupedUsers[firstLetter].push(user);
     });
+
+    // Generate HTML for each letter and its corresponding users
+    for (let letter in groupedUsers) {
+        // Add the letter as a heading
+        contentListRef.innerHTML += `<h2>${letter}</h2>`;
+
+        // Add each user under the corresponding letter
+        groupedUsers[letter].forEach((person, index) => {
+            contentListRef.innerHTML += /*html*/`
+            <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}">
+                <div class="seperator2"></div>
+                <br>
+                <svg width="100" height="100">
+                    <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+                </svg>
+                <div class="name-email-contact-list-wrapper">
+                    <p>${person.name}</p>
+                    <p>${person.email}</p>
+                </div>
+            </div>`;
+        });
+    }
 }
+
 
 // Bearbeitet einen Kontakt
 function editContact(index) {
