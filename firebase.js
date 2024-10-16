@@ -68,7 +68,7 @@ function loadData() {
     for (let index = 0; index < users.length; index++) {
         let people = users[index];
         contentListRef.innerHTML += /*html*/`
-        <div onclick="editContact(${index})"class="content-container"> <br>
+        <div onclick="editContact(${index})"class="content-container-${index}" id="content-container-${index}"> <br>
 
         <svg width="100"
                  height="100">
@@ -92,38 +92,39 @@ function editContact(index) {
 
     editContact.innerHTML = ''; // Clear previous content
     editContact.innerHTML += /*html*/`
-        <div id="contact-${index}">
-            <div class="svg-name-wrapper">
-                <svg width="100"
-                 height="100">
-                <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-                </svg>
-                <div class="name-delete-edit-wrapper">
+   <div id="contact-${index}">
+    <div class="svg-name-wrapper">
+        <svg width="100"
+         height="100">
+        <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+        </svg>
+        <div class="name-delete-edit-wrapper">
 
-                
-                <h1>${person.name}</h1>
-                <div class="delete-edit-contact-wrapper">
-                <span>
-                <img src="" alt="">
-                <p onclick="edit(${index})">Edit</p>
-                 </span>
-                <span>
-                <img src="" alt="">
-                <p onclick="deleteContact(${index})">Delete</p>
-            </span>
-          </div>
-          </div>
-        </div>
-          </div>
-            
-
-        <p>Contact Information <br></p>
         
-        <div>
-            
-            <p><strong>Email: </strong> <br> ${person.email} </p>
-            <p><strong>Phone:</strong> <br> ${person.phone}</p>
+        <h1>${person.name}</h1>
+        <div class="delete-edit-contact-wrapper">
+        <span>
+        <img src="" alt="">
+        <p onclick="edit(${index})">Edit</p>
+         </span>
+        <span>
+        <img src="" alt="">
+        <p onclick="deleteContact(${index})">Delete</p>
+         </span>
+         </div>
         </div>
+    </div>
+  
+    
+
+    <p>Contact Information <br></p>
+
+    <div>
+    
+    <p><strong>Email: </strong> <br> ${person.email} </p>
+    <p><strong>Phone:</strong> <br> ${person.phone}</p>
+    </div>
+</div>
     `;
 }
 
@@ -141,6 +142,7 @@ async function deleteContact(index) {
         if (response.ok) {
             
             document.getElementById(`contact-${index}`).remove();
+            document.getElementById(`content-container-${index}`).remove();
         } else {
             console.error('Löschen fehlgeschlagen mit Status:', response.status);
         }
