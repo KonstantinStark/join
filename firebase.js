@@ -77,7 +77,7 @@ function loadData() {
 
     users.forEach((people, index) => {
         contentListRef.innerHTML += /*html*/`
-        <div onclick="editContact(${index})" class="content-container-${index}" id="content-container-${index}"> 
+        <div onclick="editContact(${index})" class="content-container-${index} load-data-container" id="content-container-${index}"> 
             <br>
             <svg width="100" height="100">
                 <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
