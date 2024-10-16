@@ -292,7 +292,6 @@ h2 {
 #edit-contacts {
     display: flex;
     flex-direction: column;
-    border: 4px solid turquoise;
     width: 500px;
     height: 500px;
     gap: 20px;
@@ -302,6 +301,7 @@ h2 {
 .delete-edit-contact-wrapper {
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .svg-name-wrapper {
@@ -310,15 +310,22 @@ h2 {
     gap: 30px;
 }
 
+.contacts-icon {
+    padding-top: 10px;
+}
+
+.edit-delete {
+    display: flex;
+}
+
 /* loadData function */
 
 .load-data-container {
-
     display: flex;
     align-items: center;
 }
 
 .contact-list-wrapper h2 {
 
-    color:black;
+    color: black;
 }

@@ -5,7 +5,7 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 // Initialisiert die Anwendung
 function init() {
     loadUsers();
-   
+
 }
 
 // Fügt einen neuen Benutzer hinzu
@@ -94,7 +94,7 @@ function loadData() {
 function editContact(index) {
     let editContactDiv = document.getElementById('edit-contacts');
     let person = users[index];
-    
+
     editContactDiv.innerHTML = '';
     editContactDiv.innerHTML += /*html*/`
    <div id="contact-${index}">
@@ -104,24 +104,24 @@ function editContact(index) {
             </svg>
             <div class="name-delete-edit-wrapper">
                 <h1>${person.name}</h1>
-                <div class="delete-edit-contact-wrapper">
+                <div class="delete-edit-contact-wrapper">  
                     <span>
-                        <p onclick="openEditOverlay(${index})">Edit</p>
+                        <p onclick="openEditOverlay(${index})"> <img class="contacts-icon" src="./assets/img/edit.svg"> Edit</p>                        
                     </span>
                     <span>
-                        <p onclick="deleteContact(${index})">Delete</p>
+                        <p onclick="deleteContact(${index})"> <img class="contacts-icon" src="./assets/img/delete.svg"> Delete</p>
                     </span>
                 </div>
             </div>
-        </div>
-        <p>Contact Information <br></p>
+        </div> <br>
+        <p>Contact Information</p> <br>
         <div>
-            <p><strong>Email: </strong><br> ${person.email} </p>
-            <p><strong>Phone:</strong><br> ${person.phone}</p>
+            <p><strong>Email: <br> </strong>${person.email} </p> <br>
+            <p><strong>Phone: <br> </strong>${person.phone}</p> <br>
         </div>
     </div>`;
 
-   
+
 }
 
 // Löscht einen Kontakt
@@ -185,7 +185,7 @@ function editContactOverlay(index) {
 
 
     editContact(index);
-    
+
 }
 
 // Speichert die Änderungen an einem Kontakt
@@ -209,7 +209,7 @@ async function saveUser(index) {
 
             // Die Oberfläche aktualisieren
             loadUsers();
-            
+
         } else {
             console.error('Update fehlgeschlagen', response.status);
         }
