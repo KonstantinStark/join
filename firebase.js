@@ -1,27 +1,41 @@
+// Globale Variablen
 let users = [];
+const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
 
+// Initialisiert die Anwendung
 function init() {
     loadUsers();
 }
 
-const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
-
+// Fügt einen neuen Benutzer hinzu
 async function addUser() {
-    let nameValue = document.getElementById("name").value;
-    let phoneValue = document.getElementById("phone").value;
-    let emailValue = document.getElementById("email").value;
+    let newUser = getUserInput();
 
-    let newUser = { name: nameValue, phone: phoneValue, email: emailValue };
+    // Eingabefelder leeren
+    resetInputFields();
 
-    document.getElementById("name").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("email").value = "";
-
+    // Neuen Benutzer zur Datenbank hinzufügen und die Benutzerliste neu laden
     await postData("/users", newUser);
-
     await loadUsers();
 }
 
+// Holt Benutzerdaten von den Eingabefeldern
+function getUserInput() {
+    return {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+    };
+}
+
+// Leert die Eingabefelder
+function resetInputFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
+}
+
+// POST-Anfrage an Firebase
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
         method: "POST",
@@ -32,6 +46,7 @@ async function postData(path = "", data = {}) {
     });
 }
 
+// Lädt die Benutzerdaten von Firebase
 async function loadUsers(path = '/users') {
     let userResponse = await fetch(FIREBASE_URL + path + '.json');
     let responseToJson = await userResponse.json();
@@ -53,14 +68,16 @@ async function loadUsers(path = '/users') {
     loadData();
 }
 
+// Zeigt die Benutzer im Kontaktlistenbereich an
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
     contentListRef.innerHTML = "";
     console.log(users);
-    for (let index = 0; index < users.length; index++) {
-        let people = users[index];
+
+    users.forEach((people, index) => {
         contentListRef.innerHTML += /*html*/`
-        <div onclick="editContact(${index})" class="content-container-${index}" id="content-container-${index}"> <br>
+        <div onclick="editContact(${index})" class="content-container-${index}" id="content-container-${index}"> 
+            <br>
             <svg width="100" height="100">
                 <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
             </svg>
@@ -69,39 +86,42 @@ function loadData() {
                 <p>${people.email}</p>
             </div>
         </div>`;
-    }
+    });
 }
 
+// Bearbeitet einen Kontakt
 function editContact(index) {
-    let editContact = document.getElementById('edit-contacts');
+    let editContactDiv = document.getElementById('edit-contacts');
     let person = users[index];
-    editContact.innerHTML = '';
-    editContact.innerHTML += /*html*/`
+    
+    editContactDiv.innerHTML = '';
+    editContactDiv.innerHTML += /*html*/`
    <div id="contact-${index}">
-    <div class="svg-name-wrapper">
-        <svg width="100" height="100">
-            <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-        </svg>
-        <div class="name-delete-edit-wrapper">
-            <h1>${person.name}</h1>
-            <div class="delete-edit-contact-wrapper">
-                <span>
-                    <p onclick="openEditOverlay(${index})">Edit</p>
-                </span>
-                <span>
-                    <p onclick="deleteContact(${index})">Delete</p>
-                </span>
+        <div class="svg-name-wrapper">
+            <svg width="100" height="100">
+                <circle id="circle" cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+            </svg>
+            <div class="name-delete-edit-wrapper">
+                <h1>${person.name}</h1>
+                <div class="delete-edit-contact-wrapper">
+                    <span>
+                        <p onclick="openEditOverlay(${index})">Edit</p>
+                    </span>
+                    <span>
+                        <p onclick="deleteContact(${index})">Delete</p>
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
-    <p>Contact Information <br></p>
-    <div>
-        <p><strong>Email: </strong> <br> ${person.email} </p>
-        <p><strong>Phone:</strong> <br> ${person.phone}</p>
-    </div>
-</div>`;
+        <p>Contact Information <br></p>
+        <div>
+            <p><strong>Email: </strong><br> ${person.email} </p>
+            <p><strong>Phone:</strong><br> ${person.phone}</p>
+        </div>
+    </div>`;
 }
 
+// Löscht einen Kontakt
 async function deleteContact(index) {
     let person = users[index];
     try {
@@ -120,6 +140,7 @@ async function deleteContact(index) {
     }
 }
 
+// Öffnet das Bearbeitungs-Overlay
 function openEditOverlay(index) {
     let overlay = document.getElementById('edit-overlay');
 
@@ -128,19 +149,17 @@ function openEditOverlay(index) {
 
     // Overlay anzeigen
     overlay.classList.remove('d-none');
-    setTimeout(function () {
-        overlay.classList.add('show');
-    }, 10);
+    setTimeout(() => overlay.classList.add('show'), 10);
 }
 
+// Schließt das Overlay
 function exitOverlay() {
     let overlay = document.getElementById('edit-overlay');
     overlay.classList.remove('show');
-    setTimeout(function () {
-        overlay.classList.add('d-none');
-    }, 500);
+    setTimeout(() => overlay.classList.add('d-none'), 500);
 }
 
+// Befüllt das Bearbeitungs-Overlay mit den Kontaktdaten
 function editContactOverlay(index) {
     let person = users[index];
     document.getElementById("edit-name").value = person.name;
@@ -153,16 +172,9 @@ function editContactOverlay(index) {
     };
 }
 
+// Speichert die Änderungen an einem Kontakt
 async function saveUser(index) {
-    let nameValue = document.getElementById("edit-name").value;
-    let phoneValue = document.getElementById("edit-phone").value;
-    let emailValue = document.getElementById("edit-email").value;
-
-    let updatedUser = {
-        name: nameValue || users[index].name,  // Verwende alte Werte, wenn nichts geändert wurde
-        phone: phoneValue || users[index].phone,
-        email: emailValue || users[index].email,
-    };
+    let updatedUser = getUpdatedUserData(index);
 
     let person = users[index];
 
@@ -189,3 +201,15 @@ async function saveUser(index) {
         console.error('Fehler beim Update', error);
     }
 }
+
+// Holt die aktualisierten Benutzerdaten aus dem Bearbeitungs-Overlay
+function getUpdatedUserData(index) {
+    return {
+        name: document.getElementById("edit-name").value || users[index].name,  // Verwende alte Werte, wenn nichts geändert wurde
+        phone: document.getElementById("edit-phone").value || users[index].phone,
+        email: document.getElementById("edit-email").value || users[index].email,
+    };
+}
+
+// Start der Anwendung
+window.onload = init;
