@@ -314,7 +314,8 @@ h2 {
 
 /* loadData function */
 
-.content-container {
+.load-data-container {
+
     display: flex;
     align-items: center;
 }
