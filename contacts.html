@@ -60,7 +60,7 @@
             <header>
                 <span class="headline-header">Kanban Project Management Tool</span>
                 <img src="" alt="">
-               
+
             </header>
             <div class="body-wrapper">
                 <div class="contact-list-wrapper">
@@ -68,27 +68,27 @@
                         <button class="add-contact-btn" onclick="toggleOverlay()">
                             <span>Add new contact</span>
                             <img src="./assets/img/person_add.svg" class="icon">
-                        </button> 
+                        </button>
 
-                        </div>
+                    </div>
 
-                        <div id="contact-list" class="contact-list">
-                        </div>
+                    <div id="contact-list" class="contact-list">
+                    </div>
                 </div>
 
                 <div class="contact-text-wrapper">
                     <div class="contact-text">
-                    <h1>Contact</h1>
-                    <div class="seperator"></div>
-                    <h2>Better with a team</h2>
+                        <h1>Contact</h1>
+                        <div class="seperator"></div>
+                        <h2>Better with a team</h2>
                     </div>
 
-                    <div id="edit-contacts"></div> 
-                    
+                    <div id="edit-contacts"></div>
+
                 </div>
 
-                
-                
+
+
             </div>
         </div>
     </section>
@@ -104,7 +104,7 @@
                         <div class="highlight"></div>
                     </h1>
                 </div>
-                
+
                 <div class="circle-wrapper">
 
                     <div class="name-initials"><img src="./assets/img/overlay/Group 13.png" alt=""></div>
@@ -117,14 +117,25 @@
 
                         <div class="name-input-wrapper">
 
-                            <div class="exit-overlay" onclick="exitOverlay()"><img src="./assets/img/overlay/Close.png" alt=""></div>
+                            <div class="exit-overlay" onclick="exitOverlay()"><img src="./assets/img/overlay/Close.png"
+                                    alt=""></div>
 
 
                             <div class="input-fields">
                                 <div class="name-input">
-                                    <input required type="text" placeholder="Please enter your name" id="name">
-                                     <input required type="text" placeholder="Enter your e-mail" id="email">
-                                    <input required type="text" placeholder="Enter your phonenumber" id="phone">
+                                    <div class="input-container">
+                                        <img src="./assets/img/person.svg" alt="User Icon" class="input-icon">
+                                        <input required type="text" placeholder="Please enter your name" id="name">
+                                    </div>
+                                    <div class="input-container">
+                                        <img src="./assets/img/email-icon.png" alt="Email Icon" class="input-icon">
+                                        <input required type="email" placeholder="Enter your e-mail" id="email">
+                                    </div>
+                                    <div class="input-container">
+                                        <img src="./assets/img/call.svg" alt="Phone Icon" class="input-icon">
+                                        <input required type="tel" placeholder="Enter your phonenumber" id="phone">
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -137,7 +148,7 @@
 
                                         <span class="cancel-button-span">Cancel</span>
 
-                                        <img src="./assets/img/overlay/Close.png" alt="">
+                                        <img class="cancel-button-img" src="./assets/img/overlay/Close.png" alt="">
 
                                     </div>
                                 </button>
@@ -158,5 +169,3 @@
 </body>
 
 </html>
-
-
