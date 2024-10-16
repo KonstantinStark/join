@@ -1,12 +1,10 @@
-
-
 .contact-list-wrapper {
     width: 456px;
     height: 89vh;
     display: flex;
     padding-top: 30px;
     background-color: white;
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
 
 }
 
@@ -30,7 +28,6 @@
 
 .add-contact-btn:hover {
     background-color: #34495E;
-    /* Etwas helleres Blau beim Hover */
 }
 
 .body-wrapper {
@@ -38,59 +35,51 @@
 }
 
 .contact-list-wrapper {
-
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .add-contact-btn {
-
-    margin-bottom:35px;
+    margin-bottom: 35px;
 }
 
-.contact-text{
-
+.contact-text {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    margin-left:400px;
-    margin-top:150px;
-
+    margin-left: 400px;
+    margin-top: 150px;
 }
 
 .contact-text h1 {
-
     color: black;
     font-size: 64px;
 }
 
 .contact-text h2 {
-
     color: black;
 }
 
 .seperator {
-
     height: 40px;
     width: 2px;
     background-color: #29ABE2;
-
 }
 
 /* Overlay */
 
 .overlay {
     position: absolute;
-    top:0;
-    display:flex;
+    top: 0;
+    display: flex;
     justify-content: center;
     align-items: center;
-    width:100vw;
-    height:100vh;
-    position:absolute;
-    top:0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
     background-color: rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease, opacity 0.5s ease;
     transform: translateX(100%);
@@ -106,35 +95,26 @@
     display: none;
 }
 
-
 h2 {
-
     color: white;
     font-size: 28px;
 }
 
-
 .overlay-wrapper {
-
     display: flex;
     border: 1px solid black;
     border-radius: 10px;
     width: 1200px;
     background-color: white;
-    
-
 }
 
 .exit-overlay {
-
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
 }
 
 .contact-wrapper {
-
-
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -144,54 +124,40 @@ h2 {
     background-color: #2a3647;
     padding: 66px 46px 66px 46px;
     gap: 20px;
-    border-top-left-radius: 10px; 
+    border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-
-
 }
 
 .contact-wrapper h1 {
-
     color: white;
     font-size: 56px;
-
 }
 
 .contact-wrapper h2 {
-
     color: white;
     font-size: 24px;
-
 }
 
-
-
 .contact-wrapper img {
-
     width: 53.93px;
     height: 66.48px;
 }
 
 .highlight {
-
     background-color: #29ABE2;
     width: 100px;
     height: 2px;
-
 }
 
 .form-wrapper {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 70px;
     width: 453px;
-
 }
 
-.name-input{
-
+.name-input {
     display: flex;
     flex-direction: column;
     width: 422px;
@@ -202,13 +168,11 @@ h2 {
 }
 
 .input-fields input {
-
     padding: 14px;
     border-radius: 10px;
 }
 
 .input-fields input:hover {
-
     border: 2px solid#29ABE2;
 }
 
@@ -217,9 +181,7 @@ h2 {
     outline: none;
 }
 
-
 .name-initials {
-
     width: 120px;
     height: 120px;
     /* border-radius: 60%;
@@ -227,7 +189,6 @@ h2 {
 }
 
 .circle-wrapper {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -237,7 +198,6 @@ h2 {
 }
 
 .buttons-form-wrapper {
-
     display: flex;
     gap: 25px;
     width: 249px;
@@ -247,7 +207,6 @@ h2 {
 }
 
 .buttons-form-wrapper button {
-
     padding: 8px;
     width: 100px;
     height: 40px;
@@ -257,27 +216,21 @@ h2 {
 }
 
 .cancel-button {
-
     display: flex;
-
 }
 
 .cancel-button img {
-
     width: 25px;
     height: 25px;
-
 }
 
 .buttons-span-image-wrapper {
-
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .create-contact-button button {
-
     width: 150px;
     background-color: #2a3647;
     color: white;
@@ -290,39 +243,33 @@ h2 {
 
 /* editContact function */
 
-#edit-contacts{
-
+#edit-contacts {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left:100px;
-    
+    padding-left: 100px;
 
-    border:4px solid turquoise;
-    width:500px;
-    height:500px;
-    gap:20px;
+
+    border: 4px solid turquoise;
+    width: 500px;
+    height: 500px;
+    gap: 20px;
 }
 
 .delete-edit-contact-wrapper {
-
     display: flex;
-    gap:20px;
+    gap: 20px;
 }
 
 .svg-name-wrapper {
-
     display: flex;
     align-items: center;
-    gap:30px;
+    gap: 30px;
 }
 
 /* loadData function */
 
-.content-container  {
-
+.content-container {
     display: flex;
     align-items: center;
-
-
 }
