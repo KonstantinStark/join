@@ -1,7 +1,7 @@
 let users = [];
 
 function init() {
-    loadUsers(); // Lädt die User-Daten, wenn die Seite initialisiert wird
+    loadUsers(); 
 }
 
 const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -11,18 +11,18 @@ async function addUser() {
     let phoneValue = document.getElementById("phone").value;
     let emailValue = document.getElementById("email").value;
 
-    // Neues User-Objekt erstellen
+    
     let newUser = { name: nameValue, phone: phoneValue, email: emailValue };
 
-    // Felder nach dem Absenden leeren
+   
     document.getElementById("name").value = "";
     document.getElementById("phone").value = "";
     document.getElementById("email").value = "";
 
-    // Post an Firebase senden
+    
     await postData("/users", newUser);
 
-    // Daten neu laden
+    
     await loadUsers();
 }
 
@@ -41,7 +41,7 @@ async function loadUsers(path = '/users') {
     let responseToJson = await userResponse.json();
     console.log('Serverantwort', responseToJson);
 
-    users = []; // Leere das Users-Array
+    users = []; 
     if (responseToJson) {
         Object.keys(responseToJson).forEach(key => {
             users.push({
@@ -54,7 +54,7 @@ async function loadUsers(path = '/users') {
         console.log('Users-Array', users);
     }
 
-    // Nach dem Laden die Daten anzeigen
+    
     loadData();
 }
 
@@ -105,7 +105,7 @@ function editContact(index) {
         <div class="delete-edit-contact-wrapper">
         <span>
         <img src="" alt="">
-        <p onclick="edit(${index})">Edit</p>
+        <p onclick="editContactTest(${index})">Edit</p>
          </span>
         <span>
         <img src="" alt="">
@@ -130,25 +130,47 @@ function editContact(index) {
 
 
 async function deleteContact(index) {
-    let person = users[index]; // Hole den spezifischen Benutzer aus dem Array
-
+    let person = users[index]; 
     try {
-        // Lösche den Kontakt in Firebase, indem die Firebase-ID verwendet wird
+       
         let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, {
             method: "DELETE",
         });
 
-        // Überprüfe, ob die Anfrage erfolgreich war
+        
         if (response.ok) {
             
             document.getElementById(`contact-${index}`).remove();
             document.getElementById(`content-container-${index}`).remove();
         } else {
-            console.error('Löschen fehlgeschlagen mit Status:', response.status);
+            console.error('delete unsuccessful', response.status);
         }
     } catch (error) {
-        console.error('Fehler beim Löschen des Kontakts:', error);
+        console.error('error', error);
     }
+}
+
+
+
+function editContactTest(index) {
+    let overlay = document.getElementById('edit-overlay');
+    if (overlay.classList.contains('d-none')) {
+        overlay.classList.remove('d-none');         
+        setTimeout(function() {
+            overlay.classList.add('show');
+        }, 10);
+    } else {
+        overlay.classList.remove('show'); 
+        setTimeout(function() {
+            overlay.classList.add('d-none'); 
+        }, 500); 
+    }
+}
+
+function exitOverlay() {
+
+    let overlay = document.getElementById('edit-overlay');
+    overlay.classList.toggle('d-none');
 }
 
 
