@@ -40,7 +40,7 @@
                         <span class="navbar-text">Board</span>
                     </div>
                 </a>
-                <a href="#">
+                <a href="/contacts.html">
                     <div class="sidebar-image-title-wrapper">
                         <img src="/assets/img/contacts.png" alt="Contacts Icon">
                         <span class="navbar-text">Contacts</span>
@@ -75,11 +75,17 @@
                     <div class="input-fields-left-side">
 
                         <p>Enter a title</p>
-                        <div class="title-input"><input type="text" placeholder="Enter a title"></div>
+                        <div class="title-input"><input type="text" placeholder="Enter a title" id="title-input"></div>
                         <p>Description</p>
-                        <div class="description-input"><input type="text" placeholder="Enter a Description"></div>
+                        <div class="description-input"><input type="text" placeholder="Enter a Description" id="description-input"></div>
                         <p>Assigned to</p>
-                        <div class="assigned-to-input"><input type="text"></div>
+                        <div class="assigned-to-input">
+                            <label for="assigned-to-input">Assign To:</label>
+                            <select id="assigned-to-input">
+                                <!-- Options will be dynamically populated using JavaScript -->
+                            </select>
+                        </div>
+                        
                     </div>
                 </div>
 
@@ -90,7 +96,7 @@
                     <div class="input-fields-right-side">
 
                         <p>Due Date</p>
-                        <div class="due-date-input"><input type="text" placeholder="dd/mm/yyyy"></div>
+                        <div class="due-date-input"><input type="text" placeholder="dd/mm/yyyy" class="due-date-input"></div>
                         <p class="prio-buttons-header">Prio</p>
                         <div class="prio-buttons">
                             <button>Urgent</button>
@@ -98,9 +104,9 @@
                             <button>Low</button>
                         </div>
                         <p>Category</p>
-                        <div class=""><input type="text" placeholder="Select task category"></div>
+                        <div class="category-input"><input type="text" placeholder="Select task category" id="category-input"></div>
                         <p>Subtasks</p>
-                        <div class="title-input"><input type="text" placeholder="Subtaks"></div>
+                        <div class="subtask-input"><input type="text" placeholder="Subtaks" id="subtask-input"></div>
 
                     </div>
 
@@ -120,7 +126,7 @@
                     <button>Create Task</button>
                 </div>
 
-
+                
             </footer>
 
 
