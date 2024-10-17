@@ -19,14 +19,14 @@
     background-color: black;
     display: flex;
     flex-direction: column;
-    margin-right:
+    
 }
 
 .left-side-wrapper {
 
     display: flex;
     flex-direction: column;
-    padding-left:10%;
+    margin-left:10%;
     height:440px;
     width:376px; 
 }
@@ -58,7 +58,6 @@
 }
 
 
-
 .prio-buttons-header {
 
     margin-top:40px;
@@ -71,4 +70,21 @@
    
 }
 
+/* .clear-create-buttons-wrapper {
+
+    display: flex;
+    margin-top:100px;
+    gap:15px;
+    margin-left:150px;
+}
+ */
+
+ footer {
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:750px;
+    margin-left:10%;
+ }
 

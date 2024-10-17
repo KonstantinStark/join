@@ -13,13 +13,7 @@ async function addUser() {
     await loadUsers();
 }
 
-function getUserInput() {
-    return {
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        email: document.getElementById("email").value
-    };
-}
+
 
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
@@ -30,11 +24,7 @@ function getRandomColor() {
     return color;
 }
 
-function resetInputFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("email").value = "";
-}
+
 
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
@@ -64,6 +54,25 @@ async function loadUsers(path = '/users') {
     }
 
     loadData();
+}
+
+
+// ziemlich sicher das dass in contacts.js kann
+
+function getUserInput() {
+    return {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value
+    };
+}
+
+
+
+function resetInputFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
 }
 
 function loadData() {
