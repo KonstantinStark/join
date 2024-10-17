@@ -1,10 +1,7 @@
-
-// Load users from the database when the page loads and populate the assigned-to-input
 async function init() {
-    await loadUsers();  // Load users into the assigned-to-input field
+    await loadUsers();
 }
 
-// Function to load users from Firebase and populate the dropdown
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
     let responseToJson = await userResponse.json();
@@ -21,48 +18,51 @@ async function loadUsers() {
         });
     }
 
+    console.log(users);
     populateAssignedToInput();
 }
 
-// Populate the "assigned-to" input with the list of users
 function populateAssignedToInput() {
     let assignedToInput = document.getElementById("assigned-to-input");
-    assignedToInput.innerHTML = ""; // Clear any existing options
+    assignedToInput.innerHTML = "";
 
     users.forEach(user => {
-        assignedToInput.innerHTML += `<option value="${user.id}">${user.name} ${user.color}</option>`;
+        assignedToInput.innerHTML += /*html*/`
+        <option value="${user.id}">
+            ${user.name}
+        </option>
+        `;
     });
 }
 
-// Add multiple tasks to the database
 async function addNewArrayFromInputs() {
-    let newTasks = getTasksFromInput();
-    
-    // Loop through the tasks and send each to the database
-    for (let task of newTasks) {
-        await postData("/tasks", task);
-    }
+    const newTasks = getTasksFromInput();
 
-    await loadTasks();  // Optionally load tasks after adding them
+    for (let task of newTasks) {
+        const userId = task.assignedUserId;
+        try {
+            await postData(`/users/${userId}/tasks`, task);
+            console.log(`Task added for user ${userId}:`, task);
+        } catch (error) {
+            console.error(`Error adding task for user ${userId}:`, error);
+        }
+    }
 }
 
-// Get task input and return an array of tasks
 function getTasksFromInput() {
-    // Create a task object based on the input fields
-    let addTask = {
+    const addTask = {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
-        assignedUserId: document.getElementById("assigned-to-input").value, // Selected user ID
+        assignedUserId: document.getElementById("assigned-to-input").value,
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input").value,
         subtask: document.getElementById("subtask-input").value
     };
 
-    // Add the task object to an array (in case there are multiple tasks to add)
-    return [addTask];  // For now, it's just one task, but you can add multiple if needed
+    console.log('see if addTask works:', addTask);
+    return [addTask];
 }
 
-// Function to send data to Firebase
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
         method: "POST",
@@ -73,7 +73,13 @@ async function postData(path = "", data = {}) {
     });
 }
 
-// Function to load tasks (optional if needed)
-async function loadTasks() {
-    // Your code to load tasks from Firebase and display them
+function resetInputFields() {
+    document.getElementById("title-input").value = "";
+    document.getElementById("description-input").value = "";
+    document.getElementById("assigned-to-input").value = "";
+    document.getElementById("due-date-input").value = "";
+    document.getElementById("category-input").value = "";
+    document.getElementById("subtask-input").value = "";
 }
+
+console.log(loadUsers());

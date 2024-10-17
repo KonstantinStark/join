@@ -8,8 +8,6 @@
 .add-task-wrapper {
 
     display: flex;
-   
-    
 }
 
 .seperator-left-right-side {
@@ -21,6 +19,8 @@
     flex-direction: column;
     
 }
+
+/* left side  */
 
 .left-side-wrapper {
 
@@ -40,8 +40,6 @@
 .input-fields-left-side input{
 
     width:300px;
-
-    
 }
 
 /* right side */
@@ -53,8 +51,6 @@
     align-items: center;
     width:440px;
     height:416px;
-    
-
 }
 
 
@@ -69,15 +65,6 @@
     width:300px;
    
 }
-
-/* .clear-create-buttons-wrapper {
-
-    display: flex;
-    margin-top:100px;
-    gap:15px;
-    margin-left:150px;
-}
- */
 
  footer {
 
