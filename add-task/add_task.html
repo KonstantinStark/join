@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/img/assets.css">
+    <link rel="stylesheet" href="/styles/fonts.css">
+    <link rel="stylesheet" href="/add-task/add-task.css">
+
+    <title>Add tasks</title>
+</head>
+
+<body onload="init()">
+
+    <section class="all-side">
+        <div class="sidebar">
+            <div class="side-join-logo">
+                <img src="/assets/img/joinlogo.png" alt="Join Logo">
+            </div>
+
+            <div class="navbar">
+                <a href="#">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="/assets/img/summery.png" alt="Summary Icon">
+                        <span class="navbar-text">Summary</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="/assets/img/task.png" alt="Add Task Icon">
+                        <span class="navbar-text">Add Task</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="/assets/img/board.png" alt="Board Icon">
+                        <span class="navbar-text">Board</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="/assets/img/contacts.png" alt="Contacts Icon">
+                        <span class="navbar-text">Contacts</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="privacy-legal-wrapper">
+                <a href="#"><span class="footer-text">Privacy Policy</span></a>
+                <a href="#"><span class="footer-text">Legal Notice</span></a>
+            </div>
+        </div>
+
+        <div class="main">
+            <header>
+                <span class="headline-header">Kanban Project Management Tool</span>
+                <div class="header-icon">
+                    <img class="header-help" src="./assets/img/help.svg">
+                    <img src="/assets/img/Group 5.svg">
+                </div>
+            </header>
+            
+            <div class="add-task-wrapper">
+
+                <div class="left-side-task-wrapper">
+
+                    <h1>Add task</h1>
+                    <div class="input-fields-left-side">
+
+                        <div class="title-input"><input type="text" placeholder="Enter a title">Enter a title</div>
+                        <div class="description-input"><input type="text" placeholder="Enter a Description">Description</div>
+                        <div class="assigned-to-input"><input type="text"></div>
+                    </div>
+                </div>
+
+                <div class="right-side-task-wrapper">
+
+                    <div class="input-fields-right-side">
+
+                        <div class="due-date-input"><input type="text" placeholder="Enter a title">dd/mm/yyyy</div>
+                        <div class="prios-input"><input type="text" placeholder="Enter a title">Enter a title</div>
+                        <div class=""><input type="text" placeholder="Select task category">Enter a title</div>
+                        <div class="title-input"><input type="text" placeholder="Subtaks">Enter a title</div>
+
+                    </div>
+
+                    <div class="clear-create-buttons-wrapper">
+                        <button>Clear</button>
+                        <button>Create Task</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+           
+    </section>
+
+    
+
+        
+
+    
+
+    <script src="./firebase.js"></script>
+    <script src="./add_task.js"></script>
+    <script src="./js/contact-template.js"></script>
+</body>
+
+</html>
