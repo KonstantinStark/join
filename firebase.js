@@ -7,6 +7,12 @@ function init() {
 
 async function addUser() {
     let newUser = getUserInput();
+
+    // Validierung der Benutzereingaben
+    if (!validateUserInput(newUser)) {
+        return; // Beenden, wenn die Eingabe ungültig ist
+    }
+
     newUser.color = getRandomColor();
     resetInputFields();
     await postData("/users", newUser);
@@ -210,4 +216,29 @@ function getUpdatedUserData(index) {
         email: document.getElementById("edit-email").value || users[index].email,
         color: users[index].color // Behalte die ursprüngliche Farbe bei
     };
+}
+
+function validateUserInput(user) {
+    // Name-Validation: nur Buchstaben (keine Zahlen oder Sonderzeichen)
+    const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
+    if (!nameRegex.test(user.name)) {
+        alert("Bitte geben Sie einen gültigen Namen ein (nur Buchstaben und Leerzeichen).");
+        return false;
+    }
+
+    // Email-Validation: Standard E-Mail-Format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(user.email)) {
+        alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+        return false;
+    }
+
+    // Telefon-Validation: nur Zahlen und bestimmte zulässige Sonderzeichen (+, -, etc.)
+    const phoneRegex = /^[0-9+\-\s]+$/;
+    if (!phoneRegex.test(user.phone)) {
+        alert("Bitte geben Sie eine gültige Telefonnummer ein (nur Zahlen und gültige Sonderzeichen).");
+        return false;
+    }
+
+    return true;
 }
