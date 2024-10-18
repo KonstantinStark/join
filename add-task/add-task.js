@@ -59,6 +59,8 @@ function getTasksFromInput() {
         subtask: document.getElementById("subtask-input").value
     };
 
+    resetInputFields();
+
     console.log('see if addTask works:', addTask);
     return [addTask];
 }
