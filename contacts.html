@@ -26,7 +26,7 @@
                         <span class="navbar-text">Summary</span>
                     </div>
                 </a>
-                <a href="#">
+                <a href="add-task/add-task.html">
                     <div class="sidebar-image-title-wrapper">
                         <img src="./assets/img/task.png" alt="Add Task Icon">
                         <span class="navbar-text">Add Task</span>
@@ -62,11 +62,16 @@
             </header>
 
             <div class="body-wrapper">
+                
                 <div class="contact-list-wrapper">
-                    <button class="add-contact-btn" onclick="toggleOverlay()">
+                    <div> <br> <br> <br> </div>
+                    <div class="add-contact-btn-wrapper">
+                        <button class="add-contact-btn" onclick="toggleOverlay()">
                         <span>Add new contact</span>
                         <img src="./assets/img/person_add.svg" class="icon" alt="Add Person Icon">
-                    </button>
+                        </button>
+                     </div>
+
 
                     <div id="contact-list" class="contact-list"></div>
                 </div>
@@ -185,11 +190,11 @@
                                     </button>
                                 </div>
 
-                                <div class="edit-contact-button">
-                                    <button type="button" id="save-button" onclick="exitEditOverlay()">
-                                        <span class="cancel-button-span">Save</span>
-                                        <img src="./assets/img/overlay/check.svg" alt="Check Icon">
-                                    </button>
+                                <div class=" edit-contact-button">
+                                            <button type="button" id="save-button" onclick="exitEditOverlay()">
+                                                <span class="cancel-button-span">Save</span>
+                                                <img src="./assets/img/overlay/check.svg" alt="Check Icon">
+                                            </button>
                                 </div>
                             </div>
                         </div>

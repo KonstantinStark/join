@@ -1,0 +1,77 @@
+.subheader {
+
+    font-size: 32px;
+    padding-left:10%
+}
+
+
+.add-task-wrapper {
+
+    display: flex;
+}
+
+.seperator-left-right-side {
+
+    width:2px;
+    height:400px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* left side  */
+
+.left-side-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    margin-left:10%;
+    height:440px;
+    width:376px; 
+}
+
+.description-input input {
+
+    height:75px;
+    text-align: top;
+}
+
+.input-fields-left-side input{
+
+    width:300px;
+}
+
+/* right side */
+
+.right-side-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:440px;
+    height:416px;
+}
+
+
+.prio-buttons-header {
+
+    margin-top:40px;
+
+
+}
+.input-fields-right-side input{
+
+    width:300px;
+   
+}
+
+ footer {
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:750px;
+    margin-left:10%;
+ }
+
