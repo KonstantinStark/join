@@ -4,6 +4,16 @@
     padding-left:10%
 }
 
+.d-none {
+
+    display:none;
+}
+
+.d-block {
+
+    display:block;
+}
+
 
 .add-task-wrapper {
 
@@ -103,7 +113,14 @@
     align-items: center;
     gap:20px;
  }
+ 
+ .assigned-to-toggle-button {
 
+    width:300px;
+    height:50px;
+    border:1px solid black;
+    
+ }
  
 
 

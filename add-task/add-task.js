@@ -52,7 +52,6 @@ function populateAssignedToInput() {
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
 
-        
         assignedToInput.innerHTML += /*html*/`
             <div class="assigned-to-list">
                 <div class="assigned-to-list-values">
@@ -64,13 +63,18 @@ function populateAssignedToInput() {
                     </p>
                     <p>${user.name}</p>
                 </div>
-
                  
                  <input type="checkbox" class="assign-checkbox" value="${user.id}">
                 </div>
             </div>
         `;
     }
+}
+
+function toggleAssignedToList() {
+
+    let toggleAssignedToListRef = document.getElementById('assigned-to-input')
+    toggleAssignedToListRef.classList.toggle('d-block');
 }
 
 
