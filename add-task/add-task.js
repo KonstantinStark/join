@@ -30,19 +30,49 @@ async function postData(path = "", data = {}) {
     });
 }
 
+// foreach nochmal gucken
+
+// function populateAssignedToInput() {
+//     let assignedToInput = document.getElementById("assigned-to-input");
+//     assignedToInput.innerHTML = "";
+
+//     users.forEach(user => {
+//         assignedToInput.innerHTML += /*html*/`
+//         <option value="${user.id}">
+//             ${user.name}
+//         </option>
+//         `;
+//     });
+// }
 
 function populateAssignedToInput() {
     let assignedToInput = document.getElementById("assigned-to-input");
     assignedToInput.innerHTML = "";
 
-    users.forEach(user => {
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+
+        
         assignedToInput.innerHTML += /*html*/`
-        <option value="${user.id}">
-            ${user.name}
-        </option>
+            <div class="assigned-to-list">
+                <div class="assigned-to-list-values">
+                <div class="assigned-to-list-values-image-name">
+                    <p> 
+                        <svg width="50" height="50">
+                        <circle id="circle" cx="25" cy="25" r="20" fill="${user.color}" />
+                        </svg>
+                    </p>
+                    <p>${user.name}</p>
+                </div>
+
+                 
+                 <input type="checkbox" class="assign-checkbox" value="${user.id}">
+                </div>
+            </div>
         `;
-    });
+    }
 }
+
 
 async function addNewArrayFromInputs() {
     const newTasks = getTasksFromInput(); 
