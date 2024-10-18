@@ -1,104 +1,91 @@
-#main-container {
+.all-side {
     display: flex;
 }
 
-#sidebar {
+.sidebar {
     width: 232px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #2A3647;
-    justify-content: space-between;
-    padding-top: 20px;
+    justify-content: space-around;
 }
 
-#sidebar-logo img {
-    max-width: 150px;
-}
+.side-join-logo {}
 
-#sidebar-nav {
+.navbar {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-    padding: 0;
-    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
-.nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 30px;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.nav-item:hover {
-    background-color: #2A3D5B;
-}
-
-.nav-item:active {
-    background-color: #091932;
-}
-
-.nav-text {
+.navbar-text {
     color: white;
     text-decoration: none;
-    font-size: 16px;
 }
 
-.nav-text:hover {
-    color: #29ABE2;
-}
-
-#sidebar-footer {
+.privacy-legal-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 200px;
     margin-bottom: 20px;
-    padding: 0 30px;
 }
 
-.footer-link {
+.footer-text {
     text-decoration: none;
     color: white;
-    font-size: 14px;
 }
 
-.footer-link:hover {
+.footer-text:hover {
+    font-size: 17px;
     color: #29ABE2;
-    font-size: 15px;
 }
 
-#content {
-    width: 100%;
+.main {
+    width: calc(100%);
 }
 
-#main-header {
+header {
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 0px 17px 0 rgba(0, 0, 0, 0.2);
-    padding: 0 20px;
-    background-color: #fff;
-}
-
-#main-title {
-    font-size: 24px;
-    margin-left: 140px;
-}
-
-header img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 20px;
+    position: relative; 
+    z-index: 10;
 }
 
 .header-icon {
     padding-right: 20px;
+    display: flex;
+    
 }
 
+.headline-header {
+    margin-left: 140px;
+}
+
+.header-help {
+    padding-right: 10px;
+}
+
+
+.sidebar-image-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 232px;
+    padding-left: 50px;
+}
+
+.sidebar-image-title-wrapper:hover {
+    background-color: #2A3D5B;
+}
+
+.sidebar-image-title-wrapper:active {
+    background-color: #091932;
+}

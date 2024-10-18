@@ -93,7 +93,7 @@ function loadData() {
         <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
             <br>
             <svg width="100" height="100">
-                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" />
+                <circle id="circle-${index}" cx="50" cy="50" r="40" fill="${person.color}" />
                 <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="24">${initials}</text>
             </svg>
             <div class="name-email-contact-list-wrapper">
@@ -114,7 +114,7 @@ function editContact(index) {
    <div id="contact-${index}">
         <div class="svg-name-wrapper">
             <svg width="100" height="100">
-                <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" />
+                <circle id="circle-${index}" cx="50" cy="50" r="40" fill="${person.color}" />
                 <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="24">${initials}</text>
             </svg>
             <div class="name-delete-edit-wrapper">
@@ -174,6 +174,12 @@ function editContactOverlay(index) {
     document.getElementById("edit-phone").value = person.phone;
     document.getElementById("edit-email").value = person.email;
 
+    // Setze den Kreis mit der richtigen Farbe
+    let circle = document.getElementById(`circle-${index}`);
+    if (circle) {
+        circle.setAttribute('fill', person.color); // Die gespeicherte Farbe verwenden
+    }
+
     document.getElementById('save-button').onclick = function () {
         saveUser(index);
 
@@ -181,12 +187,21 @@ function editContactOverlay(index) {
         overlay.classList.add('d-none');
     };
 
-    editContact(index);
+    editContact(index); // Zeigt den bearbeiteten Kontakt erneut an
 }
 
 async function saveUser(index) {
     let updatedUser = getUpdatedUserData(index);
+
+    // Validierung der Benutzereingaben
+    if (!validateUserInput(updatedUser)) {
+        return; // Beenden, wenn die Eingabe ungültig ist
+    }
+
     let person = users[index];
+
+    // Stelle sicher, dass der Farbwert des bearbeiteten Benutzers korrekt beibehalten wird
+    updatedUser.color = person.color;
 
     try {
         let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, {
@@ -198,7 +213,7 @@ async function saveUser(index) {
         });
 
         if (response.ok) {
-            users[index] = { id: person.id, ...updatedUser }; // Aktualisiere Benutzer inkl. Farbe
+            users[index] = { id: person.id, ...updatedUser }; // Benutzer aktualisieren
             loadUsers(); // Liste neu laden
         } else {
             console.error('Update fehlgeschlagen', response.status);
@@ -207,38 +222,34 @@ async function saveUser(index) {
         console.error('Fehler beim Update', error);
     }
 
-    editContact(index);
-}
-function getUpdatedUserData(index) {
-    return {
-        name: document.getElementById("edit-name").value || users[index].name,
-        phone: document.getElementById("edit-phone").value || users[index].phone,
-        email: document.getElementById("edit-email").value || users[index].email,
-        color: users[index].color // Behalte die ursprüngliche Farbe bei
-    };
+    editContact(index); // Bearbeiteten Kontakt erneut anzeigen
 }
 
 function validateUserInput(user) {
     // Name-Validation: nur Buchstaben (keine Zahlen oder Sonderzeichen)
     const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
-    if (!nameRegex.test(user.name)) {
+    if (!user.name || !nameRegex.test(user.name)) {
         alert("Bitte geben Sie einen gültigen Namen ein (nur Buchstaben und Leerzeichen).");
         return false;
     }
 
     // Email-Validation: Standard E-Mail-Format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(user.email)) {
+    if (!user.email || !emailRegex.test(user.email)) {
         alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
         return false;
     }
 
     // Telefon-Validation: nur Zahlen und bestimmte zulässige Sonderzeichen (+, -, etc.)
     const phoneRegex = /^[0-9+\-\s]+$/;
-    if (!phoneRegex.test(user.phone)) {
+    if (!user.phone || !phoneRegex.test(user.phone)) {
         alert("Bitte geben Sie eine gültige Telefonnummer ein (nur Zahlen und gültige Sonderzeichen).");
         return false;
     }
 
     return true;
 }
+
+document.getElementById('save-button').onclick = function () {
+    saveUser();
+};
