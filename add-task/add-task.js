@@ -2,6 +2,16 @@ async function init() {
     await loadUsers();
 }
 
+async function postData(path = "", data = {}) {
+    await fetch(FIREBASE_URL + path + ".json", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+}
+
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
     let responseToJson = await userResponse.json();
@@ -65,15 +75,7 @@ function getTasksFromInput() {
     return [addTask];
 }
 
-async function postData(path = "", data = {}) {
-    await fetch(FIREBASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
-}
+
 
 function resetInputFields() {
     document.getElementById("title-input").value = "";
