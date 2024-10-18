@@ -1,3 +1,7 @@
+function init() {
+    loadUsers();   
+}
+
 function toggleOverlay() {
     let overlay = document.getElementById('overlay');
     if (overlay.classList.contains('d-none')) {
@@ -177,19 +181,14 @@ async function saveUser(index) {
         if (response.ok) {
             users[index] = { id: person.id, ...updatedUser };
             loadData();
-            exitEditOverlay();
-           
-            
-            
+            exitEditOverlay();            
         } else {
             console.error('Update failed', response.status);
         }
     } catch (error) {
         console.error('Error during update', error);
     }
-
     editContact(index);
-           
 }
 
 function validateUserInput(user) {
@@ -217,8 +216,7 @@ function exitEditOverlay() {
     setTimeout(() => {
         overlay.classList.add('d-none');
     }, 500);
-    editContact(index);
-    
+    editContact();    
 }
 
 
