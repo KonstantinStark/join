@@ -148,9 +148,10 @@ function editContactOverlay(index) {
         let overlay = document.getElementById('edit-overlay');
         overlay.classList.add('d-none');
     };
+    editContact(index);
 }
 
-function getUpdatedUserData() {
+function getUpdatedUserData(index) {
     return {
         name: document.getElementById("edit-name").value,
         phone: document.getElementById("edit-phone").value,
@@ -177,16 +178,22 @@ async function saveUser(index) {
             users[index] = { id: person.id, ...updatedUser };
             loadData();
             exitEditOverlay();
+           
+            
+            
         } else {
             console.error('Update failed', response.status);
         }
     } catch (error) {
         console.error('Error during update', error);
     }
+
+    editContact(index);
+           
 }
 
 function validateUserInput(user) {
-    const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
+    const nameRegex = /^[a-zA-ZÃ¤Ã¶Ã¼Ã„Ã–ÃœÃŸ\s]+$/;
     if (!user.name || !nameRegex.test(user.name)) {
         alert("Please enter a valid name (letters and spaces only).");
         return false;
@@ -204,14 +211,16 @@ function validateUserInput(user) {
     return true;
 }
 
-function exitEditOverlay(index) {
+function exitEditOverlay() {
     let overlay = document.getElementById('edit-overlay');
     overlay.classList.add('d-none');
     setTimeout(() => {
         overlay.classList.add('d-none');
     }, 500);
     editContact(index);
+    
 }
+
 
 function exitOverlay() {
     let overlay = document.getElementById('overlay');
@@ -226,3 +235,4 @@ document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button
         exitOverlay();
     });
 });
+
