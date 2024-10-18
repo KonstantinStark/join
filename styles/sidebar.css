@@ -87,3 +87,26 @@ header {
 .sidebar-image-title-wrapper:active {
     background-color: #091932;
 }
+
+@media (max-width: 1250px) {
+    .sidebar-image-title-wrapper {
+        margin-bottom: 0px;
+        width: 100%;
+        
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0px;
+    }
+
+    .sidebar {
+        width: 100vw;
+        height: 80px;
+        position: fixed;
+        bottom: 0;
+        z-index: 13;
+    }
+  
+}

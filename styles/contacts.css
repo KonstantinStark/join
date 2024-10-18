@@ -361,31 +361,12 @@ h2 {
 }
 
 @media(max-width: 1250px) {
-    .sidebar {
-        width: 100vw;
-        height: 80px;
-        position: fixed;
-        bottom: 0;
-        z-index: 13;
-    }
-
-    .navbar {
-        display: flex;
-        flex-direction: row;
-        padding-top: 15px;
-    }
-
     .side-join-logo {
         display: none;
     }
 
     .navbar-text {
         display: none;
-    }
-
-    .sidebar-image-title-wrapper {
-        margin-bottom: 0px;
-        width: 100%;
     }
 
     .privacy-legal-wrapper {
@@ -408,6 +389,7 @@ h2 {
 
     header {
         height: 80px;
+        z-index: 12;
     }
 
     .header-icon {
@@ -416,3 +398,13 @@ h2 {
         justify-content: space-between;
     }
 }
+
+@media(max-width: 940px) {
+    .contact-text-wrapper {
+        display: none;
+    }
+    .contact-list-wrapper {
+        width: 100%;
+    }
+}
+
