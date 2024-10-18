@@ -1,16 +1,3 @@
-async function init() {
-    await loadUsers();
-}
-
-async function postData(path = "", data = {}) {
-    await fetch(FIREBASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
-}
 
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
@@ -31,6 +18,18 @@ async function loadUsers() {
     console.log(users);
     populateAssignedToInput();
 }
+
+
+async function postData(path = "", data = {}) {
+    await fetch(FIREBASE_URL + path + ".json", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+}
+
 
 function populateAssignedToInput() {
     let assignedToInput = document.getElementById("assigned-to-input");
