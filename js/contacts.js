@@ -1,15 +1,15 @@
 function toggleOverlay() {
     let overlay = document.getElementById('overlay');
     if (overlay.classList.contains('d-none')) {
-        overlay.classList.remove('d-none');         
-        setTimeout(function() {
+        overlay.classList.remove('d-none');
+        setTimeout(function () {
             overlay.classList.add('show');
         }, 10);
     } else {
-        overlay.classList.remove('show'); 
-        setTimeout(function() {
-            overlay.classList.add('d-none'); 
-        }, 500); 
+        overlay.classList.remove('show');
+        setTimeout(function () {
+            overlay.classList.add('d-none');
+        }, 500);
     }
 }
 
@@ -211,6 +211,7 @@ function exitEditOverlay() {
     setTimeout(() => {
         overlay.classList.add('d-none');
     }, 500);
+    editContact();
 }
 
 function exitOverlay() {
@@ -222,7 +223,7 @@ function exitOverlay() {
 }
 
 document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         exitOverlay();
     });
 });
