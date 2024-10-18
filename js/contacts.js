@@ -1,5 +1,5 @@
 function init() {
-    loadUsers();   
+    loadUsers();
 }
 
 function toggleOverlay() {
@@ -181,7 +181,7 @@ async function saveUser(index) {
         if (response.ok) {
             users[index] = { id: person.id, ...updatedUser };
             loadData();
-            exitEditOverlay();            
+            exitEditOverlay();
         } else {
             console.error('Update failed', response.status);
         }
@@ -216,7 +216,7 @@ function exitEditOverlay() {
     setTimeout(() => {
         overlay.classList.add('d-none');
     }, 500);
-    editContact();    
+    editContact();
 }
 
 
@@ -233,4 +233,3 @@ document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button
         exitOverlay();
     });
 });
-
