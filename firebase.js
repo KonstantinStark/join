@@ -192,8 +192,8 @@ async function saveUser(index) {
         });
 
         if (response.ok) {
-            users[index] = { id: person.id, ...updatedUser };
-            loadUsers();
+            users[index] = { id: person.id, ...updatedUser }; // Aktualisiere Benutzer inkl. Farbe
+            loadUsers(); // Liste neu laden
         } else {
             console.error('Update fehlgeschlagen', response.status);
         }
@@ -203,11 +203,11 @@ async function saveUser(index) {
 
     editContact(index);
 }
-
 function getUpdatedUserData(index) {
     return {
         name: document.getElementById("edit-name").value || users[index].name,
         phone: document.getElementById("edit-phone").value || users[index].phone,
-        email: document.getElementById("edit-email").value || users[index].email
+        email: document.getElementById("edit-email").value || users[index].email,
+        color: users[index].color // Behalte die ursprüngliche Farbe bei
     };
 }
