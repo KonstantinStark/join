@@ -44,6 +44,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll; /* Nur vertikales Scrollen erlauben */
+    overflow-x: hidden; /* Horizontales Scrollen deaktivieren */
+    scrollbar-width: thin; /* Dünne Scrollbar für Firefox */
+    scrollbar-color: #a8a8a8 transparent; /* Farbe für Firefox */
+    position: relative; /* Damit die Scrollbar nach links versetzt werden kann */
+    border-radius: 10px; /* Runde Ecken auch für den Track */
 }
 
 .add-contact-btn {
