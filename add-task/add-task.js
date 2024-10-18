@@ -1,3 +1,4 @@
+let users = [];
 
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
@@ -53,6 +54,7 @@ function populateAssignedToInput() {
         let user = users[i];
 
         assignedToInput.innerHTML += /*html*/`
+        
             <div class="assigned-to-list">
                 <div class="assigned-to-list-values">
                 <div class="assigned-to-list-values-image-name">
@@ -64,7 +66,7 @@ function populateAssignedToInput() {
                     <p>${user.name}</p>
                 </div>
                  
-                 <input type="checkbox" class="assign-checkbox" value="${user.id}">
+                 <input id="checkbox-assign-to" type="checkbox" class="assign-checkbox" value="${user.id}">
                 </div>
             </div>
         `;
@@ -96,10 +98,11 @@ function getTasksFromInput() {
     const addTask = {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
-        assignedUserId: document.getElementById("assigned-to-input").value,
+        assignedUserId: document.getElementById("checkbox-assign-to").value,
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input").value,
         subtask: document.getElementById("subtask-input").value
+
     };
 
     resetInputFields();
@@ -117,6 +120,7 @@ function resetInputFields() {
     document.getElementById("due-date-input").value = "";
     document.getElementById("category-input").value = "";
     document.getElementById("subtask-input").value = "";
+    
 }
 
 console.log(loadUsers());

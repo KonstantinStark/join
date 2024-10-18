@@ -1,3 +1,6 @@
+let users = [];
+
+
 function init() {
     loadUsers();
 }
