@@ -45,18 +45,18 @@ function populateAssignedToInput() {
 }
 
 async function addNewArrayFromInputs() {
-    const newTasks = getTasksFromInput();
+    const newTasks = getTasksFromInput(); 
 
     for (let task of newTasks) {
-        const userId = task.assignedUserId;
         try {
-            await postData(`/users/${userId}/tasks`, task);
-            console.log(`Task added for user ${userId}:`, task);
+            await postData(`/tasks`, task);
+            console.log(`Task added:`, task);
         } catch (error) {
-            console.error(`Error adding task for user ${userId}:`, error);
+            console.error(`Error adding task:`, error);
         }
     }
 }
+
 
 function getTasksFromInput() {
     const addTask = {
