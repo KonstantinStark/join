@@ -77,6 +77,9 @@ function loadData() {
     let contentListRef = document.getElementById("contact-list");
     contentListRef.innerHTML = "";
 
+    // Sortiere die Benutzer alphabetisch nach dem Namen
+    users.sort((a, b) => a.name.localeCompare(b.name));
+
     users.forEach((person, index) => {
         let initials = getInitials(person.name); // Initialen des Benutzers holen
 
