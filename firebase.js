@@ -89,7 +89,7 @@ function loadData() {
             </svg>
             <div class="name-email-contact-list-wrapper">
                 <p>${person.name}</p>
-                <p>${person.email}</p>
+                <p class="mail-color">${person.email}</p>
             </div>
         </div>`;
     });
@@ -122,7 +122,7 @@ function editContact(index) {
         </div> <br>
         <p>Contact Information</p> <br>
         <div>
-            <p><strong>Email: <br> </strong>${person.email} </p> <br>
+            <p><strong>Email: <br> <p class="mail-color"></strong>${person.email}</p> </p> <br>
             <p><strong>Phone: <br> </strong>${person.phone}</p> <br>
         </div>
     </div>`;
