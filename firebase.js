@@ -10,4 +10,5 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 
 function init() {
     loadUsers();
+    
 }

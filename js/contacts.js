@@ -178,12 +178,18 @@ async function saveUser(index) {
             users[index] = { id: person.id, ...updatedUser };
             loadData();
             exitEditOverlay();
+           
+            
+            
         } else {
             console.error('Update failed', response.status);
         }
     } catch (error) {
         console.error('Error during update', error);
     }
+
+    editContact(index);
+           
 }
 
 function validateUserInput(user) {
@@ -211,8 +217,10 @@ function exitEditOverlay() {
     setTimeout(() => {
         overlay.classList.add('d-none');
     }, 500);
-    editContact();
+    editContact(index);
+    
 }
+
 
 function exitOverlay() {
     let overlay = document.getElementById('overlay');
@@ -227,3 +235,4 @@ document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button
         exitOverlay();
     });
 });
+
