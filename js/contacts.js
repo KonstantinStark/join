@@ -148,10 +148,9 @@ function editContactOverlay(index) {
         let overlay = document.getElementById('edit-overlay');
         overlay.classList.add('d-none');
     };
-    editContact(index);
 }
 
-function getUpdatedUserData(index) {
+function getUpdatedUserData() {
     return {
         name: document.getElementById("edit-name").value,
         phone: document.getElementById("edit-phone").value,
@@ -205,13 +204,13 @@ function validateUserInput(user) {
     return true;
 }
 
-function exitEditOverlay() {
+function exitEditOverlay(index) {
     let overlay = document.getElementById('edit-overlay');
     overlay.classList.add('d-none');
     setTimeout(() => {
         overlay.classList.add('d-none');
     }, 500);
-    editContact();
+    editContact(index);
 }
 
 function exitOverlay() {
