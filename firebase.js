@@ -13,8 +13,6 @@ async function addUser() {
     await loadUsers();
 }
 
-
-
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color = '#';
@@ -23,8 +21,6 @@ function getRandomColor() {
     }
     return color;
 }
-
-
 
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
@@ -56,8 +52,12 @@ async function loadUsers(path = '/users') {
     loadData();
 }
 
-
-// ziemlich sicher das dass in contacts.js kann
+// Hilfsfunktion, um die Initialen des Benutzers zu extrahieren
+function getInitials(name) {
+    let nameParts = name.split(" ");
+    let initials = nameParts.map(part => part.charAt(0).toUpperCase()).join("");
+    return initials;
+}
 
 function getUserInput() {
     return {
@@ -66,8 +66,6 @@ function getUserInput() {
         email: document.getElementById("email").value
     };
 }
-
-
 
 function resetInputFields() {
     document.getElementById("name").value = "";
@@ -80,11 +78,14 @@ function loadData() {
     contentListRef.innerHTML = "";
 
     users.forEach((person, index) => {
+        let initials = getInitials(person.name); // Initialen des Benutzers holen
+
         contentListRef.innerHTML += `
         <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
             <br>
             <svg width="100" height="100">
                 <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" />
+                <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="24">${initials}</text>
             </svg>
             <div class="name-email-contact-list-wrapper">
                 <p>${person.name}</p>
@@ -97,13 +98,15 @@ function loadData() {
 function editContact(index) {
     let editContactDiv = document.getElementById('edit-contacts');
     let person = users[index];
-    
+    let initials = getInitials(person.name); // Initialen des Benutzers holen
+
     editContactDiv.innerHTML = '';
     editContactDiv.innerHTML += `
    <div id="contact-${index}">
         <div class="svg-name-wrapper">
             <svg width="100" height="100">
                 <circle id="circle" cx="50" cy="50" r="40" fill="${person.color}" />
+                <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="24">${initials}</text>
             </svg>
             <div class="name-delete-edit-wrapper">
                 <h1>${person.name}</h1>
