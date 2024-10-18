@@ -2,11 +2,18 @@
     width: 456px;
     height: 89vh;
     display: flex;
-    padding-top: 30px;
     background-color: white;
     position: relative;
     z-index: 10;
     box-shadow: 5px 9px 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    scrollbar-width: thin; 
+    scrollbar-color: #a8a8a8 transparent;
+    position: relative;
 }
 
 .contact-text-wrapper {
@@ -14,9 +21,16 @@
     width: 100%;
 }
 
-.add-contact-btn {
-    display: flex;
+.add-contact-btn-wrapper {
+
+    background-color: white;
+    display:flex;
+    justify-content: center;
     align-items: center;
+    position: fixed;
+}
+
+.add-contact-btn {
     background-color: #2C3E50;
     color: white;
     border: none;
@@ -24,8 +38,7 @@
     padding: 10px 50px;
     font-size: 16px;
     cursor: pointer;
-    position: fixed;
-}
+} 
 
 .add-contact-btn .icon {
     margin-left: 8px;
@@ -39,17 +52,6 @@
 
 .body-wrapper {
     display: flex;
-}
-
-.contact-list-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: scroll; 
-    overflow-x: hidden;
-    scrollbar-width: thin; 
-    scrollbar-color: #a8a8a8 transparent;
-    position: relative;
 }
 
 .add-contact-btn {
