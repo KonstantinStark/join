@@ -1,5 +1,5 @@
 function createContactCard(person, index, initials) {
-    return `
+    return`
     <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
         <br>
         <svg width="100" height="100">
@@ -10,7 +10,7 @@ function createContactCard(person, index, initials) {
             <p>${person.name}</p>
             <p class="mail-color">${person.email}</p>
         </div>
-    </div>`;
+    </div>`
 }
 
 function createEditContactTemplate(person, index, initials) {
