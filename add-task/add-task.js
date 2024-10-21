@@ -17,7 +17,7 @@ async function loadUsers() {
     }
 
     console.log(users);
-    populateAssignedToInput();
+    renderAssignedToInput();
 }
 
 
@@ -46,7 +46,7 @@ async function postData(path = "", data = {}) {
 //     });
 // }
 
-function populateAssignedToInput() {
+function renderAssignedToInput() {
     let assignedToInput = document.getElementById("assigned-to-input");
     assignedToInput.innerHTML = "";
 
@@ -55,7 +55,7 @@ function populateAssignedToInput() {
 
         assignedToInput.innerHTML += /*html*/`
         
-            <div class="assigned-to-list">
+            <div class="assigned-to-list" id="assigned-to-list">
                 <div class="assigned-to-list-values">
                 <div class="assigned-to-list-values-image-name">
                     <p> 
@@ -78,6 +78,29 @@ function toggleAssignedToList() {
     let toggleAssignedToListRef = document.getElementById('assigned-to-input')
     toggleAssignedToListRef.classList.toggle('d-block');
 }
+
+
+// function renderCategoryInput() {
+
+//     let renderCategoryInput = document.getElementById("category-input");
+//     renderCategoryInput.innerHTML = /*html*/`
+        
+//         <div id="category-input-content" class="d-none">
+//             <p>Technical Task</p>
+//             <p>User Story</p>
+//         </div>
+//     `;
+
+// }
+
+function toggleRenderCategoryInput() {
+
+    let renderCategoryInputToggle = document.getElementById('category-input-content')
+    renderCategoryInputToggle.classList.toggle('d-block');
+}
+
+
+
 
 
 async function addNewArrayFromInputs() {
@@ -117,6 +140,7 @@ function resetInputFields() {
     document.getElementById("title-input").value = "";
     document.getElementById("description-input").value = "";
     document.getElementById("assigned-to-input").value = "";
+    document.getElementById("assigned-to-list").classList.add("d-none");
     document.getElementById("due-date-input").value = "";
     document.getElementById("category-input").value = "";
     document.getElementById("subtask-input").value = "";

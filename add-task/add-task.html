@@ -80,7 +80,10 @@
                         <div class="description-input"><input type="text" placeholder="Enter a Description" id="description-input"></div>
                         <p>Assigned to</p>
                         <div id="assigned-to-dropdown">
-                            <div class="assigned-to-toggle-button" onclick="toggleAssignedToList()"></div>
+                            <div class="assigned-to-toggle-button" onclick="toggleAssignedToList()">
+                                <p>Select contacts to assign</p>
+                            </div>
+                            
                             <div class="d-none" id="assigned-to-input"></div>
                         </div>
                         
@@ -102,7 +105,13 @@
                             <button>Low</button>
                         </div>
                         <p>Category</p>
-                        <div class="category-input"><input type="text" placeholder="Select task category" id="category-input"></div>
+                        <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput()" >
+                            <p>Select task category</p>
+                            <div id="category-input-content" class="d-none">
+                                <p>Technical Task</p>
+                                <p>User Story</p>
+                            </div>
+                        </div>
                         <p>Subtasks</p>
                         <div class="subtask-input"><input type="text" placeholder="Subtaks" id="subtask-input"></div>
 
