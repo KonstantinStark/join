@@ -1,4 +1,5 @@
 let users = [];
+let selectedPrioButton = '';
 
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
@@ -18,6 +19,11 @@ async function loadUsers() {
 
     console.log(users);
     renderAssignedToInput();
+}
+
+function getInitialsFromName() {
+
+
 }
 
 
@@ -66,12 +72,26 @@ function renderAssignedToInput() {
                     <p>${user.name}</p>
                 </div>
                  
-                 <input id="checkbox-assign-to" type="checkbox" class="assign-checkbox" value="${user.id}">
+                 <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
                 </div>
             </div>
         `;
     }
 }
+
+function getSelectedAssignedUsers() {
+    const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  // Get all checked checkboxes
+    let assignedContacts  = [];
+
+    checkboxes.forEach(checkbox => {
+        assignedContacts.push(checkbox.value);  // Push the user ID into the array
+    });
+
+    return assignedContacts;  // Return array of selected user IDs
+}
+
+
+
 
 function toggleAssignedToList() {
 
@@ -99,40 +119,52 @@ function toggleRenderCategoryInput() {
     renderCategoryInputToggle.classList.toggle('d-block');
 }
 
-
-
+function setPrioButton(prio) {
+    selectedPrioButton  = prio; // Update the global urgency variable
+}
 
 
 async function addNewArrayFromInputs() {
-    const newTasks = getTasksFromInput(); 
+    let assignedContacts  = getSelectedAssignedUsers();  // Get array of selected user IDs
+    
+    // Create the task object with the selected user IDs
+    let newTask = {
+        title: document.getElementById("title-input").value,
+        description: document.getElementById("description-input").value,
+        assignedContacts : assignedContacts,  // Store array of selected user IDs
+        prioButton:selectedPrioButton,
+        dueDate: document.getElementById("due-date-input").value,
+        category: document.getElementById("category-input").value,
+        subtask: document.getElementById("subtask-input").value
+    };
 
-    for (let task of newTasks) {
-        try {
-            await postData(`/tasks`, task);
-            console.log(`Task added:`, task);
-        } catch (error) {
-            console.error(`Error adding task:`, error);
-        }
+    try {
+        // Save the task to the database under /tasks (you can adjust the path as needed)
+        await postData(`/tasks`, newTask);
+        console.log("Task successfully added:", newTask);
+    } catch (error) {
+        console.error("Error adding task:", error);
     }
 }
 
 
-function getTasksFromInput() {
-    const addTask = {
-        title: document.getElementById("title-input").value,
-        description: document.getElementById("description-input").value,
-        assignedUserId: document.getElementById("checkbox-assign-to").value,
-        dueDate: document.getElementById("due-date-input").value,
-        category: document.getElementById("category-input").value,
-        subtask: document.getElementById("subtask-input").value
 
-    };
+// function getTasksFromInput() {
+//     const addTask = {
+//         title: document.getElementById("title-input").value,
+//         description: document.getElementById("description-input").value,
+//         assignedUserId: document.getElementById("checkbox-assign-to").value,
+//         dueDate: document.getElementById("due-date-input").value,
+//         category: document.getElementById("category-input").value,
+//         subtask: document.getElementById("subtask-input").value
 
-    resetInputFields();
+//     };
 
-    console.log('see if addTask works:', addTask);
-    return [addTask];
-}
+//     resetInputFields();
+
+//     console.log('see if addTask works:', addTask);
+//     return [addTask];
+// }
 
 
 
@@ -140,7 +172,7 @@ function resetInputFields() {
     document.getElementById("title-input").value = "";
     document.getElementById("description-input").value = "";
     document.getElementById("assigned-to-input").value = "";
-    document.getElementById("assigned-to-list").classList.add("d-none");
+    document.getElementById("assigned-to-list").classList.add("d-none")
     document.getElementById("due-date-input").value = "";
     document.getElementById("category-input").value = "";
     document.getElementById("subtask-input").value = "";

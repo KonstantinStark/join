@@ -100,10 +100,11 @@
                         <div class="due-date-input"><input type="text" placeholder="dd/mm/yyyy" id="due-date-input"></div>
                         <p class="prio-buttons-header">Prio</p>
                         <div class="prio-buttons">
-                            <button>Urgent</button>
-                            <button>Medium</button>
-                            <button>Low</button>
+                            <button id="urgent-button" onclick="setPrioButton('urgent')">Urgent</button>
+                            <button id="medium-button" onclick="setPrioButton('medium')">Medium</button>
+                            <button id="low-button" onclick="setPrioButton('low')">Low</button>
                         </div>
+                        
                         <p>Category</p>
                         <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput()" >
                             <p>Select task category</p>
