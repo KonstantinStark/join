@@ -63,11 +63,21 @@ p a:hover {
     text-decoration: underline;
 }
 
-/* Additional Styling for Lists */
 ul li::before {
     content: "•";
-    color: #007bff; /* Blue bullet point */
+    color: #007bff; 
     display: inline-block; 
     width: 1em;
     margin-left: -1em;
+}
+
+.arrow {
+    position: sticky; /* Sticky Positionierung */
+    position: absolute;
+    top: 20px; /* Abstand vom oberen Rand */
+    right: 20px; /* Abstand vom rechten Rand */
+    font-size: 40px; /* Größe des Pfeils */
+    color: #29abe2; /* Farbe des Pfeils */
+    text-decoration: none; /* Keine Unterstreichung */
+    z-index: 1000; /* Sicherstellen, dass der Pfeil über anderen Inhalten liegt */
 }
