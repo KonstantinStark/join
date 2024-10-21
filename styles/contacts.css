@@ -348,6 +348,11 @@ h2 {
     border-radius: 20px;
 }
 
+.header-help {
+    cursor: pointer;
+    padding-top: 12px;
+}
+
 .header-responsiv-img {
     display: none;
 }

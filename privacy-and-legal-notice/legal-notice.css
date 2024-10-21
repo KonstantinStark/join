@@ -1,5 +1,8 @@
 .legal-notice {
     overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 transparent;
     height: 90vh;
     padding-left: 20px;
     padding-top: 20px;
