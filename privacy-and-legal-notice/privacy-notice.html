@@ -1,83 +1,170 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="privacy-notice.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/standard.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
     <title>Privacy Notice</title>
 </head>
+
 <body>
 
-    <a href="summary.html" class="arrow-link">
-        <span class="arrow">&#x3c;</span> <!-- Nach links zeigender Pfeil -->
-    </a>
+    <body onload="init()">
+        <section class="all-side">
+            <div class="sidebar">
+                <div class="side-join-logo">
+                    <img src="../assets/img/joinlogo.png" alt="Join Logo">
+                </div>
 
-<h2>Privacy Policy</h2>
+                <div class="navbar">
+                    <a href="#">
+                        <div class="sidebar-image-title-wrapper">
+                            <img src="../assets/img/summery.png" alt="Summary Icon">
+                            <span class="navbar-text">Summary</span>
+                        </div>
+                    </a>
+                    <a href="add-task/add-task.html">
+                        <div class="sidebar-image-title-wrapper">
+                            <img src="../assets/img/task.png" alt="Add Task Icon">
+                            <span class="navbar-text">Add Task</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="sidebar-image-title-wrapper">
+                            <img src="../assets/img/board.png" alt="Board Icon">
+                            <span class="navbar-text">Board</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="sidebar-image-title-wrapper">
+                            <img src="../assets/img/contacts.png" alt="Contacts Icon">
+                            <span class="navbar-text">Contacts</span>
+                        </div>
+                    </a>
+                </div>
 
-<h3>Introduction</h3>
-    <p>We, the listed students, and the Developer Akademie GmbH ("we", "our", "us"), respect your privacy and are committed to protecting your personal data. This privacy policy outlines how we collect, use, and protect any information you provide when accessing and using Join (Product). By using Join, you agree to the collection and use of information in accordance with this policy.</p>
+                <div class="privacy-legal-wrapper">
+                    <a href="#"><span class="footer-text">Privacy Policy</span></a>
+                    <a href="#"><span class="footer-text">Legal Notice</span></a>
+                </div>
+            </div>
 
-<h3>Information We Collect</h3>    
-    <p>When you access or use Join, we may collect certain personal information, such as:</p>
-    <ul>
-        <li>Name and contact details (email address, postal address, etc.)</li>
-        <li>User account data, including username and passwords</li>
-        <li>Technical data, including IP address, browser type, and usage logs</li>
-        <li>Any other information you voluntarily provide while using the product.</li>
-    </ul>
+            <div class="main">
+                <header>
+                    <span class="headline-header">Kanban Project Management Tool</span>
+                    <div class="header-icon">
+                        <div class="header-responsiv-img-container">
+                            <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
+                        </div>
+                        <div class="header-responsiv-icon-container">
+                            <img class="header-help" src="../assets/img/help.svg">
+                            <img src="../assets/img/Group 5.svg" id="hamburger-toggle" onclick="toggleHamburgerMenu()">
+                        </div>
+                    </div>
+                </header>
 
-<h3>Use of Collected Information</h3>
-    <p>We collect this data to:</p>
+                <div class="hamburger-menu d-none" id="hamburger-menu">
+                    <a href="#" class="menu-link">Legal Notice</a>
+                    <a href="#" class="menu-link">Privacy Policy</a>
+                    <a href="#" id="logout-button" class="menu-link">Log Out</a>
+                </div>
 
-    <ul>
-        <li>Operate and improve the product’s functionality</li>
-        <li>Provide customer support</li>
-        <li>Ensure compliance with our terms of use</li>
-        <li>Analyze usage patterns to improve user experience</li>
-        <li>Communicate updates, newsletters, or other service-related content (only if opted in)</li>
-    </ul>
-
-<h3>Data Sharing</h3>
-    <p>We do not sell or distribute your personal data to third parties for commercial purposes. However, we may share your information under the following circumstances:</p>
-    <ul>
-        <li>With service providers who support us in operating Join (e.g., hosting providers, developers)</li>
-        <li>When legally required, to comply with applicable laws, regulations, or legal processes</li>
-        <li>If necessary to protect the rights and safety of other users, the listed students, or Developer Akademie GmbH</li>
-    </ul>
-
-<h3>Data Retention</h3>
-    <p>Your personal data will be retained only as long as necessary for the purposes described in this policy or as required by law. Once no longer needed, your data will be securely deleted.</p>
-
-<h3>Security of Data</h3>
-    <p>We are committed to ensuring that your information is secure. In order to prevent unauthorized access, alteration, or disclosure, we implement appropriate technical and organizational measures to safeguard and secure the data we collect online.</p>
-
-
-<h3>Cookies</h3>
-    <p>Join uses cookies and similar tracking technologies to monitor user activity and improve functionality. You can choose to disable cookies in your browser settings, but this may affect your ability to fully utilize the product.</p>
-
-
-<h3>Your Data Rights</h3>
-    <p>You have the right to:</p>
-    <ul>
-        <li>Access, update, or delete your personal data</li>
-        <li>Restrict or object to processing of your personal data</li>
-        <li>Withdraw consent at any time (without affecting the legality of processing based on consent before its withdrawal)</li>
-    </ul>
-    <p>If you would like to exercise any of these rights, please contact us at [Email].
-    </p>
-
-<h3>Changes to the Privacy Policy</h3>
-    <p>We may update this policy from time to time to reflect any changes to our practices or for legal reasons. Any updates will be posted on this page, and we encourage you to periodically review it to stay informed of how we are protecting your data.</p>
-
-<h3>Contact Information</h3>
-
-<p>
-    If you have any questions or concerns about this privacy policy, please contact us at: <br>
-    Email: [Email] <br>
-    Address: [Student Address List] <br>
-    Postcode and City: [Postcode and City] <br>
-</p>
+                <a href="summary.html" class="arrow-link">
+                    <span class="arrow">&#x3c;</span> <!-- Nach links zeigender Pfeil -->
+                </a>
 
 
-</body>
+                <div class="privacy-policy">
+
+                    <p class="text-privacy-policy">Privacy Policy</p>
+
+                    <h3>Introduction</h3>
+                    <p>We, the listed students, and the Developer Akademie GmbH ("we", "our", "us"), respect your
+                        privacy and are committed to protecting your personal data. This privacy policy outlines how we
+                        collect, use, and protect any information you provide when accessing and using Join (Product).
+                        By using Join, you agree to the collection and use of information in accordance with this
+                        policy.</p>
+
+                    <h3>Information We Collect</h3>
+                    <p>When you access or use Join, we may collect certain personal information, such as:</p>
+                    <ul>
+                        <li>Name and contact details (email address, postal address, etc.)</li>
+                        <li>User account data, including username and passwords</li>
+                        <li>Technical data, including IP address, browser type, and usage logs</li>
+                        <li>Any other information you voluntarily provide while using the product.</li>
+                    </ul>
+
+                    <h3>Use of Collected Information</h3>
+                    <p>We collect this data to:</p>
+
+                    <ul>
+                        <li>Operate and improve the product’s functionality</li>
+                        <li>Provide customer support</li>
+                        <li>Ensure compliance with our terms of use</li>
+                        <li>Analyze usage patterns to improve user experience</li>
+                        <li>Communicate updates, newsletters, or other service-related content (only if opted in)</li>
+                    </ul>
+
+                    <h3>Data Sharing</h3>
+                    <p>We do not sell or distribute your personal data to third parties for commercial purposes.
+                        However, we may share your information under the following circumstances:</p>
+                    <ul>
+                        <li>With service providers who support us in operating Join (e.g., hosting providers,
+                            developers)</li>
+                        <li>When legally required, to comply with applicable laws, regulations, or legal processes</li>
+                        <li>If necessary to protect the rights and safety of other users, the listed students, or
+                            Developer Akademie GmbH</li>
+                    </ul>
+
+                    <h3>Data Retention</h3>
+                    <p>Your personal data will be retained only as long as necessary for the purposes described in this
+                        policy or as required by law. Once no longer needed, your data will be securely deleted.</p>
+
+                    <h3>Security of Data</h3>
+                    <p>We are committed to ensuring that your information is secure. In order to prevent unauthorized
+                        access, alteration, or disclosure, we implement appropriate technical and organizational
+                        measures to safeguard and secure the data we collect online.</p>
+
+
+                    <h3>Cookies</h3>
+                    <p>Join uses cookies and similar tracking technologies to monitor user activity and improve
+                        functionality. You can choose to disable cookies in your browser settings, but this may affect
+                        your ability to fully utilize the product.</p>
+
+
+                    <h3>Your Data Rights</h3>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access, update, or delete your personal data</li>
+                        <li>Restrict or object to processing of your personal data</li>
+                        <li>Withdraw consent at any time (without affecting the legality of processing based on consent
+                            before its withdrawal)</li>
+                    </ul>
+                    <p>If you would like to exercise any of these rights, please contact us at [Email].
+                    </p>
+
+                    <h3>Changes to the Privacy Policy</h3>
+                    <p>We may update this policy from time to time to reflect any changes to our practices or for legal
+                        reasons. Any updates will be posted on this page, and we encourage you to periodically review it
+                        to stay informed of how we are protecting your data.</p>
+
+                    <h3>Contact Information</h3>
+
+                    <p>
+                        If you have any questions or concerns about this privacy policy, please contact us at: <br>
+                        Email: [Email] <br>
+                        Address: [Student Address List] <br>
+                        Postcode and City: [Postcode and City] <br>
+                    </p>
+                </div>
+
+                <script src="../js/contacts.js"></script>
+    </body>
+
 </html>

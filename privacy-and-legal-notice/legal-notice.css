@@ -1,21 +1,17 @@
-body {
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    background-color: #fff;
-    margin: 0;
-    padding: 40px;
-    line-height: 1.6;
+.legal-notice {
+    overflow-y: scroll;
+    height: 90vh;
+    padding-left: 20px;
+    padding-top: 20px;
 }
 
-/* Main Title - Privacy Policy */
-h2 {
+
+.text-legal-notice {
     font-size: 48px;
     font-weight: bold;
-    margin-bottom: 20px;
-    color: #000;
+    color: #000000;
 }
 
-/* Section Titles - Introduction, Information We Collect, etc. */
 h3 {
     font-size: 24px;
     font-weight: bold;
@@ -24,14 +20,12 @@ h3 {
     color: #000;
 }
 
-/* Paragraph Styling */
 p {
     font-size: 16px;
     margin-bottom: 20px;
-    color: #333; /* Klarere Textfarbe */
+    color: #333;
 }
 
-/* Unordered Lists Styling */
 ul {
     padding-left: 20px;
     margin-bottom: 20px;
@@ -41,10 +35,9 @@ ul li {
     font-size: 16px;
     margin-bottom: 10px;
     line-height: 1.5;
-    color: #333; /* Listeneinträge klar sichtbar */
+    color: #333;
 }
 
-/* Link Styling */
 a {
     color: #007bff;
     text-decoration: none;
@@ -54,7 +47,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Email Link Styling (if you need to highlight email addresses) */
 p a {
     color: #007bff;
     font-weight: bold;
@@ -65,23 +57,20 @@ p a:hover {
     text-decoration: underline;
 }
 
-
 ul li::before {
     content: "•";
     color: #007bff;
-    display: inline-block; 
+    display: inline-block;
     width: 1em;
     margin-left: -1em;
 }
 
-
 .arrow {
-    position: sticky; /* Sticky Positionierung */
+    position: sticky;
     position: absolute;
-    top: 20px; /* Abstand vom oberen Rand */
-    right: 20px; /* Abstand vom rechten Rand */
-    font-size: 40px; /* Größe des Pfeils */
-    color: #29abe2; /* Farbe des Pfeils */
-    text-decoration: none; /* Keine Unterstreichung */
-    z-index: 1000; /* Sicherstellen, dass der Pfeil über anderen Inhalten liegt */
+    top: 100px;
+    right: 50px;
+    font-size: 40px;
+    color: #29abe2;
+    text-decoration: none;
 }
