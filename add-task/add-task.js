@@ -134,9 +134,11 @@ async function addNewArrayFromInputs() {
         assignedContacts : assignedContacts,  // Store array of selected user IDs
         prioButton:selectedPrioButton,
         dueDate: document.getElementById("due-date-input").value,
-        category: document.getElementById("category-input").value,
+        category: document.getElementById("category-input-placeholder").innerHTML,
         subtask: document.getElementById("subtask-input").value
     };
+
+    resetInputFields()
 
     try {
         // Save the task to the database under /tasks (you can adjust the path as needed)
@@ -177,6 +179,16 @@ function resetInputFields() {
     document.getElementById("category-input").value = "";
     document.getElementById("subtask-input").value = "";
     
+    
 }
 
 console.log(loadUsers());
+
+function changeCategoryInput(selectedCategory) {
+    let categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
+    categoryInputPlaceholderRef.innerHTML = selectedCategory; // Update the placeholder with the selected category
+    
+    // Optionally hide the dropdown after selection
+    let renderCategoryInputToggle = document.getElementById('category-input-content');
+    renderCategoryInputToggle.classList.add('d-none');
+}
