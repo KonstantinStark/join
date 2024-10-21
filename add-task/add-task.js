@@ -1,5 +1,6 @@
 let users = [];
 let selectedPrioButton = '';
+let subtasksArray = [];
 
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
@@ -135,7 +136,8 @@ async function addNewArrayFromInputs() {
         prioButton:selectedPrioButton,
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
-        subtask: document.getElementById("subtask-input").value
+        subtask: document.getElementById("subtask-input").value,
+        subtasks: subtasksArray,
     };
 
     resetInputFields()
@@ -180,6 +182,7 @@ function resetInputFields() {
     document.getElementById("subtask-input").value = "";
     
     
+    
 }
 
 console.log(loadUsers());
@@ -192,3 +195,25 @@ function changeCategoryInput(selectedCategory) {
     let renderCategoryInputToggle = document.getElementById('category-input-content');
     renderCategoryInputToggle.classList.add('d-none');
 }
+
+// subtask
+
+function addSubtaskToArray() {
+    let subtaskInput = document.getElementById("subtask-input").value; // Get the subtask input value
+    
+    if (subtaskInput) { // Only add non-empty values
+        subtasksArray.push(subtaskInput); // Add the subtask to the array
+        document.getElementById("subtask-input").value = ""; // Clear the input field
+        renderSubtasks(); // Update the UI with the new subtasks
+    }
+}
+
+function renderSubtasks() {
+    let subtasksList = document.getElementById("subtasks-list");
+    subtasksList.innerHTML = ""; // Clear the list before rendering
+
+    subtasksArray.forEach((subtask, index) => {
+        subtasksList.innerHTML += `<li>${subtask} <button onclick="removeSubtask(${index})">Remove</button></li>`;
+    });
+}
+
