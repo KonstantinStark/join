@@ -236,3 +236,8 @@ document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button
         exitOverlay();
     });
 });
+
+function toggleHamburgerMenu() {
+    const menu = document.getElementById("hamburger-menu");
+    menu.classList.toggle("d-none"); // Das Menü anzeigen oder ausblenden
+}

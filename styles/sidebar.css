@@ -92,13 +92,14 @@ header {
     .sidebar-image-title-wrapper {
         margin-bottom: 0px;
         width: 100%;
-        
+        padding: 0px;
     }
 
     .navbar {
         display: flex;
         flex-direction: row;
         margin-bottom: 0px;
+        gap: 50px;
     }
 
     .sidebar {
