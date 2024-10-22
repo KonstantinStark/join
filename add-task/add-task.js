@@ -88,6 +88,14 @@ function toggleRenderCategoryInput() {
     renderCategoryInputToggle.classList.toggle('d-block');
 }
 
+function toggleOverlayCreateButton() {
+
+    let toggleOverlayRef = document.getElementById('overlay')
+    toggleOverlayRef.classList.toggle('d-none');
+}
+
+
+
 //prio-buttons with global variable on top
 
 function setPrioButton(prio) {

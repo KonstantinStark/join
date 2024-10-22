@@ -67,13 +67,11 @@
         <div class="add-task-wrapper">
           <div class="left-side-wrapper">
             <div class="input-fields-left-side">
-              <p>Enter a title</p>
+              <p>Title 
+                <span class="required-star-markers">*</span></p>
               <div class="title-input">
                 <input
-                  type="text"
-                  placeholder="Enter a title"
-                  id="title-input"
-                />
+                  type="text" placeholder="Enter a title" id="title-input"/>
               </div>
               <p>Description</p>
               <div class="description-input">
@@ -101,7 +99,9 @@
 
           <div class="right-side-wrapper">
             <div class="input-fields-right-side">
-              <p>Due Date</p>
+              <p>Due Date
+                <span class="required-star-markers">*</span>
+              </p>
               <div class="due-date-input">
                 <input
                   type="text"
@@ -122,7 +122,9 @@
                 </button>
               </div>
 
-              <p>Category</p>
+              <p>Category
+                <span class="required-star-markers">*</span>
+              </p>
               <div
                 class="category-input"
                 id="category-input"
@@ -151,14 +153,28 @@
 
         <footer>
           <div class="field-required">
-            <p>field required</p>
+            <p>
+              <span class="required-star-markers">*</span>
+              This field is required
+              
+            </p>
           </div>
 
           <div class="clear-create-buttons-wrapper">
             <button>Clear</button>
-            <button onclick="addNewArrayFromInputs()">Create Task</button>
+            <button onclick="addNewArrayFromInputs(); toggleOverlayCreateButton()">Create Task</button>
           </div>
         </footer>
+      </div>
+
+      <div id="overlay"  class="overlay d-none">
+
+        <div class="overlay-container">
+
+          <p>Task added to board </p>
+          <img src="/assets/img/board-icon.svg" alt="">
+
+        </div>
       </div>
     </section>
 
