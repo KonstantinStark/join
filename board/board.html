@@ -25,25 +25,25 @@
             <div class="navbar">
                 <a href="">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/summery.png" alt="">
+                        <img src="../assets/img/summery.png" alt="">
                         <span class="navbar-text"> Summary</span>
                     </div>
                 </a>
                 <a href="">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/task.png" alt="">
+                        <img src="../assets/img/task.png" alt="">
                         <span class="navbar-text"> Add Task</span>
                     </div>
                 </a>
                 <a href="">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/board.png" alt="">
+                        <img src="../assets/img/board.png" alt="">
                         <span class="navbar-text"> Board</span>
                     </div>
                 </a>
                 <a href="">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/contacts.png" alt="">
+                        <img src="../assets/img/contacts.png" alt="">
                         <span class="navbar-text"> Contacts</span>
                     </div>
                 </a>
@@ -67,92 +67,39 @@
                     <h1>Board</h1>
                     <div class="task-controls">
                         <input type="text" placeholder="Find Task">
-                        <button class="add-task-btn"><a href="../add-task/add-task.html"></a>Add task +</a></button>
+                        <button class="add-task-btn"><a href="../add-task/add-task.html"></a>Add task +</button>
                     </div>
                 </div>
 
+                <!-- Board -->
                 <div class="board-columns">
-              
-                    <div class="board-column todo">
+                    <div class="board-column todo" id="todo-tasks">
                         <h2>To do</h2>
                         <div class="no-tasks">
-                            <p>No tasks To do</p>
                         </div>
                     </div>
-        
-                    <div class="board-column in-progress">
+
+                    <div class="board-column in-progress" id="in-progress-tasks">
                         <h2>In progress</h2>
-                        <div class="task-card user-story">
-                            <div class="task-header">
-                                <span class="task-type">User Story</span>
-                            </div>
-                            <h3>Kochwelt Page & Recipe Recommender</h3>
-                            <p>Build start page with recipe recommendation...</p>
-                            <div class="task-progress">
-                                <progress value="1" max="2"></progress>
-                                <span>1/2 Subtasks</span>
-                            </div>
-                            <div class="task-members">
-                                <span class="member" style="background-color: orange;">AM</span>
-                                <span class="member" style="background-color: green;">EM</span>
-                                <span class="member" style="background-color: purple;">MB</span>
-                            </div>
-                        </div>
                     </div>
-        
-                    <div class="board-column await-feedback">
+
+                    <div class="board-column await-feedback" id="await-feedback-tasks">
                         <h2>Await feedback</h2>
-                        <div class="task-card technical-task">
-                            <div class="task-header">
-                                <span class="task-type">Technical Task</span>
-                            </div>
-                            <h3>HTML Base Template Creation</h3>
-                            <p>Create reusable HTML base templates...</p>
-                            <div class="task-members">
-                                <span class="member" style="background-color: pink;">DE</span>
-                                <span class="member" style="background-color: purple;">BZ</span>
-                                <span class="member" style="background-color: lightblue;">AS</span>
-                            </div>
-                        </div>
-                        <div class="task-card user-story">
-                            <div class="task-header">
-                                <span class="task-type">User Story</span>
-                            </div>
-                            <h3>Daily Kochwelt Recipe</h3>
-                            <p>Implement daily recipe and portion calculator...</p>
-                            <div class="task-members">
-                                <span class="member" style="background-color: yellow;">EF</span>
-                                <span class="member" style="background-color: red;">AS</span>
-                                <span class="member" style="background-color: pink;">TW</span>
-                            </div>
-                        </div>
                     </div>
-        
-                    <div class="board-column done">
+
+                    <div class="board-column done" id="done-tasks">
                         <h2>Done</h2>
-                        <div class="task-card technical-task">
-                            <div class="task-header">
-                                <span class="task-type">Technical Task</span>
-                            </div>
-                            <h3>CSS Architecture Planning</h3>
-                            <p>Define CSS naming conventions and structure...</p>
-                            <div class="task-progress">
-                                <progress value="2" max="2"></progress>
-                                <span>2/2 Subtasks</span>
-                            </div>
-                            <div class="task-members">
-                                <span class="member" style="background-color: skyblue;">SM</span>
-                                <span class="member" style="background-color: purple;">BZ</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Hier fügst du das 'assigned-to-input' Element ein -->
+            <div id="assigned-to-input"></div>
         </div>
     </section>
 
     <script src="../js/board.js"></script>
-    
+
 </body>
 
 </html>

@@ -1,89 +1,115 @@
-let users = [];
-const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
+let Tasks = [];
+let selectedPrioButton = '';
+let subtasksArray = [];
 
-// Function to initialize loading
-function init() {
-    loadUsers();
-    loadTasks();
-}
+const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app"; 
 
-// Function to load users (already implemented)
-function loadUsers() {
-    // Your existing code to load users
-}
+document.addEventListener('DOMContentLoaded', () => {
+    loadTasks(); 
+});
 
-// Function to load tasks from Firebase
 async function loadTasks() {
     try {
-        const response = await fetch(`${FIREBASE_URL}/tasks.json`);
-        const tasks = await response.json();
+        let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
+        let responseToJson = await tasksResponse.json();
+
+        let tasks = [];
+        if (responseToJson) {
+            Object.keys(responseToJson).forEach(key => {
+                tasks.push({
+                    id: key,
+                    ...responseToJson[key],
+                });
+            });
+        }
+
+        console.log("Geladene Tasks:", tasks); 
         renderTasks(tasks);
     } catch (error) {
-        console.error("Error loading tasks:", error);
+        console.error("Fehler beim Laden der Aufgaben:", error);
     }
 }
 
-// Function to render tasks into the board
+function renderAssignedToInput() {
+    let assignedToInput = document.getElementById("assigned-to-input");
+    assignedToInput.innerHTML = "";
+
+    users.forEach(user => {
+        assignedToInput.innerHTML += /*html*/`
+            <div class="assigned-to-list" id="assigned-to-list">
+                <div class="assigned-to-list-values">
+                    <div class="assigned-to-list-values-image-name">
+                        <p>
+                            <svg width="50" height="50">
+                                <circle id="circle" cx="25" cy="25" r="20" fill="${user.color}" />
+                            </svg>
+                        </p>
+                        <p>${user.name}</p>
+                    </div>
+                    <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
+                </div>
+            </div>
+        `;
+    });
+}
+
 function renderTasks(tasks) {
-    const todoColumn = document.querySelector('.board-column.todo .no-tasks');
-    const inProgressColumn = document.querySelector('.board-column.in-progress');
-    const awaitFeedbackColumn = document.querySelector('.board-column.await-feedback');
-    const doneColumn = document.querySelector('.board-column.done');
+    const todoContainer = document.getElementById("todo-tasks");
+    const inProgressContainer = document.getElementById("in-progress-tasks");
+    const awaitFeedbackContainer = document.getElementById("await-feedback-tasks");
+    const doneContainer = document.getElementById("done-tasks");
 
-    // Clear existing task content
-    todoColumn.innerHTML = '';
-    inProgressColumn.innerHTML = '';
-    awaitFeedbackColumn.innerHTML = '';
-    doneColumn.innerHTML = '';
+    // Vorherige Inhalte löschen
+    todoContainer.innerHTML = "";
+    inProgressContainer.innerHTML = "";
+    awaitFeedbackContainer.innerHTML = "";
+    doneContainer.innerHTML = "";
 
-    for (const key in tasks) {
-        if (tasks.hasOwnProperty(key)) {
-            const task = tasks[key];
-            
-            const taskCard = createTaskCard(task);
-
-            // Assign tasks to specific columns based on their progress
-            if (task.status === "todo") {
-                todoColumn.appendChild(taskCard);
-            } else if (task.status === "in-progress") {
-                inProgressColumn.appendChild(taskCard);
-            } else if (task.status === "await-feedback") {
-                awaitFeedbackColumn.appendChild(taskCard);
-            } else if (task.status === "done") {
-                doneColumn.appendChild(taskCard);
-            }
+    tasks.forEach(task => {
+        let container;
+        switch (task.prioButton) {
+            case 'urgent':
+            case 'todo':
+                container = todoContainer;
+                break;
+            case 'in-progress':
+                container = inProgressContainer;
+                break;
+            case 'await-feedback':
+                container = awaitFeedbackContainer;
+                break;
+            case 'done':
+                container = doneContainer;
+                break;
+            default:
+                console.warn("Unbekannter Status:", task.prioButton);
+                return; 
         }
-    }
+
+        container.innerHTML += /*html*/`
+            <div class="task-card">
+                <div class="task-header">
+                    <span class="task-type">${task.category}</span>
+                </div>
+                <h3>${task.title || task.description}</h3>
+                <p>${task.description}</p>
+                <div class="task-progress">
+                    <progress value="${task.subtasks ? task.subtasks.length : 0}" max="2"></progress>
+                    <span>${task.subtasks ? task.subtasks.length : 0}/2 Subtasks</span>
+                </div>
+                <div class="task-members">
+                    ${task.assignedContacts ? task.assignedContacts.map(contact => `<span class="member" style="background-color: ${getColorForUser(contact)};">${contact}</span>`).join('') : ''}
+                </div>
+            </div>
+        `;
+    });
 }
 
-// Function to create a task card element
-function createTaskCard(task) {
-    const taskCard = document.createElement('div');
-    taskCard.classList.add('task-card', task.category.toLowerCase().replace(/\s+/g, '-'));
+function getColorForUser(user) {
+    const colors = {
+        "Sven Väth": "#FF5733",  
+        "Anastasia": "#33FF57",  
 
-    taskCard.innerHTML = `
-        <div class="task-header">
-            <span class="task-type">${task.category}</span>
-        </div>
-        <h3>${task.title}</h3>
-        <p>${task.description}</p>
-        ${task.subtasks ? renderSubtasks(task.subtasks) : ''}
-        <div class="task-members">
-            ${task.assignedContacts.map(contact => `<span class="member">${contact}</span>`).join('')}
-        </div>
-    `;
-    return taskCard;
+    };
+    return colors[user] || "#000000";
 }
-
-// Function to render subtasks if available
-function renderSubtasks(subtasks) {
-    return `
-        <div class="task-progress">
-            <progress value="${subtasks.length}" max="${subtasks.length}"></progress>
-            <span>${subtasks.length}/${subtasks.length} Subtasks</span>
-        </div>
-    `;
-}
-
-// Call the init function to start everything
-init();
