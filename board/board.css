@@ -3,12 +3,12 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f6f8fb;
     margin: 0;
-    padding: 20px;
 }
 
 .board-container {
     max-width: 1200px;
     margin: 0 auto;
+    margin: 20px;
 }
 
 .board-header {
@@ -55,6 +55,8 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    overflow-y: scroll;
+    height: 630px;
 }
 
 .board-column {

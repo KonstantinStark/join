@@ -4,105 +4,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/standard.css">
-    <link rel="stylesheet" href="./styles/assets.css">
-    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/standard.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../board/board.css">
     <title>Board</title>
 </head>
 
 <body>
-    <div class="board-container">
-        <!-- Board Header -->
-        <header class="board-header">
-            <h1>Board</h1>
-            <div class="task-controls">
-                <input type="text" placeholder="Find Task">
-                <button class="add-task-btn">Add task +</button>
-            </div>
-        </header>
 
-       
-        <div class="board-columns">
-      
-            <div class="board-column todo">
-                <h2>To do</h2>
-                <div class="no-tasks">
-                    <p>No tasks To do</p>
-                </div>
+    <section class="all-side">
+        <div class="sidebar">
+
+            <div class="side-join-logo">
+                <img src="../assets/img/joinlogo.png" alt="">
             </div>
 
-           
-            <div class="board-column in-progress">
-                <h2>In progress</h2>
-                <div class="task-card user-story">
-                    <div class="task-header">
-                        <span class="task-type">User Story</span>
+            <div class="navbar">
+                <a href="">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="./assets/img/summery.png" alt="">
+                        <span class="navbar-text"> Summary</span>
                     </div>
-                    <h3>Kochwelt Page & Recipe Recommender</h3>
-                    <p>Build start page with recipe recommendation...</p>
-                    <div class="task-progress">
-                        <progress value="1" max="2"></progress>
-                        <span>1/2 Subtasks</span>
+                </a>
+                <a href="">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="./assets/img/task.png" alt="">
+                        <span class="navbar-text"> Add Task</span>
                     </div>
-                    <div class="task-members">
-                        <span class="member" style="background-color: orange;">AM</span>
-                        <span class="member" style="background-color: green;">EM</span>
-                        <span class="member" style="background-color: purple;">MB</span>
+                </a>
+                <a href="">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="./assets/img/board.png" alt="">
+                        <span class="navbar-text"> Board</span>
                     </div>
-                </div>
+                </a>
+                <a href="">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="./assets/img/contacts.png" alt="">
+                        <span class="navbar-text"> Contacts</span>
+                    </div>
+                </a>
+
             </div>
 
-            <!-- Await  -->
-            <div class="board-column await-feedback">
-                <h2>Await feedback</h2>
-                <div class="task-card technical-task">
-                    <div class="task-header">
-                        <span class="task-type">Technical Task</span>
-                    </div>
-                    <h3>HTML Base Template Creation</h3>
-                    <p>Create reusable HTML base templates...</p>
-                    <div class="task-members">
-                        <span class="member" style="background-color: pink;">DE</span>
-                        <span class="member" style="background-color: purple;">BZ</span>
-                        <span class="member" style="background-color: lightblue;">AS</span>
-                    </div>
-                </div>
-                <div class="task-card user-story">
-                    <div class="task-header">
-                        <span class="task-type">User Story</span>
-                    </div>
-                    <h3>Daily Kochwelt Recipe</h3>
-                    <p>Implement daily recipe and portion calculator...</p>
-                    <div class="task-members">
-                        <span class="member" style="background-color: yellow;">EF</span>
-                        <span class="member" style="background-color: red;">AS</span>
-                        <span class="member" style="background-color: pink;">TW</span>
-                    </div>
-                </div>
+            <div class="privacy-legal-wrapper">
+                <a href=""><span class="footer-text">Privacy Policy</span></a>
+                <a href=""><span class="footer-text">Legal notice</span></a>
             </div>
+        </div>
 
-            <!-- Done -->
-            <div class="board-column done">
-                <h2>Done</h2>
-                <div class="task-card technical-task">
-                    <div class="task-header">
-                        <span class="task-type">Technical Task</span>
+        <div class="main">
+            <header>
+                <span class="headline-header">Kanban Project Management Tool</span>
+                <img src="" alt="">
+            </header>
+            <div class="board-container">
+                <!-- Board Header -->
+                <div class="board-header">
+                    <h1>Board</h1>
+                    <div class="task-controls">
+                        <input type="text" placeholder="Find Task">
+                        <button class="add-task-btn"><a href="../add-task/add-task.html"></a>Add task +</a></button>
                     </div>
-                    <h3>CSS Architecture Planning</h3>
-                    <p>Define CSS naming conventions and structure...</p>
-                    <div class="task-progress">
-                        <progress value="2" max="2"></progress>
-                        <span>2/2 Subtasks</span>
+                </div>
+
+                <div class="board-columns">
+              
+                    <div class="board-column todo">
+                        <h2>To do</h2>
+                        <div class="no-tasks">
+                            <p>No tasks To do</p>
+                        </div>
                     </div>
-                    <div class="task-members">
-                        <span class="member" style="background-color: skyblue;">SM</span>
-                        <span class="member" style="background-color: purple;">BZ</span>
+        
+                    <div class="board-column in-progress">
+                        <h2>In progress</h2>
+                        <div class="task-card user-story">
+                            <div class="task-header">
+                                <span class="task-type">User Story</span>
+                            </div>
+                            <h3>Kochwelt Page & Recipe Recommender</h3>
+                            <p>Build start page with recipe recommendation...</p>
+                            <div class="task-progress">
+                                <progress value="1" max="2"></progress>
+                                <span>1/2 Subtasks</span>
+                            </div>
+                            <div class="task-members">
+                                <span class="member" style="background-color: orange;">AM</span>
+                                <span class="member" style="background-color: green;">EM</span>
+                                <span class="member" style="background-color: purple;">MB</span>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="board-column await-feedback">
+                        <h2>Await feedback</h2>
+                        <div class="task-card technical-task">
+                            <div class="task-header">
+                                <span class="task-type">Technical Task</span>
+                            </div>
+                            <h3>HTML Base Template Creation</h3>
+                            <p>Create reusable HTML base templates...</p>
+                            <div class="task-members">
+                                <span class="member" style="background-color: pink;">DE</span>
+                                <span class="member" style="background-color: purple;">BZ</span>
+                                <span class="member" style="background-color: lightblue;">AS</span>
+                            </div>
+                        </div>
+                        <div class="task-card user-story">
+                            <div class="task-header">
+                                <span class="task-type">User Story</span>
+                            </div>
+                            <h3>Daily Kochwelt Recipe</h3>
+                            <p>Implement daily recipe and portion calculator...</p>
+                            <div class="task-members">
+                                <span class="member" style="background-color: yellow;">EF</span>
+                                <span class="member" style="background-color: red;">AS</span>
+                                <span class="member" style="background-color: pink;">TW</span>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="board-column done">
+                        <h2>Done</h2>
+                        <div class="task-card technical-task">
+                            <div class="task-header">
+                                <span class="task-type">Technical Task</span>
+                            </div>
+                            <h3>CSS Architecture Planning</h3>
+                            <p>Define CSS naming conventions and structure...</p>
+                            <div class="task-progress">
+                                <progress value="2" max="2"></progress>
+                                <span>2/2 Subtasks</span>
+                            </div>
+                            <div class="task-members">
+                                <span class="member" style="background-color: skyblue;">SM</span>
+                                <span class="member" style="background-color: purple;">BZ</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <script src="../js/board.js"></script>
+    
 </body>
 
 </html>
