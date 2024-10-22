@@ -24,35 +24,9 @@ async function loadUsers() {
     renderAssignedToInput();
 }
 
-function getInitialsFromName() {
+// function getInitialsFromName() {
 
 
-}
-
-
-async function postData(path = "", data = {}) {
-    await fetch(FIREBASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
-}
-
-// foreach nochmal gucken
-
-// function populateAssignedToInput() {
-//     let assignedToInput = document.getElementById("assigned-to-input");
-//     assignedToInput.innerHTML = "";
-
-//     users.forEach(user => {
-//         assignedToInput.innerHTML += /*html*/`
-//         <option value="${user.id}">
-//             ${user.name}
-//         </option>
-//         `;
-//     });
 // }
 
 function renderAssignedToInput() {
@@ -82,17 +56,20 @@ function renderAssignedToInput() {
     }
 }
 
-//nochmal gucken//
+
 
 function getSelectedAssignedUsers() {
-    const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  // Get all checked checkboxes
+    const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  
     let assignedContacts  = [];
 
     checkboxes.forEach(checkbox => {
-        assignedContacts.push(checkbox.value);  // Push the user ID into the array
+        assignedContacts.push(checkbox.value);  
+        
     });
 
-    return assignedContacts;  // Return array of selected user IDs
+    return assignedContacts;  
+
+    
 }
 
 //toogles //
@@ -105,19 +82,6 @@ function toggleAssignedToList() {
 }
 
 
-// function renderCategoryInput() {
-
-//     let renderCategoryInput = document.getElementById("category-input");
-//     renderCategoryInput.innerHTML = /*html*/`
-        
-//         <div id="category-input-content" class="d-none">
-//             <p>Technical Task</p>
-//             <p>User Story</p>
-//         </div>
-//     `;
-
-// }
-
 function toggleRenderCategoryInput() {
 
     let renderCategoryInputToggle = document.getElementById('category-input-content')
@@ -127,20 +91,18 @@ function toggleRenderCategoryInput() {
 //prio-buttons with global variable on top
 
 function setPrioButton(prio) {
-    selectedPrioButton  = prio; // Update the global urgency variable
+    selectedPrioButton  = prio; // update the global variable
 }
-
-// push new data to database
 
 
 async function addNewArrayFromInputs() {
-    let assignedContacts  = getSelectedAssignedUsers();  // Get array of selected user IDs
+    let assignedContacts  = getSelectedAssignedUsers();  
     
-    // Create the task object with the selected user IDs
+    
     let newTask = {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
-        assignedContacts : assignedContacts,  // Store array of selected user IDs
+        assignedContacts : assignedContacts,  
         prioButton:selectedPrioButton,
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
@@ -150,7 +112,7 @@ async function addNewArrayFromInputs() {
     resetInputFields()
 
     try {
-        // Save the task to the database under /tasks (you can adjust the path as needed)
+        // save the task from newTask array to the database under /tasks 
         await postData(`/tasks`, newTask);
         console.log("Task successfully added:", newTask);
     } catch (error) {
@@ -158,6 +120,15 @@ async function addNewArrayFromInputs() {
     }
 }
 
+async function postData(path = "", data = {}) {
+    await fetch(FIREBASE_URL + path + ".json", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+}
 
 function resetInputFields() {
     document.getElementById("title-input").value = "";
@@ -168,15 +139,13 @@ function resetInputFields() {
     document.getElementById("category-input").value = "";
     document.getElementById("subtask-input").value = "";
     
-    
-    
 }
 
 function changeCategoryInput(selectedCategory) {
     let categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
-    categoryInputPlaceholderRef.innerHTML = selectedCategory; // Update the placeholder with the selected category
+    categoryInputPlaceholderRef.innerHTML = selectedCategory; 
     
-    // Optionally hide the dropdown after selection
+
     let renderCategoryInputToggle = document.getElementById('category-input-content');
     renderCategoryInputToggle.classList.add('d-none');
 }
@@ -184,18 +153,18 @@ function changeCategoryInput(selectedCategory) {
 // subtasks
 
 function addSubtaskToArray() {
-    let subtaskInput = document.getElementById("subtask-input").value; // Get the subtask input value
+    let subtaskInput = document.getElementById("subtask-input").value; 
     
-    if (subtaskInput) { // Only add non-empty values
-        subtasksArray.push(subtaskInput); // Add the subtask to the array
-        document.getElementById("subtask-input").value = ""; // Clear the input field
-        renderSubtasks(); // Update the UI with the new subtasks
+    if (subtaskInput) { 
+        subtasksArray.push(subtaskInput); 
+        document.getElementById("subtask-input").value = ""; 
+        renderSubtasks(); 
     }
 }
 
 function renderSubtasks() {
     let subtasksList = document.getElementById("subtasks-list");
-    subtasksList.innerHTML = ""; // Clear the list before rendering
+    subtasksList.innerHTML = ""; 
 
     subtasksArray.forEach((subtask, index) => {
         subtasksList.innerHTML += `<li>${subtask} <button onclick="removeSubtask(${index})">Remove</button></li>`;
