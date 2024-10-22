@@ -149,6 +149,7 @@ async function saveUser(index) {
     } catch (error) {
         console.error('Error:', error);
     }
+    editContact(index);
 }
 
 function validateUserInput(user) {
