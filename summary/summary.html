@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="legal-notice.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/standard.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
+    <title>Summary</title>
+</head>
+
+<body onload="init()">
+    <section class="all-side">
+        <div class="sidebar">
+            <div class="side-join-logo">
+                <img src="../assets/img/joinlogo.png" alt="Join Logo">
+            </div>
+
+            <div class="navbar">
+                <a href="http://127.0.0.1:5500/modul-10/join/summary/summary.html">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="../assets/img/summery.png" alt="Summary Icon">
+                        <span class="navbar-text">Summary</span>
+                    </div>
+                </a>
+                <a href="add-task/add-task.html">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="../assets/img/task.png" alt="Add Task Icon">
+                        <span class="navbar-text">Add Task</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="../assets/img/board.png" alt="Board Icon">
+                        <span class="navbar-text">Board</span>
+                    </div>
+                </a>
+                <a href="http://127.0.0.1:5500/modul-10/join/contacts.html">
+                    <div class="sidebar-image-title-wrapper">
+                        <img src="../assets/img/contacts.png" alt="Contacts Icon">
+                        <span class="navbar-text">Contacts</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="privacy-legal-wrapper">
+                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/privacy-notice.html"><span
+                        class="footer-text">Privacy Policy</span></a>
+                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/legal-notice.html"><span
+                        class="footer-text">Legal Notice</span></a>
+            </div>
+        </div>
+
+        <div class="main">
+            <header>
+                <span class="headline-header">Kanban Project Management Tool</span>
+                <div class="header-icon">
+                    <div class="header-responsiv-img-container">
+                        <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
+                    </div>
+                    <div class="header-responsiv-icon-container">
+                        <a href="http://127.0.0.1:5500/modul-10/join/help/help-button.html">
+                            <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
+                        </a>
+                        <img src="../assets/img/Group 5.svg" id="hamburger-toggle" onclick="toggleHamburgerMenu()">
+                    </div>
+                </div>
+            </header>
+
+            <div class="hamburger-menu d-none" id="hamburger-menu">
+                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/legal-notice.html"
+                    class="menu-link">Legal Notice</a>
+                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/privacy-notice.html"
+                    class="menu-link">Privacy Policy</a>
+                <a href="#" id="logout-button" class="menu-link">Log Out</a>
+            </div>
+            <script src="../js/contacts.js"></script>
+</body>
