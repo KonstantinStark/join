@@ -1,146 +1,169 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/sidebar.css">
-    <link rel="stylesheet" href="/styles/sidebar.css">
-    <link rel="stylesheet" href="/styles/img/assets.css">
-    <link rel="stylesheet" href="/styles/fonts.css">
-    <link rel="stylesheet" href="/add-task/add-task.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/sidebar.css" />
+    <link rel="stylesheet" href="/styles/img/assets.css" />
+    <link rel="stylesheet" href="/styles/fonts.css" />
+    <link rel="stylesheet" href="/add-task/add-task.css" />
 
     <title>Add tasks</title>
-</head>
+  </head>
 
-<body onload="init()">
-
+  <body onload="init()">
     <section class="all-side">
-        <div class="sidebar">
-            <div class="side-join-logo">
-                <img src="/assets/img/joinlogo.png" alt="Join Logo">
-            </div>
-
-            <div class="navbar">
-                <a href="#">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="/assets/img/summery.png" alt="Summary Icon">
-                        <span class="navbar-text">Summary</span>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="/assets/img/task.png" alt="Add Task Icon">
-                        <span class="navbar-text">Add Task</span>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="/assets/img/board.png" alt="Board Icon">
-                        <span class="navbar-text">Board</span>
-                    </div>
-                </a>
-                <a href="/contacts.html">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="/assets/img/contacts.png" alt="Contacts Icon">
-                        <span class="navbar-text">Contacts</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="privacy-legal-wrapper">
-                <a href="#"><span class="footer-text">Privacy Policy</span></a>
-                <a href="#"><span class="footer-text">Legal Notice</span></a>
-            </div>
+      <div class="sidebar">
+        <div class="side-join-logo">
+          <img src="/assets/img/joinlogo.png" alt="Join Logo" />
         </div>
 
-        <div class="main">
-            <header>
-                <span class="headline-header">Kanban Project Management Tool</span>
-                <div class="header-icon">
-                    <img class="header-help" src="./assets/img/help.svg">
-                    <img src="/assets/img/Group 5.svg">
-                </div>
-            </header>
-
-            <div class="subheader">
-                <h1>Add task</h1>
+        <div class="navbar">
+          <a href="#">
+            <div class="sidebar-image-title-wrapper">
+              <img src="/assets/img/summery.png" alt="Summary Icon" />
+              <span class="navbar-text">Summary</span>
             </div>
-            
-            <div class="add-task-wrapper">
-
-                <div class="left-side-wrapper">
-
-                    
-                    <div class="input-fields-left-side">
-
-                        <p>Enter a title</p>
-                        <div class="title-input"><input type="text" placeholder="Enter a title" id="title-input"></div>
-                        <p>Description</p>
-                        <div class="description-input"><input type="text" placeholder="Enter a Description" id="description-input"></div>
-                        <p>Assigned to</p>
-                        <div id="assigned-to-dropdown">
-                            <div class="assigned-to-toggle-button" onclick="toggleAssignedToList()">
-                                <p>Select contacts to assign</p>
-                            </div>
-                            
-                            <div class="d-none" id="assigned-to-input"></div>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <div class="seperator-left-right-side"></div>
-
-                <div class="right-side-wrapper">
-
-                    <div class="input-fields-right-side">
-
-                        <p>Due Date</p>
-                        <div class="due-date-input"><input type="text" placeholder="dd/mm/yyyy" id="due-date-input"></div>
-                        <p class="prio-buttons-header">Prio</p>
-                        <div class="prio-buttons">
-                            <button id="urgent-button" onclick="setPrioButton('urgent')">Urgent</button>
-                            <button id="medium-button" onclick="setPrioButton('medium')">Medium</button>
-                            <button id="low-button" onclick="setPrioButton('low')">Low</button>
-                        </div>
-                        
-                        <p>Category</p>
-                        <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput()">
-                            <p id="category-input-placeholder">select task category</p> <!-- Placeholder to be updated -->
-                            <div id="category-input-content" class="d-none">
-                                <p onclick="changeCategoryInput('Technical Task')">Technical Task</p>
-                                <p onclick="changeCategoryInput('User Story')">User Story</p>
-                            </div>
-                        </div>
-                        <p>Subtasks</p>
-                        <div class="subtask-input"><input type="text" placeholder="Subtaks" id="subtask-input">
-                        <button onclick="addSubtaskToArray()">+</button></div>
-                        <div id="subtasks-list">
-                            <!-- js -->
-                        </div>
-
-                    </div>
-                </div>
+          </a>
+          <a href="#">
+            <div class="sidebar-image-title-wrapper">
+              <img src="/assets/img/task.png" alt="Add Task Icon" />
+              <span class="navbar-text">Add Task</span>
             </div>
-
-            <footer>
-                <div class="field-required">
-                    <p>field required</p>
-                </div>
-
-                <div class="clear-create-buttons-wrapper">
-                    <button>Clear</button>
-                    <button onclick="addNewArrayFromInputs()">Create Task</button>
-                </div>
-            </footer>
+          </a>
+          <a href="#">
+            <div class="sidebar-image-title-wrapper">
+              <img src="/assets/img/board.png" alt="Board Icon" />
+              <span class="navbar-text">Board</span>
+            </div>
+          </a>
+          <a href="/contacts.html">
+            <div class="sidebar-image-title-wrapper">
+              <img src="/assets/img/contacts.png" alt="Contacts Icon" />
+              <span class="navbar-text">Contacts</span>
+            </div>
+          </a>
         </div>
-           
+
+        <div class="privacy-legal-wrapper">
+          <a href="#"><span class="footer-text">Privacy Policy</span></a>
+          <a href="#"><span class="footer-text">Legal Notice</span></a>
+        </div>
+      </div>
+
+      <div class="main">
+        <header>
+          <span class="headline-header">Kanban Project Management Tool</span>
+          <div class="header-icon">
+            <img class="header-help" src="./assets/img/help.svg" />
+            <img src="/assets/img/Group 5.svg" />
+          </div>
+        </header>
+
+        <div class="subheader">
+          <h1>Add task</h1>
+        </div>
+
+        <div class="add-task-wrapper">
+          <div class="left-side-wrapper">
+            <div class="input-fields-left-side">
+              <p>Enter a title</p>
+              <div class="title-input">
+                <input
+                  type="text"
+                  placeholder="Enter a title"
+                  id="title-input"
+                />
+              </div>
+              <p>Description</p>
+              <div class="description-input">
+                <input
+                  type="text"
+                  placeholder="Enter a Description"
+                  id="description-input"
+                />
+              </div>
+              <p>Assigned to</p>
+              <div id="assigned-to-dropdown">
+                <div
+                  class="assigned-to-toggle-button"
+                  onclick="toggleAssignedToList()"
+                >
+                  <p>Select contacts to assign</p>
+                </div>
+
+                <div class="d-none" id="assigned-to-input"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="seperator-left-right-side"></div>
+
+          <div class="right-side-wrapper">
+            <div class="input-fields-right-side">
+              <p>Due Date</p>
+              <div class="due-date-input">
+                <input
+                  type="text"
+                  placeholder="dd/mm/yyyy"
+                  id="due-date-input"
+                />
+              </div>
+              <p class="prio-buttons-header">Prio</p>
+              <div class="prio-buttons">
+                <button id="urgent-button" onclick="setPrioButton('urgent')">
+                  Urgent
+                </button>
+                <button id="medium-button" onclick="setPrioButton('medium')">
+                  Medium
+                </button>
+                <button id="low-button" onclick="setPrioButton('low')">
+                  Low
+                </button>
+              </div>
+
+              <p>Category</p>
+              <div
+                class="category-input"
+                id="category-input"
+                onclick="toggleRenderCategoryInput()"
+              >
+                <p id="category-input-placeholder">select task category</p>
+                <!-- Placeholder to be updated -->
+                <div id="category-input-content" class="d-none">
+                  <p onclick="changeCategoryInput('Technical Task')">
+                    Technical Task
+                  </p>
+                  <p onclick="changeCategoryInput('User Story')">User Story</p>
+                </div>
+              </div>
+              <p>Subtasks</p>
+              <div class="subtask-input">
+                <input type="text" placeholder="Subtaks" id="subtask-input" />
+                <button onclick="addSubtaskToArray()">+</button>
+              </div>
+              <div id="subtasks-list">
+                <!-- js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div class="field-required">
+            <p>field required</p>
+          </div>
+
+          <div class="clear-create-buttons-wrapper">
+            <button>Clear</button>
+            <button onclick="addNewArrayFromInputs()">Create Task</button>
+          </div>
+        </footer>
+      </div>
     </section>
 
     <script src="/firebase.js"></script>
     <script src="/add-task/add-task.js"></script>
     <script src="/add-task/add-task-template.js"></script>
-</body>
-
+  </body>
 </html>

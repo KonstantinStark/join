@@ -2,6 +2,8 @@ let users = [];
 let selectedPrioButton = '';
 let subtasksArray = [];
 
+console.log(loadUsers());
+
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
     let responseToJson = await userResponse.json();
@@ -80,6 +82,8 @@ function renderAssignedToInput() {
     }
 }
 
+//nochmal gucken//
+
 function getSelectedAssignedUsers() {
     const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  // Get all checked checkboxes
     let assignedContacts  = [];
@@ -91,7 +95,7 @@ function getSelectedAssignedUsers() {
     return assignedContacts;  // Return array of selected user IDs
 }
 
-
+//toogles //
 
 
 function toggleAssignedToList() {
@@ -120,9 +124,13 @@ function toggleRenderCategoryInput() {
     renderCategoryInputToggle.classList.toggle('d-block');
 }
 
+//prio-buttons with global variable on top
+
 function setPrioButton(prio) {
     selectedPrioButton  = prio; // Update the global urgency variable
 }
+
+// push new data to database
 
 
 async function addNewArrayFromInputs() {
@@ -136,7 +144,6 @@ async function addNewArrayFromInputs() {
         prioButton:selectedPrioButton,
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
-        subtask: document.getElementById("subtask-input").value,
         subtasks: subtasksArray,
     };
 
@@ -152,26 +159,6 @@ async function addNewArrayFromInputs() {
 }
 
 
-
-// function getTasksFromInput() {
-//     const addTask = {
-//         title: document.getElementById("title-input").value,
-//         description: document.getElementById("description-input").value,
-//         assignedUserId: document.getElementById("checkbox-assign-to").value,
-//         dueDate: document.getElementById("due-date-input").value,
-//         category: document.getElementById("category-input").value,
-//         subtask: document.getElementById("subtask-input").value
-
-//     };
-
-//     resetInputFields();
-
-//     console.log('see if addTask works:', addTask);
-//     return [addTask];
-// }
-
-
-
 function resetInputFields() {
     document.getElementById("title-input").value = "";
     document.getElementById("description-input").value = "";
@@ -185,8 +172,6 @@ function resetInputFields() {
     
 }
 
-console.log(loadUsers());
-
 function changeCategoryInput(selectedCategory) {
     let categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
     categoryInputPlaceholderRef.innerHTML = selectedCategory; // Update the placeholder with the selected category
@@ -196,7 +181,7 @@ function changeCategoryInput(selectedCategory) {
     renderCategoryInputToggle.classList.add('d-none');
 }
 
-// subtask
+// subtasks
 
 function addSubtaskToArray() {
     let subtaskInput = document.getElementById("subtask-input").value; // Get the subtask input value
