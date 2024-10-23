@@ -1,8 +1,15 @@
 
+
 .required-star-markers {
 
     color:red;
     margin-left:-3px;
+}
+
+.input-headers-margin-bottom {
+
+    margin-bottom:10px;
+    font-size:20px;
 }
 
 input {
@@ -103,15 +110,15 @@ input {
 .assigned-to-toggle-button {
 
     width:440px;
-    height:50px;
-    border:1px solid black;
+    height:48px;
+    border:1px solid grey;
     border-radius:5px;
 
  }
 
 .description-input input {
 
-    height:75px;
+    height:120px !important;
     text-align: top;
 
 }
@@ -119,6 +126,7 @@ input {
 .input-fields-left-side input{
 
     width:440px;
+    height:48px;
     
 }
 
@@ -166,6 +174,7 @@ input {
 
     width:440px;
     height:88px;
+    margin-bottom:30px;
 }
 
 
@@ -181,6 +190,7 @@ input {
     width:136px;
     height:56px;
     border-radius:5px;
+    font-size: 20px;
    
 }
 
@@ -188,6 +198,7 @@ input {
 
     width:440px;
     height:80px;
+    margin-bottom:30px;
     
 }
 
@@ -196,9 +207,16 @@ input {
     width:440px;
     height:48px;
     border-radius: 5px;
-    border:1px solid black;
+    border:1px solid grey;
     
  }
+
+.subtask-input-wrapper {
+
+    width:440px;
+    height:80px;
+    
+}
 
 
  footer {
@@ -208,6 +226,7 @@ input {
     align-items: center;
     width:976.25px;
     margin-left:5%;
+    margin-top:40px;
    
     
  }
@@ -218,6 +237,11 @@ input {
     height:56px;
     border-radius:5px;
     margin-right:20px;
+    font-size: 20px;
+    background-color: #2A3647;
+    color:white;
+    
+    
  }
 
  .clear-task-button {
@@ -225,8 +249,12 @@ input {
     width:110px;
     height:56px;
     border-radius:5px;
+    font-size: 20px;
     
  }
+
+
+
 
  /* js templates  */
 
