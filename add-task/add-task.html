@@ -94,11 +94,9 @@
               <div class="assigned-to-wrapper">
                 <p class="input-headers-margin-bottom">Assigned to</p>
                 <div id="assigned-to-dropdown">
-                  <div
-                    class="assigned-to-toggle-button"
-                    onclick="toggleAssignedToList()"
-                  >
-                    <p>Select contacts to assign</p>
+                  <div class="assigned-to-toggle-button" onclick="toggleAssignedToList()">
+                    <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
+                    <img src="/assets/img/add-task/up-down-arrow.svg" alt="">
                   </div>
                   <div class="d-none" id="assigned-to-input"></div>
                 </div>
@@ -116,11 +114,8 @@
                   <span class="required-star-markers">*</span>
                 </p>
                 <div class="due-date-input">
-                  <input
-                    type="text"
-                    placeholder="dd/mm/yyyy"
-                    id="due-date-input"
-                  />
+                  <input type="text" placeholder="dd/mm/yyyy" id="due-date-input"/>
+                  <img src="/assets/img/add-task/calender.svg" alt=""  id="calendar-icon">
                 </div>
               </div>
               <div class="prio-buttons-wrapper">
@@ -142,13 +137,13 @@
               </div>
 
               <div class="category-input-wrapper">
-                <p class="input-headers-margin-bottom" >Category <span class="required-star-markers">*</span></p>
+                <p class="input-headers-margin-bottom"> Category <span class="required-star-markers">*</span></p>
                 <div
                   class="category-input"
                   id="category-input"
                   onclick="toggleRenderCategoryInput()"
                 >
-                  <p id="category-input-placeholder">select task category</p>
+                  <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
                   <!-- Placeholder to be updated -->
                   <div id="category-input-content" class="d-none">
                     <p onclick="changeCategoryInput('Technical Task')">
@@ -164,7 +159,7 @@
                 <p class="input-headers-margin-bottom">Subtasks</p>
                 <div class="subtask-input">
                   <input type="text" placeholder="Subtaks" id="subtask-input" />
-                  <button onclick="addSubtaskToArray()">+</button>
+                  <img src="/assets/img/add-task/plus.svg" alt="" onclick="addSubtaskToArray()">
                 </div>
                 <div id="subtasks-list">
                   <!-- js -->

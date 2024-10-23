@@ -1,3 +1,10 @@
+.placeholder-text-non-input-tag-fields {
+
+    
+    font-size:20px;
+   
+}
+
 
 
 .required-star-markers {
@@ -18,8 +25,13 @@ input {
     height:30px;
     border:1px solid grey;
     padding:5px;
+    
 }
 
+input::placeholder {
+
+    font-size:20px;
+}
 
 .subheader {
 
@@ -63,7 +75,7 @@ input {
 
     width:1px;
     height:424px;
-    background-color: black;
+    background-color: #29ABE2; 
     
   
     
@@ -107,14 +119,33 @@ input {
     height:80px;
 }
 
+
 .assigned-to-toggle-button {
 
     width:440px;
     height:48px;
     border:1px solid grey;
     border-radius:5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left:10px;
 
  }
+
+ .assigned-to-toggle-button img {
+
+    padding-right:10px;
+
+ }
+
+ .assigned-to-toggle-button img.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+    padding:10px;
+}
+
+
 
 .description-input input {
 
@@ -162,7 +193,24 @@ input {
     
 }
 
+/* save obsidian  */
 
+.due-date-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+.due-date-input img {
+    position: absolute;
+    right: 10px; /* Adjust this value based on how far right you want the icon */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    width: 20px; /* Adjust icon size */
+    height: 20px; /* Adjust icon size */
+    cursor: pointer;
+}
 /* 
 .prio-buttons-header {
 
@@ -191,7 +239,35 @@ input {
     height:56px;
     border-radius:5px;
     font-size: 20px;
-   
+    border:none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.prio-buttons button img {
+    filter: none; /* Default SVG color */
+    transition: filter 0.3s;
+}
+
+.prio-buttons button.active {
+    color: white; /* Text color for active button */
+}
+
+.prio-buttons button.active img {
+    filter: brightness(0) invert(1); /* Change SVG to white */
+}
+
+.prio-buttons button.urgent {
+    background-color: red;
+}
+
+.prio-buttons button.medium {
+    background-color: orange;
+}
+
+.prio-buttons button.low {
+    background-color: lightgreen;
 }
 
 .category-input-wrapper {
@@ -208,6 +284,9 @@ input {
     height:48px;
     border-radius: 5px;
     border:1px solid grey;
+    display: flex;
+    align-items: center;
+    padding-left:10px;
     
  }
 
@@ -216,6 +295,23 @@ input {
     width:440px;
     height:80px;
     
+}
+
+.subtask-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+.subtask-input img {
+    position: absolute;
+    right: 10px; /* Adjust this value based on how far right you want the icon */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    width: 20px; /* Adjust icon size */
+    height: 20px; /* Adjust icon size */
+    cursor: pointer;
 }
 
 
