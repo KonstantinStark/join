@@ -30,27 +30,24 @@ async function loadUsers() {
 // }
 
 function renderAssignedToInput() {
-    let assignedToInput = document.getElementById("assigned-to-input");
-    assignedToInput.innerHTML = "";
+    let assignedToList = document.getElementById("assigned-to-list");
+    assignedToList.innerHTML = ""; // Clear previous content
 
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
 
-        assignedToInput.innerHTML += /*html*/`
-        
-            <div class="assigned-to-list" id="assigned-to-list">
-                <div class="assigned-to-list-values">
+        // Add user details inside the single assigned-to-list container
+        assignedToList.innerHTML += /*html*/`
+            <div class="assigned-to-list-values">
                 <div class="assigned-to-list-values-image-name">
-                    <p> 
+                    <p>
                         <svg width="50" height="50">
-                        <circle id="circle" cx="25" cy="25" r="20" fill="${user.color}" />
+                            <circle id="circle" cx="25" cy="25" r="20" fill="${user.color}" />
                         </svg>
                     </p>
                     <p>${user.name}</p>
                 </div>
-                 
-                 <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
-                </div>
+                <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
             </div>
         `;
     }

@@ -354,7 +354,12 @@ input::placeholder {
 
  /* js templates  */
 
+#assigned-to-list {
 
+   
+}
+
+/* 
  .assigned-to-list-values {
 
     display:flex;
@@ -362,11 +367,11 @@ input::placeholder {
     align-items: center;
     width:440px;
     height:50px;
-    z-index:100;
-    position:relative;
-    background-color: white;
-  
- }
+    z-index:100; */
+    /* position:relative;  scheint wichtig zu sein für z index obsidian */
+    /* background-color: white;
+   */
+ /* }
  .assigned-to-list-values input {
 
     width:15px;
@@ -380,7 +385,45 @@ input::placeholder {
     justify-content: center;
     align-items: center;
     gap:20px;
- }
+ } */
+
+ /* position-relative scheint wichtig zu sein für z index obsidian */
+
+ .assigned-to-list {
+    max-height: 200px;  /* Limit the height of the list to make it scrollable */
+    overflow-y: auto;   /* Enable vertical scroll */
+    border: 1px solid #ccc;  /* Optional: Add border to make the container visible */
+    z-index:100; 
+    position:relative;  
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 transparent;
+    padding:5px;
+ 
+}
+
+.assigned-to-list-values {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 410px;
+    height: 40px;
+    background-color: white;
+    margin-bottom: 10px;  /* Add space between user rows */
+    padding-right:20px;
+
+}
+
+.assigned-to-list-values input {
+    width: 15px;
+    height: 15px;
+}
+
+.assigned-to-list-values-image-name {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
  
 
 
