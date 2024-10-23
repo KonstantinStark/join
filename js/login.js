@@ -1,16 +1,13 @@
 window.onload = function() {
-    const logoContainer = document.querySelector('.join-logo-container');
-    const loginContainer = document.querySelector('.login-container');
-    const topRight = document.querySelector('.top-right');
-    const bottomLinks = document.querySelector('.bottom-links');
-    const body = document.querySelector('body');
-
-    // Die Animation des Logos dauert 2 Sekunden
+    let logoContainer = document.querySelector('.join-logo-container');
+    let loginContainer = document.querySelector('.login-container');
+    let topRight = document.querySelector('.top-right');
+    let bottomLinks = document.querySelector('.bottom-links');
+    let body = document.querySelector('body');
     setTimeout(() => {
-        // Sichtbarkeit nach der Animation
-        loginContainer.classList.add('visible'); // Füge die 'visible'-Klasse hinzu
-        topRight.classList.add('visible'); // Füge die 'visible'-Klasse hinzu
-        bottomLinks.classList.add('visible'); // Füge die 'visible'-Klasse hinzu
-        body.classList.remove('hidden'); // Entferne die "hidden"-Klasse vom Body
-    }, 500); // Wartezeit für die Animation
+        loginContainer.classList.add('visible'); 
+        topRight.classList.add('visible');
+        bottomLinks.classList.add('visible');
+        body.classList.remove('hidden'); 
+    }, 500);
 };
