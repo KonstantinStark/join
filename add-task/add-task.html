@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/sidebar.css" />
+    <link rel="stylesheet" href="/styles/sidebar.css" >
     <link rel="stylesheet" href="/styles/img/assets.css" />
-    <link rel="stylesheet" href="/styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="/add-task/add-task.css" />
-
+    <link rel="stylesheet" href="/styles/standard.css" />
     <title>Add tasks</title>
   </head>
 
@@ -61,36 +61,41 @@
         </header>
 
         <div class="subheader">
-          <h1>Add task</h1>
+          <div class="subheader-wrapper">
+          <h1>Add Task</h1>
         </div>
+      </div>
 
         <div class="add-task-wrapper">
           <div class="left-side-wrapper">
             <div class="input-fields-left-side">
+              <div class="title-input-wrapper">
               <p>Title 
                 <span class="required-star-markers">*</span></p>
               <div class="title-input">
+              </div>
                 <input
                   type="text" placeholder="Enter a title" id="title-input"/>
               </div>
+              <div class="decription-input-wrapper">
               <p>Description</p>
-              <div class="description-input">
-                <input
-                  type="text"
-                  placeholder="Enter a Description"
-                  id="description-input"
-                />
+                <div class="description-input">
+                  <input
+                    type="text"
+                    placeholder="Enter a Description"
+                    id="description-input"
+                  />
+                </div>
               </div>
+              <div class="assigned-to-wrapper">
               <p>Assigned to</p>
               <div id="assigned-to-dropdown">
                 <div
-                  class="assigned-to-toggle-button"
-                  onclick="toggleAssignedToList()"
-                >
+                  class="assigned-to-toggle-button" onclick="toggleAssignedToList()" >
                   <p>Select contacts to assign</p>
                 </div>
-
                 <div class="d-none" id="assigned-to-input"></div>
+              </div>
               </div>
             </div>
           </div>
@@ -99,16 +104,19 @@
 
           <div class="right-side-wrapper">
             <div class="input-fields-right-side">
-              <p>Due Date
-                <span class="required-star-markers">*</span>
-              </p>
-              <div class="due-date-input">
-                <input
-                  type="text"
-                  placeholder="dd/mm/yyyy"
-                  id="due-date-input"
-                />
-              </div>
+              <div class="due-date-wrapper">
+                <p>Due Date
+                  <span class="required-star-markers">*</span>
+                </p>
+                <div class="due-date-input">
+                  <input
+                    type="text"
+                    placeholder="dd/mm/yyyy"
+                    id="due-date-input"
+                  />
+                </div>
+            </div>
+              <div class="prio-buttons-wrapper">
               <p class="prio-buttons-header">Prio</p>
               <div class="prio-buttons">
                 <button id="urgent-button" onclick="setPrioButton('urgent')">
@@ -121,15 +129,11 @@
                   Low
                 </button>
               </div>
+            </div>
 
-              <p>Category
-                <span class="required-star-markers">*</span>
-              </p>
-              <div
-                class="category-input"
-                id="category-input"
-                onclick="toggleRenderCategoryInput()"
-              >
+            <div class="category-input-wrapper">
+              <p>Category <span class="required-star-markers">*</span> </p>
+              <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput()">
                 <p id="category-input-placeholder">select task category</p>
                 <!-- Placeholder to be updated -->
                 <div id="category-input-content" class="d-none">
@@ -139,6 +143,8 @@
                   <p onclick="changeCategoryInput('User Story')">User Story</p>
                 </div>
               </div>
+            </div>
+          <div class="subtask-input">
               <p>Subtasks</p>
               <div class="subtask-input">
                 <input type="text" placeholder="Subtaks" id="subtask-input" />
@@ -147,7 +153,8 @@
               <div id="subtasks-list">
                 <!-- js -->
               </div>
-            </div>
+          </div>
+          </div>
           </div>
         </div>
 
@@ -161,8 +168,8 @@
           </div>
 
           <div class="clear-create-buttons-wrapper">
-            <button>Clear</button>
-            <button onclick="addNewArrayFromInputs(); toggleOverlayCreateButton()">Create Task</button>
+            <button class="clear-task-button">Clear</button>
+            <button class="create-task-button" onclick="addNewArrayFromInputs(); toggleOverlayCreateButton()">Create Task</button>
           </div>
         </footer>
       </div>
