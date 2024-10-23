@@ -21,36 +21,18 @@ body {
     height: auto;
 }
 
-.top-right {
+.back-arrow {
     position: absolute;
     top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
+    left: 20px;
 }
 
-.top-right p {
-    margin-right: 10px;
-    font-size: 14px;
-    color: #333;
+.back-arrow-icon {
+    width: 24px;
+    height: auto;
 }
 
-.signup-btn {
-    background-color: #2a3647;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.signup-btn:hover {
-    background-color: #29aae1;
-}
-
-
-.login-container {
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +40,7 @@ body {
     height: 100%;
 }
 
-.login-box {
+.signup-box {
     background-color: #fff;
     padding: 40px;
     border-radius: 15px;
@@ -66,6 +48,7 @@ body {
     max-width: 400px;
     width: 100%;
     text-align: center;
+    position: relative;
 }
 
 h2 {
@@ -110,7 +93,7 @@ h2 {
     height: 20px;
 }
 
-.remember-container {
+.policy-container {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -118,47 +101,41 @@ h2 {
     margin-left: 25px;
 }
 
-.remember-container input {
+.policy-container input {
     margin-right: 10px;
 }
 
-.remember-container label {
+.policy-container label {
     font-size: 14px;
     color: #333;
 }
 
-.login-buttons {
-    display: flex;
-    justify-content: space-between;
+.policy-container label a {
+    color: #007BFF;
+    text-decoration: none;
 }
 
-.login-btn,
-.guest-login-btn {
+.policy-container label a:hover {
+    text-decoration: underline;
+}
+
+.signup-button {
+    display: flex;
+    justify-content: center;
+}
+
+.signup-btn {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-}
-
-.guest-login-btn:hover {
-    color: #29aae1;
-    border: 1px solid #29aae1;
-}
-
-.login-btn {
     background-color: #2a3647;
     color: white;
 }
 
-.login-btn:hover {
+.signup-btn:hover {
     background-color: #29aae1;
-}
-
-.guest-login-btn {
-    background-color: white;
-    color: #2a3647;
-    border: 1px solid #2a3647;
 }
 
 .bottom-links {

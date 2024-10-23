@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/standard.css">
-    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/sign-up.css">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="./style.css">
-    <script src="../js/login.js"></script>
-    <title>Login</title>
+    <script src="../js/signup.js"></script>
+    <title>Sign up</title>
 </head>
 
 <body>
@@ -17,19 +17,22 @@
         <img src="../assets/img/joinlogo2.png" alt="Join Logo" class="join-logo">
     </div>
 
-    <div class="top-right">
-        <p>Not a Join user?</p>
-        <button class="signup-btn">Sign up</button>
-    </div>
-
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Log in</h2>
+    <div class="signup-container">
+        <div class="signup-box">
+            <a href="javascript:history.back()" class="back-arrow">
+                <img src="../assets/img/arrow-left-line.svg" alt="Back Arrow" class="back-arrow-icon">
+            </a>
+            <h2>Sign up</h2>
             <div class="underline-container">
                 <div class="underline"></div>
             </div>
 
             <form action="">
+                <div class="input-container">
+                    <input required type="text" placeholder="Name" id="name">
+                    <img src="../assets/img/person.svg" alt="User Icon" class="input-icon">
+                </div>
+
                 <div class="input-container">
                     <input required type="email" placeholder="Email" id="email">
                     <img src="../assets/img/email-icon.png" alt="Email Icon" class="input-icon">
@@ -40,14 +43,18 @@
                     <img src="../assets/img/lock-icon.png" alt="Password Icon" class="input-icon">
                 </div>
 
-                <div class="remember-container">
-                    <input type="checkbox" id="remember"> 
-                    <label for="remember">Remember me</label>
+                <div class="input-container">
+                    <input required type="password" placeholder="Confirm Password" id="confirm-password">
+                    <img src="../assets/img/lock-icon.png" alt="Password Icon" class="input-icon">
                 </div>
 
-                <div class="login-buttons">
-                    <button class="login-btn">Log in</button>
-                    <button class="guest-login-btn">Guest Log in</button>
+                <div class="policy-container">
+                    <input type="checkbox" id="accept-policy">
+                    <label for="accept-policy">I accept the <a href="#">Privacy policy</a></label>
+                </div>
+
+                <div class="signup-button">
+                    <button class="signup-btn">Sign up</button>
                 </div>
             </form>
         </div>
