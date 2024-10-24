@@ -94,7 +94,7 @@
               <div class="assigned-to-wrapper">
                 <p class="input-headers-margin-bottom">Assigned to</p>
                 <div id="assigned-to-dropdown">
-                    <div class="assigned-to-toggle-button" onclick="toggleAssignedToList()">
+                    <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
                         <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
                         <img src="/assets/img/add-task/up-down-arrow.svg" alt="">
                     </div>
@@ -141,7 +141,7 @@
 
               <div class="category-input-wrapper">
                 <p class="input-headers-margin-bottom"> Category <span class="required-star-markers">*</span></p>
-                <div class="category-input"id="category-input" onclick="toggleRenderCategoryInput()">
+                <div class="category-input"id="category-input" onclick="toggleRenderCategoryInput()" tabindex="0">
                   <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
                   <!-- Placeholder to be updated -->
                   <div id="category-input-content" class="d-none">

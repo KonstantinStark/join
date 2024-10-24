@@ -51,23 +51,48 @@ function renderAssignedToInput() {
             </div>
         `;
     }
-}
-
-
-
-function getSelectedAssignedUsers() {
-    const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  
-    let assignedContacts  = [];
-
-    checkboxes.forEach(checkbox => {
-        assignedContacts.push(checkbox.value);  
-        
-    });
-
-    return assignedContacts;  
 
     
 }
+
+// obsidian mit comment drunter 
+
+
+function getSelectedAssignedUsers() {
+    const checkboxes = document.querySelectorAll('.assign-checkbox');  // Get all checkboxes
+    let assignedContacts  = [];
+
+    checkboxes.forEach(checkbox => {
+        let assignedToValue = checkbox.closest('.assigned-to-list-values');   // Get the parent .assigned-to-list-values
+
+        if (checkbox.checked) {
+            assignedContacts.push(checkbox.value);  // Store selected contacts
+            assignedToValue.classList.add('bg-color-black');  // Add black background class
+        } else {
+            assignedToValue.classList.remove('bg-color-black');  // Remove black background class if unchecked
+        }
+    });
+
+    return assignedContacts;  // Return array of selected user values
+}
+
+
+
+// function getSelectedAssignedUsers() {
+//     const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  
+//     let assignedToValuesTurnBlack = document.querySelectorAll('assigned-to-list-values');
+//     let assignedContacts  = [];
+
+//     checkboxes.forEach(checkbox => {
+//         assignedContacts.push(checkbox.value);  
+        
+//     });
+
+//     assignedToValuesTurnBlack.classList.add('bg-color-black')
+
+//     return assignedContacts;  
+   
+// }
 
 //toogles //
 
