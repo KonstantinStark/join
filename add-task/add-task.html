@@ -74,12 +74,10 @@
                   Title
                   <span class="required-star-markers">*</span>
                 </p>
-                <div class="title-input"></div>
-                <input
-                  type="text"
-                  placeholder="Enter a title"
-                  id="title-input"
-                />
+                <div class="input-wrapper">
+                  <input type="text" placeholder="Enter title" id="title-input"/>
+                  <p class="error-message" id="title-error" style="display: none;">This field is required</p>
+                </div>
               </div>
               <div class="decription-input-wrapper">
                 <p class="input-headers-margin-bottom">Description</p>
@@ -116,9 +114,9 @@
                   Due Date
                   <span class="required-star-markers">*</span>
                 </p>
-                <div class="due-date-input">
+                <div class="due-date-wrapper">
                   <input type="text" placeholder="dd/mm/yyyy" id="due-date-input"/>
-                  <img src="/assets/img/add-task/calender.svg" alt=""  id="calendar-icon">
+                  <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
                 </div>
               </div>
               <div class="prio-buttons-wrapper">
@@ -143,9 +141,11 @@
                 <p class="input-headers-margin-bottom"> Category <span class="required-star-markers">*</span></p>
                 <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
                   <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
-                  <img src="/assets/img/add-task/up-down-arrow.svg" id="category-icon"  alt="">
+                  <img src="/assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
+                  
                   <!-- Placeholder to be updated -->
-                </div>
+                </div> 
+                <p class="error-message" id="category-error" style="display: none;">This field is required</p>               
                 <div id="category-input-content" class="d-none">
                   <p onclick="changeCategoryInput('Technical Task')">
                     Technical Task
@@ -181,9 +181,10 @@
             <button class="clear-task-button">Clear
               <img src="/assets/img/add-task/clear.svg" alt="">
             </button>
-            <button class="create-task-button" onclick="addNewArrayFromInputs(); toggleOverlayCreateButton()">
+            <button class="create-task-button" onclick="validateForm(); addNewArrayFromInputs(); toggleOverlayCreateButton(); ">
               <p>Create Task</p>
               <img src="/assets/img/add-task/check.svg" alt="">
+             
             </button>
           </div>
         </footer>

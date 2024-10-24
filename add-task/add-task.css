@@ -551,4 +551,22 @@ input::placeholder {
 } */
 
 
+/* form validation */
+
+.input-wrapper {
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    border: 1px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+
+
 

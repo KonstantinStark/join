@@ -16,6 +16,7 @@ async function addUser() {
     let newUser = getUserInput();
     if (!validateUserInput(newUser)) return;
     newUser.color = getRandomColor();
+    newUser.initials = getInitials(newUser.name);
     resetInputFields();
     await postData("/users", newUser);
     await loadUsers();

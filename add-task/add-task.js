@@ -271,3 +271,57 @@ function toggleRotate() {
 }
 
 
+function validateForm() {
+    // Get form input values
+    let dueDate = document.getElementById("due-date-input").value;
+    let category = document.getElementById("category-input-placeholder").innerHTML;
+    let title = document.getElementById("title-input").value;
+
+    // Track if the form is valid, default to true, but will be set to false if any validation fails
+    let isValid = true;
+
+    // Due date validation
+    let dueDateInput = document.getElementById("due-date-input");
+    let dueDateError = document.getElementById("due-date-error");
+    if (dueDate === "") {
+        dueDateInput.classList.add("error");
+        dueDateError.style.display = "block";
+        isValid = false;  // Mark form as invalid
+    } else {
+        dueDateInput.classList.remove("error");
+        dueDateError.style.display = "none";
+    }
+
+    // Title validation
+    let titleInput = document.getElementById("title-input");
+    let titleError = document.getElementById("title-error");
+    if (title === "") {
+        titleInput.classList.add("error");
+        titleError.style.display = "block";
+        isValid = false;  // Mark form as invalid
+    } else {
+        titleInput.classList.remove("error");
+        titleError.style.display = "none";
+    }
+
+    // Category validation
+    let categoryInput = document.getElementById("category-input");
+    let categoryError = document.getElementById("category-error");
+    if (category === "Select task category") {
+        categoryInput.classList.add("error");
+        categoryError.style.display = "block";
+        isValid = false;  // Mark form as invalid
+    } else {
+        categoryInput.classList.remove("error");
+        categoryError.style.display = "none";
+    }
+
+    // If all fields are valid, execute the functions
+    if (isValid) {
+        // Proceed to add data and toggle the overlay button only if form is valid
+        addNewArrayFromInputs();
+        toggleOverlayCreateButton();
+    } else {
+        console.log("Form is not valid. Please fill in all required fields.");
+    }
+}
