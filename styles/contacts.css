@@ -502,7 +502,7 @@ h2 {
 
     .overlay {
         width: 50vw;
-        background-color: none;
+        background-color: transparent;
     }
 
     .contact-wrapper {
@@ -524,11 +524,13 @@ h2 {
 
     .exit-overlay {
         margin-top: -118px;
+        display: none;
     }
 
     .contact-wrapper img {
         display: none;
     }
+    
     #overlay {
         transform: none;
         padding-left: 340px;
