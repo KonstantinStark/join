@@ -106,8 +106,6 @@
     background-color: #29ABE2;
 }
 
-/* Overlay */
-
 .overlay {
     top: 0;
     display: flex;
@@ -118,7 +116,7 @@
     position: absolute;
     top: 0;
     background-color: rgba(0, 0, 0, 0.2);
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease;
     transform: translateX(100%);
     opacity: 0;
     z-index: 11;
@@ -530,9 +528,16 @@ h2 {
     .contact-wrapper img {
         display: none;
     }
-    
+
     #overlay {
         transform: none;
-        padding-left: 340px;
+        position: relative;
+
+    }
+
+    .overlay-section{
+        position: absolute;
+        top: 0;
+        left: 24%;
     }
 }
