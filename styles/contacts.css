@@ -3,9 +3,9 @@
     border: 1px solid #ccc;
     position: absolute;
     top: 90px;
-    right: 10px; 
+    right: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000; 
+    z-index: 1000;
     border-radius: 15px 0 15px 15px;
 }
 
@@ -25,7 +25,7 @@
 
 .contact-list-wrapper {
     width: 456px;
-    height: 83.3vh;
+    height: 90.5vh;
     display: flex;
     background-color: white;
     position: relative;
@@ -47,14 +47,11 @@
 }
 
 .add-contact-btn-wrapper {
-
-    background-color: white;
     display: flex;
     justify-content: center;
     position: fixed;
     width: 320px;
     height: 50px;
-
 }
 
 .add-contact-btn {
@@ -423,7 +420,8 @@ h2 {
     }
 
     .navbar-text {
-        display: none;
+        display: flex;
+        flex-direction: column;
     }
 
     .privacy-legal-wrapper {
@@ -460,8 +458,79 @@ h2 {
     .contact-text-wrapper {
         display: none;
     }
+
     .contact-list-wrapper {
         width: 100%;
     }
 }
 
+
+@media (max-width: 940px) {
+    .add-contact-btn-wrapper {
+        width: auto;
+        height: auto;
+        bottom: 70px;
+        right: 17px;
+    }
+
+    .add-contact-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2C3E50;
+    }
+
+    .add-contact-btn .icon {
+        margin: 0;
+        width: 24px;
+        height: 24px;
+    }
+
+    .add-contact-btn:hover {
+        background-color: #29aae1;
+    }
+}
+
+@media (max-width: 940px) {
+    .overlay-wrapper {
+        flex-direction: column;
+    }
+
+    .overlay {
+        width: 50vw;
+        background-color: none;
+    }
+
+    .contact-wrapper {
+        height: 3%;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .contact-wrapper {
+        transform: block;
+    }
+
+    .circle-wrapper {
+        margin-top: -67px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .exit-overlay {
+        margin-top: -118px;
+    }
+
+    .contact-wrapper img {
+        display: none;
+    }
+    #overlay {
+        transform: none;
+        padding-left: 340px;
+    }
+}

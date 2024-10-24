@@ -93,6 +93,8 @@ header {
         margin-bottom: 0px;
         width: 100%;
         padding: 0px;
+        flex-direction: column;
+        font-size: 15px;
     }
 
     .navbar {
@@ -110,4 +112,31 @@ header {
         z-index: 13;
     }
   
+}
+
+@media (max-width: 410px) {
+    .navbar {
+        gap: 40px;
+    }
+    .sidebar-image-title-wrapper {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 370px) {
+    .navbar {
+        gap: 30px;
+    }
+    .sidebar-image-title-wrapper {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 350px) {
+    .navbar {
+        gap: 20px;
+    }
+    .sidebar-image-title-wrapper {
+        font-size: 12px;
+    }
 }
