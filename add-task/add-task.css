@@ -284,9 +284,49 @@ input::placeholder {
     border:1px solid grey;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left:10px;
-    
+    padding-right:12px;
+   
  }
+
+ .category-input img.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+    
+}
+
+
+ #category-input-content {
+
+    background-color: white;
+    height:110px;
+    width:440px;
+    z-index:100;
+    position:relative;
+    border-radius:10px;
+    font-size:20px;
+    border:1px solid black;
+    padding:5px;
+ }
+
+ #category-input-content p {
+
+    margin-bottom:10px;
+    height:40px;
+    display: flex;
+    align-items: center;
+
+ }
+
+ #category-input-content p:hover {
+
+    background-color:lightgray;
+    border-radius:5px;
+}
+
+
+ 
 
  .category-input:focus {
     outline: none;  /* Removes the default blue outline */
@@ -456,14 +496,6 @@ input::placeholder {
  /* category  */
  
  
- #category-input-content {
-
-    background-color: white;
-    height:100px;
-    width:300px;
-    z-index:100;
-    position:relative;
- }
 
  /* task added to board overlay  */
 

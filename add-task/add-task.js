@@ -50,10 +50,11 @@ function renderAssignedToInput() {
                 <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
             </div>
         `;
-    }
-
-    
+    } 
+ 
 }
+
+
 
 // obsidian mit comment drunter 
 
@@ -188,14 +189,27 @@ function resetInputFields() {
     
 }
 
-function changeCategoryInput(selectedCategory) {
-    let categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
-    categoryInputPlaceholderRef.innerHTML = selectedCategory; 
-    
+// obsidian 
 
-    let renderCategoryInputToggle = document.getElementById('category-input-content');
+function changeCategoryInput(selectedCategory) {
+    const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
+    const renderCategoryInputToggle = document.getElementById('category-input-content');
+    const placeholderText = 'Select task category';
+    
+    // Toggle between selected category and resetting to placeholder
+    categoryInputPlaceholderRef.innerHTML = (selectedCategory === placeholderText || selectedCategory === categoryInputPlaceholderRef.innerHTML) 
+        ? placeholderText 
+        : selectedCategory;
+    
+    // Hide the dropdown after selection
     renderCategoryInputToggle.classList.add('d-none');
 }
+
+// Add event listener to reset when clicking on the placeholder
+document.getElementById('category-input-placeholder').addEventListener('click', function() {
+    changeCategoryInput('Select task category');  // Reset to placeholder when clicking the text
+});
+
 
 // subtasks
 
@@ -239,5 +253,9 @@ document.querySelector('.assigned-to-toggle-button').addEventListener('click', f
     imgElement.classList.toggle('rotate');
 });
 
+function toggleRotate() {
+    let img = document.getElementById('category-icon');
+    img.classList.toggle('rotate');  // Adds or removes the 'rotate' class to trigger the animation
+}
 
 
