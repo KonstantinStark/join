@@ -366,8 +366,15 @@ input::placeholder {
     width:976.25px;
     margin-left:5%;
     margin-top:80px;
+    padding-left:20px;
    
     
+ }
+
+ .clear-create-buttons-wrapper {
+
+    display: flex;
+    gap:20px;
  }
 
  .create-task-button {
@@ -379,16 +386,22 @@ input::placeholder {
     font-size: 20px;
     background-color: #2A3647;
     color:white;
-    
+    display: flex;
+    align-items: center;
+    gap:10px;
     
  }
 
+ 
  .clear-task-button {
 
     width:110px;
     height:56px;
     border-radius:5px;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap:10px;
     
  }
 

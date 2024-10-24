@@ -228,9 +228,21 @@ function renderSubtasks() {
     subtasksList.innerHTML = ""; 
 
     subtasksArray.forEach((subtask, index) => {
-        subtasksList.innerHTML += `<li>${subtask} <button onclick="removeSubtask(${index})">Remove</button></li>`;
+        subtasksList.innerHTML +=  /*html*/ `
+        
+        <li>${subtask} 
+        <img onclick="removeSubtask(${index})"src="/assets/img/add-task/subtask-bin.svg" alt="">
+        <img src="/assets/img/add-task/subtask-check.svg" alt="">
+        <img src="/assets/img/add-task/pen.svg" alt="">
+        </li>`;
     });
 }
+
+
+
+
+
+
 
 // obsidian 
 
