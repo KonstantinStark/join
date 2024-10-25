@@ -1,14 +1,5 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f6f8fb;
-    margin: 0;
-}
-
 .board-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    margin: 20px;
+    padding: 20px;
 }
 
 .board-header {
@@ -18,139 +9,127 @@ body {
     margin-bottom: 20px;
 }
 
-.board-header h1 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #000;
-}
-
 .task-controls {
     display: flex;
-    gap: 10px;
+    align-items: center;
 }
 
 .task-controls input {
-    padding: 8px;
+    padding: 10px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-right: 10px;
     font-size: 16px;
-    width: 200px;
 }
 
-.add-task-btn {
-    background-color: #212529;
+.task-controls .add-task-btn {
+    background-color: #0052cc;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.add-task-btn:hover {
-    background-color: #333;
+.add-task-btn a {
+    text-decoration: none;
+    color: white;
 }
 
 .board-columns {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    display: flex;
+    justify-content: space-between;
     overflow-y: scroll;
     height: 630px;
 }
 
 .board-column {
-    background-color: #fff;
+    width: 22%;
+    background-color: #f4f5f7;
+    padding: 15px;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 5000px;
 }
 
 .board-column h2 {
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.no-tasks {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    color: #888;
-    font-size: 16px;
-    border: 2px dashed #ddd;
-    border-radius: 10px;
-}
-
-/* Task Card Styles */
-.task-card {
-    background-color: #f9fafb;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.task-card h3 {
     font-size: 18px;
-    margin: 10px 0;
+    margin-bottom: 10px;
     color: #333;
 }
 
-.task-card p {
-    color: #888;
-    font-size: 14px;
+.no-tasks {
+    text-align: center;
+    color: #999;
+}
+
+.task-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.task-card:hover {
+    transform: scale(1.02);
 }
 
 .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
 }
 
 .task-type {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 15px;
     font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
     color: white;
 }
 
-.user-story .task-type {
-    background-color: #007bff;
+.task-type.user-story {
+    background-color: #0052cc;
 }
 
-.technical-task .task-type {
-    background-color: #20c997;
+.task-type.technical-task {
+    background-color: #00c853;
+}
+
+h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
 }
 
 .task-progress {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
-progress {
+.task-progress progress {
     width: 70%;
-    height: 6px;
-    border-radius: 5px;
-    appearance: none;
+    margin-right: 10px;
 }
 
-progress::-webkit-progress-bar {
-    background-color: #f1f1f1;
-    border-radius: 5px;
-}
-
-progress::-webkit-progress-value {
-    background-color: #007bff;
-    border-radius: 5px;
+.task-progress span {
+    font-size: 12px;
+    color: #666;
 }
 
 .task-members {
     display: flex;
-    gap: 5px;
-    margin-top: 10px;
+    align-items: center;
 }
 
 .member {
@@ -160,42 +139,13 @@ progress::-webkit-progress-value {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
     color: white;
-    font-weight: bold;
-    font-size: 14px;
+    margin-right: 5px;
 }
 
 
-.member[style*="orange"] {
-    background-color: orange;
-}
-
-.member[style*="green"] {
-    background-color: green;
-}
-
-.member[style*="purple"] {
-    background-color: purple;
-}
-
-.member[style*="pink"] {
-    background-color: pink;
-}
-
-.member[style*="yellow"] {
-    background-color: yellow;
-}
-
-.member[style*="red"] {
-    background-color: red;
-}
-
-.member[style*="skyblue"] {
-    background-color: skyblue;
-}
 
 
-.done .task-card progress::-webkit-progress-value {
-    background-color: #28a745;
-}
+
 

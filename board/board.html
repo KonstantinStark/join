@@ -73,23 +73,23 @@
 
                 <!-- Board -->
                 <div class="board-columns">
-                    <div class="board-column todo" id="todo-tasks">
+                    <div class="board-column todo" id="todo-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
                         <h2>To do</h2>
-                        <div class="no-tasks">
-                        </div>
+                        <div class="no-tasks"></div>
                     </div>
-
-                    <div class="board-column in-progress" id="in-progress-tasks">
+                    
+                    <div class="board-column in-progress" id="in-progress-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
                         <h2>In progress</h2>
                     </div>
-
-                    <div class="board-column await-feedback" id="await-feedback-tasks">
+                    
+                    <div class="board-column await-feedback" id="await-feedback-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
                         <h2>Await feedback</h2>
                     </div>
-
-                    <div class="board-column done" id="done-tasks">
+                    
+                    <div class="board-column done" id="done-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
                         <h2>Done</h2>
                     </div>
+                    
                 </div>
             </div>
 
@@ -97,7 +97,9 @@
             <div id="assigned-to-input"></div>
         </div>
     </section>
-
+    
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
     <script src="../js/board.js"></script>
 
 </body>

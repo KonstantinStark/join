@@ -1,7 +1,3 @@
-let Tasks = [];
-let selectedPrioButton = '';
-let subtasksArray = [];
-
 const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app"; 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,28 +26,6 @@ async function loadTasks() {
     }
 }
 
-function renderAssignedToInput() {
-    let assignedToInput = document.getElementById("assigned-to-input");
-    assignedToInput.innerHTML = "";
-
-    users.forEach(user => {
-        assignedToInput.innerHTML += /*html*/`
-            <div class="assigned-to-list" id="assigned-to-list">
-                <div class="assigned-to-list-values">
-                    <div class="assigned-to-list-values-image-name">
-                        <p>
-                            <svg width="50" height="50">
-                                <circle id="circle" cx="25" cy="25" r="20" fill="${user.color}" />
-                            </svg>
-                        </p>
-                        <p>${user.name}</p>
-                    </div>
-                    <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
-                </div>
-            </div>
-        `;
-    });
-}
 
 function renderTasks(tasks) {
     const todoContainer = document.getElementById("todo-tasks");
@@ -65,44 +39,50 @@ function renderTasks(tasks) {
     awaitFeedbackContainer.innerHTML = "";
     doneContainer.innerHTML = "";
 
-    tasks.forEach(task => {
+    // Verwende eine for-Schleife anstelle von forEach
+    for (let i = 0; i < tasks.length; i++) {
+        let task = tasks[i];
         let container;
-        switch (task.prioButton) {
-            case 'urgent':
-            case 'todo':
-                container = todoContainer;
-                break;
-            case 'in-progress':
-                container = inProgressContainer;
-                break;
-            case 'await-feedback':
-                container = awaitFeedbackContainer;
-                break;
-            case 'done':
-                container = doneContainer;
-                break;
-            default:
-                console.warn("Unbekannter Status:", task.prioButton);
-                return; 
-        }
+
+       switch (task.prioButton) {
+    case 'urgent':
+    case 'todo':
+        container = todoContainer;
+        break;
+    case 'in-progress':
+        container = inProgressContainer;
+        break;
+    case 'await-feedback':
+        container = awaitFeedbackContainer;
+        break;
+    case 'done':
+        container = doneContainer;
+        break;
+    default:
+        console.warn("Unbekannter Status:", task.prioButton);
+        container = todoContainer;  // Fallback-Container
+}
+
+        
 
         container.innerHTML += /*html*/`
-            <div class="task-card">
-                <div class="task-header">
-                    <span class="task-type">${task.category}</span>
-                </div>
-                <h3>${task.title || task.description}</h3>
-                <p>${task.description}</p>
-                <div class="task-progress">
-                    <progress value="${task.subtasks ? task.subtasks.length : 0}" max="2"></progress>
-                    <span>${task.subtasks ? task.subtasks.length : 0}/2 Subtasks</span>
-                </div>
-                <div class="task-members">
-                    ${task.assignedContacts ? task.assignedContacts.map(contact => `<span class="member" style="background-color: ${getColorForUser(contact)};">${contact}</span>`).join('') : ''}
-                </div>
+        <div class="task-card" id="task-${task.id}" draggable="true" ondragstart="drag(event)">
+            <div class="task-header">
+                <span class="task-type ${task.category.toLowerCase().replace(' ', '-')}">${task.category}</span>
             </div>
-        `;
-    });
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+            <div class="task-progress">
+                <progress value="${task.subtasks ? task.subtasks.length : 0}" max="2"></progress>
+                <span>${task.subtasks ? task.subtasks.length : 0}/2 Subtasks</span>
+            </div>
+            <div class="task-members">
+                ${task.assignedContacts ? task.assignedContacts.map(contact => `<span class="member" style="background-color: ${getColorForUser(contact)};">${contact}</span>`).join('') : ''}
+            </div>
+        </div>
+    `;
+    
+    }
 }
 
 function getColorForUser(user) {
@@ -113,3 +93,50 @@ function getColorForUser(user) {
     };
     return colors[user] || "#000000";
 }
+
+
+
+// Drag-Event starten
+function drag(event) {
+    event.dataTransfer.setData("taskId", event.target.id); // ID des gezogenen Tasks speichern
+}
+
+// Drag zulassen
+function allowDrop(event) {
+    event.preventDefault();  // Ermöglicht das Droppen
+}
+
+// Task in neue Spalte verschieben
+function dropTask(event) {
+    event.preventDefault();
+
+    const taskId = event.dataTransfer.getData("taskId");  // ID des Tasks abrufen
+    const taskElement = document.getElementById(taskId);  // Task-Element abrufen
+    const newStatus = event.target.closest('.board-column').id;  // Neue Spalte ermitteln
+
+    // Task in die neue Spalte verschieben
+    event.target.closest('.board-column').appendChild(taskElement);
+
+    // Task-Status basierend auf der neuen Spalte aktualisieren
+    let newPrioButton;
+    switch (newStatus) {
+        case 'todo-tasks':
+            newPrioButton = 'todo';
+            break;
+        case 'in-progress-tasks':
+            newPrioButton = 'in-progress';
+            break;
+        case 'await-feedback-tasks':
+            newPrioButton = 'await-feedback';
+            break;
+        case 'done-tasks':
+            newPrioButton = 'done';
+            break;
+    }
+
+    // Firebase mit neuem Status aktualisieren
+    updateTaskStatus(taskId.replace('task-', ''), newPrioButton);
+}
+
+
+
