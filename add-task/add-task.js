@@ -223,6 +223,14 @@ function addSubtaskToArray() {
     }
 }
 
+// obsidian
+
+function removeSubtask(index) {
+    // Remove the subtask at the specified index
+    subtasksArray.splice(index, 1);
+    renderSubtasks();  // Re-render subtasks to update the UI
+}
+
 function renderSubtasks() {
     let subtasksList = document.getElementById("subtasks-list");
     subtasksList.innerHTML = ""; 
@@ -230,10 +238,8 @@ function renderSubtasks() {
     subtasksArray.forEach((subtask, index) => {
         subtasksList.innerHTML +=  /*html*/ `
         
-        <li>${subtask} 
+        <li class="subtask-list-items" >${subtask} 
         <img onclick="removeSubtask(${index})"src="/assets/img/add-task/subtask-bin.svg" alt="">
-        <img src="/assets/img/add-task/subtask-check.svg" alt="">
-        <img src="/assets/img/add-task/pen.svg" alt="">
         </li>`;
     });
 }

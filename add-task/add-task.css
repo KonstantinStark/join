@@ -333,6 +333,14 @@ input::placeholder {
     border: 2px solid #29ABE2;  /* Changes the border when focused */
 }
 
+.subtask-list-items {
+    
+    display:flex;
+    justify-content: space-between;
+    margin-top:5px;
+    
+}
+
 .subtask-input-wrapper {
 
     width:440px;
