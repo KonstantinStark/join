@@ -180,15 +180,22 @@ function resetInputFields() {
     document.getElementById("title-input").value = "";
     document.getElementById("description-input").value = "";
     document.getElementById("assigned-to-input").value = "";
-    document.getElementById("assigned-to-list").classList.add("d-none")
+    document.getElementById("assigned-to-list").value = "";
     document.getElementById("due-date-input").value = "";
-    document.getElementById("category-input").value = "";
+    document.getElementById("category-input").innerHTML = "Select task category";
     document.getElementById("subtask-input").value = "";
     document.getElementById('urgent-button').classList.remove('active', 'urgent');
     document.getElementById('medium-button').classList.remove('active', 'medium');
     document.getElementById('low-button').classList.remove('active', 'low');
-    
+
+    // Uncheck all assign-checkbox checkboxes
+    const checkboxes = document.querySelectorAll('.assign-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;  // Uncheck each checkbox
+        checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black'); // Reset background color if any
+    });
 }
+
 
 // obsidian 
 
@@ -244,11 +251,6 @@ function renderSubtasks() {
         </li>`;
     });
 }
-
-
-
-
-
 
 
 // obsidian 
