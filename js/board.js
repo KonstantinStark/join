@@ -1,7 +1,15 @@
-const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app"; 
+const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app";
+
+let loadedTasks = [];  // Variable, um die geladenen Aufgaben zu speichern
 
 document.addEventListener('DOMContentLoaded', () => {
     loadTasks(); 
+
+    // Event Listener für die Suchfunktion
+    const searchInput = document.getElementById('task-search');
+    searchInput.addEventListener('keyup', function() {
+        searchTasksByTitle(this.value);
+    });
 });
 
 async function loadTasks() {
@@ -19,13 +27,25 @@ async function loadTasks() {
             });
         }
 
-        console.log("Geladene Tasks:", tasks); 
-        renderTasks(tasks);
+        loadedTasks = tasks;  // Speichere die geladenen Tasks in der Variable
+        console.log("Geladene Tasks:", tasks);
+        renderTasks(tasks);  // Zeige alle geladenen Tasks an
     } catch (error) {
         console.error("Fehler beim Laden der Aufgaben:", error);
     }
 }
 
+// Funktion, um Tasks nach dem Titel zu durchsuchen
+function searchTasksByTitle(searchTerm) {
+    if (searchTerm) {
+        // Filter die Tasks nach dem Suchbegriff im Titel
+        let filteredTasks = loadedTasks.filter(task => task.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        renderTasks(filteredTasks);  // Zeige nur die gefilterten Tasks an
+    } else {
+        // Zeige alle Tasks an, wenn das Suchfeld leer ist
+        renderTasks(loadedTasks);
+    }
+}
 
 function renderTasks(tasks) {
     const todoContainer = document.getElementById("todo-tasks");
@@ -44,26 +64,24 @@ function renderTasks(tasks) {
         let task = tasks[i];
         let container;
 
-       switch (task.prioButton) {
-    case 'urgent':
-    case 'todo':
-        container = todoContainer;
-        break;
-    case 'in-progress':
-        container = inProgressContainer;
-        break;
-    case 'await-feedback':
-        container = awaitFeedbackContainer;
-        break;
-    case 'done':
-        container = doneContainer;
-        break;
-    default:
-        console.warn("Unbekannter Status:", task.prioButton);
-        container = todoContainer;  // Fallback-Container
-}
-
-        
+        switch (task.prioButton) {
+            case 'urgent':
+            case 'todo':
+                container = todoContainer;
+                break;
+            case 'in-progress':
+                container = inProgressContainer;
+                break;
+            case 'await-feedback':
+                container = awaitFeedbackContainer;
+                break;
+            case 'done':
+                container = doneContainer;
+                break;
+            default:
+                console.warn("Unbekannter Status:", task.prioButton);
+                container = todoContainer;  // Fallback-Container
+        }
 
         container.innerHTML += /*html*/`
         <div class="task-card" id="task-${task.id}" draggable="true" ondragstart="drag(event)">
@@ -80,8 +98,7 @@ function renderTasks(tasks) {
                 ${task.assignedContacts ? task.assignedContacts.map(contact => `<span class="member" style="background-color: ${getColorForUser(contact)};">${contact}</span>`).join('') : ''}
             </div>
         </div>
-    `;
-    
+        `;
     }
 }
 
@@ -89,12 +106,9 @@ function getColorForUser(user) {
     const colors = {
         "Sven Väth": "#FF5733",  
         "Anastasia": "#33FF57",  
-
     };
     return colors[user] || "#000000";
 }
-
-
 
 // Drag-Event starten
 function drag(event) {
@@ -137,6 +151,3 @@ function dropTask(event) {
     // Firebase mit neuem Status aktualisieren
     updateTaskStatus(taskId.replace('task-', ''), newPrioButton);
 }
-
-
-

@@ -66,8 +66,11 @@
                 <div class="board-header">
                     <h1>Board</h1>
                     <div class="task-controls">
-                        <input type="text" placeholder="Find Task">
-                        <button class="add-task-btn"><a href="../add-task/add-task.html"></a>Add task +</button>
+                        <input type="text" id="task-search" placeholder="Find Task"> <!-- Suchfeld -->
+                        <button class="add-task-btn">
+                            <a href="../add-task/add-task.html"></a>
+                            Add task +
+                        </button>
                     </div>
                 </div>
 
@@ -97,7 +100,7 @@
             <div id="assigned-to-input"></div>
         </div>
     </section>
-    
+
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
     <script src="../js/board.js"></script>
