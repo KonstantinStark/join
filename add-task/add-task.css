@@ -21,7 +21,6 @@ input {
     height:30px;
     border:1px solid grey;
     padding:5px;
-    font-size:20px;
     
 }
 
@@ -194,33 +193,22 @@ input::placeholder {
 
 /* save obsidian  */
 
-.due-date-wrapper {
-    position: relative;
-}
-
 .due-date-input {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.due-date-input input {
-    width: 100%;
-    padding-right: 30px; /* Add padding to the right to avoid overlap with icon */
-    box-sizing: border-box; /* Ensure padding doesn't expand the input */
-}
 
 .due-date-input img {
     position: absolute;
-    right: 10px; /* Adjust this to control how close the icon is to the edge of the input */
+    right: 10px; /* Adjust this value based on how far right you want the icon */
     top: 50%;
     transform: translateY(-50%); /* Center vertically */
     width: 20px; /* Adjust icon size */
-    height: 20px;
+    height: 20px; /* Adjust icon size */
     cursor: pointer;
-    pointer-events: auto; /* Allow icon to be clickable */
 }
-
 /* 
 .prio-buttons-header {
 
@@ -514,22 +502,7 @@ input::placeholder {
 }
 
  
-
-
- /* das ist die liste, die background color white haben soll, geht aber iwie nich */
-
- /* #assigned-to-input {
-
-    background-color: white;
-    height:200px;
-    width:200px;
-    z-index: 100;
- } */
-
- /* category  */
  
- 
-
  /* task added to board overlay  */
 
  /* .overlay {
@@ -566,8 +539,6 @@ input::placeholder {
     width:30px;
     height:30px;
      
-
-    
 } */
 
 

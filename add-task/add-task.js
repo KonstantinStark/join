@@ -25,25 +25,22 @@ async function loadUsers() {
     renderAssignedToInput();
 }
 
-// function getInitialsFromName() {
-
-
-// }
-
 function renderAssignedToInput() {
     let assignedToList = document.getElementById("assigned-to-list");
-    assignedToList.innerHTML = ""; // Clear previous content
+    assignedToList.innerHTML = "";
 
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
 
-        // Add user details inside the single assigned-to-list container
         assignedToList.innerHTML += /*html*/`
             <div class="assigned-to-list-values">
                 <div class="assigned-to-list-values-image-name">
                     <p>
                         <svg width="50" height="50">
-                            <circle id="circle" cx="25" cy="25" r="20" fill="${user.color}" />
+                            <circle cx="25" cy="25" r="20" fill="${user.color}" />
+                            <text x="25" y="30" text-anchor="middle" fill="white" font-size="18" font-family="Arial" dy=".3em">
+                                ${user.initials}
+                            </text>
                         </svg>
                     </p>
                     <p>${user.name}</p>
@@ -52,85 +49,48 @@ function renderAssignedToInput() {
             </div>
         `;
     } 
- 
 }
 
-// obsidian mit comment drunter 
-
-
 function getSelectedAssignedUsers() {
-    const checkboxes = document.querySelectorAll('.assign-checkbox');  // Get all checkboxes
+    const checkboxes = document.querySelectorAll('.assign-checkbox');
     let assignedContacts  = [];
 
     checkboxes.forEach(checkbox => {
-        let assignedToValue = checkbox.closest('.assigned-to-list-values');   // Get the parent .assigned-to-list-values
+        let assignedToValue = checkbox.closest('.assigned-to-list-values');
 
         if (checkbox.checked) {
-            assignedContacts.push(checkbox.value);  // Store selected contacts
-            assignedToValue.classList.add('bg-color-black');  // Add black background class
+            assignedContacts.push(checkbox.value);
+            assignedToValue.classList.add('bg-color-black');
         } else {
-            assignedToValue.classList.remove('bg-color-black');  // Remove black background class if unchecked
+            assignedToValue.classList.remove('bg-color-black');
         }
     });
 
-    return assignedContacts;  // Return array of selected user values
+    return assignedContacts;
 }
 
-
-
-
-
-// function getSelectedAssignedUsers() {
-//     const checkboxes = document.querySelectorAll('.assign-checkbox:checked');  
-//     let assignedToValuesTurnBlack = document.querySelectorAll('assigned-to-list-values');
-//     let assignedContacts  = [];
-
-//     checkboxes.forEach(checkbox => {
-//         assignedContacts.push(checkbox.value);  
-        
-//     });
-
-//     assignedToValuesTurnBlack.classList.add('bg-color-black')
-
-//     return assignedContacts;  
-   
-// }
-
-//toogles //
-
-
 function toggleAssignedToList() {
-
     let toggleAssignedToListRef = document.getElementById('assigned-to-input')
     toggleAssignedToListRef.classList.toggle('d-block');
 }
 
-
 function toggleRenderCategoryInput() {
-
     let renderCategoryInputToggle = document.getElementById('category-input-content')
     renderCategoryInputToggle.classList.toggle('d-block');
 }
 
 function toggleOverlayCreateButton() {
-
     let toggleOverlayRef = document.getElementById('overlay')
     toggleOverlayRef.classList.toggle('d-none');
 }
 
-
-
-//prio-buttons with global variable on top
-// obsidian
 function setPrioButton(prio) {
-    selectedPrioButton = prio; // Update the global variable
+    selectedPrioButton = prio;
 
-    // Remove active class from all buttons
     document.getElementById('urgent-button').classList.remove('active', 'urgent');
     document.getElementById('medium-button').classList.remove('active', 'medium');
     document.getElementById('low-button').classList.remove('active', 'low');
 
-    // Apply the correct class based on the priority selected
     if (prio === 'urgent') {
         document.getElementById('urgent-button').classList.add('active', 'urgent');
     } else if (prio === 'medium') {
@@ -140,10 +100,8 @@ function setPrioButton(prio) {
     }
 }
 
-
 async function addNewArrayFromInputs() {
     let assignedContacts  = getSelectedAssignedUsers();  
-    
     
     let newTask = {
         title: document.getElementById("title-input").value,
@@ -158,7 +116,6 @@ async function addNewArrayFromInputs() {
     resetInputFields()
 
     try {
-        // save the task from newTask array to the database under /tasks 
         await postData(`/tasks`, newTask);
         console.log("Task successfully added:", newTask);
     } catch (error) {
@@ -188,38 +145,28 @@ function resetInputFields() {
     document.getElementById('medium-button').classList.remove('active', 'medium');
     document.getElementById('low-button').classList.remove('active', 'low');
 
-    // Uncheck all assign-checkbox checkboxes
     const checkboxes = document.querySelectorAll('.assign-checkbox');
     checkboxes.forEach(checkbox => {
-        checkbox.checked = false;  // Uncheck each checkbox
-        checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black'); // Reset background color if any
+        checkbox.checked = false;
+        checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black');
     });
 }
-
-
-// obsidian 
 
 function changeCategoryInput(selectedCategory) {
     const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
     const renderCategoryInputToggle = document.getElementById('category-input-content');
     const placeholderText = 'Select task category';
     
-    // Toggle between selected category and resetting to placeholder
     categoryInputPlaceholderRef.innerHTML = (selectedCategory === placeholderText || selectedCategory === categoryInputPlaceholderRef.innerHTML) 
         ? placeholderText 
         : selectedCategory;
     
-    // Hide the dropdown after selection
     renderCategoryInputToggle.classList.add('d-none');
 }
 
-// Add event listener to reset when clicking on the placeholder
 document.getElementById('category-input-placeholder').addEventListener('click', function() {
-    changeCategoryInput('Select task category');  // Reset to placeholder when clicking the text
+    changeCategoryInput('Select task category');
 });
-
-
-// subtasks
 
 function addSubtaskToArray() {
     let subtaskInput = document.getElementById("subtask-input").value; 
@@ -231,12 +178,9 @@ function addSubtaskToArray() {
     }
 }
 
-// obsidian
-
 function removeSubtask(index) {
-    // Remove the subtask at the specified index
     subtasksArray.splice(index, 1);
-    renderSubtasks();  // Re-render subtasks to update the UI
+    renderSubtasks();
 }
 
 function renderSubtasks() {
@@ -245,29 +189,23 @@ function renderSubtasks() {
 
     subtasksArray.forEach((subtask, index) => {
         subtasksList.innerHTML +=  /*html*/ `
-        
         <li class="subtask-list-items" >${subtask} 
         <img onclick="removeSubtask(${index})"src="/assets/img/add-task/subtask-bin.svg" alt="">
         </li>`;
     });
 }
 
-
-// obsidian 
-
 document.getElementById('calendar-icon').addEventListener('click', function() {
     let currentDate = new Date();
 
     let day = String(currentDate.getDate()).padStart(2, '0');
-    let month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    let month = String(currentDate.getMonth() + 1).padStart(2, '0');
     let year = currentDate.getFullYear();
 
     let formattedDate = `${day}/${month}/${year}`;
 
     document.getElementById('due-date-input').value = formattedDate;
 });
-
-// to toggle the arrow 180 degrees 
 
 document.querySelector('.assigned-to-toggle-button').addEventListener('click', function() {
     let imgElement = this.querySelector('img');
@@ -276,25 +214,20 @@ document.querySelector('.assigned-to-toggle-button').addEventListener('click', f
 
 function toggleRotate() {
     let img = document.getElementById('category-icon');
-    img.classList.toggle('rotate');  // Adds or removes the 'rotate' class to trigger the animation
+    img.classList.toggle('rotate');
 }
 
-
 function validateForm() {
-    // Get form input values
     let dueDate = document.getElementById("due-date-input").value;
     let category = document.getElementById("category-input-placeholder").innerHTML;
     let title = document.getElementById("title-input").value;
 
-    // Track if the form is valid, default to true, but will be set to false if any validation fails
     let isValid = true;
 
-    // Due date validation
     let dueDateInput = document.getElementById("due-date-input");
     let dueDateError = document.getElementById("due-date-error");
     const dueDateTest = dueDateInput.value.trim();
     
-    // Check if the due date is empty or not a valid number
     if (dueDate === "" || isNaN(Number(dueDateTest.replace(/\//g, "")))) {
         dueDateInput.classList.add("error");
         dueDateError.style.display = "block";
@@ -304,33 +237,29 @@ function validateForm() {
         dueDateError.style.display = "none";
     }
 
-    // Title validation
     let titleInput = document.getElementById("title-input");
     let titleError = document.getElementById("title-error");
     if (title === "") {
         titleInput.classList.add("error");
         titleError.style.display = "block";
-        isValid = false;  // Mark form as invalid
+        isValid = false;
     } else {
         titleInput.classList.remove("error");
         titleError.style.display = "none";
     }
 
-    // Category validation
     let categoryInput = document.getElementById("category-input");
     let categoryError = document.getElementById("category-error");
     if (category === "Select task category") {
         categoryInput.classList.add("error");
         categoryError.style.display = "block";
-        isValid = false;  // Mark form as invalid
+        isValid = false;
     } else {
         categoryInput.classList.remove("error");
         categoryError.style.display = "none";
     }
 
-    // If all fields are valid, execute the functions
     if (isValid) {
-        // Proceed to add data and toggle the overlay button only if form is valid
         addNewArrayFromInputs();
         toggleOverlayCreateButton();
     } else {
