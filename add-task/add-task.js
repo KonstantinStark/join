@@ -190,7 +190,7 @@ function renderSubtasks() {
     subtasksArray.forEach((subtask, index) => {
         subtasksList.innerHTML +=  /*html*/ `
         <li class="subtask-list-items" >${subtask} 
-        <img onclick="removeSubtask(${index})"src="/assets/img/add-task/subtask-bin.svg" alt="">
+        <img onclick="removeSubtask(${index})"src="../assets/img/add-task/subtask-bin.svg" alt="">
         </li>`;
     });
 }

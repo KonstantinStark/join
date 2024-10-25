@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/sidebar.css" />
-    <link rel="stylesheet" href="/styles/fonts.css" />
-    <link rel="stylesheet" href="/add-task/add-task.css" />
-    <link rel="stylesheet" href="/styles/standard.css" />
+    <link rel="stylesheet" href="../styles/sidebar.css" />
+    <link rel="stylesheet" href="../styles/fonts.css" />
+    <link rel="stylesheet" href="../add-task/add-task.css" />
+    <link rel="stylesheet" href="../styles/standard.css" />
     <title>Add tasks</title>
   </head>
 
@@ -14,31 +14,31 @@
     <section class="all-side">
       <div class="sidebar">
         <div class="side-join-logo">
-          <img src="/assets/img/joinlogo.png" alt="Join Logo" />
+          <img src="../assets/img/joinlogo.png" alt="Join Logo" />
         </div>
 
         <div class="navbar">
           <a href="#">
             <div class="sidebar-image-title-wrapper">
-              <img src="/assets/img/summery.png" alt="Summary Icon" />
+              <img src="../assets/img/summery.png" alt="Summary Icon" />
               <span class="navbar-text">Summary</span>
             </div>
           </a>
           <a href="#">
             <div class="sidebar-image-title-wrapper">
-              <img src="/assets/img/task.png" alt="Add Task Icon" />
+              <img src="../assets/img/task.png" alt="Add Task Icon" />
               <span class="navbar-text">Add Task</span>
             </div>
           </a>
           <a href="#">
             <div class="sidebar-image-title-wrapper">
-              <img src="/assets/img/board.png" alt="Board Icon" />
+              <img src="../assets/img/board.png" alt="Board Icon" />
               <span class="navbar-text">Board</span>
             </div>
           </a>
           <a href="/contacts.html">
             <div class="sidebar-image-title-wrapper">
-              <img src="/assets/img/contacts.png" alt="Contacts Icon" />
+              <img src="../assets/img/contacts.png" alt="Contacts Icon" />
               <span class="navbar-text">Contacts</span>
             </div>
           </a>
@@ -54,8 +54,8 @@
         <header>
           <span class="headline-header">Kanban Project Management Tool</span>
           <div class="header-icon">
-            <img class="header-help" src="/assets/img/help.svg" />
-            <img src="/assets/img/Group 5.svg" />
+            <img class="header-help" src="../assets/img/help.svg" />
+            <img src="../assets/img/Group 5.svg" />
           </div>
         </header>
 
@@ -93,7 +93,7 @@
                 <div id="assigned-to-dropdown">
                     <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
                         <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
-                        <img src="/assets/img/add-task/up-down-arrow.svg" alt="">
+                        <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
                     </div>
                     <div class="d-none" id="assigned-to-input">
                         <div class="assigned-to-list" id="assigned-to-list"></div>
@@ -119,7 +119,7 @@
                 <div class="due-date-wrapper">
                   <div class="due-date-input">
                       <input type="text" placeholder="dd/mm/yyyy" id="due-date-input"/>
-                      <img id="calendar-icon" src="/assets/img/add-task/calender.svg" alt="">
+                      <img id="calendar-icon" src="../assets/img/add-task/calender.svg" alt="">
                   </div>
                   <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
               </div>
@@ -130,15 +130,15 @@
                 <div class="prio-buttons">
                   <button id="urgent-button" onclick="setPrioButton('urgent')">
                     Urgent
-                    <img src="/assets/img/add-task/urgent.svg" alt="">
+                    <img src="../assets/img/add-task/urgent.svg" alt="">
                   </button>
                   <button id="medium-button" onclick="setPrioButton('medium')">
                     Medium
-                    <img src="/assets/img/add-task/medium.svg" alt="">
+                    <img src="../assets/img/add-task/medium.svg" alt="">
                   </button>
                   <button id="low-button" onclick="setPrioButton('low')">
                     Low
-                    <img src="/assets/img/add-task/low.svg" alt="">
+                    <img src="../assets/img/add-task/low.svg" alt="">
                   </button>
                 </div>
               </div>
@@ -147,7 +147,7 @@
                 <p class="input-headers-margin-bottom"> Category <span class="required-star-markers">*</span></p>
                 <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
                   <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
-                  <img src="/assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
+                  <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
                   
                   <!-- placeholder to be updated -->
                 </div> 
@@ -165,7 +165,7 @@
                 <p class="input-headers-margin-bottom">Subtasks</p>
                 <div class="subtask-input">
                   <input type="text" placeholder="Subtaks" id="subtask-input" />
-                  <img src="/assets/img/add-task/plus.svg" alt="" onclick="addSubtaskToArray()">
+                  <img src="../assets/img/add-task/plus.svg" alt="" onclick="addSubtaskToArray()">
                 </div>
                 <div id="subtasks-list">
                   <!-- js -->
@@ -185,11 +185,11 @@
 
           <div class="clear-create-buttons-wrapper">
             <button class="clear-task-button" onclick="resetInputFields()">Clear
-              <img src="/assets/img/add-task/clear.svg" alt="">
+              <img src="../assets/img/add-task/clear.svg" alt="">
             </button>
             <button class="create-task-button" onclick="validateForm(); ">
               <p>Create Task</p>
-              <img src="/assets/img/add-task/check.svg" alt="">
+              <img src="../assets/img/add-task/check.svg" alt="">
              
             </button>
           </div>
@@ -199,7 +199,7 @@
       <div id="overlay" class="overlay d-none">
         <div class="overlay-container">
           <p>Task added to board</p>
-          <img src="/assets/img/board-icon.svg" alt="" />
+          <img src="../assets/img/board-icon.svg" alt="" />
         </div>
       </div>
     </section>
