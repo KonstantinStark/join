@@ -99,7 +99,10 @@
                     <div class="d-none" id="assigned-to-input">
                         <div class="assigned-to-list" id="assigned-to-list"></div>
                     </div>
+                    
                 </div>
+                
+
             </div>
             
             </div>
@@ -115,10 +118,13 @@
                   <span class="required-star-markers">*</span>
                 </p>
                 <div class="due-date-wrapper">
-                  <input type="text" placeholder="dd/mm/yyyy" id="due-date-input"/>
-                  <img src="/assets/img/add-task/calender.svg" alt="">
+                  <div class="due-date-input">
+                      <input type="text" placeholder="dd/mm/yyyy" id="due-date-input"/>
+                      <img id="calendar-icon" src="/assets/img/add-task/calender.svg" alt="">
+                  </div>
                   <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
-                </div>
+              </div>
+              
               </div>
               <div class="prio-buttons-wrapper">
                 <p class="prio-buttons-header input-headers-margin-bottom">Prio</p>

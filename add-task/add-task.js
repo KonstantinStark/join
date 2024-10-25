@@ -15,7 +15,8 @@ async function loadUsers() {
                 id: key,
                 name: responseToJson[key]['name'],
                 email: responseToJson[key]['email'],
-                color: responseToJson[key]['color'] 
+                color: responseToJson[key]['color'],
+                initials: responseToJson[key]['initials']
             });
         });
     }
@@ -54,8 +55,6 @@ function renderAssignedToInput() {
  
 }
 
-
-
 // obsidian mit comment drunter 
 
 
@@ -76,6 +75,8 @@ function getSelectedAssignedUsers() {
 
     return assignedContacts;  // Return array of selected user values
 }
+
+
 
 
 
@@ -289,10 +290,13 @@ function validateForm() {
     // Due date validation
     let dueDateInput = document.getElementById("due-date-input");
     let dueDateError = document.getElementById("due-date-error");
-    if (dueDate === "") {
+    const dueDateTest = dueDateInput.value.trim();
+    
+    // Check if the due date is empty or not a valid number
+    if (dueDate === "" || isNaN(Number(dueDateTest.replace(/\//g, "")))) {
         dueDateInput.classList.add("error");
         dueDateError.style.display = "block";
-        isValid = false;  // Mark form as invalid
+        isValid = false;
     } else {
         dueDateInput.classList.remove("error");
         dueDateError.style.display = "none";

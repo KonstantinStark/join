@@ -21,6 +21,7 @@ input {
     height:30px;
     border:1px solid grey;
     padding:5px;
+    font-size:20px;
     
 }
 
@@ -193,22 +194,33 @@ input::placeholder {
 
 /* save obsidian  */
 
+.due-date-wrapper {
+    position: relative;
+}
+
 .due-date-input {
     position: relative;
     display: flex;
     align-items: center;
 }
 
+.due-date-input input {
+    width: 100%;
+    padding-right: 30px; /* Add padding to the right to avoid overlap with icon */
+    box-sizing: border-box; /* Ensure padding doesn't expand the input */
+}
 
 .due-date-input img {
     position: absolute;
-    right: 10px; /* Adjust this value based on how far right you want the icon */
+    right: 10px; /* Adjust this to control how close the icon is to the edge of the input */
     top: 50%;
     transform: translateY(-50%); /* Center vertically */
     width: 20px; /* Adjust icon size */
-    height: 20px; /* Adjust icon size */
+    height: 20px;
     cursor: pointer;
+    pointer-events: auto; /* Allow icon to be clickable */
 }
+
 /* 
 .prio-buttons-header {
 
