@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/sidebar.css">
-    <link rel="stylesheet" href="./styles/standard.css">
-    <link rel="stylesheet" href="./styles/assets.css">
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/contacts.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/standard.css">
+    <link rel="stylesheet" href="../styles/assets.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
     <title>Contacts</title>
 </head>
 
@@ -16,39 +16,39 @@
     <section class="all-side">
         <div class="sidebar">
             <div class="side-join-logo">
-                <img src="./assets/img/joinlogo.png" alt="Join Logo">
+                <img src="../assets/img/joinlogo.png" alt="Join Logo">
             </div>
 
             <div class="navbar">
-                <a href="http://127.0.0.1:5500/modul-10/join/summary/summary.html">
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/sidebar.html">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/summery.png" alt="Summary Icon">
+                        <img src="../assets/img/summery.png" alt="Summary Icon">
                         <span class="navbar-text">Summary</span>
                     </div>
                 </a>
-                <a href="add-task/add-task.html">
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/add-task.html#">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/task.png" alt="Add Task Icon">
+                        <img src="../assets/img/task.png" alt="Add Task Icon">
                         <span class="navbar-text">Add Task</span>
                     </div>
                 </a>
-                <a href="#">
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/board.html">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/board.png" alt="Board Icon">
+                        <img src="../assets/img/board.png" alt="Board Icon">
                         <span class="navbar-text">Board</span>
                     </div>
                 </a>
-                <a href="http://127.0.0.1:5500/modul-10/join/contacts.html">
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/contacts.html">
                     <div class="sidebar-image-title-wrapper">
-                        <img src="./assets/img/contacts.png" alt="Contacts Icon">
+                        <img src="../assets/img/contacts.png" alt="Contacts Icon">
                         <span class="navbar-text">Contacts</span>
                     </div>
                 </a>
             </div>
 
             <div class="privacy-legal-wrapper">
-                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/privacy-notice.html"><span class="footer-text">Privacy Policy</span></a>
-                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/legal-notice.html"><span class="footer-text">Legal Notice</span></a>
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/privacy-notice.html"><span class="footer-text">Privacy Policy</span></a>
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/legal-notice.html"><span class="footer-text">Legal Notice</span></a>
             </div>
         </div>
 
@@ -57,20 +57,20 @@
                 <span class="headline-header">Kanban Project Management Tool</span>
                 <div class="header-icon">
                     <div class="header-responsiv-img-container">
-                        <img class="header-responsiv-img" src="./assets/img/joinlogo2.png">
+                        <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
                     </div>
                     <div class="header-responsiv-icon-container">
                         <a href="http://127.0.0.1:5500/modul-10/join/help/help-button.html">
-                            <img class="header-help" src="./assets/img/help.svg" alt="Help Icon">
+                            <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
                         </a>
-                        <img src="./assets/img/Group 5.svg" id="hamburger-toggle" onclick="toggleHamburgerMenu()">
+                        <img src="../assets/img/Group 5.svg" id="hamburger-toggle" onclick="toggleHamburgerMenu()">
                     </div>
                 </div>
             </header>
 
             <div class="hamburger-menu d-none" id="hamburger-menu">
-                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/legal-notice.html" class="menu-link">Legal Notice</a>
-                <a href="http://127.0.0.1:5500/modul-10/join/privacy-and-legal-notice/privacy-notice.html" class="menu-link">Privacy Policy</a>
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/legal-notice.html" class="menu-link">Legal Notice</a>
+                <a href="http://127.0.0.1:5500/modul-10/join/pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
                 <a href="#" id="logout-button" class="menu-link">Log Out</a>
             </div>
 
@@ -81,7 +81,7 @@
                     <div class="add-contact-btn-wrapper">
                         <button class="add-contact-btn" onclick="toggleOverlay()">
                             <span>Add new contact</span>
-                            <img src="./assets/img/person_add.svg" class="icon" alt="Add Person Icon">
+                            <img src="../assets/img/person_add.svg" class="icon" alt="Add Person Icon">
                         </button>
                     </div>
 
@@ -107,7 +107,7 @@
         <div class="overlay d-none" id="overlay">
             <div class="overlay-wrapper">
                 <div class="contact-wrapper">
-                    <img src="./assets/img/joinlogo.png" alt="Join Logo">
+                    <img src="../assets/img/joinlogo.png" alt="Join Logo">
                     <h1>Add Contact</h1>
                     <h2>Tasks are better with a team</h2>
                     <div class="highlight"></div>
@@ -115,7 +115,7 @@
 
                 <div class="circle-wrapper">
                     <div class="name-initials">
-                        <img src="./assets/img/overlay/Group 13.png" alt="Initials Icon">
+                        <img src="../assets/img/overlay/Group 13.png" alt="Initials Icon">
                     </div>
                 </div>
 
@@ -123,21 +123,21 @@
                     <form>
                         <div class="name-input-wrapper">
                             <div class="exit-overlay" onclick="exitOverlay()">
-                                <img src="./assets/img/overlay/Close.png" alt="Close Icon">
+                                <img src="../assets/img/overlay/Close.png" alt="Close Icon">
                             </div>
 
                             <div class="input-fields">
                                 <div class="name-input">
                                     <div class="input-container">
-                                        <img src="./assets/img/person.svg" alt="User Icon" class="input-icon">
+                                        <img src="../assets/img/person.svg" alt="User Icon" class="input-icon">
                                         <input required type="text" placeholder="Please enter your name" id="name">
                                     </div>
                                     <div class="input-container">
-                                        <img src="./assets/img/email-icon.png" alt="Email Icon" class="input-icon">
+                                        <img src="../assets/img/email-icon.png" alt="Email Icon" class="input-icon">
                                         <input required type="email" placeholder="Enter your e-mail" id="email">
                                     </div>
                                     <div class="input-container">
-                                        <img src="./assets/img/call.svg" alt="Phone Icon" class="input-icon">
+                                        <img src="../assets/img/call.svg" alt="Phone Icon" class="input-icon">
                                         <input required type="tel" placeholder="Enter your phone number" id="phone">
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
                                 <button type="button" onclick="exitOverlay()">
                                     <div class="buttons-span-image-wrapper">
                                         <span class="cancel-button-span">Cancel</span>
-                                        <img class="cancel-button-img" src="./assets/img/overlay/Close.png"
+                                        <img class="cancel-button-img" src="../assets/img/overlay/Close.png"
                                             alt="Close Icon">
                                     </div>
                                 </button>
@@ -170,14 +170,14 @@
         <div class="overlay d-none" id="edit-overlay">
             <div class="overlay-wrapper">
                 <div class="contact-wrapper">
-                    <img src="./assets/img/joinlogo.png" alt="Join Logo">
+                    <img src="../assets/img/joinlogo.png" alt="Join Logo">
                     <h1>Edit Contact</h1>
                     <div class="highlight"></div>
                 </div>
 
                 <div class="circle-wrapper">
                     <div class="name-initials">
-                        <img src="./assets/img/overlay/Group 13.png" alt="Initials Icon">
+                        <img src="../assets/img/overlay/Group 13.png" alt="Initials Icon">
                     </div>
                 </div>
 
@@ -185,7 +185,7 @@
                     <form>
                         <div class="name-input-wrapper">
                             <div class="exit-overlay" onclick="exitEditOverlay()">
-                                <img src="./assets/img/overlay/Close.png" alt="Close Icon">
+                                <img src="../assets/img/overlay/Close.png" alt="Close Icon">
                             </div>
 
                             <div class="input-fields">
@@ -206,7 +206,7 @@
                                 <div class=" edit-contact-button">
                                             <button type="button" id="save-button" onclick="exitEditOverlay()">
                                                 <span class="cancel-button-span">Save</span>
-                                                <img src="./assets/img/overlay/check.svg" alt="Check Icon">
+                                                <img src="../assets/img/overlay/check.svg" alt="Check Icon">
                                             </button>
                                 </div>
                             </div>
@@ -217,9 +217,9 @@
         </div>
     </section>
 
-    <script src="firebase.js"></script>
-    <script src="./js/contacts.js"></script>
-    <script src="./js/contact-template.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/contact-template.js"></script>
 </body>
 
 </html>
