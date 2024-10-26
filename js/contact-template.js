@@ -25,10 +25,10 @@ function createEditContactTemplate(person, index, initials) {
                 <h1>${person.name}</h1>
                 <div class="delete-edit-contact-wrapper">
                     <span>
-                        <p class="edit-btn" onclick="openEditOverlay(${index})"> <img class="contacts-icon" src="./assets/img/edit.svg"> Edit</p>
+                        <p class="edit-btn" onclick="openEditOverlay(${index})"> <img class="contacts-icon" src="../assets/img/edit.svg"> Edit</p>
                     </span>
                     <span>
-                        <p class="edit-btn" onclick="deleteContact(${index})"> <img class="contacts-icon" src="./assets/img/delete.svg"> Delete</p>
+                        <p class="edit-btn" onclick="deleteContact(${index})"> <img class="contacts-icon" src="../assets/img/delete.svg"> Delete</p>
                     </span>
                 </div>
             </div>
