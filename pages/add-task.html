@@ -168,9 +168,14 @@
               </div>
               <div class="subtask-input-wrapper">
                 <p class="input-headers-margin-bottom">Subtasks</p>
-                <div class="subtask-input">
-                  <input type="text" placeholder="Subtaks" id="subtask-input" />
-                  <img src="../assets/img/add-task/plus.svg" alt="" onclick="addSubtaskToArray()">
+                <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
+                  <div id="subtask-input">
+                    
+                    Subtask
+
+                    <img src="../assets/img/add-task/plus.svg" alt="">
+                  </div>
+                  
                 </div>
                 <div id="subtasks-list">
                   <!-- js -->
@@ -217,3 +222,6 @@
 
 
 
+
+<img src="/assets/img/add-task/subtask-check.svg" alt="">
+<img src="/assets/img/add-task/subtask-bin.svg" alt="">

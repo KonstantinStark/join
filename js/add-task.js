@@ -203,32 +203,8 @@ document.getElementById('category-input-placeholder').addEventListener('click', 
     changeCategoryInput('Select task category');
 });
 
-function addSubtaskToArray() {
-    let subtaskInput = document.getElementById("subtask-input").value; 
-    
-    if (subtaskInput) { 
-        subtasksArray.push(subtaskInput); 
-        document.getElementById("subtask-input").value = ""; 
-        renderSubtasks(); 
-    }
-}
+// subtasks
 
-function removeSubtask(index) {
-    subtasksArray.splice(index, 1);
-    renderSubtasks();
-}
-
-function renderSubtasks() {
-    let subtasksList = document.getElementById("subtasks-list");
-    subtasksList.innerHTML = ""; 
-
-    subtasksArray.forEach((subtask, index) => {
-        subtasksList.innerHTML +=  /*html*/ `
-        <li class="subtask-list-items" >${subtask} 
-        <img onclick="removeSubtask(${index})"src="../assets/img/add-task/subtask-bin.svg" alt="">
-        </li>`;
-    });
-}
 
 document.getElementById('calendar-icon').addEventListener('click', function() {
     let currentDate = new Date();
@@ -300,4 +276,95 @@ function validateForm() {
     } else {
         console.log("Form is not valid. Please fill in all required fields.");
     }
+}
+
+
+
+// subtask scheiß  document.getElementById('subtask-input').focus(); sonst konnte man ins input feld nicht tippen, obsidian
+
+function renderEntrySubtask() {
+    let subtaskContainer = document.getElementById('subtask-container');
+    
+    subtaskContainer.innerHTML = /*html*/`
+        <div id="subtask-container-js">
+            <input type="text" id="subtask-input" name="subtask" placeholder="Subtask" id="subtask-input">
+            <div id="subtask-container-js-images">
+                <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">
+                <img src="../assets/img/add-task/clear.svg" onclick="renderBackToDefaultSubtask()" alt="Clear Subtask">
+            </div>
+        </div>
+    `;
+
+    // Focus the input field
+    document.getElementById('subtask-input').focus();
+}
+
+function addSubtaskToArray() {
+    let subtaskInput = document.getElementById("subtask-input").value; 
+    
+    if (subtaskInput) { 
+        subtasksArray.push(subtaskInput); 
+        document.getElementById("subtask-input").value = ""; 
+        renderSubtasks(); 
+    }
+}
+
+function removeSubtask(index) {
+    subtasksArray.splice(index, 1);
+    renderSubtasks();
+}
+
+function renderSubtasks() {
+    let subtasksList = document.getElementById("subtasks-list");
+    subtasksList.innerHTML = ""; 
+
+    subtasksArray.forEach((subtask, index) => {
+        subtasksList.innerHTML +=  /*html*/ `
+        <li class="subtask-list-items" >${subtask} 
+        <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="">
+        <img onclick="removeSubtask(${index})"src="../assets/img/add-task/subtask-bin.svg" alt="">
+        
+        </li>`;
+    });
+}
+
+function renderSubtasksEdit() {
+    let subtasksList = document.getElementById("subtasks-list");
+    subtasksList.innerHTML = ""; 
+
+    subtasksArray.forEach((subtask, index) => {
+        subtasksList.innerHTML += /*html*/ `
+        <li class="subtask-list-items">
+            <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
+            <img src="/assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
+            <img onclick="removeSubtask(${index})" src="../assets/img/add-task/subtask-bin.svg" alt="Delete">
+        </li>`;
+    });
+}
+
+function updateSubtask(index) {
+    let editedInputValueSubtaskRef = document.getElementById(`edited-input-value-subtask-${index}`);
+    
+    if (editedInputValueSubtaskRef) {
+        subtasksArray[index] = editedInputValueSubtaskRef.value; // Update the subtasksArray with the new value
+        renderSubtasks(); // Re-render the subtasks list
+    }
+}
+
+function renderBackToDefaultSubtask() {
+    let subtaskContainer = document.getElementById('subtask-container');
+    
+    subtaskContainer.innerHTML = /*html*/`
+                    <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
+                  <div id="subtask-input">
+                    
+                    Subtask
+
+                    <img src="../assets/img/add-task/plus.svg" alt="">
+                  </div>
+                  
+                </div>
+    `;
+
+    
 }

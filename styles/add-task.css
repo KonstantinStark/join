@@ -361,15 +361,7 @@ input::placeholder {
 }
 
 
-.subtask-input img {
-    position: absolute;
-    right: 10px; /* Adjust this value based on how far right you want the icon */
-    top: 50%;
-    transform: translateY(-50%); /* Center vertically */
-    width: 20px; /* Adjust icon size */
-    height: 20px; /* Adjust icon size */
-    cursor: pointer;
-}
+
 
 
  footer {
@@ -563,7 +555,37 @@ input::placeholder {
     font-size: 12px;
     margin-top: 5px;
   }
-  
+
+  /* subtask js */
+
+#subtask-container {
+    display: flex;
+    align-items: center; /* Center items vertically in the flex container */
+    position: relative; /* Set the parent to position relative */
+}
+
+#subtask-container-js-images {
+    position: absolute; /* Allow this container to be positioned absolutely */
+    right: 10px; /* Position it to the right side of the parent */
+    top: calc(50% - 10px); /* Adjust this value to move the icons higher */
+    display: flex; /* Keep images in a flex layout */
+    
+}
+
+#subtask-container-js-images img {
+    margin-left: 10px; /* Create a gap between the images */
+    width: 20px; /* Adjust icon size */
+    height: 20px; /* Adjust icon size */
+    cursor: pointer;
+    z-index:1;
+}
+
+.subtask-list-items:hover {
+
+    background-color:pink;
+}
+
+
 
 
 
