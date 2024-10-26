@@ -1,6 +1,7 @@
 let users = [];
 let selectedPrioButton = '';
 let subtasksArray = [];
+let assignedContacts  = [];
 
 console.log(loadUsers());
 
@@ -25,6 +26,8 @@ async function loadUsers() {
     renderAssignedToInput();
 }
 
+// onchange value merken für checkbox, dass hat den unterschied gemacht
+
 function renderAssignedToInput() {
     let assignedToList = document.getElementById("assigned-to-list");
     assignedToList.innerHTML = "";
@@ -45,15 +48,19 @@ function renderAssignedToInput() {
                     </p>
                     <p>${user.name}</p>
                 </div>
-                <input id="checkbox-assign-to-${user.name}" type="checkbox" class="assign-checkbox" value="${user.name}">
+                <input id="checkbox-assign-to-${user.id}" type="checkbox" class="assign-checkbox" value="${user.id}" onchange="getSelectedAssignedUsers()">
             </div>
         `;
     } 
 }
 
+
+
 function getSelectedAssignedUsers() {
+    assignedContacts = [];
     const checkboxes = document.querySelectorAll('.assign-checkbox');
-    let assignedContacts  = [];
+  
+    
 
     checkboxes.forEach(checkbox => {
         let assignedToValue = checkbox.closest('.assigned-to-list-values');
@@ -66,8 +73,36 @@ function getSelectedAssignedUsers() {
         }
     });
 
+  
+    renderAssignedToInputCheckedBelow();
     return assignedContacts;
 }
+
+
+
+
+// const user = users.find(u => u.id === contactId); nochmal erklären lassen, hängt aber mit den anderen 2 funktion ab 
+
+function renderAssignedToInputCheckedBelow() {
+    let renderAssignedToInputCheckedBelowRef = document.getElementById('assigned-to-input-svg-below');
+    renderAssignedToInputCheckedBelowRef.innerHTML = "";  // Clear previous SVGs
+
+    for (let i = 0; i < assignedContacts.length; i++) {
+        const contactId = assignedContacts[i];
+        const user = users.find(u => u.id === contactId);  // Find the user by ID in `users`
+
+        renderAssignedToInputCheckedBelowRef.innerHTML += /*html*/`
+            <svg width="50" height="50">
+                <circle cx="25" cy="25" r="20" fill="${user.color}" />
+                <text x="25" y="30" text-anchor="middle" fill="white" font-size="18" font-family="Arial" dy=".3em">
+                    ${user.initials}
+                </text>
+            </svg>
+        `;
+    }
+}
+
+
 
 function toggleAssignedToList() {
     let toggleAssignedToListRef = document.getElementById('assigned-to-input')
