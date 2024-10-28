@@ -154,19 +154,35 @@ async function saveUser(index) {
 }
 
 function validateUserInput(user) {
+    let nameRef = document.getElementById('name');
+    let nameTextRef = document.getElementById('name-error-text');
+    let emailRef = document.getElementById('email');
+    let emailTextRef = document.getElementById('email-error-text');
+    let phoneRef = document.getElementById('phone');
+    let phoneTextRef= document.getElementById('phone-error-text');
+
     const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9+\-\s]+$/;
     if (!nameRegex.test(user.name)) {
-        alert("Please enter a valid name.");
+        nameRef.classList.add("error");
+        emailRef.classList.add("error");
+        phoneRef.classList.add("error");
+        nameTextRef.style.display = "block";
+        emailTextRef.style.display = "block";
+        phoneTextRef.style.display = "block";
         return false;
     }
     if (!emailRegex.test(user.email)) {
-        alert("Please enter a valid email.");
+        emailRef.classList.add("error");
+        phoneRef.classList.add("error");
+        emailTextRef.style.display = "block";
+        phoneTextRef.style.display = "block";
         return false;
     }
     if (!phoneRegex.test(user.phone)) {
-        alert("Please enter a valid phone number.");
+        phoneRef.classList.add("error");
+        phoneTextRef.style.display = "block";
         return false;
     }
     return true;
