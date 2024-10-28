@@ -518,6 +518,11 @@ input::placeholder {
     color:white;
 }
 
+.bg-color-black:hover {
+
+    background-color: #2A3647;
+}
+
 #assigned-to-input-svg-below {
 
     margin-left:10px;
@@ -633,3 +638,7 @@ input::placeholder {
 /* .subtask-list-items-img-wrapper:hover {
     background-color: grey; /* Optional: Background color on wrapper hover */
 }  */
+
+
+
+

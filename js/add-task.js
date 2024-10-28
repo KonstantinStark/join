@@ -76,7 +76,8 @@ function getSelectedAssignedUsers() {
         if (checkbox.checked) {
             assignedContacts.push(checkbox.value);
             assignedToValue.classList.add('bg-color-black');
-           
+            assignedToValue.classList.add('.bg-color-black:hover');
+
         } else {
             assignedToValue.classList.remove('bg-color-black');
         }
@@ -237,17 +238,17 @@ document.getElementById('category-input-placeholder').addEventListener('click', 
 // subtasks
 
 
-document.getElementById('calendar-icon').addEventListener('click', function() {
-    let currentDate = new Date();
+// document.getElementById('calendar-icon').addEventListener('click', function() {
+//     let currentDate = new Date();
 
-    let day = String(currentDate.getDate()).padStart(2, '0');
-    let month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    let year = currentDate.getFullYear();
+//     let day = String(currentDate.getDate()).padStart(2, '0');
+//     let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+//     let year = currentDate.getFullYear();
 
-    let formattedDate = `${day}/${month}/${year}`;
+//     let formattedDate = `${day}/${month}/${year}`;
 
-    document.getElementById('due-date-input').value = formattedDate;
-});
+//     document.getElementById('due-date-input').value = formattedDate;
+// });
 
 document.querySelector('.assigned-to-toggle-button').addEventListener('click', function() {
     let imgElement = this.querySelector('img');
@@ -270,7 +271,7 @@ function validateForm() {
     let dueDateError = document.getElementById("due-date-error");
     const dueDateTest = dueDateInput.value.trim();
     
-    if (dueDate === "" || isNaN(Number(dueDateTest.replace(/\//g, "")))) {
+    if (dueDate === "" || isNaN(new Date(dueDate).getTime())) {
         dueDateInput.classList.add("error");
         dueDateError.style.display = "block";
         isValid = false;
@@ -400,4 +401,15 @@ function renderBackToDefaultSubtask() {
     `;
 
     
+}
+
+function showCalendar() {
+    // Focus on the date input field to show the calendar
+    document.getElementById("calender-icon").click();
+}
+
+function updateDateInput() {
+    const dateInput = document.getElementById("calender-icon");
+    const formattedDate = new Date(dateInput.value).toLocaleDateString('en-GB'); // Format date to dd/mm/yyyy
+    dateInput.value = formattedDate; // Update input with formatted date
 }
