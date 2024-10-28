@@ -165,3 +165,10 @@ h2 {
 .botton-text:hover {
     color: #29aae1;
 }
+
+.error-message {
+    color: #ff4d4f; /* Roter Farbton passend zum Screenshot */
+    font-size: 0.875em;
+    margin-top: 5px;
+    display: block;
+}
