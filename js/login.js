@@ -12,42 +12,35 @@ window.onload = function() {
     }, 500);
 };
 
-// login.js
 document.querySelector('.login-btn').addEventListener('click', function(event) {
-    event.preventDefault(); // Verhindert das automatische Absenden des Formulars
-
-    // Referenzen zu den Eingabefeldern
+    event.preventDefault();
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-    
-    // Überprüfen, ob Felder leer sind
     if (!email.value.trim() || !password.value.trim()) {
-        // Bestehende Fehlermeldung entfernen, falls vorhanden
         const existingError = document.querySelector('.error-message');
         if (existingError) {
             existingError.remove();
         }
-
-        // Fehlermeldung erstellen und anzeigen
         const errorMessage = document.createElement('div');
         errorMessage.classList.add('error-message');
         errorMessage.textContent = 'Check your email and password. Please try again.';
         document.querySelector('.login-box').appendChild(errorMessage);
-
-        // Füge rote Umrandung zu leeren Feldern hinzu
         if (!email.value.trim()) {
-            email.style.border = '2px solid red';
+            email.style.border = '1px solid red';
         } else {
-            email.style.border = ''; // Entfernt die Umrandung, wenn das Feld ausgefüllt ist
+            email.style.border = '';
         }
-
         if (!password.value.trim()) {
-            password.style.border = '2px solid red';
+            password.style.border = '1px solid red';
         } else {
             password.style.border = '';
         }
     } else {
-        // Wenn beide Felder ausgefüllt sind, kann das Formular gesendet werden
         document.querySelector('form').submit();
     }
+});
+
+document.querySelector('.guest-login-btn').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.location.href = "http://127.0.0.1:5500/modul-10/join/pages/summary.html"; 
 });
