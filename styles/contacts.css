@@ -417,6 +417,10 @@ h2 {
         display: none;
     }
 
+    .contact-list-wrapper {
+        margin-bottom: 80px;
+    }
+
     .navbar-text {
         display: flex;
         flex-direction: column;
@@ -453,7 +457,7 @@ h2 {
 }
 
 .error-message {
-    color: #ff4d4f; /* Roter Farbton passend zum Screenshot */
+    color: #ff4d4f;
     font-size: 0.875em;
     margin-top: 5px;
     display: block;
