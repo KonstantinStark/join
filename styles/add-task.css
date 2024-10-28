@@ -1,7 +1,4 @@
-body {
 
-    background-color: grey;
-}
 
 .placeholder-text-non-input-tag-fields {
 
@@ -339,13 +336,7 @@ input::placeholder {
     border: 2px solid #29ABE2;  /* Changes the border when focused */
 }
 
-.subtask-list-items {
-    
-    display:flex;
-    justify-content: space-between;
-    margin-top:5px;
-    
-}
+
 
 .subtask-input-wrapper {
 
@@ -360,8 +351,27 @@ input::placeholder {
     align-items: center;
 }
 
+#subtask-input {
 
+    width:440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:48px;
+    border:1px solid grey;
+    border-radius:5px;
+    font-size: 20px;
+    padding-left:10px;
 
+}
+
+#subtask-input img {
+
+    height:25px;
+    width:25px;
+    padding-right:10px;
+
+}
 
 
  footer {
@@ -486,17 +496,31 @@ input::placeholder {
 .assigned-to-list-values input {
     width: 15px;
     height: 15px;
+   
 }
 
 .assigned-to-list-values-image-name {
     display: flex;
     align-items: center;
     gap: 20px;
+   
+}
+
+.assigned-to-list-values {
+
+    border-radius:5px;
+    font-size: 20px;
 }
 
 .bg-color-black {
 
-    background-color: black;
+    background-color: #2A3647;
+    color:white;
+}
+
+#assigned-to-input-svg-below {
+
+    margin-left:10px;
 }
 
  
@@ -580,12 +604,32 @@ input::placeholder {
     z-index:1;
 }
 
-.subtask-list-items:hover {
-
-    background-color:pink;
+.subtask-list-items {
+    
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:5px;
+    padding-left:10px;
+    cursor: pointer;
 }
 
+.subtask-list-items-img-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
 
+/* .subtask-list-items-img-wrapper img {
+    display: none; /* Hide images by default */
+}
 
+/* .subtask-list-items-img-wrapper:hover img {
+    display: block; /* Show images when the wrapper is hovered */
+} 
 
-
+/* .subtask-list-items-img-wrapper:hover {
+    background-color: grey; /* Optional: Background color on wrapper hover */
+}  */

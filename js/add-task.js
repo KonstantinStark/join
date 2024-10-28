@@ -5,6 +5,11 @@ let assignedContacts  = [];
 
 console.log(loadUsers());
 
+function init() {
+
+    prioButtonOnLoad()
+}
+
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
     let responseToJson = await userResponse.json();
@@ -36,12 +41,12 @@ function renderAssignedToInput() {
         let user = users[i];
 
         assignedToList.innerHTML += /*html*/`
-            <div class="assigned-to-list-values">
+            <div class="assigned-to-list-values" onclick="toggleCheckbox(${user.id})">
                 <div class="assigned-to-list-values-image-name">
                     <p>
-                        <svg width="50" height="50">
-                            <circle cx="25" cy="25" r="20" fill="${user.color}" />
-                            <text x="25" y="30" text-anchor="middle" fill="white" font-size="18" font-family="Arial" dy=".3em">
+                        <svg width="40" height="40">
+                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
+                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
                                 ${user.initials}
                             </text>
                         </svg>
@@ -54,6 +59,9 @@ function renderAssignedToInput() {
     } 
 }
 
+// Function to toggle the checkbox state when the assigned-to list div is clicked
+
+
 
 
 function getSelectedAssignedUsers() {
@@ -64,10 +72,11 @@ function getSelectedAssignedUsers() {
 
     checkboxes.forEach(checkbox => {
         let assignedToValue = checkbox.closest('.assigned-to-list-values');
-
+        
         if (checkbox.checked) {
             assignedContacts.push(checkbox.value);
             assignedToValue.classList.add('bg-color-black');
+           
         } else {
             assignedToValue.classList.remove('bg-color-black');
         }
@@ -77,6 +86,23 @@ function getSelectedAssignedUsers() {
     renderAssignedToInputCheckedBelow();
     return assignedContacts;
 }
+
+// albert
+
+// function toggleCheckbox(userId) {
+//     // Get the checkbox element using the user ID
+//     const checkbox = document.getElementById(`checkbox-assign-to-${userId}`);
+    
+//     // If the checkbox exists, toggle its checked state
+//     if (checkbox) {
+//         checkbox.checked = !checkbox.checked; // Toggle the checkbox state
+        
+//         // Call the function to update selected assigned users
+//         getSelectedAssignedUsers(); 
+//     }
+// }
+
+
 
 
 
@@ -92,11 +118,11 @@ function renderAssignedToInputCheckedBelow() {
         const user = users.find(u => u.id === contactId);  // Find the user by ID in `users`
 
         renderAssignedToInputCheckedBelowRef.innerHTML += /*html*/`
-            <svg width="50" height="50">
-                <circle cx="25" cy="25" r="20" fill="${user.color}" />
-                <text x="25" y="30" text-anchor="middle" fill="white" font-size="18" font-family="Arial" dy=".3em">
-                    ${user.initials}
-                </text>
+            <svg width="40" height="40">
+                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
+                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
+                                ${user.initials}
+                            </text>
             </svg>
         `;
     }
@@ -117,6 +143,11 @@ function toggleRenderCategoryInput() {
 function toggleOverlayCreateButton() {
     let toggleOverlayRef = document.getElementById('overlay')
     toggleOverlayRef.classList.toggle('d-none');
+}
+
+function prioButtonOnLoad() {
+
+    document.getElementById('medium-button').classList.add('active', 'medium');
 }
 
 function setPrioButton(prio) {
@@ -321,8 +352,10 @@ function renderSubtasks() {
     subtasksArray.forEach((subtask, index) => {
         subtasksList.innerHTML +=  /*html*/ `
         <li class="subtask-list-items" >${subtask} 
+        <div class="subtask-list-items-img-wrapper">
         <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="">
         <img onclick="removeSubtask(${index})"src="../assets/img/add-task/subtask-bin.svg" alt="">
+        </div>
         
         </li>`;
     });
