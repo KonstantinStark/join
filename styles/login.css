@@ -189,6 +189,12 @@ h2 {
     color: #29aae1;
 }
 
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 @media(max-width: 390px) {
     .top-right {
         top: 690px;
