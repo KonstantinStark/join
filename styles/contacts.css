@@ -25,7 +25,7 @@
 
 .contact-list-wrapper {
     width: 456px;
-    height: 90.5vh;
+    height: calc(100vh - 90px);
     display: flex;
     background-color: white;
     position: relative;
@@ -241,7 +241,7 @@ h2 {
     gap: 25px;
     width: 249px;
     height: 57px;
-    margin-top: 20px;
+    margin-top: 46px;
     margin-left: 20px;
 }
 
@@ -412,9 +412,23 @@ h2 {
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.error {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 @media(max-width: 1250px) {
     .side-join-logo {
         display: none;
+    }
+
+    .contact-list-wrapper {
+        margin-bottom: 80px;
     }
 
     .navbar-text {
@@ -452,6 +466,13 @@ h2 {
     }
 }
 
+.error-message {
+    color: #ff4d4f;
+    font-size: 0.875em;
+    margin-top: 5px;
+    display: block;
+}
+
 @media(max-width: 940px) {
     .contact-text-wrapper {
         display: none;
@@ -459,9 +480,9 @@ h2 {
 
     .contact-list-wrapper {
         width: 100%;
+        margin-bottom: 80px;
     }
 }
-
 
 @media (max-width: 940px) {
     .add-contact-btn-wrapper {
@@ -535,7 +556,7 @@ h2 {
 
     }
 
-    .overlay-section{
+    .overlay-section {
         position: absolute;
         top: 0;
         left: 24%;
