@@ -25,7 +25,7 @@
 
 .contact-list-wrapper {
     width: 456px;
-    height: 90.5vh;
+    height: calc(100vh - 90px);
     display: flex;
     background-color: white;
     position: relative;
