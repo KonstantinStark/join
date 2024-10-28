@@ -452,6 +452,13 @@ h2 {
     }
 }
 
+.error-message {
+    color: #ff4d4f; /* Roter Farbton passend zum Screenshot */
+    font-size: 0.875em;
+    margin-top: 5px;
+    display: block;
+}
+
 @media(max-width: 940px) {
     .contact-text-wrapper {
         display: none;
@@ -459,9 +466,9 @@ h2 {
 
     .contact-list-wrapper {
         width: 100%;
+        margin-bottom: 80px;
     }
 }
-
 
 @media (max-width: 940px) {
     .add-contact-btn-wrapper {

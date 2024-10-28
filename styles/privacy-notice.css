@@ -82,4 +82,5 @@ ul li::before {
     font-size: 40px;
     color: #29abe2;
     text-decoration: none;
+    cursor: pointer;
 }
