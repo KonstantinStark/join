@@ -1,0 +1,187 @@
+.left-right-side-wrapper {
+
+    display: flex;
+    margin-left:5%;
+    margin-top:5%;
+   
+}
+
+.subheader {
+
+    display: flex;
+    align-items: center;
+    /* width:665px;
+    height:73px; */
+    gap:32px;
+    margin-left:5%;
+    margin-top:5%;
+}
+
+.first-h2 {
+
+    /* width:264px;
+    height:73px;  */
+    font-size: 64px;
+
+}
+
+.subheader-devider {
+
+    width:1px;
+    height:50px;
+    background-color: aqua;
+    
+}
+
+.left-side-wrapper {
+
+    
+width:560px;
+height:562px;
+
+
+}
+
+.to-do-done-wrapper {
+
+    display: flex;
+    gap:30px;
+}
+
+
+.to-do {
+
+width: 264px;
+height: 168px;
+border:1px solid black;
+border-radius:10px;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.to-do-icon {
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: grey;
+    border-radius:30px;
+    width:60px;
+    height:60px;
+}
+
+.to-do-inside-wrapper {
+
+    display: flex;
+    justify-content: center;
+    height:63px;
+    width:200px;
+}
+
+.done {
+
+width: 264px;
+height: 168px;
+border:1px solid black;
+border-radius:10px;
+}
+
+
+.urgent-container {
+
+width:560px;
+height:168px;
+border:1px solid black;
+margin-top:20px;
+border-radius:10px;
+    
+ }
+
+ .three-bottom-container-wrapper {
+
+    display: flex;
+    margin-top:20px;
+    gap:25px;
+ }
+
+ .tasks-board {
+
+    width:168px;
+    height:168px;
+    border:1px solid black;
+    border-radius:10px;
+}
+ 
+
+ .tasks-progress {
+
+    width:168px;
+    height:168px;
+    border:1px solid black;
+    border-radius:10px;
+}
+ 
+
+ .feedback {
+
+    width:168px;
+    height:168px;
+    border:1px solid black;
+    border-radius:10px;
+}
+ 
+
+ .right-side-wrapper {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .greetings-container {
+
+    width:385px;
+    height:136px;
+    border: 1px solid black;
+ }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.right-side-wrapper {
+
+    
+    width:560px;
+    height:562px;
+
+    }
+
