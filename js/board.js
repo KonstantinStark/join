@@ -84,7 +84,7 @@ function renderTasks(tasks) {
         }
 
         container.innerHTML += /*html*/`
-        <div class="task-card" id="task-${task.id}" draggable="true" ondragstart="drag(event)">
+        <div onclick="toggleOverlayTaks('${task.id}')" class="task-card" id="task-${task.id}" draggable="true" ondragstart="drag(event)">
             <div class="task-header">
                 <span class="task-type ${task.category.toLowerCase().replace(' ', '-')}">${task.category}</span>
             </div>
@@ -101,6 +101,42 @@ function renderTasks(tasks) {
         `;
     }
 }
+
+function toggleOverlayTaks(taskId) {
+    const overlay = document.getElementById("task-overlay");
+
+    if (taskId) {
+        // Finde die Task-Daten basierend auf der ID
+        const task = loadedTasks.find(task => task.id === taskId);
+
+        if (task) {
+            // Details in das Overlay laden
+            document.getElementById("overlay-category").textContent = task.category;
+            document.getElementById("overlay-title").textContent = task.title;
+            document.getElementById("overlay-description").textContent = task.description;
+            document.getElementById("overlay-due-date").textContent = task.dueDate;
+            document.getElementById("overlay-priority").textContent = task.priority;
+
+            // Zugewiesene Kontakte anzeigen
+            const assignedContactsContainer = document.getElementById("overlay-assignedContacts");
+            assignedContactsContainer.innerHTML = task.assignedContacts
+                ? task.assignedContacts.map(contact => `<span style="background-color: ${getColorForUser(contact)};">${contact}</span>`).join('')
+                : "No contacts assigned";
+
+            // Subtasks anzeigen
+            const subtasksContainer = document.getElementById("overlay-subtasks");
+            subtasksContainer.innerHTML = task.subtasks
+                ? task.subtasks.map(subtask => `<li><input type="checkbox" ${subtask.completed ? 'checked' : ''}> ${subtask.name}</li>`).join('')
+                : "<li>No subtasks</li>";
+
+            overlay.style.display = "flex";  // Overlay sichtbar machen
+        }
+    } else {
+        overlay.style.display = "none";  // Overlay ausblenden
+    }
+}
+
+
 
 function getColorForUser(user) {
     const colors = {

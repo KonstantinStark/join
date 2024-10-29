@@ -33,7 +33,7 @@
                 <a href="http://127.0.0.1:5500/modul-10/join/pages/add-task.html#">
                     <div class="sidebar-image-title-wrapper">
                         <img src="../assets/img/task.png" alt="Add Task Icon">
-                        <span class="navbar-text">Add Task</span>
+                        <span onclick="toggleOverlayTaksPage()" class="navbar-text">Add Task</span>
                     </div>
                 </a>
                 <a href="http://127.0.0.1:5500/modul-10/join/pages/board.html">
@@ -100,6 +100,151 @@
             <div id="assigned-to-input"></div>
         </div>
     </section>
+    <!-- Task-Detail-Overlay -->
+    <div id="task-overlay" class="overlay" style="display: none;">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="toggleOverlayTaks()">&times;</span>
+            <div id="overlay-category" class="task-category"></div>
+            <h2 id="overlay-title"></h2>
+            <p id="overlay-description"></p>
+            <p><strong>Due date:</strong> <span id="overlay-due-date"></span></p>
+            <p><strong>Priority:</strong> <span id="overlay-priority"></span></p>
+            <div>
+                <p><strong>Assigned To:</strong></p>
+                <div id="overlay-assignedContacts" class="assigned-contacts"></div>
+            </div>
+            <div>
+                <p><strong>Subtasks:</strong></p>
+                <ul id="overlay-subtasks" class="subtasks-list"></ul>
+            </div>
+            <div class="overlay-actions">
+                <button onclick="deleteTask()">🗑️ Delete</button>
+                <button onclick="editTask()">✏️ Edit</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Overlay, das das Add Task Formular enthält -->
+    <div id="taskOverlay" class="overlay" style="display: none;">
+        <div class="overlay-content">
+            <div class="subheader">
+                <div class="subheader-wrapper">
+                    <h1>Add Task</h1>
+                </div>
+            </div>
+            
+            <div class="add-task-wrapper">
+                <div class="left-side-wrapper">
+                    <div class="input-fields-left-side">
+                        <div class="title-input-wrapper">
+                            <p class="input-headers-margin-bottom">
+                                Title <span class="required-star-markers">*</span>
+                            </p>
+                            <div class="input-wrapper">
+                                <input type="text" placeholder="Enter title" id="title-input"/>
+                                <p class="error-message" id="title-error" style="display: none;">This field is required</p>
+                            </div>
+                        </div>
+                        
+                        <div class="decription-input-wrapper">
+                            <p class="input-headers-margin-bottom">Description</p>
+                            <div class="description-input">
+                                <input type="text" placeholder="Enter a Description" id="description-input"/>
+                            </div>
+                        </div>
+                        
+                        <div class="assigned-to-wrapper">
+                            <p class="input-headers-margin-bottom">Assigned to</p>
+                            <div id="assigned-to-dropdown">
+                                <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
+                                    <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
+                                    <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
+                                </div>
+                                <div class="d-none" id="assigned-to-input">
+                                    <div class="assigned-to-list" id="assigned-to-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seperator-left-right-side"></div>
+
+                <div class="right-side-wrapper">
+                    <div class="input-fields-right-side">
+                        <div class="due-date-wrapper">
+                            <p class="input-headers-margin-bottom">
+                                Due Date <span class="required-star-markers">*</span>
+                            </p>
+                            <div class="due-date-input">
+                                <input type="date" placeholder="dd/mm/yyyy" id="due-date-input"/>
+                                <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
+                            </div>
+                        </div>
+
+                        <div class="prio-buttons-wrapper">
+                            <p class="prio-buttons-header input-headers-margin-bottom">Prio</p>
+                            <div class="prio-buttons">
+                                <button id="urgent-button" onclick="setPrioButton('urgent')">Urgent
+                                    <img src="../assets/img/add-task/urgent.svg" alt="">
+                                </button>
+                                <button id="medium-button" onclick="setPrioButton('medium')">Medium
+                                    <img src="../assets/img/add-task/medium.svg" alt="">
+                                </button>
+                                <button id="low-button" onclick="setPrioButton('low')">Low
+                                    <img src="../assets/img/add-task/low.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="category-input-wrapper">
+                            <p class="input-headers-margin-bottom">Category <span class="required-star-markers">*</span></p>
+                            <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
+                                <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
+                                <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
+                            </div>
+                            <p class="error-message" id="category-error" style="display: none;">This field is required</p>
+                            <div id="category-input-content" class="d-none">
+                                <p onclick="changeCategoryInput('Technical Task')">Technical Task</p>
+                                <p onclick="changeCategoryInput('User Story')">User Story</p>
+                            </div>
+                        </div>
+
+                        <div class="subtask-input-wrapper">
+                            <p class="input-headers-margin-bottom">Subtasks</p>
+                            <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
+                                <div id="subtask-input">Subtask
+                                    <img src="../assets/img/add-task/plus.svg" alt="">
+                                </div>
+                            </div>
+                            <div id="subtasks-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="field-required">
+                    <p><span class="required-star-markers">*</span> This field is required</p>
+                </div>
+
+                <div class="clear-create-buttons-wrapper">
+                    <button class="clear-task-button" onclick="resetInputFields()">Clear
+                        <img src="../assets/img/add-task/clear.svg" alt="">
+                    </button>
+                    <button class="create-task-button" onclick="validateForm(); ">
+                        <p>Create Task</p>
+                        <img src="../assets/img/add-task/check.svg" alt="">
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+
+
 
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
