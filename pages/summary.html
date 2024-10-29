@@ -98,12 +98,14 @@
                                 </div>
 
 
-
-                                <div class="number-placeholder">
+                                <div class="to-do-placeholder-wrapper">
+                                    
+                                <div class="number-placeholder capital-numbers" id="to-do-placeholder" >
                                     1
                                 </div>
 
-                                <div>to-do</div>
+                                <div class="txt-font-adjustment">to-do</div>
+                            </div>
 
 
 
@@ -113,8 +115,24 @@
 
                         <div class="done">
 
-                            <div class="to-do-icon">
-                                <img src="/assets/img/summery/vector.svg" alt="">
+                            <div class="done-inside-wrapper">
+
+                                <div class="done-icon">
+                                    <img src="../assets/img/summery/vector.svg" alt="">
+                                </div>
+
+
+                                <div class="done-placeholder-wrapper">
+                                    
+                                <div class="number-placeholder capital-numbers">
+                                    Z
+                                </div>
+
+                                <div class="txt-font-adjustment">done</div>
+                            </div>
+
+
+
                             </div>
 
                         </div>
@@ -123,11 +141,39 @@
 
                     </div>
 
+                
                     <div class="urgent-container">
 
-                        <div class="to-do-icon">
-                            <img src="/assets/img/summery/capa.svg" alt="">
+                        <div class="urgent-left-side-inside-wrapper">
+
+                            <div class="urgent-icon">
+                                <img src="/assets/img/summery/capa.svg" alt="">
+                            </div>
+
+                            <div class="urgent-placeholder-wrapper">
+
+                                <div class="urgent-placeholder capital-numbers" id="urgent-placeholder">
+                                    5
+                                </div>
+
+                                <div class="txt-font-adjustment">Urgent</div>
+
                         </div>
+
+                    </div>
+
+                    <div class="urgent-seperator"></div>
+
+                    <div class="urgent-right-side-inside-wrapper">
+
+                        <div class="urgent-date-placeholder" id="urgend-date-placeholder">
+                            placeholder
+                        </div>
+                        <div>Upcoming Deadline</div>
+                    </div>
+
+
+                        
 
 
                     </div>
@@ -136,13 +182,46 @@
 
                         <div class="tasks-board">
 
+                            <div class="tasks-board-inside-wrapper three-bottom-inside-wrapper">
+
+                                <id class="capital-numbers" id="placeholder-tasks-board capital-numbers">
+                                    Z
+                                </id>
+
+                                <div class="txt-font-adjustment">Tasks on Board</div>
+
+
+                            </div>
+
                         </div>
 
                         <div class="tasks-progress">
 
+                            <div class="tasks-progress-inside-wrapper three-bottom-inside-wrapper">
+
+                                <id class="capital-numbers" id="placeholder-tasks-progress capital-numbers">
+                                    Z
+                                </id>
+
+                                <div class="txt-font-adjustment">Tasks in Progress</div>
+
+
+                            </div>
+
                         </div>
 
                         <div class="feedback">
+
+                            <div class="feedback-inside-wrapper three-bottom-inside-wrapper">
+
+                                <id class="capital-numbers" id="placeholder-feedback">
+                                    Z
+                                </id>
+
+                                <div class="txt-font-adjustment">Awaiting Feedback</div>
+
+
+                            </div>
                             
                         </div>
 
@@ -154,6 +233,8 @@
                 <div class="right-side-wrapper">
 
                     <div class="greetings-container">
+
+                        <h2>Good Morning, Sophie</h2>
 
 
                     </div>
@@ -170,5 +251,7 @@
                     class="menu-link">Privacy Policy</a>
                 <a href="#" id="logout-button" class="menu-link">Log Out</a>
             </div> -->
-            <script src="../js/contacts.js"></script>
+            
+            <script src="../js/firebase.js"></script>
+            <script src="../js/summary.js"></script>
 </body>

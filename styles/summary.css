@@ -1,3 +1,22 @@
+/* global classes */
+
+
+.capital-numbers {
+
+    font-size:60px;
+    font-weight: 800;
+}
+
+.txt-font-adjustment {
+
+    font-size:20px;
+
+}
+
+/* END global classes */
+
+
+
 .left-right-side-wrapper {
 
     display: flex;
@@ -42,6 +61,8 @@ height:562px;
 
 }
 
+/* to-do-done-wrapper */
+
 .to-do-done-wrapper {
 
     display: flex;
@@ -59,19 +80,22 @@ display: flex;
 justify-content: center;
 align-items: center;
 
+
 }
 
-.to-do-icon {
 
+.to-do-icon {
 
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: grey;
+    background-color:#2A3647;
     border-radius:30px;
     width:60px;
     height:60px;
 }
+
+
 
 .to-do-inside-wrapper {
 
@@ -79,32 +103,135 @@ align-items: center;
     justify-content: center;
     height:63px;
     width:200px;
+    gap:20px;
+}
+
+.to-do-placeholder-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .done {
 
-width: 264px;
-height: 168px;
-border:1px solid black;
-border-radius:10px;
+    width: 264px;
+    height: 168px;
+    border:1px solid black;
+    border-radius:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+    .done-icon {
+    
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2A3647;
+        border-radius:30px;
+        width:60px;
+        height:60px;
+    }
+    
+    .done-inside-wrapper {
+    
+        display: flex;
+        justify-content: center;
+        height:63px;
+        width:200px;
+        gap:20px;
+    }
+    
+    .done-placeholder-wrapper {
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+/* END to-do-done-wrapper */
 
 
 .urgent-container {
 
+display: flex;
 width:560px;
 height:168px;
 border:1px solid black;
 margin-top:20px;
 border-radius:10px;
+
     
  }
 
+ .urgent-left-side-inside-wrapper {
+
+width: 264px;
+height: 168px;
+border-radius:10px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap:25px;
+text-align: center;
+
+ }
+
+ .urgent-icon {
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:red;
+    border-radius:30px;
+    width:60px;
+    height:60px;
+}
+
+ .urgent-seperator {
+
+    background-color: black;
+    width:1px;
+    height:100px;
+    display: flex;
+    margin-top:35px;
+ }
+
+ .urgent-right-side-inside-wrapper {
+ 
+    border-radius:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:296px;
+ }
+
+
+
+ 
  .three-bottom-container-wrapper {
 
     display: flex;
     margin-top:20px;
     gap:25px;
+    margin-left:5px;
+ }
+
+ .three-bottom-inside-wrapper {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height:125px;
+    width: 83px;
  }
 
  .tasks-board {
@@ -113,6 +240,11 @@ border-radius:10px;
     height:168px;
     border:1px solid black;
     border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
  
 
@@ -122,17 +254,28 @@ border-radius:10px;
     height:168px;
     border:1px solid black;
     border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+ 
 }
  
-
  .feedback {
 
     width:168px;
     height:168px;
     border:1px solid black;
     border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
  
+
 
  .right-side-wrapper {
 
