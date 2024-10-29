@@ -6,30 +6,102 @@ document.addEventListener("DOMContentLoaded", function () {
     const policyCheckbox = document.getElementById("accept-policy");
     const policyContainer = document.querySelector(".policy-container");
     const policyError = document.createElement("div");
+    const signupBtn = document.getElementById("signup-btn");
+    
+    const nameRef = document.getElementById('name');
+    const nameTextRef = document.getElementById('name-error-text');
+    const emailRef = document.getElementById('email');
+    const emailTextRef = document.getElementById('email-error-text');
+
+    const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     policyError.style.color = "#ff4d4f";
     policyError.style.display = "none";
     policyError.textContent = "Please accept the Privacy policy.";
     policyContainer.appendChild(policyError);
-    form.addEventListener("submit", function (event) {
-        if (password.value !== confirmPassword.value) {
-            event.preventDefault();
+    
+    // Button initially disabled
+    signupBtn.disabled = true;
+
+    // Validate inputs
+    function validateUserInput() {
+        let isValid = true;
+
+        // Reset error states
+        nameRef.classList.remove("error");
+        emailRef.classList.remove("error");
+        passwordError.style.display = "none";
+        policyError.style.display = "none";
+        nameTextRef.style.display = "none";
+        emailTextRef.style.display = "none";
+        password.style.borderColor = "";
+        confirmPassword.style.borderColor = "";
+
+        // Validate Name
+        if (!nameRef.value) {
+            nameRef.classList.add("error");
+            nameTextRef.textContent = "Name is required.";
+            nameTextRef.style.display = "block";
+            isValid = false;
+        } else if (!nameRegex.test(nameRef.value)) {
+            nameRef.classList.add("error");
+            nameTextRef.textContent = "Invalid name format.";
+            nameTextRef.style.display = "block";
+            isValid = false;
+        }
+
+        // Validate Email
+        if (!emailRef.value) {
+            emailRef.classList.add("error");
+            emailTextRef.textContent = "Email is required.";
+            emailTextRef.style.display = "block";
+            isValid = false;
+        } else if (!emailRegex.test(emailRef.value)) {
+            emailRef.classList.add("error");
+            emailTextRef.textContent = "Invalid email format.";
+            emailTextRef.style.display = "block";
+            isValid = false;
+        }
+
+        // Validate Passwords Match
+        if (!password.value) {
+            passwordError.textContent = "Password is required.";
+            passwordError.style.display = "block";
+            password.style.borderColor = "#ff4d4f";
+            isValid = false;
+        } else if (!confirmPassword.value) {
+            passwordError.textContent = "Please confirm your password.";
             passwordError.style.display = "block";
             confirmPassword.style.borderColor = "#ff4d4f";
+            isValid = false;
+        } else if (password.value !== confirmPassword.value) {
+            passwordError.textContent = "Your passwords don’t match. Please try again.";
+            passwordError.style.display = "block";
+            confirmPassword.style.borderColor = "#ff4d4f";
+            isValid = false;
         }
-        checkPolicy(event);
-    });
-    confirmPassword.addEventListener("input", () => {
-        if (password.value === confirmPassword.value) {
-            passwordError.style.display = "none";
-            confirmPassword.style.borderColor = "";
-        }
-    });
-    function checkPolicy(event) {
+
+        // Check if the policy is accepted
         if (!policyCheckbox.checked) {
-            event.preventDefault();
             policyError.style.display = "block";
+            isValid = false;
         } else {
-            policyError.style.display = "none";
+            policyError.style.display = "none"; // Clear error if policy is accepted
         }
+
+        // Enable button if all fields are valid
+        signupBtn.disabled = !isValid;
+        return isValid;
     }
+
+    // Event listeners for real-time validation
+    form.addEventListener("input", validateUserInput);
+    policyCheckbox.addEventListener("change", validateUserInput);
+
+    form.addEventListener("submit", function (event) {
+        if (!validateUserInput()) {
+            event.preventDefault();
+        }
+    });
 });

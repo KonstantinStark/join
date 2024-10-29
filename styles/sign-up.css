@@ -166,9 +166,12 @@ h2 {
     color: #29aae1;
 }
 
+.error {
+    border: 1px solid red !important;
+}
+
 .error-message {
-    color: #ff4d4f; /* Roter Farbton passend zum Screenshot */
-    font-size: 0.875em;
+    color: red;
+    font-size: 12px;
     margin-top: 5px;
-    display: block;
 }

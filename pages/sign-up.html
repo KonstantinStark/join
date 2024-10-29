@@ -32,31 +32,34 @@
                 <div class="input-container">
                     <input required type="text" placeholder="Name" id="name">
                     <img src="../assets/img/person.svg" alt="User Icon" class="input-icon">
+                    <span id="name-error-text" class="error-message" style="display: none;">Invalid name format.</span>
                 </div>
-
+            
                 <div class="input-container">
                     <input required type="email" placeholder="Email" id="email">
                     <img src="../assets/img/email-icon.png" alt="Email Icon" class="input-icon">
+                    <span id="email-error-text" class="error-message" style="display: none;">Invalid email format.</span>
                 </div>
-
+            
                 <div class="input-container">
                     <input required type="password" placeholder="Password" id="password">
                     <img src="../assets/img/lock-icon.png" alt="Password Icon" class="input-icon">
                 </div>
-
+            
                 <div class="input-container">
                     <input required type="password" placeholder="Confirm Password" id="confirm-password">
                     <img src="../assets/img/lock-icon.png" alt="Password Icon" class="input-icon">
                     <span id="password-error" class="error-message" style="display: none;">Your passwords don’t match. Please try again.</span>
                 </div>
-
+            
                 <div class="policy-container">
                     <input type="checkbox" id="accept-policy">
                     <label for="accept-policy">I accept the <a href="http://127.0.0.1:5500/modul-10/join/pages/privacy-notice.html">Privacy policy</a></label>
                 </div>
-
+                <div id="policy-error-text" class="error-message" style="display: none;">Please accept the Privacy policy.</div>
+            
                 <div class="signup-button">
-                    <button class="signup-btn">Sign up</button>
+                    <button type="submit" class="signup-btn" id="signup-btn">Sign up</button>
                 </div>
             </form>
         </div>
