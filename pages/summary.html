@@ -94,13 +94,18 @@
                             <div class="to-do-inside-wrapper">
 
                                 <div class="to-do-icon">
-                                    <img src="../assets/img/summery/edit.svg" alt="">
+                                    <img src="../assets/img/summery/edit.svg" class="edit-light" alt="Edit Light">
+                                    <img src="../assets/img/summery/edit-dark.svg" class="edit-dark d-none" alt="Edit Dark">
+                                </div>
+
+                                <div class="to-do-icon-dark">
+                                    
                                 </div>
 
 
                                 <div class="to-do-placeholder-wrapper">
                                     
-                                <div class="number-placeholder capital-numbers" id="to-do-placeholder" >
+                                <div class="number-placeholder capital-numbers to-do-placeholder" id="to-do-placeholder" >
                                     1
                                 </div>
 
@@ -118,8 +123,10 @@
                             <div class="done-inside-wrapper">
 
                                 <div class="done-icon">
-                                    <img src="../assets/img/summery/vector.svg" alt="">
+                                    <img src="../assets/img/summery/vector.svg" alt="" class="done-light"> <!-- Light icon shown by default -->
+                                    <img src="../assets/img/summery/vector-dark.svg" alt="" class="done-dark d-none"> <!-- Dark icon shown on hover -->
                                 </div>
+                                
 
 
                                 <div class="done-placeholder-wrapper">
@@ -255,3 +262,4 @@
             <script src="../js/firebase.js"></script>
             <script src="../js/summary.js"></script>
 </body>
+ 

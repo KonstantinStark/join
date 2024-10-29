@@ -53,5 +53,7 @@ function renderUrgentTaskCount(urgentTaskCount) {
 
 function renderUrgentDate() {
     let urgentCountRef = document.getElementById('urgent-date-placeholder');
-    urgentCountRef.innerHTML = `${urgentDate}`;  
+    urgentCountRef.innerHTML = `${dueDate}`;  
 }
+
+

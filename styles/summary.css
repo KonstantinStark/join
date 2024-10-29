@@ -13,6 +13,11 @@
 
 }
 
+.d-none {
+
+    display: none;
+}
+
 /* END global classes */
 
 
@@ -43,11 +48,16 @@
     font-size: 64px;
 
 }
+ 
+.second-h2 {
+
+    color:grey;
+}
 
 .subheader-devider {
 
-    width:1px;
-    height:50px;
+    width:3px;
+    height:60px;
     background-color: aqua;
     
 }
@@ -196,8 +206,8 @@ text-align: center;
 
  .urgent-seperator {
 
-    background-color: black;
-    width:1px;
+    background-color: lightgrey;
+    width:2px;
     height:100px;
     display: flex;
     margin-top:35px;
@@ -221,7 +231,7 @@ text-align: center;
     display: flex;
     margin-top:20px;
     gap:25px;
-    margin-left:5px;
+    margin-left:2px;
  }
 
  .three-bottom-inside-wrapper {
@@ -304,10 +314,131 @@ text-align: center;
 
 
 
+ .to-do {
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+}
+
+.to-do:hover {
+    background-color: #2A3647; /* Change background on hover */
+    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+}
+
+.to-do:hover .to-do-icon {
+    background: white; /* Change background of the icon */
+}
+
+.to-do-icon img.edit-dark {
+    display: none; /* Hide dark icon by default */
+}
+
+.to-do-icon img.edit-light {
+    display: inline; /* Show light icon by default */
+}
+
+.to-do:hover .to-do-icon img.edit-light {
+    display: none; /* Hide light icon on hover */
+}
+
+.to-do:hover .to-do-icon img.edit-dark {
+    display: inline; /* Show dark icon on hover */
+}
+
+.to-do:hover .number-placeholder,
+.to-do:hover .txt-font-adjustment {
+    color: white; /* Change font color */
+}
 
 
 
 
+
+
+/* For the .done element */
+.done {
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+}
+
+.done:hover {
+    background-color: #2A3647; /* Change background on hover */
+    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+}
+
+.done:hover .done-icon {
+    background: white; /* Change background of the icon */
+}
+
+/* Default state: show light icon, hide dark icon */
+.done-icon img.done-light {
+    display: inline; /* Show light icon by default */
+}
+
+.done-icon img.done-dark {
+    display: none; /* Hide dark icon by default */
+}
+
+/* Hover state: hide light icon, show dark icon */
+.done:hover .done-icon img.done-light {
+    display: none; /* Hide light icon on hover */
+}
+
+.done:hover .done-icon img.done-dark {
+    display: inline; /* Show dark icon on hover */
+}
+
+.done:hover .number-placeholder,
+.done:hover .txt-font-adjustment {
+    color: white; /* Change font color */
+}
+
+
+
+
+/* For the .urgent-container element */
+.urgent-container {
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+}
+
+.urgent-container:hover {
+    background-color: #2A3647; /* Change background color to dark grey on hover */
+    color: white; /* Change font color to white on hover */
+    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+}
+
+
+
+
+/* For the .tasks-board element */
+.tasks-board {
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+}
+
+.tasks-board:hover {
+    background-color: #2A3647; /* Change background color to dark grey on hover */
+    color: white; /* Change font color to white on hover */
+    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+}
+
+/* For the .tasks-progress element */
+.tasks-progress {
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+}
+
+.tasks-progress:hover {
+    background-color: #2A3647; /* Change background color to dark grey on hover */
+    color: white; /* Change font color to white on hover */
+    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+}
+
+/* For the .feedback element */
+.feedback {
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+}
+
+.feedback:hover {
+    background-color: #2A3647; /* Change background color to dark grey on hover */
+    color: white; /* Change font color to white on hover */
+    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+}
 
 
 
