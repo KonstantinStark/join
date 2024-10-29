@@ -435,7 +435,7 @@ h2 {
     }
 
     .contact-list-wrapper {
-        margin-bottom: 80px;
+        height: calc(100vh - 160px);
     }
 
     .navbar-text {
@@ -606,5 +606,4 @@ h2 {
         margin-top: -0px;
         margin-left: 127px;
     }
-
 }
