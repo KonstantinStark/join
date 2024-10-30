@@ -1,3 +1,5 @@
+let signupBtn; // Globale Definition
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const password = document.getElementById("password");
@@ -6,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const policyCheckbox = document.getElementById("accept-policy");
     const policyContainer = document.querySelector(".policy-container");
     const policyError = document.createElement("div");
-    const signupBtn = document.getElementById("signup-btn");
+
+    signupBtn = document.getElementById("signup-btn"); // Zuweisung in der DOMContentLoaded-Funktion
     
     const nameRef = document.getElementById('name');
     const nameTextRef = document.getElementById('name-error-text');
@@ -21,14 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
     policyError.textContent = "Please accept the Privacy policy.";
     policyContainer.appendChild(policyError);
     
-    // Button initially disabled
     signupBtn.disabled = true;
 
-    // Validate inputs
     function validateUserInput() {
         let isValid = true;
 
-        // Reset error states
         nameRef.classList.remove("error");
         emailRef.classList.remove("error");
         passwordError.style.display = "none";
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         password.style.borderColor = "";
         confirmPassword.style.borderColor = "";
 
-        // Validate Name
         if (!nameRef.value) {
             nameRef.classList.add("error");
             nameTextRef.textContent = "Name is required.";
@@ -51,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        // Validate Email
         if (!emailRef.value) {
             emailRef.classList.add("error");
             emailTextRef.textContent = "Email is required.";
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        // Validate Passwords Match
         if (!password.value) {
             passwordError.textContent = "Password is required.";
             passwordError.style.display = "block";
@@ -82,68 +79,40 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        // Check if the policy is accepted
         if (!policyCheckbox.checked) {
             policyError.style.display = "block";
             isValid = false;
         } else {
-            policyError.style.display = "none"; // Clear error if policy is accepted
+            policyError.style.display = "none";
         }
 
-        // Enable button if all fields are valid
         signupBtn.disabled = !isValid;
         return isValid;
     }
 
-    // Event listeners for real-time validation
     form.addEventListener("input", validateUserInput);
     policyCheckbox.addEventListener("change", validateUserInput);
 
     form.addEventListener("submit", function (event) {
-        if (!validateUserInput()) {
-            event.preventDefault();
+        event.preventDefault();
+        
+        if (validateUserInput()) {
+            signupBtn.disabled = true; // Deaktivieren des Buttons
         }
     });
 });
 
-
-// URL zu deiner Firebase-Datenbank
-
-// Funktion, um Daten in Firebase zu speichern
 function pushDataToFirebase() {
-    // Verhindere das Standard-Formularverhalten
-
-    // Erfasse die Eingabedaten
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
-    const acceptPolicy = document.getElementById("accept-policy").checked;
 
-    // Überprüfe, ob die Passwörter übereinstimmen
-    if (password !== confirmPassword) {
-        document.getElementById("password-error").style.display = "block";
-        return; // Beende die Funktion, wenn die Passwörter nicht übereinstimmen
-    } else {
-        document.getElementById("password-error").style.display = "none";
-    }
-
-    // Überprüfe, ob die Datenschutzrichtlinie akzeptiert wurde
-    if (!acceptPolicy) {
-        document.getElementById("policy-error-text").style.display = "block";
-        return;
-    } else {
-        document.getElementById("policy-error-text").style.display = "none";
-    }
-
-    // Erstelle ein Objekt mit den Formulardaten
     const memberData = {
         email: email,
         name: name,
         password: password
     };
 
-    // Sende die Daten an Firebase
     fetch(`${FIREBASE_URL}/members.json`, {
         method: "POST",
         headers: {
@@ -151,13 +120,29 @@ function pushDataToFirebase() {
         },
         body: JSON.stringify(memberData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
     .then(data => {
         console.log("Erfolgreich gespeichert:", data);
         alert("Erfolgreich registriert!");
+
+        // Reset der Formulardaten
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("confirm-password").value = "";
+        document.getElementById("accept-policy").checked = false;
+        signupBtn.disabled = true;
     })
     .catch(error => {
         console.error("Fehler beim Speichern:", error);
         alert("Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal.");
+    })
+    .finally(() => {
+        signupBtn.disabled = false; // Reaktivieren des Buttons
     });
 }
