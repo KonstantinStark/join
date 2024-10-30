@@ -108,12 +108,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // URL zu deiner Firebase-Datenbank
-const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
 
 // Funktion, um Daten in Firebase zu speichern
-function pushDataToFirebase(event) {
+function pushDataToFirebase() {
     // Verhindere das Standard-Formularverhalten
-    event.preventDefault();
 
     // Erfasse die Eingabedaten
     const name = document.getElementById("name").value;
