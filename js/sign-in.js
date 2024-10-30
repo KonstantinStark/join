@@ -105,3 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+function pushDataToFirebase() {
+
+}
