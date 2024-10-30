@@ -695,3 +695,58 @@ h2 {
         margin-top: 35px;
     }
 }
+
+@media (max-width: 365px) {
+    .overlay-wrapper {
+        width: 295px;
+    }
+
+    .contact-wrapper {
+        width: 295px;
+    }
+
+    .name-input {
+        width: 330px;
+        margin-top: 0px;
+    }
+
+    .overlay {
+        height: 90vh;
+        margin-top: 49px;
+    }
+
+    .input-container input {
+        width: 80%;
+        margin-left: 20px;
+    }
+
+    .input-icon {
+        right: 55px;
+    }
+
+    .form-wrapper {
+        width: 300px;
+        margin-top: 85px;
+    }
+
+    .buttons-form-wrapper {
+        margin-top: -0px;
+        margin-left: 32px;
+    }
+
+    .error-message {
+        margin-left: 20px;
+    }
+
+    .contact-wrapper h1 {
+        font-size: 35px;
+    }
+
+    .contact-wrapper h2 {
+        font-size: 20px;
+    }
+
+    .buttons-form-wrapper {
+        margin-top: 35px;
+    }
+}
