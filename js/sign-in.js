@@ -107,6 +107,59 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function pushDataToFirebase() {
+// URL zu deiner Firebase-Datenbank
+const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
 
+// Funktion, um Daten in Firebase zu speichern
+function pushDataToFirebase(event) {
+    // Verhindere das Standard-Formularverhalten
+    event.preventDefault();
+
+    // Erfasse die Eingabedaten
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+    const acceptPolicy = document.getElementById("accept-policy").checked;
+
+    // Überprüfe, ob die Passwörter übereinstimmen
+    if (password !== confirmPassword) {
+        document.getElementById("password-error").style.display = "block";
+        return; // Beende die Funktion, wenn die Passwörter nicht übereinstimmen
+    } else {
+        document.getElementById("password-error").style.display = "none";
+    }
+
+    // Überprüfe, ob die Datenschutzrichtlinie akzeptiert wurde
+    if (!acceptPolicy) {
+        document.getElementById("policy-error-text").style.display = "block";
+        return;
+    } else {
+        document.getElementById("policy-error-text").style.display = "none";
+    }
+
+    // Erstelle ein Objekt mit den Formulardaten
+    const memberData = {
+        email: email,
+        name: name,
+        password: password
+    };
+
+    // Sende die Daten an Firebase
+    fetch(`${FIREBASE_URL}/members.json`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(memberData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Erfolgreich gespeichert:", data);
+        alert("Erfolgreich registriert!");
+    })
+    .catch(error => {
+        console.error("Fehler beim Speichern:", error);
+        alert("Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal.");
+    });
 }
