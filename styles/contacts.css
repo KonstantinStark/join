@@ -527,7 +527,7 @@ h2 {
 @media (max-width: 907px) {
     .overlay-wrapper {
         flex-direction: column;
-        background-color: #ebebeb;
+        background-color: #cfcfcf;
     }
 
     .overlay {
@@ -616,7 +616,7 @@ h2 {
 
     .form-wrapper {
         width: 300px;
-        margin-top: 17px;
+        margin-top: 180px;
     }
 
     .buttons-form-wrapper {
@@ -628,4 +628,70 @@ h2 {
         margin-left: 66px;
     }
 
+    .contact-wrapper h1 {
+        font-size: 35px;
+    }
+
+    .contact-wrapper h2 {
+        font-size: 20px;
+    }
+
+    .buttons-form-wrapper {
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 400px) {
+    .overlay-wrapper {
+        width: 350px;
+    }
+
+    .contact-wrapper {
+        width: 350px;
+    }
+
+    .name-input {
+        width: 390px;
+        margin-top: 0px;
+    }
+
+    .overlay {
+        height: 90vh;
+        margin-top: 49px;
+    }
+
+    .input-container input {
+        width: 80%;
+        margin-left: 55px;
+    }
+
+    .input-icon {
+        right: 34px;
+    }
+
+    .form-wrapper {
+        width: 300px;
+        margin-top: 150px;
+    }
+
+    .buttons-form-wrapper {
+        margin-top: -0px;
+        margin-left: 75px;
+    }
+
+    .error-message {
+        margin-left: 66px;
+    }
+
+    .contact-wrapper h1 {
+        font-size: 35px;
+    }
+
+    .contact-wrapper h2 {
+        font-size: 20px;
+    }
+
+    .buttons-form-wrapper {
+        margin-top: 35px;
+    }
 }
