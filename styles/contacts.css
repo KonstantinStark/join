@@ -424,8 +424,12 @@ h2 {
 .error-message {
     color: red;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: -30px;
 }
+
+/* #email-error-text {
+    margin-top: 20px;
+} */
 
 
 
@@ -476,7 +480,6 @@ h2 {
 .error-message {
     color: #ff4d4f;
     font-size: 0.875em;
-    margin-top: 5px;
     display: block;
 }
 
@@ -521,10 +524,10 @@ h2 {
     }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 907px) {
     .overlay-wrapper {
         flex-direction: column;
-        border: solid 1px black;
+        background-color: #ebebeb;
     }
 
     .overlay {
@@ -569,6 +572,18 @@ h2 {
         top: 0;
         left: 24%;
     }
+
+    .name-input {
+        margin-top: 0px;
+    }
+
+    .input-container input {
+        width: 95%;
+    }
+
+    .input-icon {
+        right: 32px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -582,6 +597,7 @@ h2 {
 
     .name-input {
         width: 400px;
+        margin-top: 0px;
     }
 
     .overlay {
@@ -593,6 +609,7 @@ h2 {
         width: 80%;
         margin-left: 66px;
     }
+
     .input-icon {
         right: 25px;
     }
@@ -604,6 +621,11 @@ h2 {
 
     .buttons-form-wrapper {
         margin-top: -0px;
-        margin-left: 127px;
+        margin-left: 86px;
     }
+
+    .error-message {
+        margin-left: 66px;
+    }
+
 }

@@ -77,7 +77,7 @@
 
             <div class="body-wrapper">
 
-                <div class="contact-list-wrapper">
+                <div class="contact-list-wrapper" id="contact-list-wrapper">
                     <div> <br> <br> <br> </div>
                     <div class="add-contact-btn-wrapper">
                         <button class="add-contact-btn" onclick="toggleOverlay()">
@@ -90,7 +90,7 @@
                     <div id="contact-list" class="contact-list"></div>
                 </div>
 
-                <div class="contact-text-wrapper">
+                <div class="contact-text-wrapper" id="contact-text-wrapper">
                     <div class="contact-text">
                         <h1>Contacts</h1>
                         <div class="seperator"></div>
@@ -132,19 +132,21 @@
                                     <div class="input-container">
                                         <img src="../assets/img/person.svg" alt="User Icon" class="input-icon">
                                         <input required type="text" placeholder="Please enter your name" id="name">
-                                        <p class="error-message" id="name-error-text" style="display: none;">Enter valid name</p>
+                                        
                                     </div>
-                                    
+                                    <p class="error-message" id="name-error-text" style="display: none;">Enter valid name</p>
                                     <div class="input-container">
                                         <img src="../assets/img/email-icon.png" alt="Email Icon" class="input-icon">
                                         <input required type="email" placeholder="Enter your e-mail" id="email">
-                                        <p class="error-message" id="email-error-text" style="display: none;">Enter vaild form like@this.email</p>
+                                       
                                     </div>
+                                    <p class="error-message" id="email-error-text" style="display: none;">Enter vaild form like@this.email</p>
                                     <div class="input-container">
                                         <img src="../assets/img/call.svg" alt="Phone Icon" class="input-icon">
                                         <input required type="tel" placeholder="Enter your phone number" id="phone">
-                                        <p class="error-message" id="phone-error-text" style="display: none;">Enter valid phonenumber</p>
+                                        
                                     </div>
+                                    <p class="error-message" id="phone-error-text" style="display: none;">Enter valid phonenumber</p>
                                 </div>
                             </div>
                         </div>

@@ -207,3 +207,21 @@ document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button
 function toggleHamburgerMenu() {
     document.getElementById("hamburger-menu").classList.toggle("d-none");
 }
+
+function oneClickContact() {
+    const listWrapper = document.getElementById("contact-list-wrapper");
+    const textWrapper = document.getElementById("contact-text-wrapper");
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 940) {
+        if (listWrapper && textWrapper) {
+            // Versteckt den `contact-list-wrapper`
+            listWrapper.style.display = "none";
+
+            // Zeigt den `contact-text-wrapper` an
+            textWrapper.style.display = "flex";
+            textWrapper.style.visibility = "visible"; // Testweise hinzufügen
+            textWrapper.style.opacity = "1";          // Testweise hinzufügen
+        }
+    }
+}
