@@ -1,4 +1,4 @@
-let signupBtn; // Globale Definition
+let signupBtn;
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const policyContainer = document.querySelector(".policy-container");
     const policyError = document.createElement("div");
 
-    signupBtn = document.getElementById("signup-btn"); // Zuweisung in der DOMContentLoaded-Funktion
+    signupBtn = document.getElementById("signup-btn");
     
     const nameRef = document.getElementById('name');
     const nameTextRef = document.getElementById('name-error-text');
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         
         if (validateUserInput()) {
-            signupBtn.disabled = true; // Deaktivieren des Buttons
+            signupBtn.disabled = true;
         }
     });
 });
@@ -130,7 +130,6 @@ function pushDataToFirebase() {
         console.log("Erfolgreich gespeichert:", data);
         alert("Erfolgreich registriert!");
 
-        // Reset der Formulardaten
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
@@ -143,6 +142,6 @@ function pushDataToFirebase() {
         alert("Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal.");
     })
     .finally(() => {
-        signupBtn.disabled = false; // Reaktivieren des Buttons
+        signupBtn.disabled = false;
     });
 }
