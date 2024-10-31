@@ -129,16 +129,12 @@ function pushDataToFirebase() {
     .then(data => {
         console.log("Erfolgreich gespeichert:", data);
         alert("Erfolgreich registriert!");
-
-        // Felder zurücksetzen
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
         document.getElementById("confirm-password").value = "";
         document.getElementById("accept-policy").checked = false;
         signupBtn.disabled = true;
-
-        // Weiterleitung zur Login-Seite
         window.location.href = "http://127.0.0.1:5500/modul-10/join/pages/login.html";
     })
     .catch(error => {
