@@ -135,7 +135,7 @@ function pushDataToFirebase() {
         document.getElementById("confirm-password").value = "";
         document.getElementById("accept-policy").checked = false;
         signupBtn.disabled = true;
-        window.location.href = "http://127.0.0.1:5500/modul-10/join/pages/login.html";
+        window.location.href = "../pages/login.html";
     })
     .catch(error => {
         console.error("Fehler beim Speichern:", error);

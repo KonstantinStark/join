@@ -46,7 +46,7 @@ function loginUser() {
                     userFound = true;
                     alert("Login erfolgreich!");
                     console.log("Benutzer gefunden, leite weiter...");
-                    window.location.href = "http://127.0.0.1:5500/modul-10/join/pages/summary.html";
+                    window.location.href = "../pages/summary.html";
                     break;
                 }
             }
