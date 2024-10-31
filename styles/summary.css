@@ -1,3 +1,19 @@
+/* muss eigentlich global nachher sortieren obsidian  */
+
+.header-responsiv-img-container {
+    padding-left: 20px;
+}
+
+.header-responsiv-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
 /* global classes */
 
 
@@ -16,6 +32,11 @@
 .d-none {
 
     display: none;
+}
+
+.main {
+
+    background-color: #F6F7F8;
 }
 
 /* END global classes */
@@ -39,6 +60,7 @@
     gap:32px;
     margin-left:5%;
     margin-top:5%;
+    margin-bottom:-2%;
 }
 
 .first-h2 {
@@ -283,6 +305,7 @@ text-align: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+   
 }
  
 
