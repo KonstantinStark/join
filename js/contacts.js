@@ -75,16 +75,27 @@ function resetInputFields() {
 
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
-    contentListRef.innerHTML = "";
+    contentListRef.innerHTML = ""; // Clear the current list
+
+    // Sort and display contacts
     users.sort((a, b) => a.name.localeCompare(b.name));
     let currentLetter = '';
+    
     users.forEach((person, index) => {
         let initials = getInitials(person.name);
         let firstLetter = person.name.charAt(0).toUpperCase();
+        
+        // Render a new letter section when the initial changes
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
-            contentListRef.innerHTML += `<div class="letter-section"><div class="letter">${currentLetter}</div><hr class="divider"></div>`;
+            contentListRef.innerHTML += `
+                <div class="letter-section">
+                    <div class="letter">${currentLetter}</div>
+                    <hr class="divider">
+                </div>`;
         }
+        
+        // Add the contact card
         contentListRef.innerHTML += createContactCard(person, index, initials);
     });
 }
@@ -100,8 +111,13 @@ async function deleteContact(index) {
     let person = users[index];
     try {
         let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, { method: "DELETE" });
+        
         if (response.ok) {
-            document.getElementById(`contact-${index}`).remove();
+            // Remove the contact from the local users array
+            users.splice(index, 1); // Remove the user from the users array
+            
+            // Re-render the contact list with the updated users array
+            loadData();
         }
     } catch (error) {
         console.error('Error:', error);
