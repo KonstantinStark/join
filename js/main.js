@@ -7,3 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
         hamburgerToggle.textContent = "?";
     }
 });
+
+function logoutUser() {
+    // Benutzerdaten aus dem localStorage entfernen
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("isGuest");
+
+    // Weiterleitung zur Login-Seite
+    window.location.href = "../pages/login.html";
+}
