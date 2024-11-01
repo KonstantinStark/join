@@ -64,7 +64,7 @@
                         <a href="../pages/help-button.html">
                             <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
                         </a>
-                        <img src="../assets/img/Group 5.svg" id="hamburger-toggle" onclick="toggleHamburgerMenu()">
+                        <div id="hamburger-toggle" class="hamburger-toggle" onclick="toggleHamburgerMenu()"></div>
                     </div>
                 </div>
             </header>
@@ -133,19 +133,22 @@
                                         <img src="../assets/img/person.svg" alt="User Icon" class="input-icon">
                                         <input required type="text" placeholder="Please enter your name" id="name">
                                     </div>
-                                    <p class="error-message" id="name-error-text" style="display: none;">Enter valid name</p>
+                                    <p class="error-message" id="name-error-text" style="display: none;">Enter valid
+                                        name</p>
                                     <div class="input-container">
                                         <img src="../assets/img/email-icon.png" alt="Email Icon" class="input-icon">
                                         <input required type="email" placeholder="Enter your e-mail" id="email">
-                                       
+
                                     </div>
-                                    <p class="error-message" id="email-error-text" style="display: none;">Enter vaild form like@this.email</p>
+                                    <p class="error-message" id="email-error-text" style="display: none;">Enter vaild
+                                        form like@this.email</p>
                                     <div class="input-container">
                                         <img src="../assets/img/call.svg" alt="Phone Icon" class="input-icon">
                                         <input required type="tel" placeholder="Enter your phone number" id="phone">
-                                        
+
                                     </div>
-                                    <p class="error-message" id="phone-error-text" style="display: none;">Enter valid phonenumber</p>
+                                    <p class="error-message" id="phone-error-text" style="display: none;">Enter valid
+                                        phonenumber</p>
                                 </div>
                             </div>
                         </div>
@@ -226,6 +229,7 @@
     <script src="../js/firebase.js"></script>
     <script src="../js/contacts.js"></script>
     <script src="../js/contact-template.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
