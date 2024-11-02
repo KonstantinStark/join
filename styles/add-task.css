@@ -67,7 +67,7 @@ input::placeholder {
 
 .d-block {
 
-    display:block; 
+    display:block;
 }
 
 
@@ -537,6 +537,8 @@ input::placeholder {
  
  /* task added to board overlay  */
 
+
+
  /* .overlay {
 
     position:absolute;
@@ -546,9 +548,8 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-
-
     
+
 }
 
 .overlay-container {

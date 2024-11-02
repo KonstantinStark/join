@@ -183,14 +183,16 @@ async function addNewArrayFromInputs() {
         subtasks: subtasksArray,
     };
 
-    resetInputFields()
-
     try {
         await postData(`/tasks`, newTask);
         console.log("Task successfully added:", newTask);
     } catch (error) {
         console.error("Error adding task:", error);
     }
+
+
+    toggleOverlayCreateButton();
+    window.location.href = 'board.html';
 }
 
 async function postData(path = "", data = {}) {
@@ -227,7 +229,7 @@ function resetInputFields() {
     prioButtonOnLoad()
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
-    changeCategoryInput(selectedCategory)
+    
 }
 
 function changeCategoryInput(selectedCategory) {
@@ -315,7 +317,8 @@ function validateForm() {
 
     if (isValid) {
         addNewArrayFromInputs();
-        toggleOverlayCreateButton();
+      
+       
     } else {
         console.log("Form is not valid. Please fill in all required fields.");
     }
