@@ -118,6 +118,11 @@ async function deleteContact(index) {
             
             // Re-render the contact list with the updated users array
             loadData();
+
+            //obsidian
+
+            let editContactsRef = document.getElementById('edit-contacts');
+            editContactsRef.classList.add('d-none');
         }
     } catch (error) {
         console.error('Error:', error);

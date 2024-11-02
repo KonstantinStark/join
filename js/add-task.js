@@ -310,8 +310,6 @@ function validateForm() {
     }
 }
 
-
-
 // subtask scheiß  document.getElementById('subtask-input').focus(); sonst konnte man ins input feld nicht tippen, obsidian
 
 function renderEntrySubtask() {
@@ -370,8 +368,10 @@ function renderSubtasksEdit() {
         subtasksList.innerHTML += /*html*/ `
         <li class="subtask-list-items">
             <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
+            <div class="edit-images-subtasks-wrapper">
             <img src="/assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
             <img onclick="removeSubtask(${index})" src="../assets/img/add-task/subtask-bin.svg" alt="Delete">
+            </div>
         </li>`;
     });
 }
@@ -400,7 +400,6 @@ function renderBackToDefaultSubtask() {
                 </div>
     `;
 
-    
 }
 
 function showCalendar() {
