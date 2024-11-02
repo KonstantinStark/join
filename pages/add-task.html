@@ -96,18 +96,15 @@
                         <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
                         <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
                     </div>
-                    <div class="d-none" id="assigned-to-input">
+                    <div id="assigned-to-input" class="d-none">
                         <div class="assigned-to-list" id="assigned-to-list"></div>
-                        
                     </div>
                     <div id="assigned-to-input-svg-below">
-                      <!-- js -->
+                        <!-- JS renders SVGs here when the list is closed -->
                     </div>
-                    
                 </div>
-
-
             </div>
+            
             
             </div>
           </div>
@@ -166,7 +163,7 @@
                   </p>
                 </div>
               </div>
-              <div class="subtask-input-wrapper">
+              <div id="subtask-default" class="subtask-input-wrapper">
                 <p class="input-headers-margin-bottom">Subtasks</p>
                 <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
                   <div id="subtask-input">

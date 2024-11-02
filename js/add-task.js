@@ -8,6 +8,7 @@ console.log(loadUsers());
 function init() {
 
     prioButtonOnLoad()
+    renderDefaultSubtaskLayout()
 }
 
 async function loadUsers() {
@@ -62,13 +63,10 @@ function renderAssignedToInput() {
 // Function to toggle the checkbox state when the assigned-to list div is clicked
 
 
-
-
 function getSelectedAssignedUsers() {
     assignedContacts = [];
     const checkboxes = document.querySelectorAll('.assign-checkbox');
   
-    
 
     checkboxes.forEach(checkbox => {
         let assignedToValue = checkbox.closest('.assigned-to-list-values');
@@ -84,7 +82,7 @@ function getSelectedAssignedUsers() {
     });
 
   
-    renderAssignedToInputCheckedBelow();
+    
     return assignedContacts;
 }
 
@@ -102,10 +100,6 @@ function getSelectedAssignedUsers() {
 //         getSelectedAssignedUsers(); 
 //     }
 // }
-
-
-
-
 
 
 // const user = users.find(u => u.id === contactId); nochmal erklären lassen, hängt aber mit den anderen 2 funktion ab 
@@ -129,12 +123,21 @@ function renderAssignedToInputCheckedBelow() {
     }
 }
 
-
+// obsidian
 
 function toggleAssignedToList() {
-    let toggleAssignedToListRef = document.getElementById('assigned-to-input')
-    toggleAssignedToListRef.classList.toggle('d-block');
+    let toggleAssignedToListRef = document.getElementById('assigned-to-input');
+    toggleAssignedToListRef.classList.toggle('d-block'); // Toggles between display states
+    
+    // Check if the list is now hidden, then render the assigned inputs below
+    if (!toggleAssignedToListRef.classList.contains('d-block')) {
+        renderAssignedToInputCheckedBelow();
+    } else {
+        // Optionally, clear or hide the rendered SVGs when the list is open
+        document.getElementById('assigned-to-input-svg-below').innerHTML = "";
+    }
 }
+
 
 function toggleRenderCategoryInput() {
     let renderCategoryInputToggle = document.getElementById('category-input-content')
@@ -217,6 +220,14 @@ function resetInputFields() {
         checkbox.checked = false;
         checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black');
     });
+
+    let toggleAssignedToListRef = document.getElementById('assigned-to-input-svg-below');
+    toggleAssignedToListRef.classList.add('d-none');
+
+    prioButtonOnLoad()
+    subtasksArray.splice(0, subtasksArray.length);
+    renderSubtasks();
+    changeCategoryInput(selectedCategory)
 }
 
 function changeCategoryInput(selectedCategory) {
@@ -320,7 +331,7 @@ function renderEntrySubtask() {
             <input type="text" id="subtask-input" name="subtask" placeholder="Subtask" id="subtask-input">
             <div id="subtask-container-js-images">
                 <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">
-                <img src="../assets/img/add-task/clear.svg" onclick="renderBackToDefaultSubtask()" alt="Clear Subtask">
+                <img src="../assets/img/add-task/clear.svg" onclick="renderDefaultSubtaskLayout()" alt="Clear Subtask">
             </div>
         </div>
     `;
@@ -385,22 +396,35 @@ function updateSubtask(index) {
     }
 }
 
-function renderBackToDefaultSubtask() {
-    let subtaskContainer = document.getElementById('subtask-container');
+
+function renderDefaultSubtaskLayout() {
+
+    let renderDefaultSubtaskLayoutRef = document.getElementById('subtask-default') 
+    renderDefaultSubtaskLayoutRef.innerHTML = "";
+
+    renderDefaultSubtaskLayoutRef.innerHTML = 
+
+    /*html*/`
+        
     
-    subtaskContainer.innerHTML = /*html*/`
-                    <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
-                  <div id="subtask-input">
-                    
-                    Subtask
+    <div class="subtask-input-wrapper">
+    <p class="input-headers-margin-bottom">Subtasks</p>
+    <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
+      <div id="subtask-input">
+        
+        Subtask
 
-                    <img src="../assets/img/add-task/plus.svg" alt="">
-                  </div>
-                  
-                </div>
-    `;
+        <img src="../assets/img/add-task/plus.svg" alt="">
+      </div>
+      
+    </div>
+    <div id="subtasks-list">
+      <!-- js -->
+    </div>
+  </div>
+  `
 
-}
+} 
 
 function showCalendar() {
     // Focus on the date input field to show the calendar
