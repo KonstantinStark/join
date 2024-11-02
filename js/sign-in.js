@@ -110,7 +110,8 @@ function pushDataToFirebase() {
     const memberData = {
         email: email,
         name: name,
-        password: password
+        password: password,
+        initials: getInitials(name) // Add initials to the data
     };
 
     fetch(`${FIREBASE_URL}/members.json`, {
@@ -144,4 +145,11 @@ function pushDataToFirebase() {
     .finally(() => {
         signupBtn.disabled = false;
     });
+}
+
+// Helper function to get initials from a name
+function getInitials(name) {
+    return name.split(' ')
+        .map(part => part.charAt(0).toUpperCase())
+        .join(''); // Join the initials without spaces
 }
