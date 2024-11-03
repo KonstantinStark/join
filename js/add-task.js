@@ -8,7 +8,7 @@ console.log(loadUsers());
 function init() {
 
     prioButtonOnLoad()
-    renderDefaultSubtaskLayout()
+    
 }
 
 async function loadUsers() {
@@ -211,11 +211,14 @@ function resetInputFields() {
     document.getElementById("assigned-to-input").value = "";
     document.getElementById("assigned-to-list").value = "";
     document.getElementById("due-date-input").value = "";
-    document.getElementById("category-input").innerHTML = "Select task category";
     document.getElementById("subtask-input").value = "";
     document.getElementById('urgent-button').classList.remove('active', 'urgent');
     document.getElementById('medium-button').classList.remove('active', 'medium');
     document.getElementById('low-button').classList.remove('active', 'low');
+
+   
+    assignedContacts.splice(0, assignedContacts.length);
+    renderAssignedToInputCheckedBelow();
 
     const checkboxes = document.querySelectorAll('.assign-checkbox');
     checkboxes.forEach(checkbox => {
@@ -223,12 +226,16 @@ function resetInputFields() {
         checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black');
     });
 
-    let toggleAssignedToListRef = document.getElementById('assigned-to-input-svg-below');
-    toggleAssignedToListRef.classList.add('d-none');
+    prioButtonOnLoad();
 
-    prioButtonOnLoad()
+    const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
+    categoryInputPlaceholderRef.innerHTML = "Select task category";
+
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
+
+
+    
     
 }
 
@@ -334,7 +341,7 @@ function renderEntrySubtask() {
             <input type="text" id="subtask-input" name="subtask" placeholder="Subtask" id="subtask-input">
             <div id="subtask-container-js-images">
                 <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">
-                <img src="../assets/img/add-task/clear.svg" onclick="renderDefaultSubtaskLayout()" alt="Clear Subtask">
+                <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
             </div>
         </div>
     `;
@@ -400,34 +407,12 @@ function updateSubtask(index) {
 }
 
 
-function renderDefaultSubtaskLayout() {
+function emptySubtaskArrayFull() {
 
-    let renderDefaultSubtaskLayoutRef = document.getElementById('subtask-default') 
-    renderDefaultSubtaskLayoutRef.innerHTML = "";
+    subtasksArray.splice(0, subtasksArray.length);
+    renderSubtasks();
 
-    renderDefaultSubtaskLayoutRef.innerHTML = 
-
-    /*html*/`
-        
-    
-    <div class="subtask-input-wrapper">
-    <p class="input-headers-margin-bottom">Subtasks</p>
-    <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
-      <div id="subtask-input">
-        
-        Subtask
-
-        <img src="../assets/img/add-task/plus.svg" alt="">
-      </div>
-      
-    </div>
-    <div id="subtasks-list">
-      <!-- js -->
-    </div>
-  </div>
-  `
-
-} 
+}
 
 function showCalendar() {
     // Focus on the date input field to show the calendar

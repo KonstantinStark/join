@@ -86,8 +86,6 @@ input::placeholder {
     height:424px;
     background-color: #29ABE2; 
     
-  
-    
 }
 
 /* left side  */
@@ -196,6 +194,7 @@ input::placeholder {
 .due-date-wrapper input {
 
     width:440px;
+    color:grey;
     
 }
 
@@ -216,6 +215,7 @@ input::placeholder {
     width: 20px; /* Adjust icon size */
     height: 20px; /* Adjust icon size */
     cursor: pointer;
+    
 }
 /* 
 .prio-buttons-header {
@@ -295,6 +295,8 @@ input::placeholder {
     justify-content: space-between;
     padding-left:10px;
     padding-right:12px;
+    cursor: pointer;
+    background-color: white;
    
  }
 
@@ -376,6 +378,11 @@ input::placeholder {
     width:25px;
     padding-right:10px;
 
+}
+
+#subtask-input input {
+
+    color:black;
 }
 
 
@@ -482,13 +489,22 @@ input::placeholder {
     background-color: white;
     margin-bottom: 10px; 
     padding-right:20px;
+    cursor:pointer;
 }
+
 
 /* tabindex="0" added to html to make :focus work on non-input / button field obsidian */
 
 .assigned-to-toggle-button:focus {
     outline: none;  /* Removes the default blue outline in some browsers */
     border: 2px solid #29ABE2;  /* Adjust the border thickness and color */
+  
+}
+
+.assigned-to-toggle-button {
+    cursor: pointer;
+    background-color: white;
+
 }
 
 .assigned-to-list-values:hover {
@@ -597,6 +613,7 @@ input::placeholder {
     display: flex;
     align-items: center; /* Center items vertically in the flex container */
     position: relative; /* Set the parent to position relative */
+   
 }
 
 #subtask-container-js-images {
@@ -623,6 +640,16 @@ input::placeholder {
     margin-top:5px;
     padding-left:10px;
     cursor: pointer;
+}
+
+#subtask-input:focus {
+    outline: none;  /* Removes the default blue outline in some browsers */
+    border: 2px solid #29ABE2;  /* Adjust the border thickness and color */
+}
+
+#subtask-input {
+
+    color:grey;
 }
 
 .subtask-list-items-img-wrapper {
