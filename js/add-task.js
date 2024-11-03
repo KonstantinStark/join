@@ -127,21 +127,49 @@ function renderAssignedToInputCheckedBelow() {
 
 function toggleAssignedToList() {
     let toggleAssignedToListRef = document.getElementById('assigned-to-input');
-    toggleAssignedToListRef.classList.toggle('d-block'); // Toggles between display states
-    
-    // Check if the list is now hidden, then render the assigned inputs below
+    toggleAssignedToListRef.classList.toggle('d-block');
+
+    // Only render the assigned inputs below if the list is hidden
     if (!toggleAssignedToListRef.classList.contains('d-block')) {
         renderAssignedToInputCheckedBelow();
     } else {
-        // Optionally, clear or hide the rendered SVGs when the list is open
+        // Clear SVGs if the list is open
         document.getElementById('assigned-to-input-svg-below').innerHTML = "";
+    }
+
+    // Add an event listener to close the list when clicking outside of it
+    document.addEventListener('click', handleClickOutside);
+}
+
+// obsidian
+
+
+function handleClickOutside(event) {
+    const assignedToList = document.getElementById('assigned-to-input');
+    const toggleButton = document.querySelector('.assigned-to-toggle-button');
+
+    // Check if the click happened outside the list and the toggle button
+    if (!assignedToList.contains(event.target) && !toggleButton.contains(event.target)) {
+        assignedToList.classList.remove('d-block'); // Hide the list
+        renderAssignedToInputCheckedBelow(); // Render below when hiding the list
+
+        // Remove the event listener after hiding
+        document.removeEventListener('click', handleClickOutside);
     }
 }
 
+// obsidian
 
 function toggleRenderCategoryInput() {
-    let renderCategoryInputToggle = document.getElementById('category-input-content')
+    let renderCategoryInputToggle = document.getElementById('category-input-content');
     renderCategoryInputToggle.classList.toggle('d-block');
+
+    // Add the event listener to detect clicks outside
+    if (renderCategoryInputToggle.classList.contains('d-block')) {
+        document.addEventListener('click', handleCategoryClickOutside);
+    } else {
+        document.removeEventListener('click', handleCategoryClickOutside);
+    }
 }
 
 function toggleOverlayCreateButton() {
@@ -231,12 +259,13 @@ function resetInputFields() {
     const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
     categoryInputPlaceholderRef.innerHTML = "Select task category";
 
+    
+
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
+    let subtaskList = document.getElementById('subtasks-list')
+    subtaskList.classList.add('d-none');
 
-
-    
-    
 }
 
 function changeCategoryInput(selectedCategory) {
@@ -379,6 +408,9 @@ function renderSubtasks() {
         
         </li>`;
     });
+
+    let subtaskList = document.getElementById('subtasks-list')
+    subtaskList.classList.remove('d-none');
 }
 
 function renderSubtasksEdit() {
@@ -411,6 +443,9 @@ function emptySubtaskArrayFull() {
 
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
+
+    let subtaskList = document.getElementById('subtasks-list')
+    subtaskList.classList.add('d-none');
 
 }
 

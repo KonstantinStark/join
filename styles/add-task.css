@@ -674,4 +674,14 @@ input::placeholder {
     width:20px;
 }
 
+#subtasks-list {
+
+    width:440px;
+    height:80px;
+    overflow: scroll;
+    background-color: white;
+    z-index:100;
+
+}
+
 

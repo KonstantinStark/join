@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../assets/img/joinlogo.png">
     <link rel="stylesheet" href="../styles/sidebar.css" />
@@ -56,10 +56,7 @@
           <span class="headline-header">Kanban Project Management Tool</span>
           <div class="header-icon">
             <img class="header-help" src="../assets/img/help.svg" />
-            <svg width="80" height="80">
-              <circle cx="40" cy="40" r="32" fill="white" stroke="black" stroke-width="4" />
-              <text x="40" y="46" text-anchor="middle" fill="turquoise" font-size="28" font-family="Arial" dy=".35em">
-                  ${member.initials}
+           
               </text>
           </svg>
           
@@ -180,7 +177,8 @@
                   </div>
                   
                 </div>
-                <div id="subtasks-list">
+                <div id="subtasks-list" class="d-none">
+
                   <!-- js -->
                 </div>
               </div>
@@ -220,6 +218,7 @@
     <script src="../js/firebase.js"></script>
     <script src="../js/add-task.js"></script>
     <script src="../js/add-task-template.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
 
