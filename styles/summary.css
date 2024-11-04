@@ -321,8 +321,26 @@ text-align: center;
 
     width:385px;
     height:136px;
-    border:1px solid lightgrey;
+   
  }
+
+ .right-side-wrapper {
+
+    
+    width:560px;
+    height:562px;
+
+    }
+
+.greeting-text {
+
+    font-size:40px;
+}
+
+#name-placeholder {
+
+    font-size: 64px;
+}
 
 
     
@@ -466,22 +484,6 @@ text-align: center;
 
 
 
-
-
-
-
-
-
-
-
-.right-side-wrapper {
-
-    
-    width:560px;
-    height:562px;
-
-    }
-
 /* Hamburger Toggle */
 
 .hamburger-toggle {
@@ -522,6 +524,8 @@ text-align: center;
 .menu-link:hover {
     background-color: #39495f;
 }
+
+/* von sidebar js für oben rechts icon  */
 
 .header-help {
     padding-top: 7px;

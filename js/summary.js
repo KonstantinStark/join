@@ -43,7 +43,7 @@ async function loadTasks() {
 }
 
 function renderTaskCount(taskCount) {
-    let taskCountRef = document.getElementById('to-do-placeholder');
+    let taskCountRef = document.getElementById('toDoPlaceholder');
     taskCountRef.innerHTML = `${taskCount}`;  
 }
 
@@ -56,40 +56,6 @@ function renderUrgentDate() {
     let urgentCountRef = document.getElementById('urgent-date-placeholder');
     urgentCountRef.innerHTML = `${dueDate}`;  
 }
-
-function getGreeting() {
-    const hours = new Date().getHours();
-
-    if (hours < 12) {
-        return "Good morning, ";
-    } else if (hours < 18) {
-        return "Good afternoon, ";
-    } else if (hours < 22) {
-        return "Good evening, ";
-    } else {
-        return "Good night, ";
-    }
-}
-
-function renderGreeting() {
-    const greetingText = document.getElementById('greeting-text');
-    const nameElement = document.getElementById('name');
-    const userName = "John"; // Replace with dynamic user name if available
-
-    greetingText.textContent = getGreeting(); 
-
-    if (userName) {
-        nameElement.textContent = userName;
-        nameElement.style.color = "#29abe2";
-    } else {
-        nameElement.textContent = ""; // Empty if no user name is set
-    }
-}
-
-
-
-// Call this function on page load
-renderGreeting();
 
 async function getClosestUrgentTaskDate() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
@@ -135,3 +101,74 @@ async function renderClosestUrgentDate() {
 
 // Call this function when loading tasks or initializing the page
 renderClosestUrgentDate();
+
+
+// Function to load members from Firebase
+async function loadMembers() {
+    let membersResponse = await fetch(`${FIREBASE_URL}/members.json`);
+    let responseToJson = await membersResponse.json();
+
+    let members = [];  // Initialize or reset members array
+
+    if (responseToJson) {
+        Object.keys(responseToJson).forEach(key => {
+            const member = {
+                name: responseToJson[key]['name'], // Extract 'name'
+                email: responseToJson[key]['email'] // Assuming we need 'email' too
+            };
+
+            members.push(member); // Add each member object to the members array
+        });
+    }
+
+    console.log("Loaded members:", members);
+    return members; // Return the array of members
+}
+
+// Function to get an appropriate greeting based on the current time
+function getGreeting() {
+    const hours = new Date().getHours();
+
+    if (hours < 12) {
+        return "Good morning, ";
+    } else if (hours < 18) {
+        return "Good afternoon, ";
+    } else if (hours < 22) {
+        return "Good evening, ";
+    } else {
+        return "Good night, ";
+    }
+}
+
+// Function to render greeting and member name
+async function renderGreeting() {
+    const greetingText = document.getElementById('greeting-text');
+    const nameElement = document.getElementById('name-placeholder');
+
+    // Set the greeting based on time
+    greetingText.textContent = getGreeting(); 
+
+    // Fetch the logged-in user from localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (loggedInUser && loggedInUser.email) {
+        // Load members and find the one with the matching email
+        const members = await loadMembers();
+        const matchedUser = members.find(member => member.email === loggedInUser.email);
+
+        if (matchedUser && matchedUser.name) {
+            // Set the user's name with the correct color
+            nameElement.textContent = matchedUser.name;
+            nameElement.style.color = "#29abe2";
+        } else {
+            // Default to "Guest" if no match is found
+            nameElement.textContent = "Guest";
+        }
+    } else {
+        // If no user is logged in, display "Guest"
+        nameElement.textContent = "Guest";
+    }
+}
+
+// Call renderGreeting on page load
+document.addEventListener("DOMContentLoaded", renderGreeting);
