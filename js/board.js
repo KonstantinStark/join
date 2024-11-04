@@ -187,3 +187,7 @@ function dropTask(event) {
     // Firebase mit neuem Status aktualisieren
     updateTaskStatus(taskId.replace('task-', ''), newPrioButton);
 }
+
+function toggleHamburgerMenu() {
+    document.getElementById("hamburger-menu").classList.toggle("d-none");
+}

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../styles/standard.css">
     <link rel="stylesheet" href="../styles/assets.css">
     <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/board.css">
     <title>Board</title>
 </head>
@@ -24,7 +23,7 @@
             </div>
 
             <div class="navbar">
-                <a href="../pages/sidebar.html">
+                <a href="../pages/summary.html">
                     <div class="sidebar-image-title-wrapper">
                         <img src="../assets/img/summery.png" alt="Summary Icon">
                         <span class="navbar-text">Summary</span>
@@ -75,7 +74,7 @@
                 <a href="../pages/legal-notice.html" class="menu-link">Legal Notice</a>
                 <a href="../pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
                 <a href="#" id="logout-button" onclick="logoutUser()" class="menu-link">Log Out</a>
-            </div>  
+            </div>
 
             <div class="board-container">
                 <!-- Board Header -->
@@ -92,23 +91,27 @@
 
                 <!-- Board -->
                 <div class="board-columns">
-                    <div class="board-column todo" id="todo-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+                    <div class="board-column todo" id="todo-tasks" ondragover="allowDrop(event)"
+                        ondrop="dropTask(event)">
                         <h2>To do</h2>
                         <div class="no-tasks"></div>
                     </div>
-                    
-                    <div class="board-column in-progress" id="in-progress-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+
+                    <div class="board-column in-progress" id="in-progress-tasks" ondragover="allowDrop(event)"
+                        ondrop="dropTask(event)">
                         <h2>In progress</h2>
                     </div>
-                    
-                    <div class="board-column await-feedback" id="await-feedback-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+
+                    <div class="board-column await-feedback" id="await-feedback-tasks" ondragover="allowDrop(event)"
+                        ondrop="dropTask(event)">
                         <h2>Await feedback</h2>
                     </div>
-                    
-                    <div class="board-column done" id="done-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+
+                    <div class="board-column done" id="done-tasks" ondragover="allowDrop(event)"
+                        ondrop="dropTask(event)">
                         <h2>Done</h2>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -149,7 +152,7 @@
                     <h1>Add Task</h1>
                 </div>
             </div>
-            
+
             <div class="add-task-wrapper">
                 <div class="left-side-wrapper">
                     <div class="input-fields-left-side">
@@ -158,18 +161,19 @@
                                 Title <span class="required-star-markers">*</span>
                             </p>
                             <div class="input-wrapper">
-                                <input type="text" placeholder="Enter title" id="title-input"/>
-                                <p class="error-message" id="title-error" style="display: none;">This field is required</p>
+                                <input type="text" placeholder="Enter title" id="title-input" />
+                                <p class="error-message" id="title-error" style="display: none;">This field is required
+                                </p>
                             </div>
                         </div>
-                        
+
                         <div class="decription-input-wrapper">
                             <p class="input-headers-margin-bottom">Description</p>
                             <div class="description-input">
-                                <input type="text" placeholder="Enter a Description" id="description-input"/>
+                                <input type="text" placeholder="Enter a Description" id="description-input" />
                             </div>
                         </div>
-                        
+
                         <div class="assigned-to-wrapper">
                             <p class="input-headers-margin-bottom">Assigned to</p>
                             <div id="assigned-to-dropdown">
@@ -194,8 +198,9 @@
                                 Due Date <span class="required-star-markers">*</span>
                             </p>
                             <div class="due-date-input">
-                                <input type="date" placeholder="dd/mm/yyyy" id="due-date-input"/>
-                                <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
+                                <input type="date" placeholder="dd/mm/yyyy" id="due-date-input" />
+                                <p class="error-message" id="due-date-error" style="display: none;">This field is
+                                    required</p>
                             </div>
                         </div>
 
@@ -215,12 +220,16 @@
                         </div>
 
                         <div class="category-input-wrapper">
-                            <p class="input-headers-margin-bottom">Category <span class="required-star-markers">*</span></p>
-                            <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
-                                <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
+                            <p class="input-headers-margin-bottom">Category <span class="required-star-markers">*</span>
+                            </p>
+                            <div class="category-input" id="category-input"
+                                onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
+                                <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select
+                                    task category</p>
                                 <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
                             </div>
-                            <p class="error-message" id="category-error" style="display: none;">This field is required</p>
+                            <p class="error-message" id="category-error" style="display: none;">This field is required
+                            </p>
                             <div id="category-input-content" class="d-none">
                                 <p onclick="changeCategoryInput('Technical Task')">Technical Task</p>
                                 <p onclick="changeCategoryInput('User Story')">User Story</p>
@@ -258,7 +267,7 @@
         </div>
     </div>
 
-    
+
 
 
 

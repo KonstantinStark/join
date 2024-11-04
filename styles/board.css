@@ -300,8 +300,9 @@ p {
     background-color: #39495f;
 }
 
-
-
+.d-none {
+    display: none;
+}
 
 
 /* Tasks Button */
