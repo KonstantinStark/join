@@ -174,7 +174,7 @@ function toggleRenderCategoryInput() {
 
 function toggleOverlayCreateButton() {
     let toggleOverlayRef = document.getElementById('overlay')
-    toggleOverlayRef.classList.toggle('d-none');
+    toggleOverlayRef.classList.toggle('d_none');
 }
 
 function prioButtonOnLoad() {
