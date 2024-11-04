@@ -61,23 +61,20 @@
                     <span class="headline-header">Kanban Project Management Tool</span>
                     <div class="header-icon">
                         <div class="header-responsiv-img-container">
-                            <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
                         </div>
                         <div class="header-responsiv-icon-container">
                             <a href="../pages/help-button.html">
                                 <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
                             </a>
-                            <img src="../assets/img/Group 5.svg" id="hamburger-toggle" onclick="toggleHamburgerMenu()">
+                            <div id="hamburger-toggle" class="hamburger-toggle" onclick="toggleHamburgerMenu()"></div>
                         </div>
                     </div>
                 </header>
-
+    
                 <div class="hamburger-menu d-none" id="hamburger-menu">
-                    <a href="../pages/legal-notice.html"
-                        class="menu-link">Legal Notice</a>
-                    <a href="../pages/privacy-notice.html"
-                        class="menu-link">Privacy Policy</a>
-                    <a href="#" id="logout-button" class="menu-link">Log Out</a>
+                    <a href="../pages/legal-notice.html" class="menu-link">Legal Notice</a>
+                    <a href="../pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
+                    <a href="#" id="logout-button" onclick="logoutUser()" class="menu-link">Log Out</a>
                 </div>
 
                 <div class="legal-notice">
@@ -138,8 +135,10 @@
                         damages arising from your use of Join.</p>
                 </div>
         </section>
-        <script src="../js/contacts.js"></script>
         <script src="../js/arrow.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="../js/contacts.js"></script>
+        <script src="../js/contact-template.js"></script>
     </body>
 
 </html>
