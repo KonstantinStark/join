@@ -17,6 +17,6 @@ function logoutUser() {
     window.location.href = "../pages/login.html";
 }
 
-// function toggleHamburgerMenu() {
-//     document.getElementById("hamburger-menu").classList.toggle("d-none");
-// }
+function toggleHamburgerMenu() {
+    document.getElementById("hamburger-menu").classList.toggle("d-none");
+}
