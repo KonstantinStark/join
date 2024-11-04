@@ -709,5 +709,19 @@ input::placeholder {
     border-radius: 15px 0 15px 15px;
 }
 
+.menu-link {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: "Inter-ExtraLight";
+    font-size: 14px;
+    margin: 10px;
+}
+
+.menu-link:hover {
+    background-color: #39495f;
+}
+
 
 
