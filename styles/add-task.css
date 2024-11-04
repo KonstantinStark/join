@@ -723,5 +723,15 @@ input::placeholder {
     background-color: #39495f;
 }
 
+.header-responsiv-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-help {
+    padding-top: 5px;
+}
+
 
 

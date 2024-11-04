@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userData && userData.initials) {
         hamburgerToggle.textContent = userData.initials;
     } else {
-        hamburgerToggle.textContent = "?";
+        hamburgerToggle.textContent = "Gst.";
     }
 });
 

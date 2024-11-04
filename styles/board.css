@@ -304,5 +304,16 @@ p {
     display: none;
 }
 
+.header-responsiv-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-help {
+    padding-top: 7px;
+}
+
+
 
 /* Tasks Button */
