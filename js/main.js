@@ -16,3 +16,7 @@ function logoutUser() {
     // Weiterleitung zur Login-Seite
     window.location.href = "../pages/login.html";
 }
+
+function toggleHamburgerMenu() {
+    document.getElementById("hamburger-menu").classList.toggle("d-none");
+}

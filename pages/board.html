@@ -59,8 +59,24 @@
         <div class="main">
             <header>
                 <span class="headline-header">Kanban Project Management Tool</span>
-                <img src="" alt="">
+                <div class="header-icon">
+                    <div class="header-responsiv-img-container">
+                    </div>
+                    <div class="header-responsiv-icon-container">
+                        <a href="../pages/help-button.html">
+                            <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
+                        </a>
+                        <div id="hamburger-toggle" class="hamburger-toggle" onclick="toggleHamburgerMenu()"></div>
+                    </div>
+                </div>
             </header>
+
+            <div class="hamburger-menu d-none" id="hamburger-menu">
+                <a href="../pages/legal-notice.html" class="menu-link">Legal Notice</a>
+                <a href="../pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
+                <a href="#" id="logout-button" class="menu-link">Log Out</a>
+            </div>  
+
             <div class="board-container">
                 <!-- Board Header -->
                 <div class="board-header">
@@ -249,6 +265,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
     <script src="../js/board.js"></script>
+    <script src="../js/main.js"></script>
 
 </body>
 
