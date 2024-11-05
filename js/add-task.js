@@ -422,7 +422,7 @@ function renderSubtasksEdit() {
         <li class="subtask-list-items">
             <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
             <div class="edit-images-subtasks-wrapper">
-            <img src="/assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
+            <img src="../assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
             <img onclick="removeSubtask(${index})" src="../assets/img/add-task/subtask-bin.svg" alt="Delete">
             </div>
         </li>`;
