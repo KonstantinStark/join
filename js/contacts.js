@@ -100,12 +100,27 @@ function loadData() {
     });
 }
 
+/* obsidian */
+
 function editContact(index) {
     let person = users[index];
     let editContactDiv = document.getElementById('edit-contacts');
     let initials = getInitials(person.name);
+    
+    // Update the content with the selected contact details
     editContactDiv.innerHTML = createEditContactTemplate(person, index, initials);
+
+    // Remove the 'active-contact' class from any other content container
+    let allContentContainers = document.querySelectorAll('.content-container');
+    allContentContainers.forEach(container => {
+        container.classList.remove('active-contact');
+    });
+
+    // Add 'active-contact' class to the clicked user's container
+    let selectedContainer = document.getElementById(`content-container-${index}`);
+    selectedContainer.classList.add('active-contact');
 }
+
 
 async function deleteContact(index) {
     let person = users[index];

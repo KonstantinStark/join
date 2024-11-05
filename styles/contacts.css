@@ -761,3 +761,15 @@ h2 {
         margin-top: 35px;
     }
 }
+
+/* obsidian */
+
+.content-container {
+    background-color: white; /* Default background */
+}
+
+.content-container.active-contact {
+    background-color:#2A3647; /* Background when a user is clicked */
+    color: white; /* Optional: change text color to white */
+    border-radius:10px;
+}
