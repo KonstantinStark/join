@@ -40,7 +40,6 @@
 .board-columns {
     display: flex;
     justify-content: space-between;
-    overflow-y: scroll;
     height: 630px;
 }
 
@@ -50,7 +49,8 @@
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    min-height: 5000px;
+    min-height: 500px;
+    overflow-y: scroll;
 }
 
 .board-column h2 {
@@ -141,20 +141,15 @@ p {
     align-items: center;
     font-size: 12px;
     color: white;
-    margin-right: 5px;
 }
 
-
-
-/* tasks Overlay */
-/* Overlay styling */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,9 +161,10 @@ p {
     padding: 20px;
     border-radius: 8px;
     width: 90%;
-    max-width: 400px;
+    max-width: 600px;
     position: relative;
     font-family: Arial, sans-serif;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .close-btn {
@@ -176,17 +172,18 @@ p {
     font-weight: bold;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
+    color: #e74c3c;
 }
 
 .task-category {
     background-color: #0056b3;
     color: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 5px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: inline-block;
     font-size: 14px;
 }
@@ -194,44 +191,47 @@ p {
 #overlay-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     line-height: 1.2;
+    color: #333;
 }
 
 p {
     font-size: 16px;
-    margin: 5px 0;
+    margin: 8px 0;
+    color: #666;
 }
 
 .assigned-contacts {
     display: flex;
-    gap: 8px;
-    margin-top: 5px;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .assigned-contacts span {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 50%;
     color: white;
+    background-color: #0052cc;
 }
 
 .subtasks-list {
     list-style: none;
     padding: 0;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .subtasks-list li {
     display: flex;
     align-items: center;
     font-size: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .subtasks-list input[type="checkbox"] {
@@ -240,25 +240,22 @@ p {
 
 .overlay-actions {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     margin-top: 20px;
+    justify-content: end;
 }
 
 .overlay-actions button {
     font-size: 16px;
     cursor: pointer;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    color: white;
+    transition: background-color 0.2s;
 }
 
-.overlay-actions button:first-child {
-    background-color: #e74c3c; /* Delete button color */
-}
-
-.overlay-actions button:last-child {
-    background-color: #3498db; /* Edit button color */
+.overlay-actions button:hover {
+    filter: brightness(90%);
 }
 
 .hamburger-toggle {
@@ -313,7 +310,3 @@ p {
 .header-help {
     padding-top: 7px;
 }
-
-
-
-/* Tasks Button */
