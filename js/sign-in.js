@@ -147,9 +147,8 @@ function pushDataToFirebase() {
     });
 }
 
-// Helper function to get initials from a name
 function getInitials(name) {
     return name.split(' ')
         .map(part => part.charAt(0).toUpperCase())
-        .join(''); // Join the initials without spaces
+        .join('');
 }

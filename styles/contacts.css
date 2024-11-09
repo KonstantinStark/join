@@ -42,8 +42,13 @@
 }
 
 .contact-text-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background-color: #f6f7f8;
     width: 100%;
+    padding: 0 32px;
+
 }
 
 .add-contact-btn-wrapper {
@@ -89,9 +94,11 @@
 .contact-text {
     display: flex;
     align-items: center;
+    justify-content: center;
+    align-content: center;
     gap: 30px;
     margin-top: 120px;
-    margin-left: 60px;
+    margin-bottom: 40px;
 }
 
 .contact-text h1 {
@@ -131,7 +138,11 @@
 }
 
 .d-none {
-    display: none;
+    display: none !important;
+}
+
+.d-flex {
+    display: flex !important;
 }
 
 h2 {
@@ -322,10 +333,8 @@ h2 {
 #edit-contacts {
     display: flex;
     flex-direction: column;
-    width: 500px;
     height: 500px;
     gap: 20px;
-    margin-left: 60px;
 }
 
 .delete-edit-contact-wrapper {
@@ -356,6 +365,10 @@ h2 {
     cursor: pointer;
 }
 
+.contact-list {
+    margin-top: 4rem;
+}
+
 .contact-list-wrapper h2 {
     color: black;
 }
@@ -367,8 +380,8 @@ h2 {
 }
 
 .load-data-container:hover {
-    background-color: #e9e9e9;
-    border-radius: 20px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
 }
 
 .load-data-container.active {
@@ -494,6 +507,8 @@ h2 {
     display: block;
 }
 
+
+
 @media(max-width: 940px) {
     .contact-text-wrapper {
         display: none;
@@ -538,7 +553,7 @@ h2 {
 @media (max-width: 907px) {
     .overlay-wrapper {
         flex-direction: column;
-        background-color: #cfcfcf;
+        background-color: #e4e4e4;
     }
 
     .overlay {
@@ -594,6 +609,18 @@ h2 {
 
     .input-icon {
         right: 32px;
+    }
+}
+
+@media (max-width: 630px) {
+    .contact-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .seperator {
+        display: none;
     }
 }
 
@@ -761,15 +788,18 @@ h2 {
         margin-top: 35px;
     }
 }
-
-/* obsidian */
+.name-email-contact-list-wrapper {
+    margin: 16px;
+}
 
 .content-container {
-    background-color: white; /* Default background */
+    display: flex;
+    padding: 12px;
+    background-color: white;
 }
 
 .content-container.active-contact {
-    background-color:#2A3647; /* Background when a user is clicked */
-    color: white; /* Optional: change text color to white */
-    border-radius:10px;
+    background-color: #2a36475a;
+    color: white;
+    border-radius: 10px;
 }

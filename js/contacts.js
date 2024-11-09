@@ -1,6 +1,15 @@
 let users = [];
+let isResponsive = false
+let isEditModeOn = false
+let contactTextWrapper = document.getElementById('contact-text-wrapper');
+let contactListWrapper = document.getElementById('contact-list-wrapper');
+window.onload = init;
 
 function init() {
+    window.onload = init;
+    const mediaQuery = window.matchMedia('(max-width: 940px)');
+    mediaQuery.addEventListener('change', handleMediaChange);
+    handleMediaChange(mediaQuery);
     loadUsers();
 }
 
@@ -75,17 +84,13 @@ function resetInputFields() {
 
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
-    contentListRef.innerHTML = ""; // Clear the current list
-
-    // Sort and display contacts
+    contentListRef.innerHTML = "";
     users.sort((a, b) => a.name.localeCompare(b.name));
     let currentLetter = '';
-    
+
     users.forEach((person, index) => {
         let initials = getInitials(person.name);
         let firstLetter = person.name.charAt(0).toUpperCase();
-        
-        // Render a new letter section when the initial changes
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             contentListRef.innerHTML += `
@@ -94,29 +99,32 @@ function loadData() {
                     <hr class="divider">
                 </div>`;
         }
-        
-        // Add the contact card
         contentListRef.innerHTML += createContactCard(person, index, initials);
     });
 }
 
-/* obsidian */
-
 function editContact(index) {
+    isEditModeOn = true
     let person = users[index];
     let editContactDiv = document.getElementById('edit-contacts');
     let initials = getInitials(person.name);
-    
-    // Update the content with the selected contact details
-    editContactDiv.innerHTML = createEditContactTemplate(person, index, initials);
 
-    // Remove the 'active-contact' class from any other content container
+
+    if (isResponsive) {
+        contactListWrapper.classList.add('d-none');
+        contactTextWrapper.classList.add('d-flex');
+        console.log("is res edit");
+
+    } else {
+        contactListWrapper.classList.remove('d-none');
+        contactListWrapper.classList.add('d-flex');
+    }
+
+    editContactDiv.innerHTML = createEditContactTemplate(person, index, initials);
     let allContentContainers = document.querySelectorAll('.content-container');
     allContentContainers.forEach(container => {
         container.classList.remove('active-contact');
     });
-
-    // Add 'active-contact' class to the clicked user's container
     let selectedContainer = document.getElementById(`content-container-${index}`);
     selectedContainer.classList.add('active-contact');
 }
@@ -126,16 +134,9 @@ async function deleteContact(index) {
     let person = users[index];
     try {
         let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, { method: "DELETE" });
-        
         if (response.ok) {
-            // Remove the contact from the local users array
-            users.splice(index, 1); // Remove the user from the users array
-            
-            // Re-render the contact list with the updated users array
+            users.splice(index, 1);
             loadData();
-
-            //obsidian
-
             let editContactsRef = document.getElementById('edit-contacts');
             editContactsRef.classList.add('d-none');
         }
@@ -195,7 +196,7 @@ function validateUserInput(user) {
     let emailRef = document.getElementById('email');
     let emailTextRef = document.getElementById('email-error-text');
     let phoneRef = document.getElementById('phone');
-    let phoneTextRef= document.getElementById('phone-error-text');
+    let phoneTextRef = document.getElementById('phone-error-text');
 
     const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -251,13 +252,34 @@ function oneClickContact() {
 
     if (screenWidth <= 940) {
         if (listWrapper && textWrapper) {
-            // Versteckt den `contact-list-wrapper`
             listWrapper.style.display = "none";
-
-            // Zeigt den `contact-text-wrapper` an
             textWrapper.style.display = "flex";
-            textWrapper.style.visibility = "visible"; // Testweise hinzufügen
-            textWrapper.style.opacity = "1";          // Testweise hinzufügen
+            textWrapper.style.visibility = "visible";
+            textWrapper.style.opacity = "1";
         }
+    }
+}
+
+
+function handleMediaChange(event) {
+    if (!event.matches) {
+        contactListWrapper.classList.remove('d-none');
+        contactListWrapper.classList.add('d-flex');
+        isResponsive = false
+    } else {
+        isResponsive = true
+        displayContactMobile(isEditModeOn)
+    }
+    console.log("============>>>>TEEEST is responsive ? ->", event.matches)
+    return event.matches
+}
+
+function displayContactMobile(isMobileMode) {
+    if (isMobileMode) {
+        console.log("should auto hide ");
+        contactListWrapper.classList.add('d-none');
+        contactTextWrapper.classList.add('d-flex');
+        contactListWrapper.classList.remove('d-flex');
+        contactTextWrapper.classList.remove('d-none');
     }
 }
