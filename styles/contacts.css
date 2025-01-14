@@ -153,7 +153,7 @@ h2 {
 .overlay-wrapper {
     display: flex;
     border-radius: 10px;
-    width: 1200px;
+    width: 90vw;
     background-color: white;
 
 }
@@ -207,24 +207,69 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 70px;
+    margin: 36px 0px;
     width: 453px;
 }
 
-.name-input {
+#name {
+    background-image: url('../assets/img/contacts-page/user.svg');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+    padding-left: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#name::placeholder {
+    color: #838383;
+    font-style: italic;
+}
+
+#email {
+    background-image: url('../assets/img/contacts-page/mail.svg');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+    padding-left: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#email::placeholder {
+    color: #838383;
+    font-style: italic;
+}
+
+#phone {
+    background-image: url('../assets/img/contacts-page/phone.svg');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+    padding-left: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#phone::placeholder {
+    color: #838383;
+    font-style: italic;
+}
+
+.input-fields {
     display: flex;
     flex-direction: column;
-    width: 422px;
-    height: 215px;
-    gap: 30px;
-    margin-top: 80px;
-    margin-left: 20px;
+    margin:16px;
 }
 
 .input-fields input {
     padding: 14px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    margin-bottom: 40px;
 }
 
 .input-fields input:hover {
@@ -239,6 +284,9 @@ h2 {
 .name-initials {
     width: 120px;
     height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .circle-wrapper {
@@ -282,10 +330,17 @@ h2 {
     gap: 10px;
 }
 
+.create-contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .create-contact-button button {
     width: 150px;
     background-color: #2a3647;
     color: white;
+    border-radius: 6px;
+    padding: 4px;
 }
 
 .edit-contact-button button {
@@ -298,24 +353,23 @@ h2 {
 
 .input-container {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .input-icon {
     position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 10px; 
     width: 20px;
-    height: auto;
+    height: 20px;
+    top: 14px;
 }
 
 .input-container input {
+    padding-right: 30px;
+    padding-left: 10px;
     width: 100%;
-    padding: 10px 40px 10px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
+    box-sizing: border-box;
 }
 
 .input-container input:focus {
@@ -507,7 +561,21 @@ h2 {
     display: block;
 }
 
+.name-email-contact-list-wrapper {
+    margin: 16px;
+}
 
+.content-container {
+    display: flex;
+    padding: 12px;
+    background-color: white;
+}
+
+.content-container.active-contact {
+    background-color: #2a36475a;
+    color: white;
+    border-radius: 10px;
+}
 
 @media(max-width: 940px) {
     .contact-text-wrapper {
@@ -578,10 +646,6 @@ h2 {
         margin-right: 0px;
     }
 
-    .exit-overlay {
-        margin-top: -118px;
-        display: none;
-    }
 
     .contact-wrapper img {
         display: none;
@@ -597,10 +661,6 @@ h2 {
         position: absolute;
         top: 0;
         left: 24%;
-    }
-
-    .name-input {
-        margin-top: 0px;
     }
 
     .input-container input {
@@ -631,11 +691,6 @@ h2 {
 
     .contact-wrapper {
         width: 380px;
-    }
-
-    .name-input {
-        width: 400px;
-        margin-top: 0px;
     }
 
     .overlay {
@@ -688,11 +743,6 @@ h2 {
         width: 350px;
     }
 
-    .name-input {
-        width: 390px;
-        margin-top: 0px;
-    }
-
     .overlay {
         height: 90vh;
         margin-top: 49px;
@@ -743,11 +793,6 @@ h2 {
         width: 295px;
     }
 
-    .name-input {
-        width: 302px;
-        margin-top: 0px;
-    }
-
     .overlay {
         height: 90vh;
         margin-top: 49px;
@@ -787,19 +832,4 @@ h2 {
     .buttons-form-wrapper {
         margin-top: 35px;
     }
-}
-.name-email-contact-list-wrapper {
-    margin: 16px;
-}
-
-.content-container {
-    display: flex;
-    padding: 12px;
-    background-color: white;
-}
-
-.content-container.active-contact {
-    background-color: #2a36475a;
-    color: white;
-    border-radius: 10px;
 }

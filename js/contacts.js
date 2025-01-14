@@ -3,6 +3,7 @@ let isResponsive = false
 let isEditModeOn = false
 let contactTextWrapper = document.getElementById('contact-text-wrapper');
 let contactListWrapper = document.getElementById('contact-list-wrapper');
+let userInitials = "";
 window.onload = init;
 
 function init() {
@@ -30,6 +31,8 @@ async function addUser() {
     await postData("/users", newUser);
     await loadUsers();
     closeOverlay();
+    let newUserIndex = users.findIndex(user => user.name === newUser.name);
+    editContact(newUserIndex);
 }
 
 function closeOverlay() {
@@ -67,7 +70,8 @@ async function loadUsers(path = '/users') {
 }
 
 function getInitials(name) {
-    return name.split(" ").map(part => part.charAt(0).toUpperCase()).join("");
+    userInitials = name.split(" ").map(part => part.charAt(0).toUpperCase()).join("");
+    return userInitials;
 }
 
 function getUserInput() {
@@ -87,7 +91,7 @@ function loadData() {
     contentListRef.innerHTML = "";
     users.sort((a, b) => a.name.localeCompare(b.name));
     let currentLetter = '';
-
+    console.log("users", users);
     users.forEach((person, index) => {
         let initials = getInitials(person.name);
         let firstLetter = person.name.charAt(0).toUpperCase();
@@ -127,6 +131,11 @@ function editContact(index) {
     });
     let selectedContainer = document.getElementById(`content-container-${index}`);
     selectedContainer.classList.add('active-contact');
+    let initialsContainer = document.getElementById(`name-initials`);
+    initialsContainer.innerHTML = `
+    <div style ="background-color: ${person.color}; height: 100px; width: 100px; border-radius: 100%; display: flex; align-items: center; justify-content: center;">
+                            <span style = "color: white; font-size: 24px; " >${initials}</span>
+                        </div>`
 }
 
 

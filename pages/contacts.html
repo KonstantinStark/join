@@ -129,22 +129,17 @@
                             <div class="input-fields">
                                 <div class="name-input">
                                     <div class="input-container">
-                                        <img src="../assets/img/person.svg" alt="User Icon" class="input-icon">
                                         <input required type="text" placeholder="Please enter your name" id="name">
                                     </div>
                                     <p class="error-message" id="name-error-text" style="display: none;">Enter valid
                                         name</p>
                                     <div class="input-container">
-                                        <img src="../assets/img/email-icon.png" alt="Email Icon" class="input-icon">
                                         <input required type="email" placeholder="Enter your e-mail" id="email">
-
                                     </div>
                                     <p class="error-message" id="email-error-text" style="display: none;">Enter vaild
                                         form like@this.email</p>
-                                    <div class="input-container">
-                                        <img src="../assets/img/call.svg" alt="Phone Icon" class="input-icon">
-                                        <input required type="tel" placeholder="Enter your phone number" id="phone">
-
+                                    <div class="input-container">                                        
+                                        <input required type="tel" placeholder="  Enter your phone number " id="phone">
                                     </div>
                                     <p class="error-message" id="phone-error-text" style="display: none;">Enter valid
                                         phonenumber</p>
@@ -152,21 +147,11 @@
                             </div>
                         </div>
 
-                        <div class="buttons-form-wrapper">
-                            <div class="cancel-button">
-                                <button type="button" onclick="exitOverlay()">
-                                    <div class="buttons-span-image-wrapper">
-                                        <span class="cancel-button-span">Cancel</span>
-                                        <img class="cancel-button-img" src="../assets/img/overlay/Close.png"
-                                            alt="Close Icon">
-                                    </div>
-                                </button>
-                            </div>
-
+                        
                             <div class="create-contact-button">
                                 <button type="button" onclick="addUser()">Create Contact</button>
                             </div>
-                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -184,8 +169,8 @@
                 </div>
 
                 <div class="circle-wrapper">
-                    <div class="name-initials">
-                        <img src="../assets/img/overlay/Group 13.png" alt="Initials Icon">
+                    <div class="name-initials" id="name-initials">
+                        
                     </div>
                 </div>
 
@@ -197,11 +182,9 @@
                             </div>
 
                             <div class="input-fields">
-                                <div class="name-input">
-                                    <input required type="text" placeholder="Please enter your name" id="edit-name">
-                                    <input required type="email" placeholder="Enter your e-mail" id="edit-email">
-                                    <input required type="tel" placeholder="Enter your phone number" id="edit-phone">
-                                </div>
+                                <input required type="text" placeholder="Please enter your name" id="edit-name">
+                                <input required type="email" placeholder="Enter your e-mail" id="edit-email">
+                                <input required type="tel" placeholder="Enter your phone number" id="edit-phone">
                             </div>
 
                             <div class="buttons-form-wrapper">

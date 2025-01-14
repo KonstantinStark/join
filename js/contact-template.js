@@ -12,10 +12,7 @@ function createContactCard(person, index, initials) {
     </div>
     `
 }
- // <svg width="100" height="100">
-        //     <circle id="circle-${index}" cx="50" cy="50" r="40" fill="${person.color}" />
-        //     <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="24">${initials}</text>
-        // </svg>
+ 
 function createEditContactTemplate(person, index, initials) {
     return `
    <div id="contact-${index}">
