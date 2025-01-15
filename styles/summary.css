@@ -1,5 +1,11 @@
 /* muss eigentlich global nachher sortieren obsidian  */
 
+a {
+
+    text-decoration: none !important;
+}
+
+
 .header-responsiv-img-container {
     padding-left: 20px;
 }
