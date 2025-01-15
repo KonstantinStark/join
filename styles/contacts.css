@@ -46,7 +46,7 @@
     align-items: center;
     flex-direction: column;
     background-color: #f6f7f8;
-    width: 100%;
+    width: 90%;
     padding: 0 32px;
 
 }
@@ -153,7 +153,6 @@ h2 {
 .overlay-wrapper {
     display: flex;
     border-radius: 10px;
-    width: 90vw;
     background-color: white;
 
 }
@@ -162,6 +161,7 @@ h2 {
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    padding-right: 8px;
 }
 
 .contact-wrapper {
@@ -205,8 +205,8 @@ h2 {
 
 .form-wrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 36px 0px;
     width: 453px;
 }
@@ -580,6 +580,7 @@ h2 {
 @media(max-width: 940px) {
     .contact-text-wrapper {
         display: none;
+        width: 100%;
     }
 
     .contact-list-wrapper {
@@ -709,7 +710,6 @@ h2 {
 
     .form-wrapper {
         width: 300px;
-        margin-top: 180px;
     }
 
     .buttons-form-wrapper {
@@ -759,7 +759,6 @@ h2 {
 
     .form-wrapper {
         width: 300px;
-        margin-top: 150px;
     }
 
     .buttons-form-wrapper {
@@ -795,7 +794,7 @@ h2 {
 
     .overlay {
         height: 90vh;
-        margin-top: 49px;
+        margin-top: 20px;
     }
 
     .input-container input {
@@ -808,8 +807,8 @@ h2 {
     }
 
     .form-wrapper {
-        width: 300px;
-        margin-top: 85px;
+        width: 280px;
+        margin-top: 0px;
     }
 
     .buttons-form-wrapper {
