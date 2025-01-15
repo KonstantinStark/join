@@ -626,7 +626,6 @@ h2 {
     }
 
     .overlay {
-        width: 50vw;
         background-color: transparent;
     }
 
@@ -790,6 +789,7 @@ h2 {
 
     .contact-wrapper {
         width: 295px;
+        height: 290px;
     }
 
     .overlay {
@@ -821,7 +821,7 @@ h2 {
     }
 
     .contact-wrapper h1 {
-        font-size: 35px;
+        font-size: 32px;
     }
 
     .contact-wrapper h2 {
