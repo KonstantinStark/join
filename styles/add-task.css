@@ -684,7 +684,8 @@ input::placeholder {
     width:440px;
     height:80px;
     overflow: scroll;
-    background-color: white;
+    overflow-x:hidden;
+    background-color: #F6F7F8;
     z-index:100;
 
 }
@@ -737,5 +738,52 @@ input::placeholder {
 .header-help {
     padding-top: 7px;
 }
+
+@media (max-width:1020px) {
+
+.add-task-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    overflow:scroll;
+    overflow-x:hidden;
+    
+}
+
+
+.right-side-wrapper {
+
+    margin-top:50px;
+    margin-left:0px;
+
+    
+}
+
+    .seperator-left-right-side {
+
+    display:none;
+}
+
+
+footer {
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:50%;
+    margin-left:5%;
+    margin-top:80px;
+    padding-left:20px;
+
+ }
+
+ .field-required {
+
+    display: none;
+ }
+
+
+}
+
 
 

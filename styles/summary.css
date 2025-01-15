@@ -635,7 +635,7 @@ text-align: center;
 
     display: flex;
     width:300px;
-    height:100px;
+    height:120px;
     border:1px solid lightgrey;
     margin-top:20px;
     border-radius:10px;
@@ -665,14 +665,14 @@ align-items: center;
 .tasks-progress,
 .tasks-board {
 
-    height:100px;
+    height:120px;
 
 
 }
 
 .urgent-left-side-inside-wrapper {
     width: 200px;
-    height: 100px;
+    height: 120px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -689,7 +689,7 @@ align-items: center;
 }
 
 .capital-numbers {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 800;
 }
 
