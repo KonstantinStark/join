@@ -302,9 +302,8 @@ h2 {
     display: flex;
     gap: 25px;
     width: 249px;
-    height: 57px;
-    margin-top: 46px;
-    margin-left: 20px;
+    align-content: center;
+    justify-content: center;
 }
 
 .buttons-form-wrapper button {
@@ -668,7 +667,7 @@ h2 {
     .overlay-section {
         position: absolute;
         top: 0;
-        left: 24%;
+        left: 0%;
     }
 
     .input-container input {
@@ -719,11 +718,6 @@ h2 {
         width: 300px;
     }
 
-    .buttons-form-wrapper {
-        margin-top: -0px;
-        margin-left: 86px;
-    }
-
     .error-message {
         margin-left: 66px;
     }
@@ -734,10 +728,6 @@ h2 {
 
     .contact-wrapper h2 {
         font-size: 20px;
-    }
-
-    .buttons-form-wrapper {
-        margin-top: 35px;
     }
 }
 
@@ -768,11 +758,6 @@ h2 {
         width: 300px;
     }
 
-    .buttons-form-wrapper {
-        margin-top: -0px;
-        margin-left: 75px;
-    }
-
     .error-message {
         margin-left: 66px;
     }
@@ -783,10 +768,6 @@ h2 {
 
     .contact-wrapper h2 {
         font-size: 20px;
-    }
-
-    .buttons-form-wrapper {
-        margin-top: 35px;
     }
 }
 
@@ -819,11 +800,6 @@ h2 {
         margin-top: 0px;
     }
 
-    .buttons-form-wrapper {
-        margin-top: -0px;
-        margin-left: 18px;
-    }
-
     .error-message {
         margin-left: 20px;
     }
@@ -834,9 +810,5 @@ h2 {
 
     .contact-wrapper h2 {
         font-size: 20px;
-    }
-
-    .buttons-form-wrapper {
-        margin-top: 35px;
     }
 }
