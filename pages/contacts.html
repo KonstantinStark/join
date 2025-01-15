@@ -90,6 +90,7 @@
                 </div>
 
                 <div class="contact-text-wrapper" id="contact-text-wrapper">
+
                     <div class="contact-text">
                         <h1>Contacts</h1>
                         <div class="seperator"></div>
@@ -97,6 +98,12 @@
                     </div>
 
                     <div id="edit-contacts"></div>
+                    <div class="arrow" style="display: none;">
+                        <a id="backButton">
+                            <img id="arrowIcon" onclick="goBack()" class="arrow" src="../assets/img/arrow-left-line.svg"
+                                alt="Back Arrow">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,7 +145,7 @@
                                     </div>
                                     <p class="error-message" id="email-error-text" style="display: none;">Enter vaild
                                         form like@this.email</p>
-                                    <div class="input-container">                                        
+                                    <div class="input-container">
                                         <input required type="tel" placeholder="  Enter your phone number " id="phone">
                                     </div>
                                     <p class="error-message" id="phone-error-text" style="display: none;">Enter valid
@@ -147,11 +154,11 @@
                             </div>
                         </div>
 
-                        
-                            <div class="create-contact-button">
-                                <button type="button" onclick="addUser()">Create Contact</button>
-                            </div>
-                        
+
+                        <div class="create-contact-button">
+                            <button type="button" onclick="addUser()">Create Contact</button>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -170,7 +177,7 @@
 
                 <div class="circle-wrapper">
                     <div class="name-initials" id="name-initials">
-                        
+
                     </div>
                 </div>
 

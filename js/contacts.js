@@ -269,7 +269,6 @@ function oneClickContact() {
     }
 }
 
-
 function handleMediaChange(event) {
     if (!event.matches) {
         contactListWrapper.classList.remove('d-none');
@@ -290,5 +289,12 @@ function displayContactMobile(isMobileMode) {
         contactTextWrapper.classList.add('d-flex');
         contactListWrapper.classList.remove('d-flex');
         contactTextWrapper.classList.remove('d-none');
+    }
+}
+
+function goBack() {
+    const contactTextWrapper = document.getElementById('contact-text-wrapper');
+    if (contactTextWrapper) {
+        contactTextWrapper.style.display = 'none';
     }
 }

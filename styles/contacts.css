@@ -262,7 +262,7 @@ h2 {
 .input-fields {
     display: flex;
     flex-direction: column;
-    margin:16px;
+    margin: 16px;
 }
 
 .input-fields input {
@@ -335,6 +335,7 @@ h2 {
     align-items: center;
     justify-content: center;
 }
+
 .create-contact-button button {
     width: 150px;
     background-color: #2a3647;
@@ -359,7 +360,7 @@ h2 {
 
 .input-icon {
     position: absolute;
-    right: 10px; 
+    right: 10px;
     width: 20px;
     height: 20px;
     top: 14px;
@@ -581,6 +582,7 @@ h2 {
     .contact-text-wrapper {
         display: none;
         width: 100%;
+        height: 90vh;
     }
 
     .contact-list-wrapper {
@@ -590,6 +592,12 @@ h2 {
 }
 
 @media (max-width: 940px) {
+    .arrow {
+        display: block!important;
+        padding-bottom: 80px;
+        cursor: pointer
+    }
+
     .add-contact-btn-wrapper {
         width: auto;
         height: auto;
