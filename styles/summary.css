@@ -25,7 +25,7 @@ a {
 
 .capital-numbers {
 
-    font-size:60px;
+    font-size:40px;
     font-weight: 800;
 }
 
@@ -73,7 +73,7 @@ a {
 
     /* width:264px;
     height:73px;  */
-    font-size: 64px;
+    font-size: 48px;
 
 }
  
@@ -88,6 +88,14 @@ a {
     height:60px;
     background-color: aqua;
     
+}
+
+.subheader-devider-mediaquery {
+
+    width:3px;
+    height:60px;
+    background-color: aqua;
+    display:none;
 }
 
 .left-side-wrapper {
@@ -340,7 +348,7 @@ text-align: center;
 
 .greeting-text {
 
-    font-size:40px;
+    font-size:30px;
 }
 
 #name-placeholder {
@@ -535,6 +543,151 @@ text-align: center;
 
 .header-help {
     padding-top: 7px;
+}
+
+@media(max-width: 1000px) {
+    .right-side-wrapper {
+
+      margin-left:50px;
+     }
+
+     .greeting-text {
+
+        font-size:30px;
+        
+    }
+    
+}
+
+
+
+@media(max-width: 880px) {
+    .right-side-wrapper {
+
+      display:none;
+     }
+    
+}
+
+
+@media(max-width: 600px) {
+    
+    
+.left-side-wrapper {
+
+
+    width:400px;
+    height:562px;
+    
+
+    }
+
+.to-do-done-wrapper {
+
+    display: flex;
+    gap:15px;
+}
+
+.urgent-container {
+
+    display: flex;
+    width:400px;
+    height:168px;
+    border:1px solid lightgrey;
+    margin-top:20px;
+    border-radius:10px;
+    
+} 
+
+.to-do,
+.done{
+
+    width: 45%;
+    margin-left:2.5%;
+    height: 150px;
+    border:1px solid lightgrey;
+    border-radius:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    }
+    
+
+}
+
+
+@media(max-width: 400px) {
+    
+    
+.left-side-wrapper {
+
+
+    width:300px;
+    height:562px;
+    
+
+    }
+
+.urgent-container {
+
+    display: flex;
+    width:300px;
+    height:168px;
+    border:1px solid lightgrey;
+    margin-top:20px;
+    border-radius:10px;
+    
+} 
+
+.to-do,
+.done{
+
+    width: 45%;
+    margin-left:2.5%;
+    height: 150px;
+    border:1px solid lightgrey;
+    border-radius:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    }
+
+    .to-do-inside-wrapper,
+    .done-inside-wrapper {
+
+        display: flex;
+        justify-content: center;
+        height:63px;
+        width:200px;
+        gap:4px;
+    }
+
+}
+
+@media (max-width:530px) {
+
+    .subheader {
+
+    flex-wrap:wrap;
+}
+
+.subheader-devider {
+   display:none;
+}
+
+.subheader-devider-mediaquery {
+
+    width:200px;
+    height:3px;
+    background-color: aqua;
+    display:block;
+    margin-top:20px;
+}
+
+
 }
 
 
