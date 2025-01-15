@@ -2,6 +2,8 @@
 .main {
 
     background-color: #F6F7F8;
+    height:100vh;
+
 }
 
 
@@ -750,7 +752,6 @@ input::placeholder {
     
 }
 
-
 .right-side-wrapper {
 
     margin-top:50px;
@@ -784,6 +785,8 @@ footer {
 
 
 }
+
+
 
 
 

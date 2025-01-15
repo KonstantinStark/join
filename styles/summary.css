@@ -5,6 +5,10 @@ a {
     text-decoration: none !important;
 }
 
+.main {
+
+    height:100vh;
+}
 
 .header-responsiv-img-container {
     padding-left: 20px;
@@ -15,9 +19,6 @@ a {
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 
 /* global classes */
@@ -46,8 +47,6 @@ a {
 }
 
 /* END global classes */
-
-
 
 .left-right-side-wrapper {
 
@@ -723,6 +722,7 @@ align-items: center;
     .subheader {
 
     flex-wrap:wrap;
+    margin-top:50px;
 }
 
 .subheader-devider {
@@ -736,6 +736,14 @@ align-items: center;
     background-color: aqua;
     display:block;
     margin-top:20px;
+}
+
+.left-right-side-wrapper {
+
+    display: flex;
+    margin-left:0%;
+    margin-top:5%;
+   
 }
 
 
