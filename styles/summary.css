@@ -545,6 +545,22 @@ text-align: center;
 }
 
 @media(max-width: 1000px) {
+
+    .subheader {
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .left-right-side-wrapper {
+
+        display: flex;
+        justify-content: center;
+        max-width:100%;
+        
+    }
+
+
     .right-side-wrapper {
 
       margin-left:50px;
@@ -619,14 +635,14 @@ text-align: center;
 
 @media(max-width: 410px) {
     
-    
+
 .left-side-wrapper {
 
 
     width:300px;
     height:562px;
     margin-top:50px;
-    
+  
 
     }
 
