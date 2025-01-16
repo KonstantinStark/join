@@ -290,6 +290,7 @@ function displayContactMobile(isMobileMode) {
 function goBackContacts() {
     const contactTextWrapper = document.getElementById('contact-text-wrapper');
     if (contactTextWrapper) {
-        contactTextWrapper.style.display = 'none';
+        contactListWrapper.classList.remove('d-none');
+        contactTextWrapper.classList.remove('d-flex');
     }
 }
