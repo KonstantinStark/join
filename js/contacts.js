@@ -134,7 +134,10 @@ async function deleteContact(index) {
             users.splice(index, 1);
             loadData();
             let editContactsRef = document.getElementById('edit-contacts');
-            editContactsRef.classList.add('d-none');
+            if (editContactsRef.classList.contains('d-none')) {
+                editContactsRef.classList.remove('d-none');
+            }
+            location.reload();
         }
     } catch (error) {
         console.error('Error:', error);
