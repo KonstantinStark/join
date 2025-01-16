@@ -479,6 +479,7 @@ input::placeholder {
     scrollbar-width: thin;
     scrollbar-color: #a8a8a8 transparent;
     padding:5px;
+    background-color: white;
  
 }
 
@@ -795,7 +796,80 @@ footer {
 
 }
 
+@media (max-width:500px) {
+
+ 
+.input-fields-left-side {
+
+   
+    margin-left:20%;
+}
+
+.input-fields-right-side {
+
+    margin-left:20%;
+}
+
+.right-side-wrapper {
+
+    margin-left:20%;
+    
+}
+
+    .add-task-wrapper {
+
+        width:600px;
+    }
+
+    input {
+
+        width:280px !important;
+    }
+
+    .assigned-to-toggle-button,
+    .category-input
+     {
+
+        width:280px;
+    }
+
+    .assigned-to-list,
+    .assigned-to-list-values {
+
+        width:260px;
+        
+    }
 
 
 
+    .prio-buttons-wrapper {
+        width: 280px;
+        height: 88px;
+        margin-bottom: 30px;
+    }
+
+    .prio-buttons button {
+        width: 100px;
+        height: 60px;
+        border-radius: 5px;
+        font-size: 20px;
+        border: none;
+        transition: background-color 0.3s;
+        cursor: pointer;
+        background-color: #f0f0f0;
+    }
+
+@media (max-width:360px) {
+
+    .input-fields-right-side {
+
+        margin-left:25%;
+    }
+
+}
+
+
+
+
+}
 
