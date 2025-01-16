@@ -840,7 +840,7 @@ footer {
     .category-input
      {
 
-        width:280px;
+        width:270px;
     }
 
     .assigned-to-list,
@@ -876,17 +876,17 @@ footer {
 
     .subtask-input-wrapper {
 
-        width:280px;
+        width:270px;
     }
 
     #subtask-list {
 
-        width:280px;
+        width:270px;
     }
 
 
     .subtask-list-items {
-        max-width:280px;
+        max-width:270px;
     }
     
     [id^="edited-input-value-subtask-"] {
@@ -897,12 +897,12 @@ footer {
     .due-date-input input,
     .subtask-input input{
 
-        width:280px !important;
+        width:270px !important;
     }
 
     .input-wrapper input {
 
-        width:280px;
+        width:270px;
     }
 
     .create-task-button {
@@ -921,12 +921,10 @@ footer {
 
     .input-fields-right-side {
 
-        margin-left:25%;
+        margin-left:22%;
     }
-
- 
-
 }
+
 
 
 

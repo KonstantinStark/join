@@ -86,6 +86,8 @@ function getSelectedAssignedUsers() {
     return assignedContacts;
 }
 
+
+
 // albert
 
 // function toggleCheckbox(userId) {
@@ -163,13 +165,6 @@ function handleClickOutside(event) {
 function toggleRenderCategoryInput() {
     let renderCategoryInputToggle = document.getElementById('category-input-content');
     renderCategoryInputToggle.classList.toggle('d-block');
-
-    // Add the event listener to detect clicks outside
-    if (renderCategoryInputToggle.classList.contains('d-block')) {
-        document.addEventListener('click', handleCategoryClickOutside);
-    } else {
-        document.removeEventListener('click', handleCategoryClickOutside);
-    }
 }
 
 function toggleOverlayCreateButton() {
@@ -283,6 +278,7 @@ function changeCategoryInput(selectedCategory) {
 document.getElementById('category-input-placeholder').addEventListener('click', function() {
     changeCategoryInput('Select task category');
 });
+
 
 // subtasks
 
