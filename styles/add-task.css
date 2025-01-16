@@ -745,11 +745,20 @@ input::placeholder {
 
 .add-task-wrapper {
 
+    max-width:100%;
+    align-items: center;
     display: flex;
     flex-direction: column;
     overflow:scroll;
     overflow-x:hidden;
     
+}
+
+.subheader {
+
+    display: flex;
+    max-width:100%;
+    justify-content: center;
 }
 
 .right-side-wrapper {
@@ -769,9 +778,9 @@ input::placeholder {
 footer {
 
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width:50%;
+    max-width:100%;
     margin-left:5%;
     margin-top:80px;
     padding-left:20px;
