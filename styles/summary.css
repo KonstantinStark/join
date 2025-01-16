@@ -46,6 +46,15 @@ a {
     background-color: #F6F7F8;
 }
 
+.done,
+.to-do,
+.urgent-container,
+.tasks-board,
+.tasks-progress,
+.feedback{
+    cursor: pointer;
+}
+
 /* END global classes */
 
 .left-right-side-wrapper {
