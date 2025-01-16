@@ -715,7 +715,7 @@ h2 {
     }
 
     .form-wrapper {
-        width: 376px;
+        width: 310px;
     }
 
     .error-message {
@@ -752,10 +752,6 @@ h2 {
 
     .input-icon {
         right: 34px;
-    }
-
-    .form-wrapper {
-        width: 347px;
     }
 
     .error-message {
