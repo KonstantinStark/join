@@ -291,3 +291,10 @@ function displayContactMobile(isMobileMode) {
         contactTextWrapper.classList.remove('d-none');
     }
 }
+
+function goBackContacts() {
+    const contactTextWrapper = document.getElementById('contact-text-wrapper');
+    if (contactTextWrapper) {
+        contactTextWrapper.style.display = 'none';
+    }
+}
