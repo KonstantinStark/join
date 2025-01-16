@@ -91,7 +91,6 @@ function loadData() {
     contentListRef.innerHTML = "";
     users.sort((a, b) => a.name.localeCompare(b.name));
     let currentLetter = '';
-    console.log("users", users);
     users.forEach((person, index) => {
         let initials = getInitials(person.name);
         let firstLetter = person.name.charAt(0).toUpperCase();
@@ -278,8 +277,6 @@ function handleMediaChange(event) {
         isResponsive = true
         displayContactMobile(isEditModeOn)
     }
-    console.log("============>>>>TEEEST is responsive ? ->", event.matches)
-    return event.matches
 }
 
 function displayContactMobile(isMobileMode) {

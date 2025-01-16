@@ -128,8 +128,6 @@ function pushDataToFirebase() {
         return response.json();
     })
     .then(data => {
-        console.log("Erfolgreich gespeichert:", data);
-        alert("Erfolgreich registriert!");
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
