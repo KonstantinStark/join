@@ -512,8 +512,6 @@ h2 {
 }
 
 @media(max-width: 1250px) {
-   
-
     .contact-list-wrapper {
         height: calc(100vh - 160px);
     }
@@ -523,7 +521,6 @@ h2 {
         flex-direction: column;
     }
 
-   
     .header-help .headline-header {
         display: none;
     }

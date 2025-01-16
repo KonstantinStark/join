@@ -50,10 +50,8 @@
             </div>
 
             <div class="privacy-legal-wrapper">
-                <a href="../pages/privacy-notice.html"><span
-                        class="footer-text">Privacy Policy</span></a>
-                <a href="../pages/legal-notice.html"><span
-                        class="footer-text">Legal Notice</span></a>
+                <a href="../pages/privacy-notice.html"><span class="footer-text">Privacy Policy</span></a>
+                <a href="../pages/legal-notice.html"><span class="footer-text">Legal Notice</span></a>
             </div>
         </div>
 
@@ -62,6 +60,7 @@
                 <span class="headline-header">Kanban Project Management Tool</span>
                 <div class="header-icon">
                     <div class="header-responsiv-img-container">
+                        <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
                     </div>
                     <div class="header-responsiv-icon-container">
                         <a href="../pages/help-button.html">
@@ -72,22 +71,23 @@
                 </div>
             </header>
 
+
             <div class="hamburger-menu d-none" id="hamburger-menu">
                 <a href="../pages/legal-notice.html" class="menu-link">Legal Notice</a>
                 <a href="../pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
                 <a href="#" id="logout-button" onclick="logoutUser()" class="menu-link">Log Out</a>
-            </div> 
+            </div>
 
             <div class="subheader">
-                
+
                 <h2 class="first-h2">Join 360</h2>
                 <div class="subheader-devider"></div>
                 <h2 class="second-h2">Key Metrics at a Glance
 
                     <div class="subheader-devider-mediaquery"></div>
-            
+
                 </h2>
-             
+
             </div>
 
             <div class="left-right-side-wrapper">
@@ -103,24 +103,26 @@
 
                                 <div class="to-do-icon">
                                     <img src="../assets/img/summery/edit.svg" class="edit-light" alt="Edit Light">
-                                    <img src="../assets/img/summery/edit-dark.svg" class="edit-dark d-none" alt="Edit Dark">
+                                    <img src="../assets/img/summery/edit-dark.svg" class="edit-dark d-none"
+                                        alt="Edit Dark">
                                 </div>
 
                                 <div class="to-do-icon-dark">
-                                    
+
                                 </div>
 
 
                                 <div class="to-do-placeholder-wrapper">
-                                    
-                                <div class="number-placeholder capital-numbers to-do-placeholder" id="toDoPlaceholder" >
-                                    p
+
+                                    <div class="number-placeholder capital-numbers to-do-placeholder"
+                                        id="toDoPlaceholder">
+                                        p
+                                    </div>
+
+
+
+                                    <div class="txt-font-adjustment">to-do</div>
                                 </div>
-
-                                
-
-                                <div class="txt-font-adjustment">to-do</div>
-                            </div>
 
 
 
@@ -133,20 +135,22 @@
                             <div class="done-inside-wrapper">
 
                                 <div class="done-icon">
-                                    <img src="../assets/img/summery/vector.svg" alt="" class="done-light"> <!-- Light icon shown by default -->
-                                    <img src="../assets/img/summery/vector-dark.svg" alt="" class="done-dark d-none"> <!-- Dark icon shown on hover -->
+                                    <img src="../assets/img/summery/vector.svg" alt="" class="done-light">
+                                    <!-- Light icon shown by default -->
+                                    <img src="../assets/img/summery/vector-dark.svg" alt="" class="done-dark d-none">
+                                    <!-- Dark icon shown on hover -->
                                 </div>
-                                
+
 
 
                                 <div class="done-placeholder-wrapper">
-                                    
-                                <div class="number-placeholder capital-numbers">
-                                    Z
-                                </div>
 
-                                <div class="txt-font-adjustment">done</div>
-                            </div>
+                                    <div class="number-placeholder capital-numbers">
+                                        Z
+                                    </div>
+
+                                    <div class="txt-font-adjustment">done</div>
+                                </div>
 
 
 
@@ -158,7 +162,7 @@
 
                     </div>
 
-                
+
                     <div class="urgent-container" onclick="window.location.href='../pages/board.html'">
 
                         <div class="urgent-left-side-inside-wrapper">
@@ -175,22 +179,22 @@
 
                                 <div class="txt-font-adjustment">Urgent</div>
 
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="urgent-seperator"></div>
 
-                    <div class="urgent-seperator"></div>
+                        <div class="urgent-right-side-inside-wrapper">
 
-                    <div class="urgent-right-side-inside-wrapper">
-
-                        <div class="urgent-date-placeholder" id="urgent-date-placeholder">
-                            placeholder
+                            <div class="urgent-date-placeholder" id="urgent-date-placeholder">
+                                placeholder
+                            </div>
+                            <div>Upcoming Deadline</div>
                         </div>
-                        <div>Upcoming Deadline</div>
-                    </div>
 
 
-        
+
                     </div>
 
                     <div class="three-bottom-container-wrapper">
@@ -237,21 +241,22 @@
 
 
                             </div>
-                            
+
                         </div>
 
 
 
                     </div>
                 </div>
-                
+
                 <div class="right-side-wrapper">
                     <div class="greetings-container">
-                        <h2 id="greeting-text" class="greeting-text"></h2> <!-- Added an id to the h2 for JavaScript to target -->
+                        <h2 id="greeting-text" class="greeting-text"></h2>
+                        <!-- Added an id to the h2 for JavaScript to target -->
                         <span id="name-placeholder"></span> <!-- Added a span to display the user's name -->
                     </div>
                 </div>
-                
+
 
             </div>
 
@@ -262,9 +267,8 @@
                     class="menu-link">Privacy Policy</a>
                 <a href="#" id="logout-button" class="menu-link">Log Out</a>
             </div> -->
-            
+
             <script src="../js/firebase.js"></script>
             <script src="../js/summary.js"></script>
             <script src="../js/main.js"></script>
 </body>
- 
