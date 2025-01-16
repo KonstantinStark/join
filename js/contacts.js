@@ -116,7 +116,6 @@ function editContact(index) {
     if (isResponsive) {
         contactListWrapper.classList.add('d-none');
         contactTextWrapper.classList.add('d-flex');
-        console.log("is res edit");
 
     } else {
         contactListWrapper.classList.remove('d-none');
@@ -281,7 +280,6 @@ function handleMediaChange(event) {
 
 function displayContactMobile(isMobileMode) {
     if (isMobileMode) {
-        console.log("should auto hide ");
         contactListWrapper.classList.add('d-none');
         contactTextWrapper.classList.add('d-flex');
         contactListWrapper.classList.remove('d-flex');
