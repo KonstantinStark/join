@@ -512,9 +512,7 @@ h2 {
 }
 
 @media(max-width: 1250px) {
-    .side-join-logo {
-        display: none;
-    }
+   
 
     .contact-list-wrapper {
         height: calc(100vh - 160px);
@@ -525,10 +523,7 @@ h2 {
         flex-direction: column;
     }
 
-    .privacy-legal-wrapper {
-        display: none;
-    }
-
+   
     .header-help .headline-header {
         display: none;
     }

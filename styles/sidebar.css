@@ -102,6 +102,16 @@ header {
         font-size: 15px;
     }
 
+    
+        .side-join-logo {
+            display: none;
+        }
+
+        .privacy-legal-wrapper {
+            display: none;
+        }
+    
+
     .navbar {
         display: flex;
         flex-direction: row;
