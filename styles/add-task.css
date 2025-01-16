@@ -693,6 +693,11 @@ input::placeholder {
 
 }
 
+.field-required-mediaquery {
+
+    display: none;
+}
+
 .hamburger-toggle {
     width: 50px;
     height: 50px;
@@ -793,6 +798,11 @@ footer {
     display: none;
  }
 
+  .field-required-mediaquery {
+
+        display: block;
+        margin-top:20px;
+    }
 
 }
 
@@ -821,10 +831,10 @@ footer {
         width:600px;
     }
 
-    input {
+    /* input {
 
         width:280px !important;
-    }
+    } */
 
     .assigned-to-toggle-button,
     .category-input
@@ -859,12 +869,62 @@ footer {
         background-color: #f0f0f0;
     }
 
+    #category-input-content {
+
+        width:260px;
+    }
+
+    .subtask-input-wrapper {
+
+        width:280px;
+    }
+
+    #subtask-list {
+
+        width:280px;
+    }
+
+
+    .subtask-list-items {
+        max-width:280px;
+    }
+    
+    [id^="edited-input-value-subtask-"] {
+        width: 180px !important;
+    }
+    
+    .description-input input,
+    .due-date-input input,
+    .subtask-input input{
+
+        width:280px !important;
+    }
+
+    .input-wrapper input {
+
+        width:280px;
+    }
+
+    .create-task-button {
+        width: 120px;
+        height: 60px;
+    }
+    
+    .clear-task-button {
+        width: 100px;
+        height: 60px;
+    }
+
+   
+    
 @media (max-width:360px) {
 
     .input-fields-right-side {
 
         margin-left:25%;
     }
+
+ 
 
 }
 
