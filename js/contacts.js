@@ -107,35 +107,24 @@ function loadData() {
 }
 
 function editContact(index) {
-    isEditModeOn = true
+    isEditModeOn = true;
     let person = users[index];
-    let editContactDiv = document.getElementById('edit-contacts');
     let initials = getInitials(person.name);
-
-
-    if (isResponsive) {
-        contactListWrapper.classList.add('d-none');
-        contactTextWrapper.classList.add('d-flex');
-
-    } else {
-        contactListWrapper.classList.remove('d-none');
-        contactListWrapper.classList.add('d-flex');
-    }
-
-    editContactDiv.innerHTML = createEditContactTemplate(person, index, initials);
-    let allContentContainers = document.querySelectorAll('.content-container');
-    allContentContainers.forEach(container => {
-        container.classList.remove('active-contact');
-    });
-    let selectedContainer = document.getElementById(`content-container-${index}`);
-    selectedContainer.classList.add('active-contact');
-    let initialsContainer = document.getElementById(`name-initials`);
-    initialsContainer.innerHTML = `
-    <div style ="background-color: ${person.color}; height: 100px; width: 100px; border-radius: 100%; display: flex; align-items: center; justify-content: center;">
-                            <span style = "color: white; font-size: 24px; " >${initials}</span>
-                        </div>`
+    toggleContactView();
+    document.getElementById('edit-contacts').innerHTML = createEditContactTemplate(person, index, initials);
+    document.querySelectorAll('.content-container').forEach(c => c.classList.remove('active-contact'));
+    document.getElementById(`content-container-${index}`).classList.add('active-contact');
+    document.getElementById('name-initials').innerHTML = `
+    <div style="background-color: ${person.color}; height: 100px; width: 100px; border-radius: 100%; display: flex; align-items: center; justify-content: center;">
+        <span style="color: white; font-size: 24px;">${initials}</span>
+    </div>`;
 }
 
+function toggleContactView() {
+    contactListWrapper.classList.toggle('d-none', isResponsive);
+    contactTextWrapper.classList.toggle('d-flex', isResponsive);
+    contactListWrapper.classList.toggle('d-flex', !isResponsive);
+}
 
 async function deleteContact(index) {
     let person = users[index];
@@ -185,8 +174,7 @@ async function saveUser(index) {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedUser),
-        });
-        if (response.ok) {
+        }); if (response.ok) {
             users[index] = { id: person.id, ...updatedUser };
             loadData();
             exitEditOverlay();
@@ -198,38 +186,24 @@ async function saveUser(index) {
 }
 
 function validateUserInput(user) {
-    let nameRef = document.getElementById('name');
-    let nameTextRef = document.getElementById('name-error-text');
-    let emailRef = document.getElementById('email');
-    let emailTextRef = document.getElementById('email-error-text');
-    let phoneRef = document.getElementById('phone');
-    let phoneTextRef = document.getElementById('phone-error-text');
-
-    const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9+\-\s]+$/;
-    if (!nameRegex.test(user.name)) {
-        nameRef.classList.add("error");
-        emailRef.classList.add("error");
-        phoneRef.classList.add("error");
-        nameTextRef.style.display = "block";
-        emailTextRef.style.display = "block";
-        phoneTextRef.style.display = "block";
-        return false;
-    }
-    if (!emailRegex.test(user.email)) {
-        emailRef.classList.add("error");
-        phoneRef.classList.add("error");
-        emailTextRef.style.display = "block";
-        phoneTextRef.style.display = "block";
-        return false;
-    }
-    if (!phoneRegex.test(user.phone)) {
-        phoneRef.classList.add("error");
-        phoneTextRef.style.display = "block";
-        return false;
-    }
+    let refs = {
+        name: document.getElementById('name'),
+        email: document.getElementById('email'),
+        phone: document.getElementById('phone'),
+        nameText: document.getElementById('name-error-text'),
+        emailText: document.getElementById('email-error-text'),
+        phoneText: document.getElementById('phone-error-text')
+    };
+    if (!/^[a-zA-ZäöüÄÖÜß\s]+$/.test(user.name)) return setErrorState([refs.name, refs.email, refs.phone], [refs.nameText, refs.emailText, refs.phoneText]);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)) return setErrorState([refs.email, refs.phone], [refs.emailText, refs.phoneText]);
+    if (!/^[0-9+\-\s]+$/.test(user.phone)) return setErrorState([refs.phone], [refs.phoneText]);
     return true;
+}
+
+function setErrorState(inputs, texts) {
+    inputs.forEach(el => el.classList.add("error"));
+    texts.forEach(el => el.style.display = "block");
+    return false;
 }
 
 function exitEditOverlay() {
