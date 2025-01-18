@@ -2,14 +2,19 @@ let users = [];
 let selectedPrioButton = '';
 let subtasksArray = [];
 let assignedContacts  = [];
+let isValid = true; // to validate input fields 
 
 console.log(loadUsers());
+
+//loads medium as initial seleted prio button
 
 function init() {
 
     prioButtonOnLoad()
     
 }
+
+// get users from database 
 
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
@@ -31,6 +36,9 @@ async function loadUsers() {
     console.log(users);
     renderAssignedToInput();
 }
+
+
+// title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions
 
 // due date calendar functions
 
@@ -357,30 +365,13 @@ function resetInputFields() {
 
 }
 
-// validates all inputs at the end
+// validates all inputs which have a labeled as mandatory
 
-function validateForm() {
-    let dueDate = document.getElementById("due-date-input").value;
-    let category = document.getElementById("category-input-placeholder").innerHTML;
+function validateTitle() {
     let title = document.getElementById("title-input").value;
-
-    let isValid = true;
-
-    let dueDateInput = document.getElementById("due-date-input");
-    let dueDateError = document.getElementById("due-date-error");
-    const dueDateTest = dueDateInput.value.trim();
-    
-    if (dueDate === "" || isNaN(new Date(dueDate).getTime())) {
-        dueDateInput.classList.add("error");
-        dueDateError.style.display = "block";
-        isValid = false;
-    } else {
-        dueDateInput.classList.remove("error");
-        dueDateError.style.display = "none";
-    }
-
     let titleInput = document.getElementById("title-input");
     let titleError = document.getElementById("title-error");
+
     if (title === "") {
         titleInput.classList.add("error");
         titleError.style.display = "block";
@@ -389,9 +380,30 @@ function validateForm() {
         titleInput.classList.remove("error");
         titleError.style.display = "none";
     }
+}
 
+function validateDueDate() {
+    let dueDate = document.getElementById("due-date-input").value;
+    let dueDateInput = document.getElementById("due-date-input");
+    let dueDateError = document.getElementById("due-date-error");
+
+    const dueDateTest = dueDateInput.value.trim();
+
+    if (dueDate === "" || isNaN(new Date(dueDate).getTime())) {
+        dueDateInput.classList.add("error");
+        dueDateError.style.display = "block";
+        isValid = false;
+    } else {
+        dueDateInput.classList.remove("error");
+        dueDateError.style.display = "none";
+    }
+}
+
+function validateCategory() {
+    let category = document.getElementById("category-input-placeholder").innerHTML;
     let categoryInput = document.getElementById("category-input");
     let categoryError = document.getElementById("category-error");
+
     if (category === "Select task category") {
         categoryInput.classList.add("error");
         categoryError.style.display = "block";
@@ -400,14 +412,21 @@ function validateForm() {
         categoryInput.classList.remove("error");
         categoryError.style.display = "none";
     }
+}
 
+function validateForm() {
+    // Reset isValid to true for each form validation attempt
+    isValid = true;
+
+    // Call validation functions for each field
+    validateDueDate();
+    validateTitle();
+    validateCategory();
+
+    // After validating, check if the form is valid
     if (isValid) {
         addNewArrayFromInputs();
-      
-       
-    } else {
-        console.log("Form is not valid. Please fill in all required fields.");
-    }
+    } 
 }
 
 // takes all inputs and saves them to the database
