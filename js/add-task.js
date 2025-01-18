@@ -32,40 +32,25 @@ async function loadUsers() {
     renderAssignedToInput();
 }
 
-// onchange value merken für checkbox, dass hat den unterschied gemacht
+// due date calendar functions
 
-function renderAssignedToInput() {
-    let assignedToList = document.getElementById("assigned-to-list");
-    assignedToList.innerHTML = "";
-
-    for (let i = 0; i < users.length; i++) {
-        let user = users[i];
-
-        assignedToList.innerHTML += /*html*/`
-            <div class="assigned-to-list-values" onclick="toggleCheckbox(${user.id})">
-                <div class="assigned-to-list-values-image-name">
-                    <p>
-                        <svg width="40" height="40">
-                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
-                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                                ${user.initials}
-                            </text>
-                        </svg>
-                    </p>
-                    <p>${user.name}</p>
-                </div>
-                <input id="checkbox-assign-to-${user.id}" type="checkbox" class="assign-checkbox" value="${user.id}" onchange="getSelectedAssignedUsers()">
-            </div>
-        `;
-    } 
+function showCalendar() {
+    // Focus on the date input field to show the calendar
+    document.getElementById("calender-icon").click();
 }
 
-// Function to toggle the checkbox state when the assigned-to list div is clicked
+function updateDateInput() {
+    const dateInput = document.getElementById("calender-icon");
+    const formattedDate = new Date(dateInput.value).toLocaleDateString('en-GB'); // Format date to dd/mm/yyyy
+    dateInput.value = formattedDate; // Update input with formatted date
+}
 
+
+// function to render assigned to input field
 
 function renderAssignedToInput() {
-    let assignedToList = document.getElementById("assigned-to-list");
-    assignedToList.innerHTML = "";
+let assignedToList = document.getElementById("assigned-to-list");
+assignedToList.innerHTML = "";
 
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
@@ -90,6 +75,7 @@ function renderAssignedToInput() {
 }
 
 // Function to toggle the checkbox state and handle clicking on the list item
+
 function toggleCheckbox(clickedElement) {
     const checkbox = clickedElement.closest('.assigned-to-list-values').querySelector('input[type="checkbox"]');
     
@@ -100,7 +86,8 @@ function toggleCheckbox(clickedElement) {
     getSelectedAssignedUsers();
 }
 
-// Function to collect all selected users and update UI
+// Function to collect all selected users in assignedContacts array, change background color and returns it in the end 
+
 function getSelectedAssignedUsers() {
     assignedContacts = [];
     const checkboxes = document.querySelectorAll('.assign-checkbox');
@@ -119,25 +106,7 @@ function getSelectedAssignedUsers() {
     return assignedContacts;
 }
 
-
-
-// albert
-
-// function toggleCheckbox(userId) {
-//     // Get the checkbox element using the user ID
-//     const checkbox = document.getElementById(`checkbox-assign-to-${userId}`);
-    
-//     // If the checkbox exists, toggle its checked state
-//     if (checkbox) {
-//         checkbox.checked = !checkbox.checked; // Toggle the checkbox state
-        
-//         // Call the function to update selected assigned users
-//         getSelectedAssignedUsers(); 
-//     }
-// }
-
-
-// const user = users.find(u => u.id === contactId); nochmal erklären lassen, hängt aber mit den anderen 2 funktion ab 
+// takes the global assignedContacts array and renders the selected users below the input field
 
 function renderAssignedToInputCheckedBelow() {
     let renderAssignedToInputCheckedBelowRef = document.getElementById('assigned-to-input-svg-below');
@@ -158,7 +127,7 @@ function renderAssignedToInputCheckedBelow() {
     }
 }
 
-// obsidian
+// function to toggle the assigned to list 
 
 function toggleAssignedToList() {
     let toggleAssignedToListRef = document.getElementById('assigned-to-input');
@@ -176,8 +145,7 @@ function toggleAssignedToList() {
     document.addEventListener('click', handleClickOutside);
 }
 
-// obsidian
-
+//function to close it when clicking ouside the container
 
 function handleClickOutside(event) {
     const assignedToList = document.getElementById('assigned-to-input');
@@ -193,17 +161,15 @@ function handleClickOutside(event) {
     }
 }
 
-// obsidian
+// toggles arrow icon when container is clicked
 
-function toggleRenderCategoryInput() {
-    let renderCategoryInputToggle = document.getElementById('category-input-content');
-    renderCategoryInputToggle.classList.toggle('d-block');
-}
+document.querySelector('.assigned-to-toggle-button').addEventListener('click', function() {
+    let imgElement = this.querySelector('img');
+    imgElement.classList.toggle('rotate');
+});
 
-function toggleOverlayCreateButton() {
-    let toggleOverlayRef = document.getElementById('overlay')
-    toggleOverlayRef.classList.toggle('d_none');
-}
+
+// functions for the three different priority buttons
 
 function prioButtonOnLoad() {
 
@@ -226,74 +192,20 @@ function setPrioButton(prio) {
     }
 }
 
-async function addNewArrayFromInputs() {
-    let assignedContacts  = getSelectedAssignedUsers();  
+
+// category input field functions
+
+function toggleRenderCategoryInput() {
+    let renderCategoryInputToggle = document.getElementById('category-input-content');
+    renderCategoryInputToggle.classList.toggle('d-block');
     
-    let newTask = {
-        title: document.getElementById("title-input").value,
-        description: document.getElementById("description-input").value,
-        assignedContacts : assignedContacts,  
-        prioButton:selectedPrioButton,
-        dueDate: document.getElementById("due-date-input").value,
-        category: document.getElementById("category-input-placeholder").innerHTML,
-        subtasks: subtasksArray,
-    };
-
-    try {
-        await postData(`/tasks`, newTask);
-        console.log("Task successfully added:", newTask);
-    } catch (error) {
-        console.error("Error adding task:", error);
-    }
-
-
-    toggleOverlayCreateButton();
-    window.location.href = 'board.html';
-}
-
-async function postData(path = "", data = {}) {
-    await fetch(FIREBASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+    // Close the dropdown if clicking outside of the container
+    document.addEventListener('click', function(event) {
+        const categoryInputWrapper = document.getElementById('category-input');
+        if (!categoryInputWrapper.contains(event.target)) {
+            renderCategoryInputToggle.classList.remove('d-block'); // Close the dropdown
+        }
     });
-}
-
-function resetInputFields() {
-    document.getElementById("title-input").value = "";
-    document.getElementById("description-input").value = "";
-    document.getElementById("assigned-to-input").value = "";
-    document.getElementById("assigned-to-list").value = "";
-    document.getElementById("due-date-input").value = "";
-    document.getElementById("subtask-input").value = "";
-    document.getElementById('urgent-button').classList.remove('active', 'urgent');
-    document.getElementById('medium-button').classList.remove('active', 'medium');
-    document.getElementById('low-button').classList.remove('active', 'low');
-
-   
-    assignedContacts.splice(0, assignedContacts.length);
-    renderAssignedToInputCheckedBelow();
-
-    const checkboxes = document.querySelectorAll('.assign-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-        checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black');
-    });
-
-    prioButtonOnLoad();
-
-    const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
-    categoryInputPlaceholderRef.innerHTML = "Select task category";
-
-    
-
-    subtasksArray.splice(0, subtasksArray.length);
-    renderSubtasks();
-    let subtaskList = document.getElementById('subtasks-list')
-    subtaskList.classList.add('d-none');
-
 }
 
 function changeCategoryInput(selectedCategory) {
@@ -312,84 +224,15 @@ document.getElementById('category-input-placeholder').addEventListener('click', 
     changeCategoryInput('Select task category');
 });
 
-
-// subtasks
-
-
-// document.getElementById('calendar-icon').addEventListener('click', function() {
-//     let currentDate = new Date();
-
-//     let day = String(currentDate.getDate()).padStart(2, '0');
-//     let month = String(currentDate.getMonth() + 1).padStart(2, '0');
-//     let year = currentDate.getFullYear();
-
-//     let formattedDate = `${day}/${month}/${year}`;
-
-//     document.getElementById('due-date-input').value = formattedDate;
-// });
-
-document.querySelector('.assigned-to-toggle-button').addEventListener('click', function() {
-    let imgElement = this.querySelector('img');
-    imgElement.classList.toggle('rotate');
-});
+// toggles arrow icon when container is clicked
 
 function toggleRotate() {
     let img = document.getElementById('category-icon');
     img.classList.toggle('rotate');
 }
 
-function validateForm() {
-    let dueDate = document.getElementById("due-date-input").value;
-    let category = document.getElementById("category-input-placeholder").innerHTML;
-    let title = document.getElementById("title-input").value;
 
-    let isValid = true;
-
-    let dueDateInput = document.getElementById("due-date-input");
-    let dueDateError = document.getElementById("due-date-error");
-    const dueDateTest = dueDateInput.value.trim();
-    
-    if (dueDate === "" || isNaN(new Date(dueDate).getTime())) {
-        dueDateInput.classList.add("error");
-        dueDateError.style.display = "block";
-        isValid = false;
-    } else {
-        dueDateInput.classList.remove("error");
-        dueDateError.style.display = "none";
-    }
-
-    let titleInput = document.getElementById("title-input");
-    let titleError = document.getElementById("title-error");
-    if (title === "") {
-        titleInput.classList.add("error");
-        titleError.style.display = "block";
-        isValid = false;
-    } else {
-        titleInput.classList.remove("error");
-        titleError.style.display = "none";
-    }
-
-    let categoryInput = document.getElementById("category-input");
-    let categoryError = document.getElementById("category-error");
-    if (category === "Select task category") {
-        categoryInput.classList.add("error");
-        categoryError.style.display = "block";
-        isValid = false;
-    } else {
-        categoryInput.classList.remove("error");
-        categoryError.style.display = "none";
-    }
-
-    if (isValid) {
-        addNewArrayFromInputs();
-      
-       
-    } else {
-        console.log("Form is not valid. Please fill in all required fields.");
-    }
-}
-
-// subtask scheiß  document.getElementById('subtask-input').focus(); sonst konnte man ins input feld nicht tippen, obsidian
+//subtasks functions
 
 function renderEntrySubtask() {
     let subtaskContainer = document.getElementById('subtask-container');
@@ -467,6 +310,7 @@ function updateSubtask(index) {
     }
 }
 
+// clears subtasksArray
 
 function emptySubtaskArrayFull() {
 
@@ -478,13 +322,129 @@ function emptySubtaskArrayFull() {
 
 }
 
-function showCalendar() {
-    // Focus on the date input field to show the calendar
-    document.getElementById("calender-icon").click();
+// resets all input fields when clicking the clear button
+
+function resetInputFields() {
+    document.getElementById("title-input").value = "";
+    document.getElementById("description-input").value = "";
+    document.getElementById("assigned-to-input").value = "";
+    document.getElementById("assigned-to-list").value = "";
+    document.getElementById("due-date-input").value = "";
+    document.getElementById("subtask-input").value = "";
+    document.getElementById('urgent-button').classList.remove('active', 'urgent');
+    document.getElementById('medium-button').classList.remove('active', 'medium');
+    document.getElementById('low-button').classList.remove('active', 'low');
+
+   
+    assignedContacts.splice(0, assignedContacts.length);
+    renderAssignedToInputCheckedBelow();
+
+    const checkboxes = document.querySelectorAll('.assign-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black');
+    });
+
+    prioButtonOnLoad();
+
+    const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
+    categoryInputPlaceholderRef.innerHTML = "Select task category";
+
+    subtasksArray.splice(0, subtasksArray.length);
+    renderSubtasks();
+    let subtaskList = document.getElementById('subtasks-list')
+    subtaskList.classList.add('d-none');
+
 }
 
-function updateDateInput() {
-    const dateInput = document.getElementById("calender-icon");
-    const formattedDate = new Date(dateInput.value).toLocaleDateString('en-GB'); // Format date to dd/mm/yyyy
-    dateInput.value = formattedDate; // Update input with formatted date
+// validates all inputs at the end
+
+function validateForm() {
+    let dueDate = document.getElementById("due-date-input").value;
+    let category = document.getElementById("category-input-placeholder").innerHTML;
+    let title = document.getElementById("title-input").value;
+
+    let isValid = true;
+
+    let dueDateInput = document.getElementById("due-date-input");
+    let dueDateError = document.getElementById("due-date-error");
+    const dueDateTest = dueDateInput.value.trim();
+    
+    if (dueDate === "" || isNaN(new Date(dueDate).getTime())) {
+        dueDateInput.classList.add("error");
+        dueDateError.style.display = "block";
+        isValid = false;
+    } else {
+        dueDateInput.classList.remove("error");
+        dueDateError.style.display = "none";
+    }
+
+    let titleInput = document.getElementById("title-input");
+    let titleError = document.getElementById("title-error");
+    if (title === "") {
+        titleInput.classList.add("error");
+        titleError.style.display = "block";
+        isValid = false;
+    } else {
+        titleInput.classList.remove("error");
+        titleError.style.display = "none";
+    }
+
+    let categoryInput = document.getElementById("category-input");
+    let categoryError = document.getElementById("category-error");
+    if (category === "Select task category") {
+        categoryInput.classList.add("error");
+        categoryError.style.display = "block";
+        isValid = false;
+    } else {
+        categoryInput.classList.remove("error");
+        categoryError.style.display = "none";
+    }
+
+    if (isValid) {
+        addNewArrayFromInputs();
+      
+       
+    } else {
+        console.log("Form is not valid. Please fill in all required fields.");
+    }
 }
+
+// takes all inputs and saves them to the database
+
+async function addNewArrayFromInputs() {
+    let assignedContacts  = getSelectedAssignedUsers();  
+    
+    let newTask = {
+        title: document.getElementById("title-input").value,
+        description: document.getElementById("description-input").value,
+        assignedContacts : assignedContacts,  
+        prioButton:selectedPrioButton,
+        dueDate: document.getElementById("due-date-input").value,
+        category: document.getElementById("category-input-placeholder").innerHTML,
+        subtasks: subtasksArray,
+    };
+
+    try {
+        await postData(`/tasks`, newTask);
+        console.log("Task successfully added:", newTask);
+    } catch (error) {
+        console.error("Error adding task:", error);
+    }
+
+    window.location.href = 'board.html';
+}
+
+async function postData(path = "", data = {}) {
+    await fetch(FIREBASE_URL + path + ".json", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+}
+
+
+
+
