@@ -63,26 +63,59 @@ function renderAssignedToInput() {
 // Function to toggle the checkbox state when the assigned-to list div is clicked
 
 
+function renderAssignedToInput() {
+    let assignedToList = document.getElementById("assigned-to-list");
+    assignedToList.innerHTML = "";
+
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+
+        assignedToList.innerHTML += /*html*/`
+            <div class="assigned-to-list-values" data-user-id="${user.id}">
+                <div class="assigned-to-list-values-image-name" onclick="toggleCheckbox(this)">
+                    <p>
+                        <svg width="40" height="40">
+                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
+                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
+                                ${user.initials}
+                            </text>
+                        </svg>
+                    </p>
+                    <p>${user.name}</p>
+                </div>
+                <input id="checkbox-assign-to-${user.id}" type="checkbox" class="assign-checkbox" value="${user.id}" onchange="getSelectedAssignedUsers()">
+            </div>
+        `;
+    }
+}
+
+// Function to toggle the checkbox state and handle clicking on the list item
+function toggleCheckbox(clickedElement) {
+    const checkbox = clickedElement.closest('.assigned-to-list-values').querySelector('input[type="checkbox"]');
+    
+    // Toggle checkbox state
+    checkbox.checked = !checkbox.checked;
+    
+    // Call to update the background color and selected users
+    getSelectedAssignedUsers();
+}
+
+// Function to collect all selected users and update UI
 function getSelectedAssignedUsers() {
     assignedContacts = [];
     const checkboxes = document.querySelectorAll('.assign-checkbox');
-  
 
     checkboxes.forEach(checkbox => {
         let assignedToValue = checkbox.closest('.assigned-to-list-values');
         
         if (checkbox.checked) {
             assignedContacts.push(checkbox.value);
-            assignedToValue.classList.add('bg-color-black');
-            assignedToValue.classList.add('.bg-color-black:hover');
-
+            assignedToValue.classList.add('bg-color-black'); // Add bg color for checked checkbox
         } else {
-            assignedToValue.classList.remove('bg-color-black');
+            assignedToValue.classList.remove('bg-color-black'); // Remove bg color for unchecked checkbox
         }
     });
 
-  
-    
     return assignedContacts;
 }
 
