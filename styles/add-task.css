@@ -673,6 +673,15 @@ footer {
 
 @media (max-width:1020px) {
 
+.wrapper-content-main {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
 .add-task-wrapper {
 
     max-width:100%;
