@@ -6,7 +6,6 @@
 
 }
 
-
 .placeholder-text-non-input-tag-fields {
 
     font-size:20px; 
@@ -47,7 +46,7 @@ input::placeholder {
 .subheader {
 
     
-    width:976.25px;
+    width:980px;
     margin-top:60px;
     margin-bottom:20px;
 
@@ -56,8 +55,8 @@ input::placeholder {
 .subheader-wrapper {
 
     font-size:32px;
-    width:278px;
-    height:73px;
+    width:280px;
+    height:80px;
     margin-left:10%;
    
 }
@@ -77,15 +76,15 @@ input::placeholder {
 
     display: flex;
     justify-content: space-around;
-    width:976.25px;
-    height:426px;
+    width:980px;
+    height:430px;
     margin-left:5%;
 }
 
 .seperator-left-right-side {
 
     width:1px;
-    height:424px;
+    height:430px;
     background-color: #29ABE2; 
     
 }
@@ -96,27 +95,41 @@ input::placeholder {
 
     display: flex;
     flex-direction: column;
-    height:376px;
+    height:380px;
     width:440px; 
     margin-right:15px;
-    
+}
+
+.input-fields-left-side input{
+
+    width:440px;
+    height:50px;
     
 }
+
 
 .title-input-wrapper {
 
     width:440px;
-    height:96px;
+    height:100px;
     margin-bottom:10px;
 }
+
+/* description */
 
 .decription-input-wrapper {
 
     width:440px;
-    height:168px;
+    height:170px;
     margin-bottom:10px;
 }
 
+.description-input input {
+
+    height:120px !important;
+    text-align: top;
+
+}
 
 .assigned-to-wrapper {
 
@@ -128,7 +141,7 @@ input::placeholder {
 .assigned-to-toggle-button {
 
     width:440px;
-    height:48px;
+    height:50px;
     border:1px solid grey;
     border-radius:5px;
     display: flex;
@@ -151,20 +164,64 @@ input::placeholder {
     padding:10px;
 }
 
+/* js */
 
-.description-input input {
-
-    height:120px !important;
-    text-align: top;
+.assigned-to-list {
+    max-height: 200px;  /* Limit the height of the list to make it scrollable */
+    overflow-y: auto;   /* Enable vertical scroll */
+    border: 1px solid #ccc;  /* Optional: Add border to make the container visible */
+    z-index:100; 
+    position:relative;  
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 transparent;
+    padding:5px;
+    background-color: white;
 
 }
 
-.input-fields-left-side input{
-
-    width:440px;
-    height:48px;
-    
+.assigned-to-list-values {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 410px;
+    height: 40px;
+    background-color: white;
+    margin-bottom: 10px; 
+    padding-right:20px;
+    cursor:pointer;
 }
+
+.assigned-to-list-values-image-name {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+   
+}
+
+.assigned-to-list-values {
+
+    border-radius:5px;
+    font-size: 20px;
+}
+
+.bg-color-black {
+
+    background-color: #2A3647;
+    color:white;
+}
+
+.bg-color-black:hover {
+
+    background-color: #2A3647;
+}
+
+#assigned-to-input-svg-below {
+
+    margin-left:10px;
+}
+
+
+
 
 /* right side */
 
@@ -174,7 +231,7 @@ input::placeholder {
     flex-direction: column;
     align-items: center;
     width:440px;
-    height:416px;
+    height:420px;
     margin-left:20px;
     
 }
@@ -182,14 +239,16 @@ input::placeholder {
 .input-fields-right-side input{
 
     width:440px;
-    height:48px;
+    height:50px;
    
 }
+
+/* due date */
 
 .due-date-wrapper {
 
     width:440px;
-    height:96px;
+    height:100px;
     margin-bottom:10px;
 }
 
@@ -199,8 +258,6 @@ input::placeholder {
     color:grey;
     
 }
-
-/* save obsidian  */
 
 .due-date-input {
     position: relative;
@@ -217,19 +274,15 @@ input::placeholder {
     width: 20px; /* Adjust icon size */
     height: 20px; /* Adjust icon size */
     cursor: pointer;
-    
+
 }
-/* 
-.prio-buttons-header {
 
-    margin-top:40px;
-
-} */
+/* prio buttons */
 
 .prio-buttons-wrapper {
 
     width:440px;
-    height:88px;
+    height:90px;
     margin-bottom:30px;
 }
 
@@ -240,11 +293,10 @@ input::placeholder {
     gap:20px;
 }
 
-
 .prio-buttons button {
 
-    width:136px;
-    height:56px;
+    width:140px;
+    height:60px;
     border-radius:5px;
     font-size: 20px;
     border:none;
@@ -289,7 +341,7 @@ input::placeholder {
 .category-input {
 
     width:440px;
-    height:48px;
+    height:50px;
     border-radius: 5px;
     border:1px solid grey;
     display: flex;
@@ -307,7 +359,6 @@ input::placeholder {
     transition: transform 0.3s ease;
     
 }
-
 
  #category-input-content {
 
@@ -338,13 +389,10 @@ input::placeholder {
 }
 
 
- 
-
  .category-input:focus {
     outline: none;  /* Removes the default blue outline */
     border: 2px solid #29ABE2;  /* Changes the border when focused */
 }
-
 
 
 .subtask-input-wrapper {
@@ -388,7 +436,7 @@ input::placeholder {
 }
 
 
- footer {
+footer {
 
     display:flex;
     justify-content: space-between;
@@ -397,17 +445,17 @@ input::placeholder {
     margin-left:5%;
     margin-top:80px;
     padding-left:20px;
-   
-    
- }
 
- .clear-create-buttons-wrapper {
 
-    display: flex;
-    gap:20px;
- }
+}
 
- .create-task-button {
+.clear-create-buttons-wrapper {
+
+display: flex;
+gap:20px;
+}
+
+.create-task-button {
 
     width:183px;
     height:56px;
@@ -419,11 +467,11 @@ input::placeholder {
     display: flex;
     align-items: center;
     gap:10px;
-    
- }
 
- 
- .clear-task-button {
+}
+
+
+.clear-task-button {
 
     width:110px;
     height:56px;
@@ -432,68 +480,9 @@ input::placeholder {
     display: flex;
     align-items: center;
     gap:10px;
-    
- }
 
-
-
-
- /* js templates  */
-
-/* 
- .assigned-to-list-values {
-
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    width:440px;
-    height:50px;
-    z-index:100; */
-    /* position:relative;  scheint wichtig zu sein für z index obsidian */
-    /* background-color: white;
-   */
- /* }
- .assigned-to-list-values input {
-
-    width:15px;
-    height:15px;
-    
- }
-
- .assigned-to-list-values-image-name {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:20px;
- } */
-
- /* position-relative scheint wichtig zu sein für z index obsidian */
-
- .assigned-to-list {
-    max-height: 200px;  /* Limit the height of the list to make it scrollable */
-    overflow-y: auto;   /* Enable vertical scroll */
-    border: 1px solid #ccc;  /* Optional: Add border to make the container visible */
-    z-index:100; 
-    position:relative;  
-    scrollbar-width: thin;
-    scrollbar-color: #a8a8a8 transparent;
-    padding:5px;
-    background-color: white;
- 
 }
 
-.assigned-to-list-values {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 410px;
-    height: 40px;
-    background-color: white;
-    margin-bottom: 10px; 
-    padding-right:20px;
-    cursor:pointer;
-}
 
 
 /* tabindex="0" added to html to make :focus work on non-input / button field obsidian */
@@ -523,40 +512,8 @@ input::placeholder {
    
 }
 
-.assigned-to-list-values-image-name {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-   
-}
 
-.assigned-to-list-values {
-
-    border-radius:5px;
-    font-size: 20px;
-}
-
-.bg-color-black {
-
-    background-color: #2A3647;
-    color:white;
-}
-
-.bg-color-black:hover {
-
-    background-color: #2A3647;
-}
-
-#assigned-to-input-svg-below {
-
-    margin-left:10px;
-}
-
- 
- 
  /* task added to board overlay  */
-
-
 
  .overlay {
 
@@ -603,19 +560,19 @@ input::placeholder {
 
 .input-wrapper {
     margin-bottom: 15px;
-  }
-  
-  .error {
+}
+
+.error {
     border: 1px solid red;
-  }
-  
-  .error-message {
+}
+
+.error-message {
     color: red;
     font-size: 12px;
     margin-top: 5px;
-  }
+}
 
-  /* subtask js */
+/* subtask js */
 
 #subtask-container {
     display: flex;
@@ -698,7 +655,10 @@ input::placeholder {
     display: none;
 }
 
+/* elements for header */
+
 .hamburger-toggle {
+
     width: 50px;
     height: 50px;
     border: 2px solid black;
@@ -757,7 +717,7 @@ input::placeholder {
     flex-direction: column;
     overflow:scroll;
     overflow-x:hidden;
-    
+    max-height:400px;
 }
 
 .subheader {
@@ -769,17 +729,15 @@ input::placeholder {
 
 .right-side-wrapper {
 
-    margin-top:50px;
+    margin-top:40px;
     margin-left:0px;
-
-    
+    margin-right:10px;
 }
 
-    .seperator-left-right-side {
+.seperator-left-right-side {
 
     display:none;
 }
-
 
 footer {
 
@@ -791,143 +749,114 @@ footer {
     margin-top:80px;
     padding-left:20px;
 
- }
+}
 
- .field-required {
+.field-required {
 
     display: none;
- }
+}
 
-  .field-required-mediaquery {
+.field-required-mediaquery {
 
-        display: block;
-        margin-top:20px;
-    }
+    display: block;
+    margin-top:20px;
+}
 
 }
 
 @media (max-width:500px) {
 
- 
-.input-fields-left-side {
 
-   
-    margin-left:20%;
-}
+.right-side-wrapper,
+.left-side-wrapper {
 
-.input-fields-right-side {
-
-    margin-left:20%;
-}
-
-.right-side-wrapper {
-
-    margin-left:20%;
-    
-}
-
-    .add-task-wrapper {
-
-        width:600px;
-    }
-
-    /* input {
-
-        width:280px !important;
-    } */
-
-    .assigned-to-toggle-button,
-    .category-input
-     {
-
-        width:270px;
-    }
-
-    .assigned-to-list,
-    .assigned-to-list-values {
-
-        width:260px;
-        
-    }
-
-
-
-    .prio-buttons-wrapper {
-        width: 280px;
-        height: 88px;
-        margin-bottom: 30px;
-    }
-
-    .prio-buttons button {
-        width: 100px;
-        height: 60px;
-        border-radius: 5px;
-        font-size: 20px;
-        border: none;
-        transition: background-color 0.3s;
-        cursor: pointer;
-        background-color: #f0f0f0;
-    }
-
-    #category-input-content {
-
-        width:260px;
-    }
-
-    .subtask-input-wrapper {
-
-        width:270px;
-    }
-
-    #subtask-list {
-
-        width:270px;
-    }
-
-
-    .subtask-list-items {
-        max-width:270px;
-    }
-    
-    [id^="edited-input-value-subtask-"] {
-        width: 180px !important;
-    }
-    
-    .description-input input,
-    .due-date-input input,
-    .subtask-input input{
-
-        width:270px !important;
-    }
-
-    .input-wrapper input {
-
-        width:270px;
-    }
-
-    .create-task-button {
-        width: 120px;
-        height: 60px;
-    }
-    
-    .clear-task-button {
-        width: 100px;
-        height: 60px;
-    }
-
-   
-    
-@media (max-width:360px) {
-
-    .input-fields-right-side {
-
-        margin-left:22%;
-    }
+   margin-left:150px;
 }
 
 
+.add-task-wrapper {
 
-
+    max-width:320px;
+    width:100%;
 
 }
 
+.assigned-to-toggle-button,
+.category-input
+    {
+
+    width:270px;
+}
+
+.assigned-to-list,
+.assigned-to-list-values {
+
+    width:260px;
+    
+}
+
+.prio-buttons-wrapper {
+    width: 280px;
+    height: 88px;
+    margin-bottom: 30px;
+}
+
+.prio-buttons button {
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+#category-input-content {
+
+    width:260px;
+}
+
+.subtask-input-wrapper {
+
+    width:270px;
+}
+
+#subtask-list {
+
+    width:270px;
+}
+
+
+.subtask-list-items {
+    max-width:270px;
+}
+
+[id^="edited-input-value-subtask-"] {
+    width: 180px !important;
+}
+
+.description-input input,
+.due-date-input input,
+.subtask-input input{
+
+    width:270px !important;
+}
+
+.input-wrapper input {
+
+    width:270px;
+}
+
+.create-task-button {
+    width: 120px;
+    height: 60px;
+}
+
+.clear-task-button {
+    width: 100px;
+    height: 60px;
+}
+
+
+}
