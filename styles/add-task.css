@@ -4,6 +4,7 @@
     background-color: #F6F7F8;
     height:100vh;
     overflow-x: hidden; /* Prevent horizontal scrolling */
+   
 
 }
 
@@ -31,6 +32,7 @@ input {
     width:440px;
     height:50px;
     width:100%;
+    color:black !important;
      
 }
 
@@ -674,15 +676,15 @@ footer {
 
 @media (max-width:1020px) {
 
-.wrapper-content-main {
+    .wrapper-content-main {
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-    
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        
+    }
 
 .add-task-wrapper {
 
@@ -691,7 +693,10 @@ footer {
     align-items: center;
     overflow:scroll;
     overflow-x:hidden;
-    max-height:400px;
+    max-width:500px;
+    margin:0 auto;
+    
+    
    
 }
 
@@ -739,36 +744,164 @@ footer {
 
 }
 
+
+
+@media (max-width: 500px) {
+
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper,
+    #subtask-list,
+    .prio-buttons {
+        width: 90% !important;
+    }
+
+    .prio-buttons{
+
+        display: flex;
+        justify-content: center;
+        
+    }
+
+ 
+    .prio-buttons button {
+        width: 30%;
+        height:50px;
+        margin-bottom: 30px;
+    }
+     
+}
+
+@media (max-width: 450px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    #subtask-list{
+        width: 85% !important;
+
+    }
+
+    .prio-buttons button {
+        width: 25%;
+        height:50px;
+        margin-bottom: 30px;
+    }
+
+  
+     
+
+     
+}
+
+@media (max-width: 400px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    #subtask-list{
+        width: 80% !important;
+    }
+
+    .prio-buttons button {
+        width: 20%;
+        height:50px;
+        margin-bottom: 30px;
+    }
+
+   
+}
+
+@media (max-width: 360px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper,
+    #subtask-list{
+        width: 75% !important;
+    }
+
+    .prio-buttons button {
+        width: 15%;
+        height:50px;
+        margin-bottom: 30px;
+    }
+}
+
+
+@media (max-width: 360px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper {
+        width: 70% !important;
+    }
+
+    .prio-buttons button {
+        width: 10%;
+        height:50px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 340px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper {
+        width: 65% !important;
+    }
+}
+
+@media (max-width: 320px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper {
+        width: 60% !important;
+
+    }
+
+
+}
+
+/* 
+.create-task-button {
+    width: 120px;
+    height: 60px;
+}
+
+.clear-task-button {
+    width: 100px;
+    height: 60px;
+} */
+
+
 /* @media (max-width:500px) {
 
 
-.right-side-wrapper,
-.left-side-wrapper {
 
-   margin-left:150px;
-}
-
-
-.add-task-wrapper {
-
-    max-width:320px;
-    width:100%;
-
-}
-
-.assigned-to-toggle-button,
-.category-input
-    {
-
-    width:270px;
-}
-
-.assigned-to-list,
-.assigned-to-list-values {
-
-    width:260px;
-    
-}
 
 .prio-buttons-wrapper {
     width: 280px;
@@ -776,16 +909,6 @@ footer {
     margin-bottom: 30px;
 }
 
-.prio-buttons button {
-    width: 100px;
-    height: 60px;
-    border-radius: 5px;
-    font-size: 20px;
-    border: none;
-    transition: background-color 0.3s;
-    cursor: pointer;
-    background-color: #f0f0f0;
-}
 
 #category-input-content {
 
@@ -807,160 +930,12 @@ footer {
     max-width:270px;
 }
 
-[id^="edited-input-value-subtask-"] {
-    width: 180px !important;
-}
 
-.description-input input,
-.due-date-input input,
-.subtask-input input{
 
-    width:270px !important;
-}
-
-.input-wrapper input {
-
-    width:270px;
-}
-
-.create-task-button {
-    width: 120px;
-    height: 60px;
-}
-
-.clear-task-button {
-    width: 100px;
-    height: 60px;
-}
 
 } */
 
-@media(max-width:500px) {
 
-
-
-input {
-
-    max-width:90%;;
-}
-
-.assigned-to-toggle-button,
-.category-input,
-.assigned-to-list,
-.assigned-to-list-values
-{
-
-    width:90%;
-}
-
-.prio-buttons-wrapper {
-    width: 90%;
-    margin-bottom: 30px;
-}
-
-.add-task-wrapper {
-
-    margin-left:20%;
-}
-
-
-
-
-}
-
-@media(max-width:450px) {
-
-input {
-
-    max-width:80%;;
-}
-
-.assigned-to-toggle-button,
-.category-input,
-.assigned-to-list,
-.assigned-to-list-values
-{
-
-    width:80%;
-}
-
-.add-task-wrapper {
-
-    margin-left:20%;
-}
-
-}
-
-
-@media(max-width:400px) {
-
-    input {
-
-        max-width:70%
-        
-    }
-
-    .add-task-wrapper {
-
-        margin-left:110px;;
- 
-    }
-
-    .assigned-to-toggle-button,
-.category-input,
-.assigned-to-list,
-.assigned-to-list-values
-{
-
-    width:80%;
-}
-
-
-}
-
-@media(max-width:360px) {
-
-    input {
-
-        max-width:65%
-        
-    }
-  
-    .add-task-wrapper {
-
-        margin-left:160px;
-        
-    }
-
-    .assigned-to-toggle-button,
-    .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values
-    {
-    
-        width:65%;
-    }
-    
-    
-
-}
-
-/* @media(max-width:380px) {
-
-    input {
-
-        max-width:50%;
-        
-    }
-
-    .add-task-wrapper {
-
-        margin-left:120px;;
-
-       
-    }
-
-} */
 
 
 
