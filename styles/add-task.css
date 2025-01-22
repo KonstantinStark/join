@@ -330,7 +330,7 @@ input::placeholder {
 
 .prio-buttons button {
 
-    width:140px;
+    width:33%;
     height:60px;
     border-radius:5px;
     font-size: 20px;
@@ -751,6 +751,14 @@ footer {
     margin-top:20px;
 }
 
+.prio-buttons button {
+
+    height:auto;
+    min-height:60px;
+     
+ }
+
+
 }
 
 @media (max-width: 500px) {
@@ -769,10 +777,14 @@ footer {
     }
 
     .prio-buttons button {
-        width: 40%;
-        height:50px;
-        margin-bottom: 30px;
-    }
+
+        height:auto;
+        min-height:none;
+         
+     }
+    
+
+   
      
 }
 
@@ -794,11 +806,7 @@ footer {
 
     }
 
-    .prio-buttons button {
-        width: 35%;
-        height:50px;
-        margin-bottom: 30px;
-    }
+  
   
 }
 
@@ -816,11 +824,6 @@ footer {
         width: 80% !important;
     }
 
-    .prio-buttons button {
-        width: 25%;
-        height:50px;
-        margin-bottom: 30px;
-    }
 
 }
 
@@ -837,11 +840,7 @@ footer {
         width: 75% !important;
     }
 
-    .prio-buttons button {
-        width: 20%;
-        height:50px;
-        margin-bottom: 30px;
-    }
+
 }
 
 
@@ -851,6 +850,7 @@ footer {
     .category-input,
     .assigned-to-list,
     .assigned-to-list-values,
+    .prio-buttons,
     #category-input-content,
     .subtask-input-wrapper {
         width: 70% !important;
@@ -864,6 +864,7 @@ footer {
     .category-input,
     .assigned-to-list,
     .assigned-to-list-values,
+    .prio-buttons,
     #category-input-content,
     .subtask-input-wrapper {
         width: 65% !important;
@@ -889,6 +890,34 @@ footer {
         font-size:var(--font-size-responsive)
     }
 
+    .create-task-button {
+
+        width:120px;
+        height:60px;
+        border-radius:5px;
+        margin-right:20px;
+         font-size:var(--font-size-responsive);
+        background-color: #2A3647;
+        color:white;
+        display: flex;
+        align-items: center;
+        gap:10px;
+    
+    }
+    
+    .clear-task-button {
+    
+        width:90px;
+        height:60px;
+        border-radius:5px;
+        font-size:var(--font-size-responsive);
+        display: flex;
+        align-items: center;
+        gap:10px;
+    
+    }
+
+
 }
 
 @media (max-width: 320px) {
@@ -898,6 +927,7 @@ footer {
     .category-input,
     .assigned-to-list,
     .assigned-to-list-values,
+    .prio-buttons,
     #category-input-content,
     .subtask-input-wrapper
     #subtasks-list {
