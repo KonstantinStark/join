@@ -57,30 +57,15 @@ function updateDateInput() {
 // function to render assigned to input field
 
 function renderAssignedToInput() {
-let assignedToList = document.getElementById("assigned-to-list");
-assignedToList.innerHTML = "";
+    let assignedToList = document.getElementById("assigned-to-list");
+    assignedToList.innerHTML = ""; // Clear existing content
 
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
-
-        assignedToList.innerHTML += /*html*/`
-            <div class="assigned-to-list-values" data-user-id="${user.id}">
-                <div class="assigned-to-list-values-image-name" onclick="toggleCheckbox(this)">
-                    <p>
-                        <svg width="40" height="40">
-                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
-                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                                ${user.initials}
-                            </text>
-                        </svg>
-                    </p>
-                    <p>${user.name}</p>
-                </div>
-                <input id="checkbox-assign-to-${user.id}" type="checkbox" class="assign-checkbox" value="${user.id}" onchange="getSelectedAssignedUsers()">
-            </div>
-        `;
+        assignedToList.innerHTML += generateUserHTML(user); // Use the template function
     }
 }
+
 
 // Function to toggle the checkbox state and handle clicking on the list item
 
@@ -124,16 +109,12 @@ function renderAssignedToInputCheckedBelow() {
         const contactId = assignedContacts[i];
         const user = users.find(u => u.id === contactId);  // Find the user by ID in `users`
 
-        renderAssignedToInputCheckedBelowRef.innerHTML += /*html*/`
-            <svg width="40" height="40">
-                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
-                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                                ${user.initials}
-                            </text>
-            </svg>
-        `;
+        if (user) {
+            renderAssignedToInputCheckedBelowRef.innerHTML += generateUserSVG(user); // Use the SVG template function
+        }
     }
 }
+
 
 // function to toggle the assigned to list 
 
@@ -244,20 +225,12 @@ function toggleRotate() {
 
 function renderEntrySubtask() {
     let subtaskContainer = document.getElementById('subtask-container');
-    
-    subtaskContainer.innerHTML = /*html*/`
-        <div id="subtask-container-js">
-            <input type="text" id="subtask-input" name="subtask" placeholder="Subtask" id="subtask-input">
-            <div id="subtask-container-js-images">
-                <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">
-                <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
-            </div>
-        </div>
-    `;
+    subtaskContainer.innerHTML = generateEntrySubtaskHTML(); // Use the template function
 
     // Focus the input field
     document.getElementById('subtask-input').focus();
 }
+
 
 function addSubtaskToArray() {
     let subtaskInput = document.getElementById("subtask-input").value; 
@@ -276,38 +249,26 @@ function removeSubtask(index) {
 
 function renderSubtasks() {
     let subtasksList = document.getElementById("subtasks-list");
-    subtasksList.innerHTML = ""; 
+    subtasksList.innerHTML = ""; // Clear previous subtasks
 
     subtasksArray.forEach((subtask, index) => {
-        subtasksList.innerHTML +=  /*html*/ `
-        <li class="subtask-list-items" >${subtask} 
-        <div class="subtask-list-items-img-wrapper">
-        <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="">
-        <img onclick="removeSubtask(${index})"src="../assets/img/add-task/subtask-bin.svg" alt="">
-        </div>
-        
-        </li>`;
+        subtasksList.innerHTML += generateSubtaskHTML(subtask, index); // Use the template function
     });
 
-    let subtaskList = document.getElementById('subtasks-list')
-    subtaskList.classList.remove('d-none');
+    // Ensure the subtasks list is visible
+    subtasksList.classList.remove('d-none');
 }
+
 
 function renderSubtasksEdit() {
     let subtasksList = document.getElementById("subtasks-list");
-    subtasksList.innerHTML = ""; 
+    subtasksList.innerHTML = ""; // Clear previous subtasks
 
     subtasksArray.forEach((subtask, index) => {
-        subtasksList.innerHTML += /*html*/ `
-        <li class="subtask-list-items">
-            <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
-            <div class="edit-images-subtasks-wrapper">
-            <img src="../assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
-            <img onclick="removeSubtask(${index})" src="../assets/img/add-task/subtask-bin.svg" alt="Delete">
-            </div>
-        </li>`;
+        subtasksList.innerHTML += generateSubtaskEditHTML(subtask, index); // Use the template function
     });
 }
+
 
 function updateSubtask(index) {
     let editedInputValueSubtaskRef = document.getElementById(`edited-input-value-subtask-${index}`);
