@@ -291,20 +291,24 @@ function emptySubtaskArrayFull() {
 
 }
 
-// resets all input fields when clicking the clear button
+// reset functions for all fields
 
-function resetInputFields() {
+function resetTextInputs() {
     document.getElementById("title-input").value = "";
     document.getElementById("description-input").value = "";
     document.getElementById("assigned-to-input").value = "";
     document.getElementById("assigned-to-list").value = "";
     document.getElementById("due-date-input").value = "";
     document.getElementById("subtask-input").value = "";
+}
+
+function resetPriorityButtons() {
     document.getElementById('urgent-button').classList.remove('active', 'urgent');
     document.getElementById('medium-button').classList.remove('active', 'medium');
     document.getElementById('low-button').classList.remove('active', 'low');
+}
 
-   
+function resetAssignedContacts() {
     assignedContacts.splice(0, assignedContacts.length);
     renderAssignedToInputCheckedBelow();
 
@@ -313,18 +317,30 @@ function resetInputFields() {
         checkbox.checked = false;
         checkbox.closest('.assigned-to-list-values').classList.remove('bg-color-black');
     });
+}
 
-    prioButtonOnLoad();
-
+function resetCategoryPlaceholder() {
     const categoryInputPlaceholderRef = document.getElementById('category-input-placeholder');
     categoryInputPlaceholderRef.innerHTML = "Select task category";
+}
 
+function resetSubtasks() {
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
-    let subtaskList = document.getElementById('subtasks-list')
-    subtaskList.classList.add('d-none');
 
+    let subtaskList = document.getElementById('subtasks-list');
+    subtaskList.classList.add('d-none');
 }
+
+function resetInputFields() {
+    resetTextInputs();
+    resetPriorityButtons();
+    resetAssignedContacts();
+    resetCategoryPlaceholder();
+    resetSubtasks();
+    prioButtonOnLoad();
+}
+
 
 // validates all inputs which have a labeled as mandatory
 
