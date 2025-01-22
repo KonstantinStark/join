@@ -33,10 +33,6 @@ async function loadTasks() {
         });
     }
 
-    console.log(`Total tasks: ${taskCount}`);
-    console.log(`Urgent tasks: ${urgentTaskCount}`);
-    console.log(tasks);
-
     renderTaskCount(taskCount);          // Render total task count
     renderUrgentTaskCount(urgentTaskCount);  // Render urgent task count
     renderTasks();                       // Render the tasks if needed

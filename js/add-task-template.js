@@ -33,8 +33,9 @@ function generateEntrySubtaskHTML() {
         <div id="subtask-container-js">
             <input type="text" id="subtask-input" name="subtask" placeholder="Subtask" id="subtask-input">
             <div id="subtask-container-js-images">
-                <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">
-                <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
+            <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
+            <div class="subtask-container-js-images-devider"></div>
+            <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">  
             </div>
         </div>
     `;
@@ -45,6 +46,7 @@ function generateSubtaskHTML(subtask, index) {
         <li class="subtask-list-items">${subtask} 
             <div class="subtask-list-items-img-wrapper">
                 <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="Edit Subtask">
+                <div class="subtask-container-js-images-devider"></div>
                 <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Remove Subtask">
             </div>
         </li>
@@ -56,8 +58,10 @@ function generateSubtaskEditHTML(subtask, index) {
         <li class="subtask-list-items">
             <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
             <div class="edit-images-subtasks-wrapper">
-                <img src="../assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
                 <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Delete">
+                <div class="subtask-container-js-images-devider"></div>
+                <img src="../assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
+               
             </div>
         </li>
     `;

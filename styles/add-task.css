@@ -494,12 +494,35 @@ input::placeholder {
     
 }
 
-#subtask-container-js-images img {
-    margin-left: 10px; 
+#subtask-container-js-images img { 
     width: 20px; 
     height: 20px; 
     cursor: pointer;
     z-index:1;
+}
+
+.subtask-list-items input {
+
+    border:none;
+    background-color: #F6F7F8;
+}
+
+.subtask-container-js-images-devider {
+
+    height:20px;
+    background-color: grey;
+    width:1px;
+    margin-left:8px;
+    margin-right:12px;
+}
+
+.subtask-container-js-images-devider-edit {
+
+    height:20px;
+    background-color: grey;
+    width:1px;
+    margin-left:8px;
+    margin-right:12px;
 }
 
 .subtask-list-items {
@@ -525,17 +548,14 @@ input::placeholder {
 .subtask-list-items-img-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-right: 10px;
     cursor: pointer;
+    
 }
 
 .edit-images-subtasks-wrapper {
 
     display: flex;
-    gap:10px;
-    margin-right:10px;
-    margin-left:10px;
+    justify-content: space-between;
 }
 
 .edit-images-subtasks-wrapper img {
@@ -546,7 +566,7 @@ input::placeholder {
 
 #subtasks-list {
 
-    width:440px;
+    width:420px;
     height:80px;
     overflow: scroll;
     overflow-x:hidden;
