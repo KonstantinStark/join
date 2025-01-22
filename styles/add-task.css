@@ -566,7 +566,7 @@ input::placeholder {
 
 #subtasks-list {
 
-    width:420px;
+    width:430px;
     height:80px;
     overflow: scroll;
     overflow-x:hidden;
@@ -789,10 +789,11 @@ footer {
     .assigned-to-list,
     .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper,
+    .subtask-input-wrapper, 
+    .prio-buttons,
     #subtask-list,
     #subtask-container,
-    .prio-buttons {
+    #subtask-input  {
         width: 90% !important;
     }
 
@@ -803,6 +804,15 @@ footer {
          
      }
     
+     .prio-buttons button {
+
+        font-size:14px;
+    }
+
+    .prio-buttons img {
+
+        height:8px;
+    }
 
    
      
@@ -825,6 +835,7 @@ footer {
         width: 85% !important;
 
     }
+    
 
   
   
@@ -837,9 +848,11 @@ footer {
     .assigned-to-list,
     .assigned-to-list-values,
     #category-input-content,
+    .subtask-input-wrapper, 
     .prio-buttons,
     #subtask-list,
-    .subtask-input-wrapper
+    #subtask-container,
+    #subtask-input 
     {
         width: 80% !important;
     }
@@ -854,9 +867,11 @@ footer {
     .assigned-to-list,
     .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper,
+    .subtask-input-wrapper, 
     .prio-buttons,
-    #subtask-list{
+    #subtask-list,
+    #subtask-container,
+    #subtask-input t {
         width: 75% !important;
     }
 
@@ -870,9 +885,12 @@ footer {
     .category-input,
     .assigned-to-list,
     .assigned-to-list-values,
-    .prio-buttons,
     #category-input-content,
-    .subtask-input-wrapper {
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    #subtask-input   {
         width: 70% !important;
     }
 
@@ -884,9 +902,12 @@ footer {
     .category-input,
     .assigned-to-list,
     .assigned-to-list-values,
-    .prio-buttons,
     #category-input-content,
-    .subtask-input-wrapper {
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    #subtask-input {
         width: 65% !important;
     }
 
@@ -956,7 +977,8 @@ footer {
     .prio-buttons,
     #category-input-content,
     .subtask-input-wrapper
-    #subtasks-list {
+    #subtasks-list,
+    #subtask-input  {
         width: 60% !important;
 
     }
