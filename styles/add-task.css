@@ -887,8 +887,14 @@ footer {
 
     .prio-buttons button {
 
-        font-size:var(--font-size-responsive)
+        font-size:11px;
     }
+
+    .prio-buttons img {
+
+        height:6px;
+    }
+
 
     .create-task-button {
 
