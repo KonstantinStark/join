@@ -195,28 +195,37 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 410px;
+    width: 430px;
     height: 40px;
     background-color: white;
     margin-bottom: 10px; 
     padding-right:20px;
     cursor:pointer;
     font-size:100px;
+    border-radius:5px;
+    font-size:var(--font-size)
 }
+
 
 .assigned-to-list-values-image-name {
     display: flex;
     align-items: center;
-    width:440px;
-    font-size:var(--font-size)
+    max-width:440px;
+    width:100%;
+    font-size:var(--font-size);
+    margin:auto;
    
 }
 
-.assigned-to-list-values {
+.assign-checkbox {
 
-    border-radius:5px;
-    font-size:var(--font-size)
+    width:10px;
+    height:100px;
 }
+
+
+
+  
 
 .bg-color-black {
 
@@ -793,7 +802,8 @@ footer {
     .prio-buttons,
     #subtask-list,
     #subtask-container,
-    #subtask-input  {
+    #subtask-input,
+    .subtask-list-items  {
         width: 90% !important;
     }
 
@@ -830,7 +840,9 @@ footer {
     .prio-buttons,
     #subtask-list,
     #subtask-container,
-    #subtask-input 
+    
+    .subtask-list-items
+    
         {
         width: 85% !important;
 
@@ -852,7 +864,8 @@ footer {
     .prio-buttons,
     #subtask-list,
     #subtask-container,
-    #subtask-input 
+    
+    .subtask-list-items
     {
         width: 80% !important;
     }
@@ -871,7 +884,8 @@ footer {
     .prio-buttons,
     #subtask-list,
     #subtask-container,
-    #subtask-input t {
+    
+    .subtask-list-items {
         width: 75% !important;
     }
 
@@ -890,9 +904,12 @@ footer {
     .prio-buttons,
     #subtask-list,
     #subtask-container,
-    #subtask-input   {
+    
+    .subtask-list-items  {
         width: 70% !important;
     }
+
+    
 
 }
 
@@ -907,7 +924,8 @@ footer {
     .prio-buttons,
     #subtask-list,
     #subtask-container,
-    #subtask-input {
+    
+    .subtask-list-items {
         width: 65% !important;
     }
 
@@ -976,9 +994,8 @@ footer {
     .assigned-to-list-values,
     .prio-buttons,
     #category-input-content,
-    .subtask-input-wrapper
-    #subtasks-list,
-    #subtask-input  {
+    .subtask-input-wrapper,
+    .subtask-list-items {
         width: 60% !important;
 
     }
