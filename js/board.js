@@ -91,6 +91,7 @@ function renderTasks(tasks) {
     }
 }
 
+
 function toggleOverlayTaks(taskId) {
     const overlay = document.getElementById("task-overlay");
 
@@ -112,6 +113,13 @@ function toggleOverlayTaks(taskId) {
             subtasksContainer.innerHTML = task.subtasks
                 ? task.subtasks.map(subtask => `<li><input type="checkbox" ${subtask.completed ? 'checked' : ''}> ${subtask.name}</li>`).join('')
                 : "<li>No subtasks</li>";
+
+            // Add overlay actions for delete and edit
+            const overlayActionsContainer = document.getElementById("overlay-actions");
+            overlayActionsContainer.innerHTML = `
+                <button onclick="deleteTask('${task.id}')">🗑️ Delete</button>
+                <button onclick="editTask('${task.id}')">✏️ Edit</button>
+            `;
 
             overlay.style.display = "flex";
         }
@@ -209,27 +217,24 @@ async function updateTaskStatus(taskId, newStatus) {
 
 async function deleteTask(taskId) {
     try {
-        // Entferne den Task aus Firebase
-        const response = await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, {
-            method: 'DELETE',
-        });
-
-        if (response.ok) {
-            // Entferne den Task aus der UI
-            const taskElement = document.getElementById(`task-${taskId}`);
-            if (taskElement) {
-                taskElement.remove();
-            }
-
-            // Entferne den Task aus der geladenen Liste
-            loadedTasks = loadedTasks.filter(task => task.id !== taskId);
-            console.log(`Task mit ID ${taskId} erfolgreich gelöscht.`);
-        } else {
-            throw new Error('Fehler beim Löschen des Tasks');
-        }
+      // Remove the task from Firebase
+      await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, {
+        method: 'DELETE',
+      });
+  
+      // Remove the task from the loaded tasks list
+      loadedTasks = loadedTasks.filter(task => task.id !== taskId);
+  
+      // Find and remove the task element from the UI
+      const taskElement = document.getElementById(`task-${taskId}`);
+      if (taskElement) {
+        taskElement.remove();
+      }
+  
+      console.log(`Task with ID ${taskId} successfully deleted.`);
     } catch (error) {
-        console.error('Fehler beim Löschen des Tasks:', error);
-        alert('Fehler beim Löschen des Tasks. Bitte erneut versuchen.');
+      console.error('Error deleting the task:', error);
+      alert('Error deleting the task. Please try again.');
     }
 }
 

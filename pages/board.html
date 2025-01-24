@@ -143,9 +143,9 @@
                 <p><strong>Subtasks:</strong></p>
                 <ul id="overlay-subtasks" class="subtasks-list"></ul>
             </div>
-            <div class="overlay-actions">
-                <button onclick="deleteTask('${task.id}')">🗑️ Delete</button>
-                <button onclick="editTask('${task.id}')">✏️ Edit</button>
+            <div class="overlay-actions" id="overlay-actions">
+                <button onclick="deleteTask(loadedTasks.find(task => task.id === '${taskId}').id)">🗑️ Delete</button>
+                <button onclick="editTask('${taskId}')">✏️ Edit</button>
             </div>
             
         </div>
