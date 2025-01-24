@@ -215,28 +215,54 @@ async function updateTaskStatus(taskId, newStatus) {
 
 
 
+
 async function deleteTask(taskId) {
     try {
-      // Remove the task from Firebase
-      await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, {
-        method: 'DELETE',
-      });
-  
-      // Remove the task from the loaded tasks list
-      loadedTasks = loadedTasks.filter(task => task.id !== taskId);
-  
-      // Find and remove the task element from the UI
-      const taskElement = document.getElementById(`task-${taskId}`);
-      if (taskElement) {
-        taskElement.remove();
-      }
-  
-      console.log(`Task with ID ${taskId} successfully deleted.`);
+        // Remove the task from Firebase
+        await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, {
+            method: 'DELETE',
+        });
+        
+        // Remove the task from the loaded tasks list
+        loadedTasks = loadedTasks.filter(task => task.id !== taskId);
+        
+        // Find and remove the task element from the UI
+        const taskElement = document.getElementById(`task-${taskId}`);
+        if (taskElement) {
+            taskElement.remove();
+        }
+        
+        // Close the overlay
+        toggleOverlayTaks();
+        
+        console.log(`Task with ID ${taskId} successfully deleted.`);
     } catch (error) {
-      console.error('Error deleting the task:', error);
-      alert('Error deleting the task. Please try again.');
+        console.error('Error deleting the task:', error);
+        alert('Error deleting the task. Please try again.');
     }
 }
+// async function deleteTask(taskId) {
+//     try {
+//       // Remove the task from Firebase
+//       await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, {
+//         method: 'DELETE',
+//       });
+  
+//       // Remove the task from the loaded tasks list
+//       loadedTasks = loadedTasks.filter(task => task.id !== taskId);
+  
+//       // Find and remove the task element from the UI
+//       const taskElement = document.getElementById(`task-${taskId}`);
+//       if (taskElement) {
+//         taskElement.remove();
+//       }
+  
+//       console.log(`Task with ID ${taskId} successfully deleted.`);
+//     } catch (error) {
+//       console.error('Error deleting the task:', error);
+//       alert('Error deleting the task. Please try again.');
+//     }
+// }
 
 
 
