@@ -1,27 +1,30 @@
+:root {
+    --focus-color: 2px solid #29ABE2;;
+    --font-color: black;
+    --font-size: 1.25rem;
+    --font-size-responsive: 1.1rem
+   
+  }
 
 .main {
 
     background-color: #F6F7F8;
     height:100vh;
-
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-
 
 .placeholder-text-non-input-tag-fields {
 
-    font-size:20px; 
+    font-size:var(--font-size)
 }
 
-.required-star-markers {
 
-    color:red;
-    margin-left:-3px;
-}
+/* input fields */
 
 .input-headers-margin-bottom {
 
     margin-bottom:10px;
-    font-size:20px;
+    font-size:var(--font-size)
 }
 
 input {
@@ -31,23 +34,34 @@ input {
     border:1px solid grey;
     padding:5px;
     font-size: 20px;
+    width:440px;
+    height:50px;
+    width:100%;
     
+   
 }
 
 input:focus {
     outline: none;  /* Removes the default blue outline in some browsers */
-    border: 2px solid #29ABE2;  /* Adjust the border thickness and color */
+    border: var(--focus-color);
 }
+
+/* albert */
 
 input::placeholder {
 
-    font-size:20px;
+    
+    color:var(--font-color);
+    font-size: 1.25rem;
+    
 }
+
+/* subheader */
 
 .subheader {
 
     
-    width:976.25px;
+    width:980px;
     margin-top:60px;
     margin-bottom:20px;
 
@@ -56,11 +70,13 @@ input::placeholder {
 .subheader-wrapper {
 
     font-size:32px;
-    width:278px;
-    height:73px;
+    width:280px;
+    height:80px;
     margin-left:10%;
    
 }
+
+/* for overlays */
 
 .d-none {
 
@@ -72,20 +88,24 @@ input::placeholder {
     display:block;
 }
 
+/* main container in which left and right side are wrapped */
+
 
 .add-task-wrapper {
 
     display: flex;
     justify-content: space-around;
-    width:976.25px;
-    height:426px;
+    width:980px;
+    height:430px;
     margin-left:5%;
 }
+
+/* decoration in middle */
 
 .seperator-left-right-side {
 
     width:1px;
-    height:424px;
+    height:430px;
     background-color: #29ABE2; 
     
 }
@@ -96,27 +116,33 @@ input::placeholder {
 
     display: flex;
     flex-direction: column;
-    height:376px;
+    height:380px;
     width:440px; 
     margin-right:15px;
-    
-    
 }
 
 .title-input-wrapper {
 
     width:440px;
-    height:96px;
+    height:100px;
     margin-bottom:10px;
 }
+
+/* description */
 
 .decription-input-wrapper {
 
     width:440px;
-    height:168px;
+    height:170px;
     margin-bottom:10px;
 }
 
+.description-input input {
+
+    height:120px !important;
+    text-align: top;
+
+}
 
 .assigned-to-wrapper {
 
@@ -128,7 +154,7 @@ input::placeholder {
 .assigned-to-toggle-button {
 
     width:440px;
-    height:48px;
+    height:50px;
     border:1px solid grey;
     border-radius:5px;
     display: flex;
@@ -138,7 +164,6 @@ input::placeholder {
 
  }
 
- 
  .assigned-to-toggle-button img {
 
     padding-right:10px;
@@ -151,20 +176,97 @@ input::placeholder {
     padding:10px;
 }
 
+/* js */
 
-.description-input input {
-
-    height:120px !important;
-    text-align: top;
+.assigned-to-list {
+    max-height: 200px;  
+    overflow-y: auto;   
+    border: 1px solid #ccc;  
+    z-index:100; 
+    position:relative;  
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 transparent;
+    padding:5px;
+    background-color: white;
 
 }
 
-.input-fields-left-side input{
-
-    width:440px;
-    height:48px;
-    
+.assigned-to-list-values {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 430px;
+    height: 40px;
+    background-color: white;
+    margin-bottom: 10px; 
+    padding-right:20px;
+    cursor:pointer;
+    font-size:100px;
+    border-radius:5px;
+    font-size:var(--font-size)
 }
+
+
+.assigned-to-list-values-image-name {
+    display: flex;
+    align-items: center;
+    max-width:440px;
+    width:100%;
+    font-size:var(--font-size);
+    margin:auto;
+   
+}
+
+.assign-checkbox {
+
+    width:10px;
+    height:100px;
+}
+
+
+
+  
+
+.bg-color-black {
+
+    background-color: #2A3647;
+    color:white;
+}
+
+.bg-color-black:hover {
+
+    background-color: #2A3647;
+}
+
+#assigned-to-input-svg-below {
+
+    margin-left:10px;
+}
+
+.assigned-to-toggle-button:focus {
+    outline: none;  
+    border: var(--focus-color);
+}
+
+.assigned-to-toggle-button {
+    cursor: pointer;
+    background-color: white;
+
+}
+
+.assigned-to-list-values:hover {
+
+    background-color:lightgray;
+    border-radius:5px;
+
+}
+
+.assigned-to-list-values input {
+    width: 15px;
+    height: 15px;
+}
+
+
 
 /* right side */
 
@@ -174,7 +276,7 @@ input::placeholder {
     flex-direction: column;
     align-items: center;
     width:440px;
-    height:416px;
+    height:420px;
     margin-left:20px;
     
 }
@@ -182,25 +284,25 @@ input::placeholder {
 .input-fields-right-side input{
 
     width:440px;
-    height:48px;
+    height:50px;
    
 }
+
+/* due date */
 
 .due-date-wrapper {
 
     width:440px;
-    height:96px;
+    height:100px;
     margin-bottom:10px;
 }
 
 .due-date-wrapper input {
 
     width:440px;
-    color:grey;
+    color:var(--font-color);
     
 }
-
-/* save obsidian  */
 
 .due-date-input {
     position: relative;
@@ -211,28 +313,23 @@ input::placeholder {
 
 .due-date-input img {
     position: absolute;
-    right: 10px; /* Adjust this value based on how far right you want the icon */
+    right: 10px; 
     top: 50%;
-    transform: translateY(-50%); /* Center vertically */
-    width: 20px; /* Adjust icon size */
-    height: 20px; /* Adjust icon size */
+    transform: translateY(-50%); 
+    width: 20px; 
+    height: 20px; 
     cursor: pointer;
-    
+
 }
-/* 
-.prio-buttons-header {
 
-    margin-top:40px;
-
-} */
+/* prio buttons */
 
 .prio-buttons-wrapper {
 
     width:440px;
-    height:88px;
+    height:90px;
     margin-bottom:30px;
 }
-
 
 .prio-buttons {
 
@@ -240,11 +337,10 @@ input::placeholder {
     gap:20px;
 }
 
-
 .prio-buttons button {
 
-    width:136px;
-    height:56px;
+    width:33%;
+    height:60px;
     border-radius:5px;
     font-size: 20px;
     border:none;
@@ -254,16 +350,16 @@ input::placeholder {
 }
 
 .prio-buttons button img {
-    filter: none; /* Default SVG color */
+    filter: none; 
     transition: filter 0.3s;
 }
 
 .prio-buttons button.active {
-    color: white; /* Text color for active button */
+    color: white; 
 }
 
 .prio-buttons button.active img {
-    filter: brightness(0) invert(1); /* Change SVG to white */
+    filter: brightness(0) invert(1); 
 }
 
 .prio-buttons button.urgent {
@@ -278,6 +374,8 @@ input::placeholder {
     background-color: lightgreen;
 }
 
+/* category */
+
 .category-input-wrapper {
 
     width:440px;
@@ -289,7 +387,7 @@ input::placeholder {
 .category-input {
 
     width:440px;
-    height:48px;
+    height:50px;
     border-radius: 5px;
     border:1px solid grey;
     display: flex;
@@ -308,7 +406,6 @@ input::placeholder {
     
 }
 
-
  #category-input-content {
 
     background-color: white;
@@ -317,7 +414,7 @@ input::placeholder {
     z-index:100;
     position:relative;
     border-radius:10px;
-    font-size:20px;
+    font-size:var(--font-size);
     border:1px solid black;
     padding:5px;
  }
@@ -338,13 +435,12 @@ input::placeholder {
 }
 
 
- 
-
  .category-input:focus {
-    outline: none;  /* Removes the default blue outline */
-    border: 2px solid #29ABE2;  /* Changes the border when focused */
+    outline: none;  
+    border: var(--focus-color);
 }
 
+/* subtasks */
 
 
 .subtask-input-wrapper {
@@ -369,8 +465,9 @@ input::placeholder {
     height:48px;
     border:1px solid grey;
     border-radius:5px;
-    font-size: 20px;
+    font-size:var(--font-size);
     padding-left:10px;
+    
 
 }
 
@@ -384,260 +481,57 @@ input::placeholder {
 
 #subtask-input input {
 
-    color:black;
+    color:var(--font-color);
 }
 
-
- footer {
-
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    width:976.25px;
-    margin-left:5%;
-    margin-top:80px;
-    padding-left:20px;
-   
-    
- }
-
- .clear-create-buttons-wrapper {
-
-    display: flex;
-    gap:20px;
- }
-
- .create-task-button {
-
-    width:183px;
-    height:56px;
-    border-radius:5px;
-    margin-right:20px;
-    font-size: 20px;
-    background-color: #2A3647;
-    color:white;
-    display: flex;
-    align-items: center;
-    gap:10px;
-    
- }
-
- 
- .clear-task-button {
-
-    width:110px;
-    height:56px;
-    border-radius:5px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap:10px;
-    
- }
-
-
-
-
- /* js templates  */
-
-/* 
- .assigned-to-list-values {
-
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    width:440px;
-    height:50px;
-    z-index:100; */
-    /* position:relative;  scheint wichtig zu sein für z index obsidian */
-    /* background-color: white;
-   */
- /* }
- .assigned-to-list-values input {
-
-    width:15px;
-    height:15px;
-    
- }
-
- .assigned-to-list-values-image-name {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:20px;
- } */
-
- /* position-relative scheint wichtig zu sein für z index obsidian */
-
- .assigned-to-list {
-    max-height: 200px;  /* Limit the height of the list to make it scrollable */
-    overflow-y: auto;   /* Enable vertical scroll */
-    border: 1px solid #ccc;  /* Optional: Add border to make the container visible */
-    z-index:100; 
-    position:relative;  
-    scrollbar-width: thin;
-    scrollbar-color: #a8a8a8 transparent;
-    padding:5px;
-    background-color: white;
- 
-}
-
-.assigned-to-list-values {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 410px;
-    height: 40px;
-    background-color: white;
-    margin-bottom: 10px; 
-    padding-right:20px;
-    cursor:pointer;
-}
-
-
-/* tabindex="0" added to html to make :focus work on non-input / button field obsidian */
-
-.assigned-to-toggle-button:focus {
-    outline: none;  /* Removes the default blue outline in some browsers */
-    border: 2px solid #29ABE2;  /* Adjust the border thickness and color */
-  
-}
-
-.assigned-to-toggle-button {
-    cursor: pointer;
-    background-color: white;
-
-}
-
-.assigned-to-list-values:hover {
-
-    background-color:lightgray;
-    border-radius:5px;
-
-}
-
-.assigned-to-list-values input {
-    width: 15px;
-    height: 15px;
-   
-}
-
-.assigned-to-list-values-image-name {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-   
-}
-
-.assigned-to-list-values {
-
-    border-radius:5px;
-    font-size: 20px;
-}
-
-.bg-color-black {
-
-    background-color: #2A3647;
-    color:white;
-}
-
-.bg-color-black:hover {
-
-    background-color: #2A3647;
-}
-
-#assigned-to-input-svg-below {
-
-    margin-left:10px;
-}
-
- 
- 
- /* task added to board overlay  */
-
-
-
- .overlay {
-
-    position:absolute;
-    top:0px;
-    width:100%;
-    height:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
-}
-
-.overlay-container {
-
-    background-color: #2A3647;
-    color:white;
-    width:250px;
-    height:50px;
-    padding:10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-
-}
-
-.overlay-container img {
-    
-    width:30px;
-    height:30px;
-     
-}
-
-.d_none {
-
-    display:none;
-}
-
-
-/* form validation */
-
-.input-wrapper {
-    margin-bottom: 15px;
-  }
-  
-  .error {
-    border: 1px solid red;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-
-  /* subtask js */
+/* subtask js */
 
 #subtask-container {
     display: flex;
-    align-items: center; /* Center items vertically in the flex container */
-    position: relative; /* Set the parent to position relative */
-   
+    align-items: center; 
+    position: relative; 
+    width:440px;
 }
 
+
+
 #subtask-container-js-images {
-    position: absolute; /* Allow this container to be positioned absolutely */
-    right: 10px; /* Position it to the right side of the parent */
+    position: absolute; 
+    right: 10px; 
     top: calc(50% - 10px); /* Adjust this value to move the icons higher */
-    display: flex; /* Keep images in a flex layout */
+    display: flex; 
     
 }
 
-#subtask-container-js-images img {
-    margin-left: 10px; /* Create a gap between the images */
-    width: 20px; /* Adjust icon size */
-    height: 20px; /* Adjust icon size */
+#subtask-container-js-images img { 
+    width: 20px; 
+    height: 20px; 
     cursor: pointer;
     z-index:1;
+}
+
+.subtask-list-items input {
+
+    border:none;
+    background-color: #F6F7F8;
+}
+
+.subtask-container-js-images-devider {
+
+    height:20px;
+    background-color: grey;
+    width:1px;
+    margin-left:8px;
+    margin-right:12px;
+}
+
+.subtask-container-js-images-devider-edit {
+
+    height:20px;
+    background-color: grey;
+    width:1px;
+    margin-left:8px;
+    margin-right:12px;
 }
 
 .subtask-list-items {
@@ -651,29 +545,26 @@ input::placeholder {
 }
 
 #subtask-input:focus {
-    outline: none;  /* Removes the default blue outline in some browsers */
-    border: 2px solid #29ABE2;  /* Adjust the border thickness and color */
+    outline: none;  
+    border: var(--focus-color);
 }
 
 #subtask-input {
 
-    color:grey;
+    color:var(--font-color);
 }
 
 .subtask-list-items-img-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-right: 10px;
     cursor: pointer;
+    
 }
 
 .edit-images-subtasks-wrapper {
 
     display: flex;
-    gap:10px;
-    margin-right:10px;
-    margin-left:10px;
+    justify-content: space-between;
 }
 
 .edit-images-subtasks-wrapper img {
@@ -684,7 +575,7 @@ input::placeholder {
 
 #subtasks-list {
 
-    width:440px;
+    width:430px;
     height:80px;
     overflow: scroll;
     overflow-x:hidden;
@@ -693,12 +584,88 @@ input::placeholder {
 
 }
 
+/* footer */
+
+
+footer {
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:980px;
+    margin-left:5%;
+    margin-top:80px;
+    padding-left:20px;
+
+
+}
+
+.clear-create-buttons-wrapper {
+
+    display: flex;
+    gap:20px;
+}
+
+.create-task-button {
+
+    width:180px;
+    height:60px;
+    border-radius:5px;
+    margin-right:20px;
+    font-size:var(--font-size); 
+    background-color: #2A3647;
+    color:white;
+    display: flex;
+    align-items: center;
+    gap:10px;
+
+}
+
+.clear-task-button {
+
+    width:110px;
+    height:60px;
+    border-radius:5px;
+    font-size:var(--font-size);
+    display: flex;
+    align-items: center;
+    gap:10px;
+
+}
+
+/* form validation */
+
+.input-wrapper {
+    margin-bottom: 15px;
+}
+
+.required-star-markers {
+
+    color:red;
+    margin-left:-3px;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+
 .field-required-mediaquery {
 
     display: none;
 }
 
+/* elements for header */
+
 .hamburger-toggle {
+
     width: 50px;
     height: 50px;
     border: 2px solid black;
@@ -749,14 +716,25 @@ input::placeholder {
 
 @media (max-width:1020px) {
 
-.add-task-wrapper {
+.wrapper-content-main {
 
-    max-width:100%;
-    align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.add-task-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow:scroll;
     overflow-x:hidden;
+    max-width:500px;
+    margin:0 auto;
     
 }
 
@@ -769,17 +747,15 @@ input::placeholder {
 
 .right-side-wrapper {
 
-    margin-top:50px;
+    margin-top:40px;
     margin-left:0px;
-
-    
+    margin-right:10px;
 }
 
-    .seperator-left-right-side {
+.seperator-left-right-side {
 
     display:none;
 }
-
 
 footer {
 
@@ -791,143 +767,245 @@ footer {
     margin-top:80px;
     padding-left:20px;
 
- }
+}
 
- .field-required {
+.field-required {
 
     display: none;
+}
+
+.field-required-mediaquery {
+
+    display: block;
+    margin-top:20px;
+}
+
+.prio-buttons button {
+
+    height:auto;
+    min-height:60px;
+     
  }
 
-  .field-required-mediaquery {
-
-        display: block;
-        margin-top:20px;
-    }
 
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
 
- 
-.input-fields-left-side {
-
-   
-    margin-left:20%;
-}
-
-.input-fields-right-side {
-
-    margin-left:20%;
-}
-
-.right-side-wrapper {
-
-    margin-left:20%;
-    
-}
-
-    .add-task-wrapper {
-
-        width:600px;
-    }
-
-    /* input {
-
-        width:280px !important;
-    } */
-
+    input,
     .assigned-to-toggle-button,
-    .category-input
-     {
-
-        width:270px;
-    }
-
+    .category-input,
     .assigned-to-list,
-    .assigned-to-list-values {
-
-        width:260px;
-        
-    }
-
-
-
-    .prio-buttons-wrapper {
-        width: 280px;
-        height: 88px;
-        margin-bottom: 30px;
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    #subtask-input,
+    .subtask-list-items  {
+        width: 90% !important;
     }
 
     .prio-buttons button {
-        width: 100px;
-        height: 60px;
-        border-radius: 5px;
-        font-size: 20px;
-        border: none;
-        transition: background-color 0.3s;
-        cursor: pointer;
-        background-color: #f0f0f0;
-    }
 
-    #category-input-content {
-
-        width:260px;
-    }
-
-    .subtask-input-wrapper {
-
-        width:270px;
-    }
-
-    #subtask-list {
-
-        width:270px;
-    }
-
-
-    .subtask-list-items {
-        max-width:270px;
-    }
+        height:auto;
+        min-height:none;
+         
+     }
     
-    [id^="edited-input-value-subtask-"] {
-        width: 180px !important;
-    }
-    
-    .description-input input,
-    .due-date-input input,
-    .subtask-input input{
+     .prio-buttons button {
 
-        width:270px !important;
+        font-size:14px;
     }
 
-    .input-wrapper input {
+    .prio-buttons img {
 
-        width:270px;
-    }
-
-    .create-task-button {
-        width: 120px;
-        height: 60px;
-    }
-    
-    .clear-task-button {
-        width: 100px;
-        height: 60px;
+        height:8px;
     }
 
    
+     
+}
+
+@media (max-width: 450px) {
+
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
     
-@media (max-width:360px) {
+    .subtask-list-items
+    
+        {
+        width: 85% !important;
 
-    .input-fields-right-side {
-
-        margin-left:22%;
     }
+    
+
+  
+  
+}
+
+@media (max-width: 400px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    
+    .subtask-list-items
+    {
+        width: 80% !important;
+    }
+
+
+}
+
+@media (max-width: 370px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    
+    .subtask-list-items {
+        width: 75% !important;
+    }
+
+
+}
+
+
+@media (max-width: 360px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    
+    .subtask-list-items  {
+        width: 70% !important;
+    }
+
+    
+
+}
+
+@media (max-width: 340px) {
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    #category-input-content,
+    .subtask-input-wrapper, 
+    .prio-buttons,
+    #subtask-list,
+    #subtask-container,
+    
+    .subtask-list-items {
+        width: 65% !important;
+    }
+
+    input,
+    .placeholder-text-non-input-tag-fields,
+    .assigned-to-list-values-image-name,
+    #category-input-content{
+
+        font-size:var(--font-size-responsive)
+    }
+
+    input::placeholder {
+
+    
+        color:var(--font-color);
+        font-size: 1rem;
+    }
+
+    .prio-buttons button {
+
+        font-size:11px;
+    }
+
+    .prio-buttons img {
+
+        height:6px;
+    }
+
+
+    .create-task-button {
+
+        width:120px;
+        height:60px;
+        border-radius:5px;
+        margin-right:20px;
+         font-size:var(--font-size-responsive);
+        background-color: #2A3647;
+        color:white;
+        display: flex;
+        align-items: center;
+        gap:10px;
+    
+    }
+    
+    .clear-task-button {
+    
+        width:90px;
+        height:60px;
+        border-radius:5px;
+        font-size:var(--font-size-responsive);
+        display: flex;
+        align-items: center;
+        gap:10px;
+    
+    }
+
+
+}
+
+@media (max-width: 320px) {
+
+    input,
+    .assigned-to-toggle-button,
+    .category-input,
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .prio-buttons,
+    #category-input-content,
+    .subtask-input-wrapper,
+    .subtask-list-items {
+        width: 60% !important;
+
+    }
+
+
+
+
 }
 
 
 
 
-
-}
 
