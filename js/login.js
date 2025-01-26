@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.body.classList.add("loaded");
+    }, 1000); // Nach 1 Sekunde wird die Klasse hinzugefügt
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     const body = document.body,
         loginContainer = document.querySelector('.login-container'),
         topRight = document.querySelector('.top-right'),

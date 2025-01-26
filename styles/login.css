@@ -12,8 +12,31 @@ body {
 
 .join-logo-container {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s ease-in-out;
+}
+
+body.loaded .join-logo-container {
     top: 40px;
     left: 40px;
+    transform: translate(0, 0);
+    width: 80px;
+    height: auto;
+}
+
+body:not(.loaded) .login-container,
+body:not(.loaded) .top-right,
+body:not(.loaded) .bottom-links {
+    opacity: 0;
+}
+
+body.loaded .login-container,
+body.loaded .top-right,
+body.loaded .bottom-links {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
 
 .join-logo {
@@ -48,7 +71,6 @@ body {
 .signup-btn:hover {
     background-color: #29aae1;
 }
-
 
 .login-container {
     display: flex;
