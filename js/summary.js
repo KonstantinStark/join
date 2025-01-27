@@ -35,7 +35,7 @@ async function loadTasks() {
 
     renderTaskCount(taskCount);          // Render total task count
     renderUrgentTaskCount(urgentTaskCount);  // Render urgent task count
-    renderTasks();                       // Render the tasks if needed
+                        // Render the tasks if needed
 }
 
 function renderTaskCount(taskCount) {
