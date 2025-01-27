@@ -793,17 +793,10 @@ footer {
 @media (max-width: 500px) {
 
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper, 
-    .prio-buttons,
-    #subtask-list,
-    #subtask-container,
-    #subtask-input,
-    .subtask-list-items  {
+    .prio-buttons
+  {
         width: 90% !important;
     }
 
@@ -824,6 +817,23 @@ footer {
         height:8px;
     }
 
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items {
+
+        width:396px;
+        
+    }
+
+    .subtask-input input {
+
+        width:396px !important;
+    }
+
    
      
 }
@@ -831,99 +841,141 @@ footer {
 @media (max-width: 450px) {
 
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper, 
     .prio-buttons,
-    #subtask-list,
-    #subtask-container,
+
     
     .subtask-list-items
     
         {
         width: 85% !important;
 
-    }
-    
+    } 
 
-  
-  
+
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items {
+
+        width:374px;
+        
+    }
+
+    .subtask-input input {
+
+        width:374px !important;
+    }
+
 }
 
 @media (max-width: 400px) {
+
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
-    #category-input-content,
-    .subtask-input-wrapper, 
+    #category-input-content
     .prio-buttons,
-    #subtask-list,
-    #subtask-container,
+ 
     
     .subtask-list-items
     {
         width: 80% !important;
     }
 
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items {
+
+        width:352px;
+        
+    }
+
+    .subtask-input input {
+
+        width:352px !important;
+    }
+
 
 }
 
 @media (max-width: 370px) {
+
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper, 
-    .prio-buttons,
-    #subtask-list,
-    #subtask-container,
-    
-    .subtask-list-items {
+    .prio-buttons{
         width: 75% !important;
     }
+
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items {
+
+        width:330px;
+        
+    }
+
+    .subtask-input input {
+
+        width:330px !important;
+    }
+
 
 
 }
 
 
 @media (max-width: 360px) {
+    
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper, 
     .prio-buttons,
-    #subtask-list,
-    #subtask-container,
     
     .subtask-list-items  {
         width: 70% !important;
     }
+
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items {
+
+        width:308px;
+        
+    }
+
+    .subtask-input input {
+
+        width:308px !important;
+    }
+
 
     
 
 }
 
 @media (max-width: 340px) {
+
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
     #category-input-content,
-    .subtask-input-wrapper, 
     .prio-buttons,
-    #subtask-list,
-    #subtask-container,
     
     .subtask-list-items {
         width: 65% !important;
@@ -982,28 +1034,74 @@ footer {
     
     }
 
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items,
+    subtask-input input {
+
+        width:286px;
+        
+    }
+
+    .subtask-input input {
+
+        width:286px !important;
+    }
+
 
 }
 
 @media (max-width: 320px) {
 
     input,
-    .assigned-to-toggle-button,
     .category-input,
-    .assigned-to-list,
-    .assigned-to-list-values,
     .prio-buttons,
-    #category-input-content,
-    .subtask-input-wrapper,
-    .subtask-list-items {
+    #category-input-content
+     {
         width: 60% !important;
 
     }
 
+    
+    
+    [id^="edited-input-value-subtask-"] {
+        width: 180px !important;
+    }
+    
+  
+
+    .assigned-to-list,
+    .assigned-to-list-values,
+    .assigned-to-toggle-button,
+    #subtask-list,
+    #subtask-container,
+    .subtask-input-wrapper,
+    .subtask-list-items,
+    subtask-input input {
+
+        width:264px;
+        
+    }
+
+    .subtask-input input {
+
+        width:264px !important;
+    }
+
+   
+
+
+    
 
 
 
 }
+
+
 
 
 
