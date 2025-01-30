@@ -1,3 +1,8 @@
+.d-none {
+    display: none;
+}
+
+
 .board-middle {
     display: flex;
     justify-content: center;
@@ -230,11 +235,12 @@ p {
 }
 
 .overlay-content {
+
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
+    width: 1400px;
+    max-width: 800px;
     position: relative;
     font-family: Arial, sans-serif;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
