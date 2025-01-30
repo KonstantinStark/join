@@ -1,3 +1,4 @@
+
 .d-none {
     display: none;
 }
@@ -8,9 +9,24 @@
     justify-content: flex-end;
     width:100%;
     cursor: pointer;
+    font-size:32px;
+    font-weight:800;
+    color: black;
 
 }
 
+.input-headers-margin-bottom,
+.placeholder-text-non-input-tag-fields,
+.assigned-to-list-values-iamge-name p
+  {
+
+    color:black
+}
+
+.create-task-button p {
+
+    color:white;
+}
 
 .board-middle {
     display: flex;
