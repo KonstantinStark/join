@@ -1,3 +1,75 @@
+.board-middle {
+    display: flex;
+    justify-content: center;
+    padding: 0 60px;
+    align-items: flex-start;
+    gap: 30px;
+    color: #42526E;
+    font-weight: bold;
+    width: 100%;
+    max-width: 1440px;
+}
+
+.boards {
+    flex: 1;
+}
+
+.boards .board-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boards .board-title h3 {
+    font-size: 20px;
+}
+
+.boards .board-title .icon-add {
+    border: solid 2px #2A3647;
+    color: #2A3647;
+    font-size: 11px;
+    line-height: 0;
+    border-radius: 8px;
+    padding: 4.5px;
+    cursor: pointer;
+}
+
+.boards .board-title .icon-add:hover {
+    color: #29ABE2;
+    border: solid 2px #29ABE2;
+}
+
+.boards .board-title .icon-add:active {
+    color: #091931;
+    border: solid 2px #091931;
+}
+
+.boards .board-title .icon-add::before {
+    font-weight: bold;
+}
+
+.boards .board-tasks {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 15px;
+    gap: 15px;
+    min-height: 400px;
+}
+
+.media-query {
+    display: none;
+}
+
+.no-tasks img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+
+
 .board-container {
     padding: 20px;
 }
@@ -7,6 +79,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    color: #42526e;
 }
 
 .task-controls {
@@ -23,7 +96,7 @@
 }
 
 .task-controls .add-task-btn {
-    background-color: #0052cc;
+    background-color: #2a3647;
     color: white;
     padding: 10px 15px;
     border: none;

@@ -1,0 +1,186 @@
+
+@media (max-width: 1210px) {
+    .board-header {
+        padding: 60px 30px;
+    }
+
+    .board-middle {
+        padding: 0 30px;
+        gap: 20px;
+    }
+
+    .userStory {
+        padding: 6px 6px;
+    }
+}
+
+@media (max-width: 1084px) {
+    .board-middle {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .boards {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .boards .board-tasks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-height: unset;
+    }
+
+    .board-tasks .task-view {
+        flex: 1 1 calc(30%);
+        max-width: 30%;
+    }
+
+    .userStory {
+        padding: 6px 18px;
+    }
+
+    .task-view .category-move-task-container .move-task-menu {
+        display: block;
+    }
+
+}
+
+@media (max-width: 1000px) {
+
+    .form-column.left,
+    .form-column.right {
+        min-width: 300px;
+    }
+
+    .prio-options {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 800px) {
+    .right-board-header input {
+        width: 100%;
+    }
+
+    .board-header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 30px 60px;
+    }
+
+    .left-board-header,
+    .right-board-header,
+    .right-board-header .search-label {
+        width: 100%;
+    }
+
+    .left-board-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .right-board-header {
+        justify-content: flex-start;
+    }
+
+    .left-board-header button {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .media-query {
+        display: block;
+    }
+
+    .mobile-d-none {
+        display: none;
+    }
+
+    .search-label .icon-search {
+        right: 27px;
+        font-size: 17px;
+    }
+
+    .add-task-container {
+        border-radius: 20px;
+    }
+
+    #add-task-title {
+        padding: 20px 20px 10px;
+    }
+
+    .form-row {
+        height: calc(90dvh - 84.4px - 94.8px);
+        max-height: calc(620px - 84.4px - 94.8px);
+        justify-content: flex-start;
+        padding-right: 4px;
+    }
+
+    .form-actions {
+        padding-top: 20px;
+    }
+
+    .userStory {
+        padding: 6px 4px;
+    }
+}
+
+@media (max-width: 700px) {
+    .board-tasks .task-view {
+        flex: 1 1 calc(45%);
+        max-width: 45%;
+    }
+
+    .task-detail h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 500px) {
+    .confirm-delete .task-edit-delete-btn span {
+        display: none;
+    }
+
+    .task-detail {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 486px) {
+    .board-header h1 {
+        font-size: 40px;
+    }
+
+    .board-tasks .task-view {
+        flex: 1 1 calc(90%);
+        max-width: 90%;
+    }
+
+    .userStory {
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .form-column.left,
+    .form-column.right {
+        min-width: 260px;
+    }
+
+    .task-detail {
+        padding: 30px 15px;
+    }
+
+    .edit-task {
+        padding: 30px 10px;
+    }
+}

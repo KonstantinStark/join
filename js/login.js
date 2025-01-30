@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         document.body.classList.add("loaded");
-    }, 1000); // Nach 1 Sekunde wird die Klasse hinzugefügt
+    }, 1000);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
