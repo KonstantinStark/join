@@ -314,3 +314,12 @@ function dropTask(event) {
             loadTasks();
         });
 }
+
+function hideTaskOverlay() {
+
+    document.getElementById("taskOverlay").style.display = "none";
+}
+
+function showTaskOverlay() {
+    document.getElementById("taskOverlay").style.display = "flex";
+}

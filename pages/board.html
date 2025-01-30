@@ -94,7 +94,7 @@
                     <h1>Board</h1>
                     <div class="task-controls">
                         <input type="text" id="task-search" placeholder="Find Task">
-                        <button onclick="addTaskOverlay" class="add-task-btn">
+                        <button onclick="showTaskOverlay()" class="add-task-btn">
 
                             Add Task
             
@@ -173,7 +173,11 @@
             <!-- Overlay, das das Add Task Formular enthält -->
             <div id="taskOverlay" class="overlay" >
                 <div class="overlay-content">
+                  <div id="hide-taskoverlay-btn" onclick="hideTaskOverlay()">
+                    X
+                  </div>
                     <div class="subheader">
+
                         <div class="subheader-wrapper">
                             <h1>Add Task</h1>
                           </div>
@@ -327,10 +331,15 @@
 
             <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
             <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
+            <script src="../js/add-task-template.js"></script>
+            <script src="../js/add-task.js"></script>
             <script src="../js/board.js"></script>
             <script src="../js/main.js"></script>
             <script src="../js/contacts.js"></script>
             <script src="../js/contact-template.js"></script>
+           
+           
+          
 </body>
 
 </html>
