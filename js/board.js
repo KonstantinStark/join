@@ -1,5 +1,6 @@
 const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
 let loadedTasks = [];
+let users = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     loadTasks();
@@ -331,7 +332,6 @@ function showTaskOverlay() {
 
 //add task file copied in 
     
-let users = [];
 let selectedPrioButton = '';
 let subtasksArray = [];
 let assignedContacts  = [];
@@ -365,8 +365,6 @@ async function loadUsers() {
             });
         });
     }
-
-    console.log(users);
     renderAssignedToInput();
 }
 

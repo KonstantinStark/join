@@ -2,342 +2,310 @@
 <html lang="de">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../assets/img/joinlogo.png">
-    <link rel="stylesheet" href="../styles/sidebar.css">
-    <link rel="stylesheet" href="../styles/standard.css">
-    <link rel="stylesheet" href="../styles/assets.css">
-    <link rel="stylesheet" href="../styles/fonts.css">
-    <link rel="stylesheet" href="../styles/board.css">
-    <link rel="stylesheet" href="../styles/board-responsive.css">
-    <link rel="stylesheet" href="../styles/add-task.css">
-    <title>Board</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../assets/img/joinlogo.png">
+  <link rel="stylesheet" href="../styles/sidebar.css">
+  <link rel="stylesheet" href="../styles/standard.css">
+  <link rel="stylesheet" href="../styles/assets.css">
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/board.css">
+  <link rel="stylesheet" href="../styles/board-responsive.css">
+  <link rel="stylesheet" href="../styles/add-task.css">
+  <title>Board</title>
 </head>
 
 <body>
 
-    <section class="all-side">
-        <div class="sidebar">
+  <section class="all-side">
+    <div class="sidebar">
 
-            <div class="side-join-logo">
-                <img src="../assets/img/joinlogo.png" alt="">
-            </div>
+      <div class="side-join-logo">
+        <img src="../assets/img/joinlogo.png" alt="">
+      </div>
 
-            <div class="navbar">
-                <a href="../pages/summary.html">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="../assets/img/summery.png" alt="Summary Icon">
-                        <span class="navbar-text">Summary</span>
-                    </div>
-                </a>
-                <a href="../pages/add-task.html#">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="../assets/img/task.png" alt="Add Task Icon">
-                        <span onclick="toggleOverlayTaksPage()" class="navbar-text">Add Task</span>
-                    </div>
-                </a>
-                <a href="../pages/board.html">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="../assets/img/board.png" alt="Board Icon">
-                        <span class="navbar-text">Board</span>
-                    </div>
-                </a>
-                <a href="../pages/contacts.html">
-                    <div class="sidebar-image-title-wrapper">
-                        <img src="../assets/img/contacts.png" alt="Contacts Icon">
-                        <span class="navbar-text">Contacts</span>
-                    </div>
-                </a>
-            </div>
+      <div class="navbar">
+        <a href="../pages/summary.html">
+          <div class="sidebar-image-title-wrapper">
+            <img src="../assets/img/summery.png" alt="Summary Icon">
+            <span class="navbar-text">Summary</span>
+          </div>
+        </a>
+        <a href="../pages/add-task.html#">
+          <div class="sidebar-image-title-wrapper">
+            <img src="../assets/img/task.png" alt="Add Task Icon">
+            <span onclick="toggleOverlayTaksPage()" class="navbar-text">Add Task</span>
+          </div>
+        </a>
+        <a href="../pages/board.html">
+          <div class="sidebar-image-title-wrapper">
+            <img src="../assets/img/board.png" alt="Board Icon">
+            <span class="navbar-text">Board</span>
+          </div>
+        </a>
+        <a href="../pages/contacts.html">
+          <div class="sidebar-image-title-wrapper">
+            <img src="../assets/img/contacts.png" alt="Contacts Icon">
+            <span class="navbar-text">Contacts</span>
+          </div>
+        </a>
+      </div>
 
-            <div class="privacy-legal-wrapper">
-                <a href="../pages/privacy-notice.html"><span class="footer-text">Privacy Policy</span></a>
-                <a href="../pages/legal-notice.html"><span class="footer-text">Legal Notice</span></a>
+      <div class="privacy-legal-wrapper">
+        <a href="../pages/privacy-notice.html"><span class="footer-text">Privacy Policy</span></a>
+        <a href="../pages/legal-notice.html"><span class="footer-text">Legal Notice</span></a>
+      </div>
+    </div>
+
+    <div class="main">
+      <header>
+        <span class="headline-header">Kanban Project Management Tool</span>
+        <div class="header-icon">
+          <div class="header-responsiv-img-container">
+            <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
+          </div>
+          <div class="header-responsiv-icon-container">
+            <a href="../pages/help-button.html">
+              <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
+            </a>
+            <div id="hamburger-toggle" class="hamburger-toggle" onclick="toggleHamburgerMenu()"></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="hamburger-menu d-none" id="hamburger-menu">
+        <a href="../pages/legal-notice.html" class="menu-link">Legal Notice</a>
+        <a href="../pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
+        <a href="#" id="logout-button" onclick="logoutUser()" class="menu-link">Log Out</a>
+      </div>
+
+      <div class="board-header">
+        <div class="left-board-header">
+          <h1>Board</h1>
+          <button class="media-query" onclick="showTaskOverlay()"><img src="../assets/img/add.png" alt="" />
+          </button>
+        </div>
+        <div class="right-board-header">
+          <label class="search-label">
+            <input type="text" name="search" placeholder="Find Task" id="task-search"">
+                      <span></span>
+                      <div class="icon icon-search"><img src="../assets/img/search.svg" alt="" />
+        </div>
+        </label>
+        <button class="mobile-d-none" onclick="showTaskOverlay()">Add task</button>
+      </div>
+    </div>
+
+    <!-- Board columns -->
+    <section class="board-middle">
+      <div class="boards">
+        <div class="board-title">
+          <h3>To do</h3>
+          <div class="icon icon-add" onclick="showTaskOverlay('todo')"></div>
+        </div>
+        <div class="board-tasks drop-target" id="todo-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+        </div>
+      </div>
+      <div class="boards">
+        <div class="board-title">
+          <h3>In progress</h3>
+          <div class="icon icon-add" onclick="showTaskOverlay('progress')"></div>
+        </div>
+        <div class="board-tasks drop-target" id="in-progress-tasks" ondragover="allowDrop(event)"
+          ondrop="dropTask(event)">
+        </div>
+      </div>
+      <div class="boards">
+        <div class="board-title">
+          <h3>Await feedback</h3>
+          <div class="icon icon-add" onclick="showTaskOverlay('await-feedback')"></div>
+        </div>
+        <div class="board-tasks drop-target" id="await-feedback-tasks" ondragover="allowDrop(event)"
+          ondrop="dropTask(event)">
+        </div>
+      </div>
+      <div class="boards">
+        <div class="board-title">
+          <h3>Done</h3>
+        </div>
+        <div class="board-tasks drop-target" id="done-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+        </div>
+      </div>
+    </section>
+
+    <!-- Task-Detail-Overlay -->
+    <div id="task-overlay" class="overlay" style="display: none;">
+      <div class="overlay-content">
+        <span class="close-btn" onclick="toggleOverlayTaks()">&times;</span>
+        <div id="overlay-category" class="task-category"></div>
+        <h2 id="overlay-title"></h2>
+        <p id="overlay-description"></p>
+        <p><strong>Due date:</strong> <span id="overlay-due-date"></span></p>
+        <p><strong>Priority:</strong> <span id="overlay-priority"></span></p>
+        <div>
+          <p><strong>Assigned To:</strong></p>
+          <div id="overlay-assignedContacts" class="assigned-contacts"></div>
+        </div>
+        <div>
+          <p><strong>Subtasks:</strong></p>
+          <ul id="overlay-subtasks" class="subtasks-list"></ul>
+        </div>
+        <div class="overlay-actions" id="overlay-actions">
+          <button onclick="deleteTask(loadedTasks.find(task => task.id === '${taskId}').id)">🗑️
+            Delete</button>
+          <button onclick="editTask('${taskId}')">✏️ Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="taskOverlay" class="overlay d-none">
+      <div class="overlay-content">
+        <div id="hide-taskoverlay-btn" onclick="hideTaskOverlay()">
+          ✕
+        </div>
+        <div class="subheader">
+          <div class="subheader-wrapper">
+            <h1>Add Task</h1>
+          </div>
+        </div>
+        <div class="add-task-wrapper">
+          <div class="left-side-wrapper">
+            <div class="input-fields-left-side">
+              <div class="title-input-wrapper">
+                <p class="input-headers-margin-bottom">
+                  Title
+                  <span class="required-star-markers">*</span>
+                </p>
+                <div class="input-wrapper">
+                  <input type="text" placeholder="Enter title" id="title-input" />
+                  <p class="error-message" id="title-error" style="display: none;">This field is required</p>
+                </div>
+              </div>
+              <div class="decription-input-wrapper">
+                <p class="input-headers-margin-bottom">Description</p>
+                <div class="description-input">
+                  <input type="text" placeholder="Enter a Description" id="description-input" />
+                </div>
+              </div>
+              <div class="assigned-to-wrapper">
+                <p class="input-headers-margin-bottom">Assigned to</p>
+                <div id="assigned-to-dropdown">
+                  <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
+                    <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
+                    <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
+                  </div>
+                  <div id="assigned-to-input" class="d-none">
+                    <div class="assigned-to-list" id="assigned-to-list"></div>
+                  </div>
+                  <div id="assigned-to-input-svg-below">
+                    <!-- JS renders SVGs here when the list is closed -->
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="seperator-left-right-side"></div>
+
+          <div class="right-side-wrapper">
+            <div class="input-fields-right-side">
+              <div class="due-date-wrapper">
+                <p class="input-headers-margin-bottom">
+                  Due Date
+                  <span class="required-star-markers">*</span>
+                </p>
+                <div class="due-date-wrapper">
+                  <div class="due-date-input">
+                    <input type="date" placeholder="dd/mm/yyyy" id="due-date-input" />
+                  </div>
+                  <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
+                </div>
+              </div>
+              <div class="prio-buttons-wrapper">
+                <p class="prio-buttons-header input-headers-margin-bottom">Prio</p>
+                <div class="prio-buttons">
+                  <button id="urgent-button" onclick="setPrioButton('urgent')">
+                    Urgent
+                    <img src="../assets/img/add-task/urgent.svg" alt="">
+                  </button>
+                  <button id="medium-button" onclick="setPrioButton('medium')">
+                    Medium
+                    <img src="../assets/img/add-task/medium.svg" alt="">
+                  </button>
+                  <button id="low-button" onclick="setPrioButton('low')">
+                    Low
+                    <img src="../assets/img/add-task/low.svg" alt="">
+                  </button>
+                </div>
+              </div>
+
+              <div class="category-input-wrapper">
+                <p class="input-headers-margin-bottom"> Category <span class="required-star-markers">*</span></p>
+                <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()"
+                  tabindex="0">
+                  <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category
+                  </p>
+                  <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
+                  <!-- placeholder to be updated -->
+                </div>
+                <p class="error-message" id="category-error" style="display: none;">This field is required</p>
+                <div id="category-input-content" class="d-none">
+                  <p onclick="changeCategoryInput('Technical Task')">
+                    Technical Task
+                  </p>
+                  <p onclick="changeCategoryInput('User Story')">
+                    User Story
+                  </p>
+                </div>
+              </div>
+              <div id="subtask-default" class="subtask-input-wrapper">
+                <p class="input-headers-margin-bottom">Subtasks</p>
+                <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
+                  <div id="subtask-input">
+                    Add new subtask
+                    <img src="../assets/img/add-task/plus.svg" alt="">
+                  </div>
+                </div>
+                <div id="subtasks-list" class="d-none">
+                  <!-- js -->
+                </div>
+                <div class="field-required-mediaquery">
+                  <p>
+                    <span class="required-star-markers">*</span>
+                    This field is required
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <footer>
+          <div class="field-required">
+            <p>
+              <span class="required-star-markers">*</span>
+              This field is required
+            </p>
+          </div>
+          <div class="clear-create-buttons-wrapper">
+            <button class="clear-task-button" onclick="resetInputFields()">Clear
+              <img src="../assets/img/add-task/clear.svg" alt="">
+            </button>
+            <button class="create-task-button" onclick="validateForm(); ">
+              <p>Create Task</p>
+              <img src="../assets/img/add-task/check.svg" alt="">
+            </button>
+          </div>
+        </footer>
+      </div>
+    </div>
 
-
-        <div class="main">
-            
-            <header>
-                <span class="headline-header">Kanban Project Management Tool</span>
-                <div class="header-icon">
-                    <div class="header-responsiv-img-container">
-                        <img class="header-responsiv-img" src="../assets/img/joinlogo2.png">
-                    </div>
-                    <div class="header-responsiv-icon-container">
-                        <a href="../pages/help-button.html">
-                            <img class="header-help" src="../assets/img/help.svg" alt="Help Icon">
-                        </a>
-                        <div id="hamburger-toggle" class="hamburger-toggle" onclick="toggleHamburgerMenu()"></div>
-                    </div>
-                </div>
-            </header>
-
-
-            <div class="hamburger-menu d-none" id="hamburger-menu">
-                <a href="../pages/legal-notice.html" class="menu-link">Legal Notice</a>
-                <a href="../pages/privacy-notice.html" class="menu-link">Privacy Policy</a>
-                <a href="#" id="logout-button" onclick="logoutUser()" class="menu-link">Log Out</a>
-            </div>
-
-            
-
-            
-
-            <div class="board-container">
-
-                <!-- Board Header -->
-                <div class="board-header">
-                    <h1>Board</h1>
-                    <div class="task-controls">
-                        <input type="text" id="task-search" placeholder="Find Task">
-                        <button onclick="showTaskOverlay()" class="add-task-btn">
-
-                            Add Task
-            
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Board columns -->
-            <section class="board-middle">
-                <div class="boards">
-                    <div class="board-title">
-                        <h3>To do</h3>
-                        <div class="icon icon-add" onclick="openAddTask('todo')"></div>
-                    </div>
-                    <div class="board-tasks drop-target" id="todo-tasks" ondragover="allowDrop(event)"
-                        ondrop="dropTask(event)">
-                    </div>
-                </div>
-                <div class="boards">
-                    <div class="board-title">
-                        <h3>In progress</h3>
-                        <div class="icon icon-add" onclick="openAddTask('progress')"></div>
-                    </div>
-                    <div class="board-tasks drop-target" id="in-progress-tasks" ondragover="allowDrop(event)"
-                        ondrop="dropTask(event)">
-                    </div>
-                </div>
-                <div class="boards">
-                    <div class="board-title">
-                        <h3>Await feedback</h3>
-                        <div class="icon icon-add" onclick="openAddTask('await-feedback')"></div>
-                    </div>
-                    <div class="board-tasks drop-target" id="await-feedback-tasks" ondragover="allowDrop(event)"
-                        ondrop="dropTask(event)">
-                    </div>
-                </div>
-                <div class="boards">
-                    <div class="board-title">
-                        <h3>Done</h3>
-                    </div>
-                    <div class="board-tasks drop-target" id="done-tasks" ondragover="allowDrop(event)"
-                        ondrop="dropTask(event)">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Task-Detail-Overlay -->
-            <div id="task-overlay" class="overlay" style="display: none;">
-                <div class="overlay-content">
-                    <span class="close-btn" onclick="toggleOverlayTaks()">&times;</span>
-                    <div id="overlay-category" class="task-category"></div>
-                    <h2 id="overlay-title"></h2>
-                    <p id="overlay-description"></p>
-                    <p><strong>Due date:</strong> <span id="overlay-due-date"></span></p>
-                    <p><strong>Priority:</strong> <span id="overlay-priority"></span></p>
-                    <div>
-                        <p><strong>Assigned To:</strong></p>
-                        <div id="overlay-assignedContacts" class="assigned-contacts"></div>
-                    </div>
-                    <div>
-                        <p><strong>Subtasks:</strong></p>
-                        <ul id="overlay-subtasks" class="subtasks-list"></ul>
-                    </div>
-                    <div class="overlay-actions" id="overlay-actions">
-                        <button onclick="deleteTask(loadedTasks.find(task => task.id === '${taskId}').id)">🗑️
-                            Delete</button>
-                        <button onclick="editTask('${taskId}')">✏️ Edit</button>
-                    </div>
-
-                </div>
-            </div>
-
-            
-
-            <!-- Overlay, das das Add Task Formular enthält -->
-            <div id="taskOverlay" class="overlay d-none" >
-                <div class="overlay-content">
-                  <div id="hide-taskoverlay-btn" onclick="hideTaskOverlay()">
-                    X
-                  </div>
-                    <div class="subheader">
-
-                        <div class="subheader-wrapper">
-                            <h1>Add Task</h1>
-                          </div>
-                        </div>
-                
-                        <div class="add-task-wrapper">
-                          <div class="left-side-wrapper">
-                            <div class="input-fields-left-side">
-                              <div class="title-input-wrapper">
-                                <p class="input-headers-margin-bottom">
-                                  Title
-                                  <span class="required-star-markers">*</span>
-                                </p>
-                                <div class="input-wrapper">
-                                  <input type="text" placeholder="Enter title" id="title-input"/>
-                                  <p class="error-message" id="title-error" style="display: none;">This field is required</p>
-                                </div>
-                              </div>
-                              <div class="decription-input-wrapper">
-                                <p class="input-headers-margin-bottom">Description</p>
-                                <div class="description-input">
-                                  <input
-                                    type="text"
-                                    placeholder="Enter a Description"
-                                    id="description-input"
-                                  />
-                                </div>
-                              </div>
-                              <div class="assigned-to-wrapper">
-                                <p class="input-headers-margin-bottom">Assigned to</p>
-                                <div id="assigned-to-dropdown">
-                                    <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
-                                        <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
-                                        <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
-                                    </div>
-                                    <div id="assigned-to-input" class="d-none">
-                                        <div class="assigned-to-list" id="assigned-to-list"></div>
-                                    </div>
-                                    <div id="assigned-to-input-svg-below">
-                                        <!-- JS renders SVGs here when the list is closed -->
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            </div>
-                          </div>
-                
-                          <div class="seperator-left-right-side"></div>
-                
-                          <div class="right-side-wrapper">
-                            <div class="input-fields-right-side">
-                              <div class="due-date-wrapper">
-                                <p class="input-headers-margin-bottom">
-                                  Due Date
-                                  <span class="required-star-markers">*</span>
-                                </p>
-                                <div class="due-date-wrapper">
-                                  <div class="due-date-input">
-                                      <input type="date" placeholder="dd/mm/yyyy" id="due-date-input"/>
-                                     
-                                  </div>
-                                  <p class="error-message" id="due-date-error" style="display: none;">This field is required</p>
-                              </div>
-                              
-                              </div>
-                              <div class="prio-buttons-wrapper">
-                                <p class="prio-buttons-header input-headers-margin-bottom">Prio</p>
-                                <div class="prio-buttons">
-                                  <button id="urgent-button" onclick="setPrioButton('urgent')">
-                                    Urgent
-                                    <img src="../assets/img/add-task/urgent.svg" alt="">
-                                  </button>
-                                  <button id="medium-button" onclick="setPrioButton('medium')">
-                                    Medium
-                                    <img src="../assets/img/add-task/medium.svg" alt="">
-                                  </button>
-                                  <button id="low-button" onclick="setPrioButton('low')">
-                                    Low
-                                    <img src="../assets/img/add-task/low.svg" alt="">
-                                  </button>
-                                </div>
-                              </div>
-                
-                              <div class="category-input-wrapper">
-                                <p class="input-headers-margin-bottom"> Category <span class="required-star-markers">*</span></p>
-                                <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
-                                  <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">Select task category</p>
-                                  <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
-                                  
-                                  <!-- placeholder to be updated -->
-                                </div> 
-                                <p class="error-message" id="category-error" style="display: none;">This field is required</p>               
-                                <div id="category-input-content" class="d-none">
-                                  <p onclick="changeCategoryInput('Technical Task')">
-                                    Technical Task
-                                  </p>
-                                  <p onclick="changeCategoryInput('User Story')">
-                                    User Story
-                                  </p>
-                                </div>
-                              </div>
-                              <div id="subtask-default" class="subtask-input-wrapper">
-                                <p class="input-headers-margin-bottom">Subtasks</p>
-                                <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
-                                  <div id="subtask-input">
-                                    
-                                    Add new subtask
-                
-                                    <img src="../assets/img/add-task/plus.svg" alt="">
-                                  </div>
-                                  
-                                </div>
-                                <div id="subtasks-list" class="d-none">
-                
-                                  <!-- js -->
-                                </div>
-                                <div class="field-required-mediaquery">
-                                  <p> 
-                                    <span class="required-star-markers">*</span>
-                                    This field is required
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                
-                        <footer>
-                          <div class="field-required">
-                            <p> 
-                              <span class="required-star-markers">*</span>
-                              This field is required
-                            </p>
-                          </div>
-                
-                          <div class="clear-create-buttons-wrapper">
-                            <button class="clear-task-button" onclick="resetInputFields()">Clear
-                              <img src="../assets/img/add-task/clear.svg" alt="">
-                            </button>
-                            <button class="create-task-button" onclick="validateForm(); ">
-                              <p>Create Task</p>
-                              <img src="../assets/img/add-task/check.svg" alt="">
-                             
-                            </button>
-                          </div>
-                        </footer>
-                      </div>
-                      </div>
-                
-
-            <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
-            <script src="../js/board.js"></script>
-            <script src="../js/main.js"></script>
-            <script src="../js/contacts.js"></script>
-            <script src="../js/contact-template.js"></script>
-           
-           
-          
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/contact-template.js"></script>
 </body>
-
 </html>

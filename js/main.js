@@ -9,14 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function logoutUser() {
-    // Benutzerdaten aus dem localStorage entfernen
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("isGuest");
-
-    // Weiterleitung zur Login-Seite
     window.location.href = "../pages/login.html";
 }
 
 function toggleHamburgerMenu() {
     document.getElementById("hamburger-menu").classList.toggle("d-none");
+}
+
+function goBack() {
+    history.back();
 }

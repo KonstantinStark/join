@@ -62,7 +62,7 @@
 
 @media (max-width: 800px) {
     .right-board-header input {
-        width: 100%;
+        width: 100%!important;
     }
 
     .board-header {
