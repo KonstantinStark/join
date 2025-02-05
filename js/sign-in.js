@@ -1,152 +1,89 @@
-let signupBtn;
+document.addEventListener("DOMContentLoaded", init);
 
-document.addEventListener("DOMContentLoaded", function () {
+function init() {
+    setupFormListeners();
+    setupPolicyError();
+}
+
+function setupFormListeners() {
     const form = document.querySelector("form");
+    form.addEventListener("input", validateUserInput);
+    form.addEventListener("submit", handleSubmit);
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    if (validateUserInput()) pushDataToFirebase();
+}
+
+function validateUserInput() {
+    let isValid = true;
+    isValid &= validateName();
+    isValid &= validateEmail();
+    isValid &= validatePassword();
+    isValid &= validatePolicy();
+    document.getElementById("signup-btn").disabled = !isValid;
+    return isValid;
+}
+
+function validateName() {
+    const name = document.getElementById("name");
+    const errorText = document.getElementById("name-error-text");
+    return validateField(name, errorText, /^[a-zA-ZäöüÄÖÜß\s]+$/, "Invalid name format.");
+}
+
+function validateEmail() {
+    const email = document.getElementById("email");
+    const errorText = document.getElementById("email-error-text");
+    return validateField(email, errorText, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format.");
+}
+
+function validatePassword() {
     const password = document.getElementById("password");
     const confirmPassword = document.getElementById("confirm-password");
-    const passwordError = document.getElementById("password-error");
-    const policyCheckbox = document.getElementById("accept-policy");
-    const policyContainer = document.querySelector(".policy-container");
-    const policyError = document.createElement("div");
-
-    signupBtn = document.getElementById("signup-btn");
-    
-    const nameRef = document.getElementById('name');
-    const nameTextRef = document.getElementById('name-error-text');
-    const emailRef = document.getElementById('email');
-    const emailTextRef = document.getElementById('email-error-text');
-
-    const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    policyError.style.color = "#ff4d4f";
-    policyError.style.display = "none";
-    policyError.textContent = "Please accept the Privacy policy.";
-    policyContainer.appendChild(policyError);
-    
-    signupBtn.disabled = true;
-
-    function validateUserInput() {
-        let isValid = true;
-
-        nameRef.classList.remove("error");
-        emailRef.classList.remove("error");
-        passwordError.style.display = "none";
-        policyError.style.display = "none";
-        nameTextRef.style.display = "none";
-        emailTextRef.style.display = "none";
-        password.style.borderColor = "";
-        confirmPassword.style.borderColor = "";
-
-        if (!nameRef.value) {
-            nameRef.classList.add("error");
-            nameTextRef.textContent = "Name is required.";
-            nameTextRef.style.display = "block";
-            isValid = false;
-        } else if (!nameRegex.test(nameRef.value)) {
-            nameRef.classList.add("error");
-            nameTextRef.textContent = "Invalid name format.";
-            nameTextRef.style.display = "block";
-            isValid = false;
-        }
-
-        if (!emailRef.value) {
-            emailRef.classList.add("error");
-            emailTextRef.textContent = "Email is required.";
-            emailTextRef.style.display = "block";
-            isValid = false;
-        } else if (!emailRegex.test(emailRef.value)) {
-            emailRef.classList.add("error");
-            emailTextRef.textContent = "Invalid email format.";
-            emailTextRef.style.display = "block";
-            isValid = false;
-        }
-
-        if (!password.value) {
-            passwordError.textContent = "Password is required.";
-            passwordError.style.display = "block";
-            password.style.borderColor = "#ff4d4f";
-            isValid = false;
-        } else if (!confirmPassword.value) {
-            passwordError.textContent = "Please confirm your password.";
-            passwordError.style.display = "block";
-            confirmPassword.style.borderColor = "#ff4d4f";
-            isValid = false;
-        } else if (password.value !== confirmPassword.value) {
-            passwordError.textContent = "Your passwords don’t match. Please try again.";
-            passwordError.style.display = "block";
-            confirmPassword.style.borderColor = "#ff4d4f";
-            isValid = false;
-        }
-
-        if (!policyCheckbox.checked) {
-            policyError.style.display = "block";
-            isValid = false;
-        } else {
-            policyError.style.display = "none";
-        }
-
-        signupBtn.disabled = !isValid;
-        return isValid;
+    const errorText = document.getElementById("password-error");
+    if (!password.value || !confirmPassword.value || password.value !== confirmPassword.value) {
+        errorText.textContent = "Passwords do not match.";
+        errorText.style.display = "block";
+        return false;
     }
+    errorText.style.display = "none";
+    return true;
+}
 
-    form.addEventListener("input", validateUserInput);
-    policyCheckbox.addEventListener("change", validateUserInput);
+function validatePolicy() {
+    const checkbox = document.getElementById("accept-policy");
+    document.getElementById("policy-error").style.display = checkbox.checked ? "none" : "block";
+    return checkbox.checked;
+}
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        
-        if (validateUserInput()) {
-            signupBtn.disabled = true;
-        }
-    });
-});
+function validateField(input, errorText, regex, errorMessage) {
+    if (!input.value || !regex.test(input.value)) {
+        errorText.textContent = errorMessage;
+        errorText.style.display = "block";
+        input.classList.add("error");
+        return false;
+    }
+    errorText.style.display = "none";
+    input.classList.remove("error");
+    return true;
+}
 
 function pushDataToFirebase() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const memberData = {
-        email: email,
-        name: name,
-        password: password,
-        initials: getInitials(name) // Add initials to the data
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        initials: getInitials(document.getElementById("name").value)
     };
-
     fetch(`${FIREBASE_URL}/members.json`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(memberData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-        document.getElementById("confirm-password").value = "";
-        document.getElementById("accept-policy").checked = false;
-        signupBtn.disabled = true;
-        window.location.href = "../pages/login.html";
-    })
-    .catch(error => {
-        console.error("Fehler beim Speichern:", error);
-        alert("Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal.");
-    })
-    .finally(() => {
-        signupBtn.disabled = false;
-    });
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    }).then(() => window.location.href = "../pages/login.html")
+        .catch(error => console.error("Fehler beim Speichern:", error));
 }
 
 function getInitials(name) {
-    return name.split(' ')
-        .map(part => part.charAt(0).toUpperCase())
-        .join('');
+    return name.split(" ").map(n => n.charAt(0).toUpperCase()).join("");
 }
