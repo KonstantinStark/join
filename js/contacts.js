@@ -1,11 +1,14 @@
 let users = [];
-let isResponsive = false
-let isEditModeOn = false
+let isResponsive = false;
+let isEditModeOn = false;
 let contactTextWrapper = document.getElementById('contact-text-wrapper');
 let contactListWrapper = document.getElementById('contact-list-wrapper');
 let userInitials = "";
 window.onload = init;
 
+/**
+ * Initializes the application by setting up event listeners and loading users.
+ */
 function init() {
     window.onload = init;
     const mediaQuery = window.matchMedia('(max-width: 940px)');
@@ -14,6 +17,9 @@ function init() {
     loadUsers();
 }
 
+/**
+ * Toggles the visibility of the overlay.
+ */
 function toggleOverlay() {
     let overlay = document.getElementById('overlay');
     overlay.classList.toggle('d-none');
@@ -22,6 +28,9 @@ function toggleOverlay() {
     }, overlay.classList.contains('d-none') ? 500 : 10);
 }
 
+/**
+ * Adds a new user to the list after validating the input.
+ */
 async function addUser() {
     let newUser = getUserInput();
     if (!validateUserInput(newUser)) return;
@@ -35,12 +44,18 @@ async function addUser() {
     editContact(newUserIndex);
 }
 
+/**
+ * Closes the overlay by removing the 'show' class and adding the 'd-none' class after a delay.
+ */
 function closeOverlay() {
     let overlay = document.getElementById('overlay');
     overlay.classList.remove('show');
     setTimeout(() => overlay.classList.add('d-none'), 500);
 }
 
+/**
+ * Generates a random color in hexadecimal format.
+ */
 function getRandomColor() {
     let color = '#';
     for (let i = 0; i < 6; i++) {
@@ -49,6 +64,9 @@ function getRandomColor() {
     return color;
 }
 
+/**
+ * Posts data to a specified path using a POST request.
+ */
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
         method: "POST",
@@ -57,6 +75,9 @@ async function postData(path = "", data = {}) {
     });
 }
 
+/**
+ * Loads users from a specified path and updates the UI.
+ */
 async function loadUsers(path = '/users') {
     let response = await fetch(FIREBASE_URL + path + '.json');
     let data = await response.json();
@@ -69,11 +90,17 @@ async function loadUsers(path = '/users') {
     loadData();
 }
 
+/**
+ * Gets the initials from a name.
+ */
 function getInitials(name) {
     userInitials = name.split(" ").map(part => part.charAt(0).toUpperCase()).join("");
     return userInitials;
 }
 
+/**
+ * Gets user input from the form fields.
+ */
 function getUserInput() {
     return {
         name: document.getElementById("name").value,
@@ -82,10 +109,16 @@ function getUserInput() {
     };
 }
 
+/**
+ * Resets the input fields in the form.
+ */
 function resetInputFields() {
     ["name", "phone", "email"].forEach(id => document.getElementById(id).value = "");
 }
 
+/**
+ * Loads and displays the user data in the UI.
+ */
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
     contentListRef.innerHTML = "";
@@ -106,6 +139,9 @@ function loadData() {
     });
 }
 
+/**
+ * Enables edit mode for a contact.
+ */
 function editContact(index) {
     isEditModeOn = true;
     let person = users[index];
@@ -120,12 +156,18 @@ function editContact(index) {
     </div>`;
 }
 
+/**
+ * Toggles the contact view between list and text views.
+ */
 function toggleContactView() {
     contactListWrapper.classList.toggle('d-none', isResponsive);
     contactTextWrapper.classList.toggle('d-flex', isResponsive);
     contactListWrapper.classList.toggle('d-flex', !isResponsive);
 }
 
+/**
+ * Deletes a contact from the list.
+ */
 async function deleteContact(index) {
     let person = users[index];
     try {
@@ -144,6 +186,9 @@ async function deleteContact(index) {
     }
 }
 
+/**
+ * Opens the edit overlay for a contact.
+ */
 function openEditOverlay(index) {
     let overlay = document.getElementById('edit-overlay');
     editContactOverlay(index);
@@ -151,6 +196,9 @@ function openEditOverlay(index) {
     setTimeout(() => overlay.classList.add('show'), 10);
 }
 
+/**
+ * Populates the edit overlay with the contact's data.
+ */
 function editContactOverlay(index) {
     let person = users[index];
     document.getElementById("edit-name").value = person.name;
@@ -159,6 +207,9 @@ function editContactOverlay(index) {
     document.getElementById('save-button').onclick = () => saveUser(index);
 }
 
+/**
+ * Gets the updated user data from the edit form.
+ */
 function getUpdatedUserData(index) {
     return {
         name: document.getElementById("edit-name").value,
@@ -167,6 +218,9 @@ function getUpdatedUserData(index) {
     };
 }
 
+/**
+ * Saves the updated user data.
+ */
 async function saveUser(index) {
     let updatedUser = getUpdatedUserData(index);
     if (!validateUserInput(updatedUser)) return;
@@ -188,6 +242,9 @@ async function saveUser(index) {
     editContact(index);
 }
 
+/**
+ * Validates the user input.
+ */
 function validateUserInput(user) {
     let refs = {
         name: document.getElementById('name'),
@@ -203,18 +260,27 @@ function validateUserInput(user) {
     return true;
 }
 
+/**
+ * Sets the error state for input fields and displays error messages.
+ */
 function setErrorState(inputs, texts) {
     inputs.forEach(el => el.classList.add("error"));
     texts.forEach(el => el.style.display = "block");
     return false;
 }
 
+/**
+ * Closes the edit overlay.
+ */
 function exitEditOverlay() {
     let overlay = document.getElementById('edit-overlay');
     overlay.classList.remove('show');
     setTimeout(() => overlay.classList.add('d-none'), 500);
 }
 
+/**
+ * Closes the main overlay.
+ */
 function exitOverlay() {
     let overlay = document.getElementById('overlay');
     overlay.classList.remove('show');
@@ -225,15 +291,20 @@ document.querySelectorAll('.exit-overlay, .cancel-button button').forEach(button
     button.addEventListener('click', () => exitOverlay());
 });
 
+/**
+ * Toggles the hamburger menu visibility.
+ */
 function toggleHamburgerMenu() {
     document.getElementById("hamburger-menu").classList.toggle("d-none");
 }
 
+/**
+ * Handles the click event for contacts on mobile devices.
+ */
 function oneClickContact() {
     const listWrapper = document.getElementById("contact-list-wrapper");
     const textWrapper = document.getElementById("contact-text-wrapper");
     const screenWidth = window.innerWidth;
-
     if (screenWidth <= 940) {
         if (listWrapper && textWrapper) {
             listWrapper.style.display = "none";
@@ -244,17 +315,23 @@ function oneClickContact() {
     }
 }
 
+/**
+ * Handles media query changes for responsiveness.
+ */
 function handleMediaChange(event) {
     if (!event.matches) {
         contactListWrapper.classList.remove('d-none');
         contactListWrapper.classList.add('d-flex');
-        isResponsive = false
+        isResponsive = false;
     } else {
-        isResponsive = true
-        displayContactMobile(isEditModeOn)
+        isResponsive = true;
+        displayContactMobile(isEditModeOn);
     }
 }
 
+/**
+ * Displays the contact view for mobile devices.
+ */
 function displayContactMobile(isMobileMode) {
     if (isMobileMode) {
         contactListWrapper.classList.add('d-none');
@@ -264,6 +341,9 @@ function displayContactMobile(isMobileMode) {
     }
 }
 
+/**
+ * Navigates back to the contact list view.
+ */
 function goBackContacts() {
     const contactTextWrapper = document.getElementById('contact-text-wrapper');
     if (contactTextWrapper) {

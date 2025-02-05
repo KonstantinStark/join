@@ -1,5 +1,8 @@
+/**
+ * Generates an HTML template for a contact card.
+ */
 function createContactCard(person, index, initials) {
-    return`
+    return `
     <div onclick="editContact(${index})" class="content-container load-data-container" id="content-container-${index}"> 
         <br>
             <div style ="background-color: ${person.color}; height: 80px; width: 80px; border-radius: 100%; display: flex; align-items: center; justify-content: center;">
@@ -12,7 +15,10 @@ function createContactCard(person, index, initials) {
     </div>
     `
 }
- 
+
+/**
+ * Generates an HTML template for editing a contact.
+ */
 function createEditContactTemplate(person, index, initials) {
     return `
    <div id="contact-${index}">

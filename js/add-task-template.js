@@ -1,3 +1,6 @@
+/**
+ * Generates an HTML representation of a user for assignment.
+ */
 function generateUserHTML(user) {
     return /*html*/ `
         <div class="assigned-to-list-values" data-user-id="${user.id}">
@@ -17,6 +20,9 @@ function generateUserHTML(user) {
     `;
 }
 
+/**
+ * Generates an SVG representation of a user avatar.
+ */
 function generateUserSVG(user) {
     return /*html*/ `
         <svg width="40" height="40">
@@ -28,19 +34,25 @@ function generateUserSVG(user) {
     `;
 }
 
+/**
+ * Generates an HTML input field for entering subtasks.
+ */
 function generateEntrySubtaskHTML() {
     return /*html*/ `
         <div id="subtask-container-js">
-            <input type="text" id="subtask-input" name="subtask" placeholder="Subtask" id="subtask-input">
+            <input type="text" id="subtask-input" name="subtask" placeholder="Subtask">
             <div id="subtask-container-js-images">
-            <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
-            <div class="subtask-container-js-images-devider"></div>
-            <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">  
+                <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
+                <div class="subtask-container-js-images-devider"></div>
+                <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">  
             </div>
         </div>
     `;
 }
 
+/**
+ * Generates an HTML representation of a subtask.
+ */
 function generateSubtaskHTML(subtask, index) {
     return /*html*/ `
         <li class="subtask-list-items">${subtask} 
@@ -53,6 +65,9 @@ function generateSubtaskHTML(subtask, index) {
     `;
 }
 
+/**
+ * Generates an HTML input field for editing a subtask.
+ */
 function generateSubtaskEditHTML(subtask, index) {
     return /*html*/ `
         <li class="subtask-list-items">
@@ -61,13 +76,7 @@ function generateSubtaskEditHTML(subtask, index) {
                 <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Delete">
                 <div class="subtask-container-js-images-devider"></div>
                 <img src="../assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
-               
             </div>
         </li>
     `;
 }
-
-
-
-
-

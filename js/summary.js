@@ -1,15 +1,21 @@
+/**
+ * Initializes the application by loading tasks.
+ */
 async function init() {
     await loadTasks();
 }
 
+/**
+ * Loads tasks from Firebase and updates the task count and urgent task count.
+ */
 async function loadTasks() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
     let responseToJson = await tasksResponse.json();
-    tasks = [];  
-    let taskCount = 0; 
-    let urgentTaskCount = 0; 
+    tasks = [];
+    let taskCount = 0;
+    let urgentTaskCount = 0;
     if (responseToJson) {
-        taskCount = Object.keys(responseToJson).length;  
+        taskCount = Object.keys(responseToJson).length;
         Object.keys(responseToJson).forEach(key => {
             const task = {
                 id: key,
@@ -26,25 +32,29 @@ async function loadTasks() {
             }
         });
     }
-    renderTaskCount(taskCount);         
-    renderUrgentTaskCount(urgentTaskCount); 
+    renderTaskCount(taskCount);
+    renderUrgentTaskCount(urgentTaskCount);
 }
 
+/**
+ * Renders the total task count in the DOM.
+ */
 function renderTaskCount(taskCount) {
     let taskCountRef = document.getElementById('toDoPlaceholder');
-    taskCountRef.innerHTML = `${taskCount}`;  
+    taskCountRef.innerHTML = `${taskCount}`;
 }
 
+/**
+ * Renders the number of urgent tasks in the DOM.
+ */
 function renderUrgentTaskCount(urgentTaskCount) {
     let urgentCountRef = document.getElementById('urgent-placeholder');
-    urgentCountRef.innerHTML = `${urgentTaskCount}`;  
+    urgentCountRef.innerHTML = `${urgentTaskCount}`;
 }
 
-function renderUrgentDate() {
-    let urgentCountRef = document.getElementById('urgent-date-placeholder');
-    urgentCountRef.innerHTML = `${dueDate}`;  
-}
-
+/**
+ * Fetches the closest due date for urgent tasks.
+ */
 async function getClosestUrgentTaskDate() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
     let responseToJson = await tasksResponse.json();
@@ -67,6 +77,9 @@ async function getClosestUrgentTaskDate() {
         : "No urgent tasks with a due date";
 }
 
+/**
+ * Renders the closest urgent task date in the DOM.
+ */
 async function renderClosestUrgentDate() {
     const urgentDate = await getClosestUrgentTaskDate();
     const urgentDatePlaceholder = document.getElementById('urgent-date-placeholder');
@@ -79,10 +92,13 @@ async function renderClosestUrgentDate() {
 
 renderClosestUrgentDate();
 
+/**
+ * Loads members from Firebase.
+ */
 async function loadMembers() {
     let membersResponse = await fetch(`${FIREBASE_URL}/members.json`);
     let responseToJson = await membersResponse.json();
-    let members = []; 
+    let members = [];
     if (responseToJson) {
         Object.keys(responseToJson).forEach(key => {
             const member = {
@@ -92,14 +108,15 @@ async function loadMembers() {
             members.push(member);
         });
     }
-
     console.log("Loaded members:", members);
     return members;
 }
 
+/**
+ * Returns a greeting message based on the current time.
+ */
 function getGreeting() {
     const hours = new Date().getHours();
-
     if (hours < 12) {
         return "Good morning, ";
     } else if (hours < 18) {
@@ -111,10 +128,13 @@ function getGreeting() {
     }
 }
 
+/**
+ * Renders a personalized greeting for the logged-in user.
+ */
 async function renderGreeting() {
     const greetingText = document.getElementById('greeting-text');
     const nameElement = document.getElementById('name-placeholder');
-    greetingText.textContent = getGreeting(); 
+    greetingText.textContent = getGreeting();
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (loggedInUser && loggedInUser.email) {
         const members = await loadMembers();
