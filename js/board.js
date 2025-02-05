@@ -842,14 +842,3 @@ function generateSubtaskEditHTML(subtask, index) {
         </li>
     `;
 }
-
-
-
-
-
-
-
-
-
-`
-`
