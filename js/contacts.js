@@ -117,7 +117,7 @@ function resetInputFields() {
 }
 
 /**
- * Loads and displays the user data in the UI.
+ * Loads and displays a sorted list of users, grouped by the first letter of their name.
  */
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
@@ -125,18 +125,27 @@ function loadData() {
     users.sort((a, b) => a.name.localeCompare(b.name));
     let currentLetter = '';
     users.forEach((person, index) => {
-        let initials = getInitials(person.name);
-        let firstLetter = person.name.charAt(0).toUpperCase();
-        if (firstLetter !== currentLetter) {
-            currentLetter = firstLetter;
-            contentListRef.innerHTML += `
-                <div class="letter-section">
-                    <div class="letter">${currentLetter}</div>
-                    <hr class="divider">
-                </div>`;
-        }
-        contentListRef.innerHTML += createContactCard(person, index, initials);
+        currentLetter = handleLetterChange(person, currentLetter, contentListRef);
+        contentListRef.innerHTML += createContactCard(person, index, getInitials(person.name));
     });
+}
+
+/**
+ * Handles the change of a letter section in the contact list.
+ * If the first letter of the current person's name differs from the previous one,
+ * it adds a new letter section to the list.
+ */
+function handleLetterChange(person, currentLetter, contentListRef) {
+    let firstLetter = person.name.charAt(0).toUpperCase();
+    if (firstLetter !== currentLetter) {
+        currentLetter = firstLetter;
+        contentListRef.innerHTML += `
+            <div class="letter-section">
+                <div class="letter">${currentLetter}</div>
+                <hr class="divider">
+            </div>`;
+    }
+    return currentLetter;
 }
 
 /**
