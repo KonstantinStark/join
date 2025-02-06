@@ -1,13 +1,10 @@
-/* muss eigentlich global nachher sortieren obsidian  */
-
 a {
-
     text-decoration: none !important;
 }
 
 .main {
-
-    height:100vh;
+    height: 100vh;
+    background-color: #F6F7F8;
 }
 
 .header-responsiv-img-container {
@@ -20,30 +17,17 @@ a {
     align-items: center;
 }
 
-
-/* global classes */
-
-
 .capital-numbers {
-
-    font-size:40px;
+    font-size: 40px;
     font-weight: 800;
 }
 
 .txt-font-adjustment {
-
-    font-size:20px;
-
+    font-size: 20px;
 }
 
 .d-none {
-
     display: none;
-}
-
-.main {
-
-    background-color: #F6F7F8;
 }
 
 .done,
@@ -51,117 +35,85 @@ a {
 .urgent-container,
 .tasks-board,
 .tasks-progress,
-.feedback{
+.feedback {
     cursor: pointer;
 }
 
-/* END global classes */
-
 .left-right-side-wrapper {
-
     display: flex;
-    margin-left:5%;
-    margin-top:5%;
-   
+    margin-left: 5%;
+    margin-top: 5%;
 }
 
 .subheader {
-
     display: flex;
     align-items: center;
-    /* width:665px;
-    height:73px; */
-    gap:32px;
-    margin-left:5%;
-    margin-top:3%;
-    margin-bottom:-2%;
+    gap: 32px;
+    margin-left: 5%;
+    margin-top: 3%;
+    margin-bottom: -2%;
 }
 
 .first-h2 {
-
-    /* width:264px;
-    height:73px;  */
     font-size: 48px;
-
 }
- 
-.second-h2 {
 
-    color:grey;
+.second-h2 {
+    color: grey;
 }
 
 .subheader-devider {
-
-    width:3px;
-    height:60px;
+    width: 3px;
+    height: 60px;
     background-color: aqua;
-    
 }
 
 .subheader-devider-mediaquery {
-
-    width:3px;
-    height:60px;
+    width: 3px;
+    height: 60px;
     background-color: aqua;
-    display:none;
+    display: none;
 }
 
 .left-side-wrapper {
-
-    
-width:560px;
-height:562px;
-
-
+    width: 560px;
+    height: 562px;
 }
-
-/* to-do-done-wrapper */
 
 .to-do-done-wrapper {
-
     display: flex;
-    gap:30px;
+    gap: 30px;
 }
-
 
 .to-do {
-
-width: 264px;
-height: 168px;
-border:1px solid lightgrey;
-border-radius:10px;
-display: flex;
-justify-content: center;
-align-items: center;
-
-
+    width: 264px;
+    height: 168px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
 .to-do-icon {
-
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#2A3647;
-    border-radius:30px;
-    width:60px;
-    height:60px;
+    background-color: #2A3647;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
 }
 
-
-
 .to-do-inside-wrapper {
-
     display: flex;
     justify-content: center;
-    height:63px;
-    width:200px;
-    gap:20px;
+    height: 63px;
+    width: 200px;
+    gap: 20px;
 }
 
 .to-do-placeholder-wrapper {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,344 +121,270 @@ align-items: center;
 }
 
 .done {
-
     width: 264px;
     height: 168px;
-    border:1px solid lightgrey;
-    border-radius:10px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-    .done-icon {
-    
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #2A3647;
-        border-radius:30px;
-        width:60px;
-        height:60px;
-    }
-    
-    .done-inside-wrapper {
-    
-        display: flex;
-        justify-content: center;
-        height:63px;
-        width:200px;
-        gap:20px;
-    }
-    
-    .done-placeholder-wrapper {
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.done-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2A3647;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+}
 
-/* END to-do-done-wrapper */
+.done-inside-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 63px;
+    width: 200px;
+    gap: 20px;
+}
 
+.done-placeholder-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .urgent-container {
+    display: flex;
+    width: 560px;
+    height: 168px;
+    border: 1px solid lightgrey;
+    margin-top: 20px;
+    border-radius: 10px;
+}
 
-display: flex;
-width:560px;
-height:168px;
-border:1px solid lightgrey;
-margin-top:20px;
-border-radius:10px;
+.urgent-left-side-inside-wrapper {
+    width: 264px;
+    height: 168px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+}
 
-    
- }
-
- .urgent-left-side-inside-wrapper {
-
-width: 264px;
-height: 168px;
-border-radius:10px;
-display: flex;
-justify-content: center;
-align-items: center;
-gap:25px;
-text-align: center;
-
- }
-
- .urgent-icon {
-
-
+.urgent-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:red;
-    border-radius:30px;
-    width:60px;
-    height:60px;
+    background-color: red;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
 }
 
- .urgent-seperator {
-
+.urgent-seperator {
     background-color: lightgrey;
-    width:2px;
-    height:100px;
+    width: 2px;
+    height: 100px;
     display: flex;
-    margin-top:35px;
- }
+    margin-top: 35px;
+}
 
- .urgent-right-side-inside-wrapper {
- 
-    border-radius:10px;
+.urgent-right-side-inside-wrapper {
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width:296px;
- }
+    width: 296px;
+}
 
-
-
- 
- .three-bottom-container-wrapper {
-
+.three-bottom-container-wrapper {
     display: flex;
-    margin-top:20px;
-    gap:25px;
-    margin-left:2px;
- }
+    margin-top: 20px;
+    gap: 25px;
+    margin-left: 2px;
+}
 
- .three-bottom-inside-wrapper {
-
+.three-bottom-inside-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height:125px;
+    height: 125px;
     width: 83px;
- }
+}
 
- .tasks-board {
-
-    width:168px;
-    height:168px;
-    border:1px solid lightgrey;
-    border-radius:10px;
+.tasks-board {
+    width: 168px;
+    height: 168px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
 }
- 
 
- .tasks-progress {
-
-    width:168px;
-    height:168px;
-    border:1px solid lightgrey;
-    border-radius:10px;
+.tasks-progress {
+    width: 168px;
+    height: 168px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
- 
 }
- 
- .feedback {
 
-    width:168px;
-    height:168px;
-    border:1px solid lightgrey;
-    border-radius:10px;
+.feedback {
+    width: 168px;
+    height: 168px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-   
 }
- 
 
-
- .right-side-wrapper {
-
+.right-side-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
- }
+}
 
- .greetings-container {
+.greetings-container {
+    width: 385px;
+    height: 136px;
+}
 
-    width:385px;
-    height:136px;
-   
- }
-
- .right-side-wrapper {
-
-    
-    width:560px;
-    height:562px;
-
-    }
+.right-side-wrapper {
+    width: 560px;
+    height: 562px;
+}
 
 .greeting-text {
-
-    font-size:30px;
+    font-size: 30px;
 }
 
 #name-placeholder {
-
     font-size: 64px;
 }
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
- .to-do {
-    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+.to-do {
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .to-do:hover {
-    background-color: #2A3647; /* Change background on hover */
-    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+    background-color: #2A3647;
+    transform: scale(1.1);
 }
 
 .to-do:hover .to-do-icon {
-    background: white; /* Change background of the icon */
+    background: white;
 }
 
 .to-do-icon img.edit-dark {
-    display: none; /* Hide dark icon by default */
+    display: none;
 }
 
 .to-do-icon img.edit-light {
-    display: inline; /* Show light icon by default */
+    display: inline;
 }
 
 .to-do:hover .to-do-icon img.edit-light {
-    display: none; /* Hide light icon on hover */
+    display: none;
 }
 
 .to-do:hover .to-do-icon img.edit-dark {
-    display: inline; /* Show dark icon on hover */
+    display: inline;
 }
 
 .to-do:hover .number-placeholder,
 .to-do:hover .txt-font-adjustment {
-    color: white; /* Change font color */
+    color: white;
 }
 
-
-
-
-
-
-/* For the .done element */
 .done {
-    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and scaling */
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .done:hover {
-    background-color: #2A3647; /* Change background on hover */
-    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+    background-color: #2A3647;
+    transform: scale(1.1);
 }
 
 .done:hover .done-icon {
-    background: white; /* Change background of the icon */
+    background: white;
 }
 
-/* Default state: show light icon, hide dark icon */
 .done-icon img.done-light {
-    display: inline; /* Show light icon by default */
+    display: inline;
 }
 
 .done-icon img.done-dark {
-    display: none; /* Hide dark icon by default */
+    display: none;
 }
 
-/* Hover state: hide light icon, show dark icon */
 .done:hover .done-icon img.done-light {
-    display: none; /* Hide light icon on hover */
+    display: none;
 }
 
 .done:hover .done-icon img.done-dark {
-    display: inline; /* Show dark icon on hover */
+    display: inline;
 }
 
 .done:hover .number-placeholder,
 .done:hover .txt-font-adjustment {
-    color: white; /* Change font color */
+    color: white;
 }
 
-
-
-
-/* For the .urgent-container element */
 .urgent-container {
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .urgent-container:hover {
-    background-color: #2A3647; /* Change background color to dark grey on hover */
-    color: white; /* Change font color to white on hover */
-    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
 }
 
-
-
-
-/* For the .tasks-board element */
 .tasks-board {
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .tasks-board:hover {
-    background-color: #2A3647; /* Change background color to dark grey on hover */
-    color: white; /* Change font color to white on hover */
-    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
 }
 
-/* For the .tasks-progress element */
 .tasks-progress {
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .tasks-progress:hover {
-    background-color: #2A3647; /* Change background color to dark grey on hover */
-    color: white; /* Change font color to white on hover */
-    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
 }
 
-/* For the .feedback element */
 .feedback {
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and font color */
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .feedback:hover {
-    background-color: #2A3647; /* Change background color to dark grey on hover */
-    color: white; /* Change font color to white on hover */
-    transform: scale(1.1); /* Scale the element to 1.1 times its size */
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
 }
-
-
-
-
-/* Hamburger Toggle */
 
 .hamburger-toggle {
     width: 50px;
@@ -546,8 +424,6 @@ text-align: center;
 .menu-link:hover {
     background-color: #39495f;
 }
-
-/* von sidebar js für oben rechts icon  */
 
 .header-help {
     padding-top: 7px;
