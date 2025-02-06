@@ -12,8 +12,6 @@ function init() {
     
 }
 
-// get users from database 
-
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
     let responseToJson = await userResponse.json();
