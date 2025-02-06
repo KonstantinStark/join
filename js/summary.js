@@ -5,7 +5,6 @@ async function init() {
     await loadTasks();
 }
 
-
 /**
 * Loads tasks from the Firebase database, processes the task data,
 * and renders the task counts.
