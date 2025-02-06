@@ -133,7 +133,7 @@
             <h3>Await feedback</h3>
             <div class="icon icon-add" onclick="showTaskOverlay('await-feedback')"></div>
           </div>
-          <div class="board-tasks drop-target" id="await-feedback-tasks" ondragover="allowDrop(event)"
+          <div class="board-tasks drop-target" id="task-cards" ondragover="allowDrop(event)"
             ondrop="dropTask(event)">
           </div>
         </div>
@@ -149,31 +149,7 @@
       </section>
 
       <!-- Task Detail Overlay -->
-      <div id="task-overlay" class="overlay" style="display: none;">
-        <div class="overlay-content">
-          <span class="close-btn" onclick="toggleOverlayTaks()">&times;</span>
-          <div id="overlay-category" class="task-category"></div>
-          <h2 id="overlay-title"></h2>
-          <p id="overlay-description"></p>
-          <p><strong>Due date:</strong> <span id="overlay-due-date"></span></p>
-          <p><strong>Priority:</strong> <span id="overlay-priority"></span></p>
-          <div>
-            <p><strong>Assigned To:</strong></p>
-            <div id="overlay-assignedContacts" class="assigned-contacts"></div>
-          </div>
-          <div>
-            <p><strong>Subtasks:</strong></p>
-            <ul id="overlay-subtasks" class="subtasks-list"></ul>
-          </div>
-          <div class="overlay-actions" id="overlay-actions">
-            <button onclick="deleteTask(loadedTasks.find(task => task.id === '${taskId}').id)">
-              🗑️ Delete
-            </button>
-            <button onclick="editTask('${taskId}')">
-              ✏️ Edit
-            </button>
-          </div>
-        </div>
+      <div id="task-cards">
       </div>
 
       <!-- Add Task Overlay -->
@@ -333,6 +309,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
   <script src="../js/board.js"></script>
+  <script src="../js/board-add-task-overlay.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/contacts.js"></script>
   <script src="../js/contact-template.js"></script>
