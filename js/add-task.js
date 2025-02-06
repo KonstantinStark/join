@@ -2,7 +2,7 @@ let users = [];
 let selectedPrioButton = '';
 let subtasksArray = [];
 let assignedContacts  = [];
-let isValid = true; // to validate input fields 
+let isValid = true;
 
 console.log(loadUsers());
 
