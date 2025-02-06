@@ -33,11 +33,6 @@ async function loadUsers() {
     renderAssignedToInput();
 }
 
-
-// title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions
-
-// due date calendar functions
-
 function showCalendar() {
     // Focus on the date input field to show the calendar
     document.getElementById("calender-icon").click();
