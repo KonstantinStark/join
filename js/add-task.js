@@ -4,7 +4,7 @@ let subtasksArray = [];
 let assignedContacts  = [];
 let isValid = true; // to validate input fields 
 
-//loads medium as initial seleted prio button
+console.log(loadUsers());
 
 function init() {
 
