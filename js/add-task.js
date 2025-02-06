@@ -4,12 +4,9 @@ let subtasksArray = [];
 let assignedContacts  = [];
 let isValid = true;
 
-console.log(loadUsers());
-
 function init() {
-
     prioButtonOnLoad()
-    
+    loadUsers();
 }
 
 async function loadUsers() {
