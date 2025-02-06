@@ -117,7 +117,7 @@ function resetInputFields() {
 }
 
 /**
- * Loads and displays the user data in the UI.
+ * Loads and displays a sorted list of users, grouped by the first letter of their name.
  */
 function loadData() {
     let contentListRef = document.getElementById("contact-list");
@@ -125,18 +125,27 @@ function loadData() {
     users.sort((a, b) => a.name.localeCompare(b.name));
     let currentLetter = '';
     users.forEach((person, index) => {
-        let initials = getInitials(person.name);
-        let firstLetter = person.name.charAt(0).toUpperCase();
-        if (firstLetter !== currentLetter) {
-            currentLetter = firstLetter;
-            contentListRef.innerHTML += `
-                <div class="letter-section">
-                    <div class="letter">${currentLetter}</div>
-                    <hr class="divider">
-                </div>`;
-        }
-        contentListRef.innerHTML += createContactCard(person, index, initials);
+        currentLetter = handleLetterChange(person, currentLetter, contentListRef);
+        contentListRef.innerHTML += createContactCard(person, index, getInitials(person.name));
     });
+}
+
+/**
+ * Handles the change of a letter section in the contact list.
+ * If the first letter of the current person's name differs from the previous one,
+ * it adds a new letter section to the list.
+ */
+function handleLetterChange(person, currentLetter, contentListRef) {
+    let firstLetter = person.name.charAt(0).toUpperCase();
+    if (firstLetter !== currentLetter) {
+        currentLetter = firstLetter;
+        contentListRef.innerHTML += `
+            <div class="letter-section">
+                <div class="letter">${currentLetter}</div>
+                <hr class="divider">
+            </div>`;
+    }
+    return currentLetter;
 }
 
 /**
@@ -219,25 +228,35 @@ function getUpdatedUserData(index) {
 }
 
 /**
- * Saves the updated user data.
+ * Sends a PATCH request to update user data in the Firebase database.
+ */
+async function updateUserData(personId, updatedUser) {
+    try {
+        let response = await fetch(`${FIREBASE_URL}/users/${personId}.json`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedUser),
+        });
+        return response.ok;
+    } catch (error) {
+        console.error('Error:', error);
+        return false;
+    }
+}
+
+/**
+ * Saves the updated user data and updates the UI if successful.
  */
 async function saveUser(index) {
     let updatedUser = getUpdatedUserData(index);
     if (!validateUserInput(updatedUser)) return;
     let person = users[index];
     updatedUser.color = person.color;
-    try {
-        let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedUser),
-        }); if (response.ok) {
-            users[index] = { id: person.id, ...updatedUser };
-            loadData();
-            exitEditOverlay();
-        }
-    } catch (error) {
-        console.error('Error:', error);
+    const updateSuccessful = await updateUserData(person.id, updatedUser);
+    if (updateSuccessful) {
+        users[index] = { id: person.id, ...updatedUser };
+        loadData();
+        exitEditOverlay();
     }
     editContact(index);
 }

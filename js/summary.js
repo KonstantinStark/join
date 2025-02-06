@@ -6,8 +6,9 @@ async function init() {
 }
 
 /**
- * Loads tasks from Firebase and updates the task count and urgent task count.
- */
+* Loads tasks from the Firebase database, processes the task data,
+* and renders the task counts.
+*/
 async function loadTasks() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
     let responseToJson = await tasksResponse.json();
@@ -15,25 +16,42 @@ async function loadTasks() {
     let taskCount = 0;
     let urgentTaskCount = 0;
     if (responseToJson) {
-        taskCount = Object.keys(responseToJson).length;
-        Object.keys(responseToJson).forEach(key => {
-            const task = {
-                id: key,
-                assignedContacts: responseToJson[key]['assignedContacts'],
-                category: responseToJson[key]['category'],
-                description: responseToJson[key]['description'],
-                dueDate: responseToJson[key]['dueDate'],
-                prioButton: responseToJson[key]['prioButton'],
-                title: responseToJson[key]['title']
-            };
-            tasks.push(task);
-            if (task.prioButton === "urgent") {
-                urgentTaskCount++;
-            }
-        });
+        ({ taskCount, urgentTaskCount } = processTasks(responseToJson));
     }
     renderTaskCount(taskCount);
     renderUrgentTaskCount(urgentTaskCount);
+}
+
+/**
+ * Processes the task data from the Firebase response, counts the total number of tasks,
+ * and counts how many of those tasks are marked as "urgent".
+ */
+function processTasks(responseToJson) {
+    let taskCount = Object.keys(responseToJson).length;
+    let urgentTaskCount = 0;
+    Object.keys(responseToJson).forEach(key => {
+        const task = createTaskObject(key, responseToJson[key]);
+        tasks.push(task);
+        if (task.prioButton === "urgent") {
+            urgentTaskCount++;
+        }
+    });
+    return { taskCount, urgentTaskCount };
+}
+
+/**
+ * Creates a task object from the given task data.
+ */
+function createTaskObject(key, taskData) {
+    return {
+        id: key,
+        assignedContacts: taskData['assignedContacts'],
+        category: taskData['category'],
+        description: taskData['description'],
+        dueDate: taskData['dueDate'],
+        prioButton: taskData['prioButton'],
+        title: taskData['title']
+    };
 }
 
 /**
@@ -58,21 +76,12 @@ function renderUrgentTaskCount(urgentTaskCount) {
 async function getClosestUrgentTaskDate() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
     let responseToJson = await tasksResponse.json();
-    let closestUrgentDate = null;
-    if (responseToJson) {
-        Object.keys(responseToJson).forEach(key => {
-            const task = responseToJson[key];
-            if (task.prioButton === "urgent" && task.dueDate) {
-                const taskDueDate = new Date(task.dueDate);
-                if (!isNaN(taskDueDate.getTime())) {
-                    if (!closestUrgentDate || taskDueDate < closestUrgentDate) {
-                        closestUrgentDate = taskDueDate;
-                    }
-                }
-            }
-        });
-    }
-    return closestUrgentDate 
+    let closestUrgentDate = Object.values(responseToJson || {})
+        .filter(task => task.prioButton === "urgent" && task.dueDate)
+        .map(task => new Date(task.dueDate))
+        .filter(date => !isNaN(date.getTime()))
+        .reduce((closest, date) => !closest || date < closest ? date : closest, null);
+    return closestUrgentDate
         ? closestUrgentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
         : "No urgent tasks with a due date";
 }
@@ -139,12 +148,8 @@ async function renderGreeting() {
     if (loggedInUser && loggedInUser.email) {
         const members = await loadMembers();
         const matchedUser = members.find(member => member.email === loggedInUser.email);
-        if (matchedUser && matchedUser.name) {
-            nameElement.textContent = matchedUser.name;
-            nameElement.style.color = "#29abe2";
-        } else {
-            nameElement.textContent = "Guest";
-        }
+        nameElement.textContent = matchedUser && matchedUser.name ? matchedUser.name : "Guest";
+        nameElement.style.color = matchedUser && matchedUser.name ? "#29abe2" : "";
     } else {
         nameElement.textContent = "Guest";
     }

@@ -18,7 +18,6 @@ function setupFormListeners() {
 
 /**
  * Handles form submission, prevents the default action, and pushes data to Firebase if valid.
- * @param {Event} event - The submit event object.
  */
 function handleSubmit(event) {
     event.preventDefault();
@@ -27,8 +26,6 @@ function handleSubmit(event) {
 
 /**
  * Validates user input by checking all required fields.
- * Disables the signup button if any field is invalid.
- * @returns {boolean} - True if all fields are valid, otherwise false.
  */
 function validateUserInput() {
     let isValid = true;
@@ -42,7 +39,6 @@ function validateUserInput() {
 
 /**
  * Validates the name input field.
- * @returns {boolean} - True if the name is valid, otherwise false.
  */
 function validateName() {
     const name = document.getElementById("name");
@@ -52,7 +48,6 @@ function validateName() {
 
 /**
  * Validates the email input field.
- * @returns {boolean} - True if the email is valid, otherwise false.
  */
 function validateEmail() {
     const email = document.getElementById("email");
@@ -62,7 +57,6 @@ function validateEmail() {
 
 /**
  * Validates the password and confirm password fields.
- * @returns {boolean} - True if passwords match, otherwise false.
  */
 function validatePassword() {
     const password = document.getElementById("password");
@@ -79,7 +73,6 @@ function validatePassword() {
 
 /**
  * Validates the terms and policy checkbox.
- * @returns {boolean} - True if the checkbox is checked, otherwise false.
  */
 function validatePolicy() {
     const checkbox = document.getElementById("accept-policy");
@@ -89,11 +82,6 @@ function validatePolicy() {
 
 /**
  * Validates a single input field based on a regular expression.
- * @param {HTMLInputElement} input - The input element to validate.
- * @param {HTMLElement} errorText - The element where error messages will be shown.
- * @param {RegExp} regex - The regular expression to test the input value.
- * @param {string} errorMessage - The error message to display if the input is invalid.
- * @returns {boolean} - True if the input is valid, otherwise false.
  */
 function validateField(input, errorText, regex, errorMessage) {
     if (!input.value || !regex.test(input.value)) {
@@ -127,8 +115,6 @@ function pushDataToFirebase() {
 
 /**
  * Extracts the initials from a full name.
- * @param {string} name - The full name to extract initials from.
- * @returns {string} - The initials of the name.
  */
 function getInitials(name) {
     return name.split(" ").map(n => n.charAt(0).toUpperCase()).join("");

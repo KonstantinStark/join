@@ -2,17 +2,12 @@ let users = [];
 let selectedPrioButton = '';
 let subtasksArray = [];
 let assignedContacts  = [];
-let isValid = true; // to validate input fields 
-
-//loads medium as initial seleted prio button
+let isValid = true;
 
 function init() {
-
     prioButtonOnLoad()
-    
+    loadUsers();
 }
-
-// get users from database 
 
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
@@ -34,11 +29,6 @@ async function loadUsers() {
     console.log(users);
     renderAssignedToInput();
 }
-
-
-// title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions
-
-// due date calendar functions
 
 function showCalendar() {
     // Focus on the date input field to show the calendar
@@ -408,7 +398,6 @@ function validateForm() {
 
 async function addNewArrayFromInputs() {
     let assignedContacts  = getSelectedAssignedUsers();  
-    
     let newTask = {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
@@ -418,14 +407,12 @@ async function addNewArrayFromInputs() {
         category: document.getElementById("category-input-placeholder").innerHTML,
         subtasks: subtasksArray,
     };
-
     try {
         await postData(`/tasks`, newTask);
         console.log("Task successfully added:", newTask);
     } catch (error) {
         console.error("Error adding task:", error);
     }
-
     window.location.href = 'board.html';
 }
 
