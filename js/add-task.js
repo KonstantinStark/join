@@ -398,7 +398,6 @@ function validateForm() {
 
 async function addNewArrayFromInputs() {
     let assignedContacts  = getSelectedAssignedUsers();  
-    
     let newTask = {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
@@ -408,14 +407,12 @@ async function addNewArrayFromInputs() {
         category: document.getElementById("category-input-placeholder").innerHTML,
         subtasks: subtasksArray,
     };
-
     try {
         await postData(`/tasks`, newTask);
         console.log("Task successfully added:", newTask);
     } catch (error) {
         console.error("Error adding task:", error);
     }
-
     window.location.href = 'board.html';
 }
 
