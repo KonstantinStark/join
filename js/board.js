@@ -16,34 +16,36 @@ async function loadTasks() {
             }
         }
         
-        renderTasks(tasks);
+        renderToDoTasks(tasks);
     } catch (error) {
         console.error("cant fetch tasks:", error);
     }
 }
 
-function renderTasks(tasks) {
+
+function renderToDoTasks(tasks) {
     const taskContainer = document.getElementById("task-cards"); // Ensure there's a container with this ID in your HTML
     taskContainer.innerHTML = ""; // Clear existing tasks before rendering new ones
 
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
+    let toDoTasks = tasks.filter(task => task.boardCategory === "to-do");
+
+    for (let i = 0; i < toDoTasks.length; i++) {
+        const task = toDoTasks[i];
         taskContainer.innerHTML += `
-
-        <div class="single-task-card">
-
-            <p> ${task.category}</p>
+        <div class="single-task-card" draggable="true" ondragstart="startDragging(${task.id})">
+            <p>${task.category}</p>
             <h3>${task.title}</h3>
-            <p> ${task.description}</p>
-            <p><${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
-            <p><${task.prioButton || "Not Set"}</p>
-            <p> ${task.assignedContacts || "None"}</p>
-            
-            </div>
-        `;   
+            <p>${task.description}</p>
+            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
+            <p>${task.prioButton || "Not Set"}</p>
+            <p>${task.assignedContacts || "None"}</p>
+        </div>
+        `;
     }
 }
-
 // Call loadTasks() when the page loads
 window.onload = loadTasks;
+
+
+
 
