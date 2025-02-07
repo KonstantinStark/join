@@ -11,9 +11,11 @@ async function init() {
 async function loadTasks() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
     let responseToJson = await tasksResponse.json();
-    tasks = [];
+    let tasks = [];
     let taskCount = 0;
     let urgentTaskCount = 0;
+    let doneCount = 0; // Initialize done count
+
     if (responseToJson) {
         taskCount = Object.keys(responseToJson).length;
         Object.keys(responseToJson).forEach(key => {
@@ -24,16 +26,27 @@ async function loadTasks() {
                 description: responseToJson[key]['description'],
                 dueDate: responseToJson[key]['dueDate'],
                 prioButton: responseToJson[key]['prioButton'],
-                title: responseToJson[key]['title']
+                title: responseToJson[key]['title'],
+                boardCategory: responseToJson[key]['boardCategory'] // Add boardCategory to the task object
             };
             tasks.push(task);
+
+            // Check if the task is urgent
             if (task.prioButton === "urgent") {
                 urgentTaskCount++;
             }
+
+            // Count how many tasks have the 'done' category
+            if (task.boardCategory === "done") {
+                doneCount++;
+            }
         });
     }
+
+    // Render counts in the DOM
     renderTaskCount(taskCount);
     renderUrgentTaskCount(urgentTaskCount);
+    renderDoneCount(doneCount);  // Render the done count
 }
 
 /**
@@ -50,6 +63,14 @@ function renderTaskCount(taskCount) {
 function renderUrgentTaskCount(urgentTaskCount) {
     let urgentCountRef = document.getElementById('urgent-placeholder');
     urgentCountRef.innerHTML = `${urgentTaskCount}`;
+}
+
+/**
+ * Renders the number of done tasks in the DOM.
+ */
+function renderDoneCount(doneCount) {
+    let doneCountRef = document.getElementById('done-placeholder');
+    doneCountRef.innerHTML = `${doneCount}`;  // Updated to render the done task count
 }
 
 /**
