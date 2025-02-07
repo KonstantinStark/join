@@ -417,6 +417,7 @@ async function addNewArrayFromInputs() {
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
         subtasks: subtasksArray,
+        boardCategory: "to-do"
     };
 
     try {
