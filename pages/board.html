@@ -105,6 +105,8 @@
 
       <!-- Board Columns -->
       <section class="board-middle">
+
+        <!-- vorher hier to-do-tasks id -->
         
         <!-- To Do Column -->
         <div class="boards">
@@ -112,7 +114,7 @@
             <h3>To do</h3>
             <div class="icon icon-add" onclick="showTaskOverlay('todo')"></div>
           </div>
-          <div class="board-tasks drop-target" id="todo-tasks" ondragover="allowDrop(event)" ondrop="dropTask(event)">
+          <div class="board-tasks drop-target" id="task-cards" ondragover="allowDrop(event)" ondrop="dropTask(event)">
           </div>
         </div>
 
@@ -133,7 +135,7 @@
             <h3>Await feedback</h3>
             <div class="icon icon-add" onclick="showTaskOverlay('await-feedback')"></div>
           </div>
-          <div class="board-tasks drop-target" id="task-cards" ondragover="allowDrop(event)"
+          <div class="board-tasks drop-target"  ondragover="allowDrop(event)"
             ondrop="dropTask(event)">
           </div>
         </div>

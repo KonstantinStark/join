@@ -28,7 +28,10 @@ function renderTasks(tasks) {
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
-        taskContainer.innerHTML = `
+        taskContainer.innerHTML += `
+
+        <div class="single-task-card">
+
             <p> ${task.category}</p>
             <h3>${task.title}</h3>
             <p> ${task.description}</p>
@@ -36,6 +39,7 @@ function renderTasks(tasks) {
             <p><${task.prioButton || "Not Set"}</p>
             <p> ${task.assignedContacts || "None"}</p>
             
+            </div>
         `;   
     }
 }
