@@ -88,22 +88,46 @@ function setBackgroundColorByCategory(category) {
     return ""; // Default, no class if category doesn't match
 }
 
+function calculateSubtaskProgress(subtasks) {
+    if (!subtasks || subtasks.length === 0) {
+        return null; // No subtasks, return null
+    }
+    
+    const totalSubtasks = subtasks.length;
+    const completedSubtasks = subtasks.filter(st => st.completed).length;
+    const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+    
+    return { totalSubtasks, completedSubtasks, progressPercentage };
+}
 
 function createTaskCardHTML(task) {
-    // Use the helper function to get the category class
     const categoryClass = setBackgroundColorByCategory(task.category);
-
+    const progressData = calculateSubtaskProgress(task.subtasks);
+    
     return `
         <div id="task-${task.id}" class="single-task-card" draggable="true" 
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
             <p class="task-category ${categoryClass}">${task.category}</p>
             <h3>${task.title}</h3>
             <p>${task.description}</p>
-            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
+
+            ${progressData ? `
+                <div class="subtask-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
+                    </div>
+                    <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
+                </div>` : ""}
+
             <p>${task.prioButton || "Not Set"}</p>
             <p>${task.assignedContacts || "None"}</p>
+
+            
         </div>`;
 }
+
+
+
 
 
 

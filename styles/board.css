@@ -10,6 +10,7 @@
     height: 200px;
     background-color: lightgray;
     margin: 20px;
+    border-radius:20px;
     transition: transform 0.2s ease-in-out; /* Add smooth transition for transform */
 }
 
@@ -26,6 +27,27 @@
 .task-category.user-story {
     background: #1FD7C1;
     color: white; /* Optional: Make the text white to be visible on the green background */
+}
+
+.subtask-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 100px;
+    height: 6px;
+    background-color: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #3b82f6; /* Blue color similar to your image */
+    transition: width 0.3s ease-in-out;
 }
 
 
