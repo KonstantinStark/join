@@ -11,10 +11,9 @@ async function init() {
 async function loadTasks() {
     let tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
     let responseToJson = await tasksResponse.json();
-    let tasks = [];
+    tasks = [];
     let taskCount = 0;
     let urgentTaskCount = 0;
-    let doneCount = 0; // Initialize done count
 
     if (responseToJson) {
         taskCount = Object.keys(responseToJson).length;
@@ -35,19 +34,18 @@ async function loadTasks() {
             if (task.prioButton === "urgent") {
                 urgentTaskCount++;
             }
-
-            // Count how many tasks have the 'done' category
-            if (task.boardCategory === "done") {
-                doneCount++;
-            }
         });
     }
 
     // Render counts in the DOM
     renderTaskCount(taskCount);
     renderUrgentTaskCount(urgentTaskCount);
-    renderDoneCount(doneCount);  // Render the done count
+    renderDoneCount();  // Render the done task count based on filtered tasks
+    renderTasksOnBoard();  // Render tasks on board count based on filtered tasks
+    renderTasksInProgress();  // Render tasks in progress count based on filtered tasks
+    renderAwaitingFeedback();  // Render awaiting feedback task count based on filtered tasks
 }
+
 
 /**
  * Renders the total task count in the DOM.
@@ -68,9 +66,37 @@ function renderUrgentTaskCount(urgentTaskCount) {
 /**
  * Renders the number of done tasks in the DOM.
  */
-function renderDoneCount(doneCount) {
+// Render function for done tasks
+// Render function for done tasks
+async function renderDoneCount() {
+    let doneTasks = tasks.filter(task => task.boardCategory === "done");
+    let doneCount = doneTasks.length;  // Count the tasks with "done" category
     let doneCountRef = document.getElementById('done-placeholder');
-    doneCountRef.innerHTML = `${doneCount}`;  // Updated to render the done task count
+    doneCountRef.innerHTML = `${doneCount}`;  // Render the done task count
+}
+
+// Render function for tasks on the board
+async function renderTasksOnBoard() {
+    let tasksOnBoard = tasks.filter(task => task.boardCategory);
+    let tasksOnBoardCount = tasksOnBoard.length;  // Count tasks in "to-do" and "in-progress"
+    let tasksOnBoardRef = document.getElementById('tasks-on-board-placeholder');
+    tasksOnBoardRef.innerHTML = `${tasksOnBoardCount}`;  // Render tasks on board count
+}
+
+// Render function for tasks in progress
+ function renderTasksInProgress() {
+    let tasksInProgress = tasks.filter(task => task.boardCategory === "in-progress");
+    let tasksInProgressCount = tasksInProgress.length;  // Count tasks in "in-progress"
+    let tasksInProgressRef = document.getElementById('tasks-in-progres-placeholder');
+    tasksInProgressRef.innerHTML = `${tasksInProgressCount}`;  // Render tasks in progress count
+}
+
+// Render function for tasks awaiting feedback
+async function renderAwaitingFeedback() {
+    let awaitingFeedbackTasks = tasks.filter(task => task.boardCategory === "await-feedback");
+    let awaitingFeedbackCount = awaitingFeedbackTasks.length;  // Count tasks in "awaiting-feedback"
+    let awaitingFeedbackRef = document.getElementById('awaiting-feedback-placeholder');
+    awaitingFeedbackRef.innerHTML = `${awaitingFeedbackCount}`;  // Render awaiting feedback task count
 }
 
 /**
