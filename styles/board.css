@@ -18,6 +18,17 @@
     transform: rotate(5deg); /* Slight tilt to the right */
 }
 
+.task-category.technical-task {
+    background: #0038FF;
+    color: white; /* Optional: Make the text white to be visible on the blue background */
+}
+
+.task-category.user-story {
+    background: #1FD7C1;
+    color: white; /* Optional: Make the text white to be visible on the green background */
+}
+
+
 .hamburger-toggle {
     width: 50px;
     height: 50px;

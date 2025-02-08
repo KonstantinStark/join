@@ -79,12 +79,24 @@ function renderAllTasks() {
     renderDoneTasks(loadedTasks);
 }
 
-// Helper function to generate the HTML for each task
+function setBackgroundColorByCategory(category) {
+    if (category === "Technical Task") {
+        return "technical-task"; // Class for Technical Task
+    } else if (category === "User Story") {
+        return "user-story"; // Class for User Story
+    }
+    return ""; // Default, no class if category doesn't match
+}
+
+
 function createTaskCardHTML(task) {
+    // Use the helper function to get the category class
+    const categoryClass = setBackgroundColorByCategory(task.category);
+
     return `
         <div id="task-${task.id}" class="single-task-card" draggable="true" 
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
-            <p>${task.category}</p>
+            <p class="task-category ${categoryClass}">${task.category}</p>
             <h3>${task.title}</h3>
             <p>${task.description}</p>
             <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
@@ -92,6 +104,8 @@ function createTaskCardHTML(task) {
             <p>${task.assignedContacts || "None"}</p>
         </div>`;
 }
+
+
 
 // Render function for "To Do" tasks
 function renderToDoTasks(tasks) {
