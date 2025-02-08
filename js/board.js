@@ -28,9 +28,16 @@ async function loadTasks() {
     }
 }
 
-// General drag start function
 function startDragging(event, taskId) {
     event.dataTransfer.setData('taskId', taskId); // Store the dragged task ID
+    // Add the dragging class to tilt the container
+    event.target.classList.add('dragging');
+}
+
+// Drag end function to remove the tilt effect
+function endDragging(event) {
+    // Remove the dragging class to stop the tilt effect
+    event.target.classList.remove('dragging');
 }
 
 // Allow task container to accept drops
