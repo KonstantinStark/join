@@ -79,78 +79,64 @@ function renderAllTasks() {
     renderDoneTasks(loadedTasks);
 }
 
-// Render functions (for each category)
+// Helper function to generate the HTML for each task
+function createTaskCardHTML(task) {
+    return `
+        <div id="task-${task.id}" class="single-task-card" draggable="true" 
+            ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
+            <p>${task.category}</p>
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
+            <p>${task.prioButton || "Not Set"}</p>
+            <p>${task.assignedContacts || "None"}</p>
+        </div>`;
+}
+
+// Render function for "To Do" tasks
 function renderToDoTasks(tasks) {
     const taskContainer = document.getElementById("to-do-cards");
     taskContainer.innerHTML = ""; 
     let toDoTasks = tasks.filter(task => task.boardCategory === "to-do");
 
     toDoTasks.forEach(task => {
-        taskContainer.innerHTML += `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, 'to-do')" ondragover="allowDrop(event)">
-            <p>${task.category}</p>
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
-            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
-            <p>${task.prioButton || "Not Set"}</p>
-            <p>${task.assignedContacts || "None"}</p>
-        </div>`;
+        taskContainer.innerHTML += createTaskCardHTML(task);
     });
 }
 
+// Render function for "In Progress" tasks
 function renderInProgressTasks(tasks) {
     const taskContainer = document.getElementById("in-progress-cards");
     taskContainer.innerHTML = ""; 
     let inProgressTasks = tasks.filter(task => task.boardCategory === "in-progress");
 
     inProgressTasks.forEach(task => {
-        taskContainer.innerHTML += `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, 'in-progress')" ondragover="allowDrop(event)">
-            <p>${task.category}</p>
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
-            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
-            <p>${task.prioButton || "Not Set"}</p>
-            <p>${task.assignedContacts || "None"}</p>
-        </div>`;
+        taskContainer.innerHTML += createTaskCardHTML(task);
     });
 }
 
+// Render function for "Await Feedback" tasks
 function renderAwaitFeedbackTasks(tasks) {
     const taskContainer = document.getElementById("await-feedback-cards");
     taskContainer.innerHTML = ""; 
     let awaitFeedbackTasks = tasks.filter(task => task.boardCategory === "await-feedback");
 
     awaitFeedbackTasks.forEach(task => {
-        taskContainer.innerHTML += `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, 'await-feedback')" ondragover="allowDrop(event)">
-            <p>${task.category}</p>
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
-            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
-            <p>${task.prioButton || "Not Set"}</p>
-            <p>${task.assignedContacts || "None"}</p>
-        </div>`;
+        taskContainer.innerHTML += createTaskCardHTML(task);
     });
 }
 
+// Render function for "Done" tasks
 function renderDoneTasks(tasks) {
     const taskContainer = document.getElementById("done-cards");
     taskContainer.innerHTML = ""; 
     let doneTasks = tasks.filter(task => task.boardCategory === "done");
 
     doneTasks.forEach(task => {
-        taskContainer.innerHTML += `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, 'done')" ondragover="allowDrop(event)">
-            <p>${task.category}</p>
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
-            <p>${task.subtasks ? task.subtasks.join(", ") : "None"}</p>
-            <p>${task.prioButton || "Not Set"}</p>
-            <p>${task.assignedContacts || "None"}</p>
-        </div>`;
+        taskContainer.innerHTML += createTaskCardHTML(task);
     });
 }
+
 
 // Call loadTasks() when the page loads
 window.onload = loadTasks;
