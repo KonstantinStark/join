@@ -129,14 +129,21 @@ function loadData() {
         let firstLetter = person.name.charAt(0).toUpperCase();
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
-            contentListRef.innerHTML += `
-                <div class="letter-section">
-                    <div class="letter">${currentLetter}</div>
-                    <hr class="divider">
-                </div>`;
+            contentListRef.innerHTML += createLetterSection(currentLetter);
         }
         contentListRef.innerHTML += createContactCard(person, index, initials);
     });
+}
+
+/**
+ * Creates a letter section for the contact list.
+ */
+function createLetterSection(letter) {
+    return `
+        <div class="letter-section">
+            <div class="letter">${letter}</div>
+            <hr class="divider">
+        </div>`;
 }
 
 /**
@@ -150,8 +157,15 @@ function editContact(index) {
     document.getElementById('edit-contacts').innerHTML = createEditContactTemplate(person, index, initials);
     document.querySelectorAll('.content-container').forEach(c => c.classList.remove('active-contact'));
     document.getElementById(`content-container-${index}`).classList.add('active-contact');
-    document.getElementById('name-initials').innerHTML = `
-    <div style="background-color: ${person.color}; height: 100px; width: 100px; border-radius: 100%; display: flex; align-items: center; justify-content: center;">
+    document.getElementById('name-initials').innerHTML = createInitialsDiv(person.color, initials);
+}
+
+/**
+ * Creates a div with the user's initials.
+ */
+function createInitialsDiv(color, initials) {
+    return `
+    <div style="background-color: ${color}; height: 100px; width: 100px; border-radius: 100%; display: flex; align-items: center; justify-content: center;">
         <span style="color: white; font-size: 24px;">${initials}</span>
     </div>`;
 }
@@ -227,19 +241,26 @@ async function saveUser(index) {
     let person = users[index];
     updatedUser.color = person.color;
     try {
-        let response = await fetch(`${FIREBASE_URL}/users/${person.id}.json`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedUser),
-        }); if (response.ok) {
-            users[index] = { id: person.id, ...updatedUser };
-            loadData();
-            exitEditOverlay();
-        }
+        await updateUserInDatabase(person.id, updatedUser);
+        users[index] = { id: person.id, ...updatedUser };
+        loadData();
+        exitEditOverlay();
     } catch (error) {
         console.error('Error:', error);
     }
     editContact(index);
+}
+
+/**
+ * Updates the user data in the database.
+ */
+async function updateUserInDatabase(userId, updatedUser) {
+    let response = await fetch(`${FIREBASE_URL}/users/${userId}.json`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedUser),
+    });
+    if (!response.ok) throw new Error('Failed to update user');
 }
 
 /**
