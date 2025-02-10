@@ -7,9 +7,8 @@ let isValid = true; // to validate input fields
 //loads medium as initial seleted prio button
 
 function init() {
-
     prioButtonOnLoad()
-    
+    loadUsers();    
 }
 
 // get users from database 
