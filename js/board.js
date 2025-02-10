@@ -100,10 +100,24 @@ function calculateSubtaskProgress(subtasks) {
     return { totalSubtasks, completedSubtasks, progressPercentage };
 }
 
+function generateUserAvatar(user) {
+    return `
+        <svg width="40" height="40">
+            <circle cx="20" cy="20" r="16" fill="${user.color}" />
+            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
+                ${user.initials}
+            </text>
+        </svg>
+    `;
+}
+
 function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
     
+    // Create the SVG for each assigned user using the `generateUserAvatar` function
+    const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");  // Join the SVGs into one string
+
     return `
         <div id="task-${task.id}" class="single-task-card" draggable="true" 
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
@@ -120,13 +134,13 @@ function createTaskCardHTML(task) {
                 </div>` : ""}
 
             <p>${task.prioButton || "Not Set"}</p>
-            <p>${task.assignedContacts || "None"}</p>
 
-            
+            <!-- Render assigned user avatars (SVGs) -->
+            <div class="assigned-users">
+                ${userAvatars || "None"}
+            </div>
         </div>`;
 }
-
-
 
 
 
