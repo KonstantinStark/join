@@ -114,6 +114,12 @@ function generateUserAvatar(user) {
     `;
 }
 
+function generateUserName(user) {
+    // Assuming the 'user' object has a 'name' property
+    return user.name ? `<p class="user-name">${user.name}</p>` : "<p class='user-name'>No Name</p>";
+}
+
+
 function getPrioSVG(prio) {
     // Check the prio string and return the appropriate SVG markup
     switch (prio) {
@@ -137,7 +143,7 @@ function createTaskCardHTML(task) {
     const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");  // Join the SVGs into one string
 
     return `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay()"
+        <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
             <p class="task-category ${categoryClass}">${task.category}</p>
             <h3>${task.title}</h3>
@@ -151,31 +157,78 @@ function createTaskCardHTML(task) {
                     <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
                 </div>` : ""}
 
-            
-
             <!-- Render assigned user avatars (SVGs) -->
-               <div class="assigned-users-prio-button-wrapper">
-                
+            <div class="assigned-users-prio-button-wrapper">
                 <div class="assigned-users">
                     ${userAvatars || "None"}
-                
                 </div>
 
                 <div class="prio-button-board">
                     <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
-                
                 </div>
-               
             </div>
-
         </div>`;
 }
 
-function taskCardsOverlay() {
 
-    document.getElementById("task-overlay").classList.remove("d-none");
+
+function taskCardsOverlay(taskId) {
+    // Find the task from the global tasks array (or the array you are working with)
+    const task = loadedTasks.find(t => t.id === taskId);
+
+    if (!task) {
+        console.error('Task not found with ID:', taskId);
+        return;
+    }
+
+    // Get the overlay element by its ID
+    const overlay = document.getElementById("task-overlay");
+
+    // Get the container inside the overlay where we'll show the task details
+    const overlayDetails = document.getElementById("overlay-task-details");
+
+    // Dynamically build the HTML for the task details
+    const categoryClass = setBackgroundColorByCategory(task.category);
+    const progressData = calculateSubtaskProgress(task.subtasks);
     
+    // Generate the user avatars and user names
+    const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");
+    const userNames = task.assignedContacts.map(user => generateUserName(user)).join("");
+
+    // Create the HTML for the task overlay
+    const taskDetailsHTML = `
+        <div class="task-category ${categoryClass}">${task.category}</div>
+        <h3>${task.title}</h3>
+        <p>${task.description}</p>
+         <p>${task.dueDate}</p>
+        
+        <div class="assigned-users-overlay">
+            <p>Assigned to:</p>
+            ${userAvatars || "No User Avatars"}
+            ${userNames || "No User Names"}
+        </div>
+
+        <div class="prio-button-board">
+            <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
+        </div>
+
+          ${progressData ? `
+            <div class="subtask-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
+                </div>
+                <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
+            </div>` : ""}
+
+    `;
+
+    // Insert the task details into the overlay container
+    overlayDetails.innerHTML = taskDetailsHTML;
+
+    // Show the overlay by removing the 'd-none' class
+    overlay.classList.remove("d-none");
 }
+
 
 function closeOverlay() {
 
