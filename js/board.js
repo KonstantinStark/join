@@ -136,12 +136,24 @@ function createTaskCardHTML(task) {
                     <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
                 </div>` : ""}
 
-            <p>${task.prioButton || "Not Set"}</p>
+            
 
             <!-- Render assigned user avatars (SVGs) -->
-            <div class="assigned-users">
-                ${userAvatars || "None"}
+               <div class="assigned-users-prio-button-wrapper">
+                
+                <div class="assigned-users">
+                    ${userAvatars || "None"}
+                
+                </div>
+
+                <div class="prio-button-board">
+                    <p>${task.prioButton || "Not Set"}</p>
+                
+                </div>
+               
             </div>
+
+        
         </div>`;
 }
 

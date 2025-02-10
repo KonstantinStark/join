@@ -4,15 +4,19 @@
     flex-direction: column;
 }
 
-.assigned-users {
+.assigned-users-prio-button-wrapper {
     display: flex;
-    justify-content: flex-start;
-    margin-left:20px;
+    justify-content: space-between;
+    margin-left:24px;
 }
 
-
 .assigned-users svg {
-    margin-left: -20px; /* Adjust this for the desired overlap amount */
+    margin-left: -24px; /* Adjust this for the desired overlap amount */
+}
+
+.prio-button-board {
+
+    margin-right:16px;
 }
 
 .single-task-card {
