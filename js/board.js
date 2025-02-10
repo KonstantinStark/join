@@ -137,7 +137,7 @@ function createTaskCardHTML(task) {
     const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");  // Join the SVGs into one string
 
     return `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" 
+        <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay()"
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
             <p class="task-category ${categoryClass}">${task.category}</p>
             <h3>${task.title}</h3>
@@ -168,14 +168,19 @@ function createTaskCardHTML(task) {
                
             </div>
 
-        
         </div>`;
 }
 
+function taskCardsOverlay() {
 
+    document.getElementById("task-overlay").classList.remove("d-none");
+    
+}
 
+function closeOverlay() {
 
-
+    document.getElementById("task-overlay").classList.add("d-none");
+}
 
 // Render function for "To Do" tasks
 function renderToDoTasks(tasks) {
