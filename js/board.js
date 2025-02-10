@@ -102,19 +102,22 @@ function calculateSubtaskProgress(subtasks) {
 
 function generateUserAvatar(user) {
     return `
+        
         <svg width="40" height="40">
             <circle cx="20" cy="20" r="16" fill="${user.color}" />
             <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
                 ${user.initials}
             </text>
         </svg>
+        
+
     `;
 }
 
 function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
-    
+
     // Create the SVG for each assigned user using the `generateUserAvatar` function
     const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");  // Join the SVGs into one string
 
@@ -141,6 +144,8 @@ function createTaskCardHTML(task) {
             </div>
         </div>`;
 }
+
+
 
 
 

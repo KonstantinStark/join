@@ -4,6 +4,17 @@
     flex-direction: column;
 }
 
+.assigned-users {
+    display: flex;
+    justify-content: flex-start;
+    margin-left:20px;
+}
+
+
+.assigned-users svg {
+    margin-left: -20px; /* Adjust this for the desired overlap amount */
+}
+
 .single-task-card {
     max-width: 250px;
     width:100%;
