@@ -4,6 +4,21 @@
     flex-direction: column;
 }
 
+.assigned-users-prio-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-left:24px;
+}
+
+.assigned-users svg {
+    margin-left: -24px; /* Adjust this for the desired overlap amount */
+}
+
+.prio-button-board {
+
+    margin-right:16px;
+}
+
 .single-task-card {
     max-width: 250px;
     width:100%;
