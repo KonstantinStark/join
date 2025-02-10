@@ -68,6 +68,52 @@
     margin: 10px 0;
 }
 
+/* Styling for the subtask container */
+.subtasks-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Styling for individual subtask checkboxes */
+.subtask-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 25%; /* Set width to 1/4 */
+    justify-content: flex-start; /* Align checkboxes to the left */
+}
+
+.subtask-checkbox input {
+    margin-right: 10px;
+}
+
+/* To keep subtasks smaller */
+.subtask-checkbox label {
+    font-size: 0.9em; /* Adjust font size */
+}
+
+/* Flexbox container for the task details and subtasks */
+.task-details-container {
+    display: flex;
+    justify-content: space-between; /* Space between task details and subtasks */
+    align-items: flex-start;
+}
+
+/* Styling for task details container */
+.task-details {
+    width: 75%; /* Task details takes up 3/4 width */
+}
+
+/* Styling for the subtasks list section */
+.subtasks-container {
+    width: 25%; /* Subtasks section takes up 1/4 width */
+    overflow-y: auto;
+    max-height: 400px; /* Limit the height of the subtasks area */
+}
+
+
 
 /* Add a tilt effect during dragging */
 .single-task-card.dragging {

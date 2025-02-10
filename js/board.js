@@ -195,24 +195,21 @@ function taskCardsOverlay(taskId) {
     const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");
     const userNames = task.assignedContacts.map(user => generateUserName(user)).join("");
 
+    // Create checkboxes for subtasks
+    const subtasksCheckboxes = task.subtasks.map(subtask => `
+        <div class="subtask-checkbox">
+            <input type="checkbox" id="subtask-${subtask.id}" ${subtask.completed ? "checked" : ""} disabled>
+            <label for="subtask-${subtask.id}">${subtask.title}</label>
+        </div>
+    `).join(""); // Join all subtasks as individual checkboxes
+
     // Create the HTML for the task overlay
     const taskDetailsHTML = `
         <div class="task-category ${categoryClass}">${task.category}</div>
         <h3>${task.title}</h3>
         <p>${task.description}</p>
-         <p>${task.dueDate}</p>
-        
-        <div class="assigned-users-overlay">
-            <p>Assigned to:</p>
-            ${userAvatars || "No User Avatars"}
-            ${userNames || "No User Names"}
-        </div>
 
-        <div class="prio-button-board">
-            <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
-        </div>
-
-          ${progressData ? `
+        ${progressData ? `
             <div class="subtask-progress">
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
@@ -220,6 +217,20 @@ function taskCardsOverlay(taskId) {
                 <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
             </div>` : ""}
 
+        <div class="assigned-users-overlay">
+            <p>Assigned to:</p>
+            ${userAvatars || "No User Avatars"}
+            ${userNames || "No User Names"}
+        </div>
+
+        <div class="subtasks-list">
+            <p>Subtasks:</p>
+            ${subtasksCheckboxes || "No Subtasks"}
+        </div>
+
+        <div class="prio-button-board">
+            <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
+        </div>
     `;
 
     // Insert the task details into the overlay container
