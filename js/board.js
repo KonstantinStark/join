@@ -114,6 +114,21 @@ function generateUserAvatar(user) {
     `;
 }
 
+function getPrioSVG(prio) {
+    // Check the prio string and return the appropriate SVG markup
+    switch (prio) {
+        case 'urgent':
+            return `<img src="../assets/img/add-task/urgent.svg" alt="Urgent">`;
+        case 'medium':
+            return `<img src="../assets/img/add-task/medium.svg" alt="Medium">`;
+        case 'low':
+            return `<img src="../assets/img/add-task/low.svg" alt="Low">`;
+        default:
+            return `<span>Not Set</span>`; // Fallback when prio is not set or invalid
+    }
+}
+
+
 function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
@@ -147,7 +162,7 @@ function createTaskCardHTML(task) {
                 </div>
 
                 <div class="prio-button-board">
-                    <p>${task.prioButton || "Not Set"}</p>
+                    <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
                 
                 </div>
                
