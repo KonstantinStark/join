@@ -204,33 +204,40 @@ function taskCardsOverlay(taskId) {
 
     // Create the HTML for the task overlay
     const taskDetailsHTML = `
-        <div class="task-category ${categoryClass}">${task.category}</div>
-        <h3>${task.title}</h3>
-        <p>${task.description}</p>
+    <div class="task-category ${categoryClass}">${task.category}</div>
+    <h3>${task.title}</h3>
+    <p>${task.description}</p>
 
-        ${progressData ? `
-            <div class="subtask-progress">
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
-                </div>
-                <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
-            </div>` : ""}
+    ${progressData ? `
+        <div class="subtask-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
+            </div>
+            <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
+        </div>` : ""}
 
-        <div class="assigned-users-overlay">
-            <p>Assigned to:</p>
-            ${userAvatars || "No User Avatars"}
-            ${userNames || "No User Names"}
-        </div>
+    <div class="assigned-users-overlay">
+        <p>Assigned to:</p>
+        ${userAvatars || "No User Avatars"}
+        ${userNames || "No User Names"}
+    </div>
 
-        <div class="subtasks-list">
-            <p>Subtasks:</p>
-            ${subtasksCheckboxes || "No Subtasks"}
-        </div>
+    <div class="subtasks-list">
+        <p>Subtasks:</p>
+        ${subtasksCheckboxes || "No Subtasks"}
+    </div>
 
-        <div class="prio-button-board">
-            <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
-        </div>
-    `;
+    <div class="prio-button-board">
+        <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
+    </div>
+
+    <!-- Edit and Delete Buttons -->
+    <div class="task-action-buttons">
+        <button class="edit-button" onclick="editTask(${task.id})">Edit</button>
+        <button class="delete-button" onclick="deleteTaskBtn('${task.id}')">Delete</button>
+    </div>
+`;
+
 
     // Insert the task details into the overlay container
     overlayDetails.innerHTML = taskDetailsHTML;
@@ -244,6 +251,34 @@ function closeOverlay() {
 
     document.getElementById("task-overlay").classList.add("d-none");
 }
+
+function deleteTaskBtn(taskId) {
+    // Find the index of the task to be deleted in the loadedTasks array
+    const taskIndex = loadedTasks.findIndex(t => t.id === taskId);
+
+    if (taskIndex === -1) {
+        console.error('Task not found with ID:', taskId);
+        return;
+    }
+
+    // Remove the task from the loadedTasks array
+    loadedTasks.splice(taskIndex, 1);
+
+    // Remove the task from the UI (the task card or the overlay)
+    const taskCard = document.getElementById(`task-card-${taskId}`);
+    if (taskCard) {
+        taskCard.remove();  // Assuming each task has a unique `id` used in its card's ID
+    }
+
+    // Close the task overlay if it's open
+    const overlay = document.getElementById("task-overlay");
+    overlay.classList.add("d-none");
+
+    console.log(`Task with ID: ${taskId} has been deleted.`);
+}
+
+
+
 
 // Render function for "To Do" tasks
 function renderToDoTasks(tasks) {
