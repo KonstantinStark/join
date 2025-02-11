@@ -171,7 +171,6 @@ function createTaskCardHTML(task) {
 }
 
 
-
 function taskCardsOverlay(taskId) {
     // Find the task from the global tasks array (or the array you are working with)
     const task = loadedTasks.find(t => t.id === taskId);
@@ -252,30 +251,44 @@ function closeOverlay() {
     document.getElementById("task-overlay").classList.add("d-none");
 }
 
-function deleteTaskBtn(taskId) {
-    // Find the index of the task to be deleted in the loadedTasks array
-    const taskIndex = loadedTasks.findIndex(t => t.id === taskId);
+async function deleteTaskBtn(taskId, tasks) {
+    try {
+        // Send a DELETE request to Firebase to remove the task
+        let response = await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, { method: "DELETE" });
 
-    if (taskIndex === -1) {
-        console.error('Task not found with ID:', taskId);
-        return;
+        if (response.ok) {
+            // Remove the task from the local loadedTasks array
+            const taskIndex = loadedTasks.findIndex(task => task.id === taskId);
+            if (taskIndex !== -1) {
+                loadedTasks.splice(taskIndex, 1);
+            }
+
+            // Remove the task card from the UI (assuming it has an ID with taskId)
+            const taskCard = document.getElementById(`task-card-${taskId}`);
+            if (taskCard) {
+                taskCard.remove();
+            }
+
+            // Optionally close the task overlay if it's open
+            const overlay = document.getElementById("task-overlay");
+            if (overlay) {
+                overlay.classList.add("d-none");
+            }
+
+            // Log success
+            console.log(`Task with ID: ${taskId} has been deleted from the database and UI.`);
+
+            // Reload the data (or re-render tasks)
+            renderToDoTasks(tasks);
+            renderInProgressTasks(tasks);
+            renderAwaitFeedbackTasks(tasks);
+            renderDoneTasks(tasks);
+        }
+    } catch (error) {
+        console.error('Error deleting task:', error);
     }
-
-    // Remove the task from the loadedTasks array
-    loadedTasks.splice(taskIndex, 1);
-
-    // Remove the task from the UI (the task card or the overlay)
-    const taskCard = document.getElementById(`task-card-${taskId}`);
-    if (taskCard) {
-        taskCard.remove();  // Assuming each task has a unique `id` used in its card's ID
-    }
-
-    // Close the task overlay if it's open
-    const overlay = document.getElementById("task-overlay");
-    overlay.classList.add("d-none");
-
-    console.log(`Task with ID: ${taskId} has been deleted.`);
 }
+
 
 
 
