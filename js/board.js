@@ -195,13 +195,12 @@ function taskCardsOverlay(taskId) {
     const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");
     const userNames = task.assignedContacts.map(user => generateUserName(user)).join("");
 
-    // Create checkboxes for subtasks
-    const subtasksCheckboxes = task.subtasks.map(subtask => `
-        <div class="subtask-checkbox">
-            <input type="checkbox" id="subtask-${subtask.id}" ${subtask.completed ? "checked" : ""} disabled>
-            <label for="subtask-${subtask.id}">${subtask.title}</label>
-        </div>
-    `).join(""); // Join all subtasks as individual checkboxes
+    const subtasksCheckboxes = task.subtasks.map((subtask, index) => `
+    <div class="subtask-checkbox">
+        <input type="checkbox" id="subtask-${index}" ${subtask.completed ? "checked" : ""}>
+        <label for="subtask-${index}">${subtask}</label>
+    </div>
+`).join(""); // Join all subtasks as individual checkboxes
 
     // Create the HTML for the task overlay
     const taskDetailsHTML = `
