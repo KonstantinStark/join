@@ -248,13 +248,20 @@ function closeOverlay() {
 // Render function for "To Do" tasks
 function renderToDoTasks(tasks) {
     const taskContainer = document.getElementById("to-do-cards");
-    taskContainer.innerHTML = ""; 
+    taskContainer.innerHTML = "";  // Clear the container before adding tasks
     let toDoTasks = tasks.filter(task => task.boardCategory === "to-do");
 
-    toDoTasks.forEach(task => {
-        taskContainer.innerHTML += createTaskCardHTML(task);
-    });
+    if (toDoTasks.length > 0) {
+        // If there are "to-do" tasks, create and append task cards
+        toDoTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "to-do" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots">No tasks To do</div>';
+    }
 }
+
 
 // Render function for "In Progress" tasks
 function renderInProgressTasks(tasks) {
@@ -262,9 +269,15 @@ function renderInProgressTasks(tasks) {
     taskContainer.innerHTML = ""; 
     let inProgressTasks = tasks.filter(task => task.boardCategory === "in-progress");
 
-    inProgressTasks.forEach(task => {
-        taskContainer.innerHTML += createTaskCardHTML(task);
-    });
+    if (inProgressTasks.length > 0) {
+        // If there are "in-progress" tasks, create and append task cards
+        inProgressTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "in-progress" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots"">no tasks In progress</div>';
+    }
 }
 
 // Render function for "Await Feedback" tasks
@@ -273,9 +286,15 @@ function renderAwaitFeedbackTasks(tasks) {
     taskContainer.innerHTML = ""; 
     let awaitFeedbackTasks = tasks.filter(task => task.boardCategory === "await-feedback");
 
-    awaitFeedbackTasks.forEach(task => {
-        taskContainer.innerHTML += createTaskCardHTML(task);
-    });
+    if (awaitFeedbackTasks.length > 0) {
+        // If there are "await-feedback" tasks, create and append task cards
+        awaitFeedbackTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "await-feedback" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots">no tasks Awaiting feeback</div>';
+    }
 }
 
 // Render function for "Done" tasks
@@ -284,9 +303,15 @@ function renderDoneTasks(tasks) {
     taskContainer.innerHTML = ""; 
     let doneTasks = tasks.filter(task => task.boardCategory === "done");
 
-    doneTasks.forEach(task => {
-        taskContainer.innerHTML += createTaskCardHTML(task);
-    });
+    if (doneTasks.length > 0) {
+        // If there are "done" tasks, create and append task cards
+        doneTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "done" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots">No tasks Done</div>';
+    }
 }
 
 
