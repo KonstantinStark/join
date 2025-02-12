@@ -1,5 +1,7 @@
 const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let loadedTasks = [];
+
 // Load all tasks by default when the page loads
 loadTasks();
 
@@ -157,7 +159,6 @@ function generateUserName(user) {
 
 // prio buttons
 
-
 function getPrioSVG(prio) {
     // Check the prio string and return the appropriate SVG markup
     switch (prio) {
@@ -175,13 +176,19 @@ function getPrioSVG(prio) {
 function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
-
+    
     // Outsource the generation of user avatars and handle empty/undefined lists
     const userAvatars = generateUserAvatars(task.assignedContacts);
+    
+    // Now, use the template function to create the task card HTML
+    return generateTaskCardTemplate(task, categoryClass, userAvatars, progressData);
+}
 
+function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData) {
     return `
         <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
+            
             <p class="task-category ${categoryClass}">${task.category}</p>
             <h3>${task.title}</h3>
             <p>${task.description}</p>
@@ -204,34 +211,12 @@ function createTaskCardHTML(task) {
                     <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
                 </div>
             </div>
-
-           
         </div>`;
 }
 
 
-function taskCardsOverlay(taskId) {
-    const task = loadedTasks.find(t => t.id === taskId);
-
-    if (!task) {
-        console.error('Task not found with ID:', taskId);
-        return;
-    }
-
-    const overlay = document.getElementById("task-overlay");
-    const overlayDetails = document.getElementById("overlay-task-details");
-
-    const categoryClass = setBackgroundColorByCategory(task.category);
-
-    // Outsource the generation of user avatars and handle empty/undefined lists
-    const userAvatars = generateUserAvatars(task.assignedContacts);
-    
-
-    // Generate subtasks checkboxes using the outsourced function
-    const subtasksCheckboxes = generateSubtaskCheckboxes(task.subtasks);
-
-    const taskDetailsHTML = `
-    
+function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes) {
+    return `
     <div class="task-category ${categoryClass}">${task.category}</div>
     <h3>${task.title}</h3>
     <p>${task.description}</p>
@@ -239,12 +224,11 @@ function taskCardsOverlay(taskId) {
     <div class="assigned-users-overlay">
         <p>Assigned to:</p>
         ${userAvatars || "No User Avatars"}
-       
     </div>
 
     <div class="subtasks-list">
         <p>Subtasks:</p>
-        ${subtasksCheckboxes}
+        ${subtasksCheckboxes || "No Subtasks"}
     </div>
 
     <div class="prio-button-board">
@@ -258,11 +242,25 @@ function taskCardsOverlay(taskId) {
         <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
     </div>
     `;
-
-    overlayDetails.innerHTML = taskDetailsHTML;
-    overlay.classList.remove("d-none");
 }
 
+function taskCardsOverlay(taskId) {
+
+    const task = loadedTasks.find(t => t.id === taskId);
+    const overlay = document.getElementById("task-overlay");
+    const overlayDetails = document.getElementById("overlay-task-details");
+
+    const categoryClass = setBackgroundColorByCategory(task.category);
+    const userAvatars = generateUserAvatars(task.assignedContacts);
+
+    const subtasksCheckboxes = generateSubtaskCheckboxes(task.subtasks);
+    const taskDetailsHTML = generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes);
+
+    overlayDetails.innerHTML = taskDetailsHTML;
+
+    // Show the overlay by removing the 'd-none' class
+    overlay.classList.remove("d-none");
+}
 
 
 function closeOverlay() {
