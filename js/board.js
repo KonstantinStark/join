@@ -126,7 +126,6 @@ function generateSubtaskCheckboxes(subtasks) {
     `).join(""); // Join all subtasks as individual checkboxes
 }
 
-
 //user avatars and initials
 
 function generateUserAvatar(user) {
@@ -284,6 +283,8 @@ async function deleteTaskBtn(taskId, tasks) {
             const taskCard = document.getElementById(`task-card-${taskId}`);
             if (taskCard) {
                 taskCard.remove();
+            } else {
+                console.error(`Task card with ID 'task-card-${taskId}' not found.`);
             }
 
             // Optionally close the task overlay if it's open
@@ -296,10 +297,12 @@ async function deleteTaskBtn(taskId, tasks) {
             console.log(`Task with ID: ${taskId} has been deleted from the database and UI.`);
 
             // Reload the data (or re-render tasks)
-            renderToDoTasks(tasks);
-            renderInProgressTasks(tasks);
-            renderAwaitFeedbackTasks(tasks);
-            renderDoneTasks(tasks);
+            renderToDoTasks(loadedTasks);  // Pass the updated loadedTasks array
+            renderInProgressTasks(loadedTasks);
+            renderAwaitFeedbackTasks(loadedTasks);
+            renderDoneTasks(loadedTasks);
+        } else {
+            console.error('Failed to delete task:', response.statusText);
         }
     } catch (error) {
         console.error('Error deleting task:', error);
