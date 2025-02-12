@@ -510,20 +510,19 @@ p {
 .task-action-buttons {
     display: flex;
     justify-content: end;
-    gap: 8px; /* Abstand zwischen den Elementen */
+    gap: 8px;
 }
 
 .task-action-buttons img {
-    transition: transform 0.2s ease, filter 0.2s ease; /* Sanfte Animation */
+    transition: transform 0.2s ease, filter 0.2s ease;
     cursor: pointer;
 }
 
 .task-action-buttons img:hover {
-    transform: scale(1.1); /* Beim Hover leicht vergrößern */
+    transform: scale(1.1);
     filter: brightness(0) saturate(100%) invert(55%) sepia(87%) saturate(441%) hue-rotate(160deg) brightness(94%) contrast(90%);
 }
 
-/* Trennstrich */
 .divider {
     width: 1px;
     height: 20px;
