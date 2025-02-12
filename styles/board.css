@@ -1,11 +1,9 @@
 #task-cards {
-
     display: flex;
     flex-direction: column;
 }
 
 .empty-task-slots {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,11 +23,10 @@
 }
 
 .assigned-users svg {
-    margin-left: -24px; /* Adjust this for the desired overlap amount */
+    margin-left: -24px;
 }
 
 .prio-button-board {
-
     margin-right:16px;
 }
 
@@ -45,7 +42,6 @@
     padding: 10px 0px 0px 19px;
 }
 
-/* Styling for the subtask container */
 .subtasks-list {
     display: flex;
     flex-direction: column;
@@ -53,58 +49,50 @@
     margin-top: 20px;
 }
 
-/* Styling for individual subtask checkboxes */
 .subtask-checkbox {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    width: 25%; /* Set width to 1/4 */
-    justify-content: flex-start; /* Align checkboxes to the left */
+    width: 25%;
+    justify-content: flex-start;
 }
 
 .subtask-checkbox input {
     margin-right: 10px;
 }
 
-/* To keep subtasks smaller */
 .subtask-checkbox label {
-    font-size: 0.9em; /* Adjust font size */
+    font-size: 0.9em;
 }
 
-/* Flexbox container for the task details and subtasks */
 .task-details-container {
     display: flex;
-    justify-content: space-between; /* Space between task details and subtasks */
+    justify-content: space-between;
     align-items: flex-start;
 }
 
-/* Styling for task details container */
 .task-details {
-    width: 75%; /* Task details takes up 3/4 width */
+    width: 75%;
 }
 
-/* Styling for the subtasks list section */
 .subtasks-container {
-    width: 25%; /* Subtasks section takes up 1/4 width */
+    width: 25%; 
     overflow-y: auto;
-    max-height: 400px; /* Limit the height of the subtasks area */
+    max-height: 400px; 
 }
 
-
-
-/* Add a tilt effect during dragging */
 .single-task-card.dragging {
-    transform: rotate(5deg); /* Slight tilt to the right */
+    transform: rotate(5deg);
 }
 
 .task-category.technical-task {
     background: #0038FF;
-    color: white; /* Optional: Make the text white to be visible on the blue background */
+    color: white; 
 }
 
 .task-category.user-story {
     background: #1FD7C1;
-    color: white; /* Optional: Make the text white to be visible on the green background */
+    color: white; 
 }
 
 .subtask-progress {
@@ -124,10 +112,9 @@
 
 .progress-fill {
     height: 100%;
-    background-color: #3b82f6; /* Blue color similar to your image */
+    background-color: #3b82f6; 
     transition: width 0.3s ease-in-out;
 }
-
 
 .hamburger-toggle {
     width: 50px;
