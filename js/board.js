@@ -157,11 +157,18 @@ function generateUserAvatar(user) {
             <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
                 ${user.initials}
             </text>
-        </svg>
-        
-
+        </svg>  
     `;
 }
+
+function generateUserAvatars(assignedContacts) {
+    // Ensure assignedContacts is an array before calling map, and handle empty or undefined
+    if (Array.isArray(assignedContacts) && assignedContacts.length > 0) {
+        return assignedContacts.map(user => generateUserAvatar(user)).join("");  // Join the SVGs into one string
+    }
+    return "";  // Return "None" if no users are assigned
+}
+
 
 function generateUserName(user) {
     // Assuming the 'user' object has a 'name' property
@@ -188,8 +195,8 @@ function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
 
-    // Create the SVG for each assigned user using the `generateUserAvatar` function
-    const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");  // Join the SVGs into one string
+    // Outsource the generation of user avatars and handle empty/undefined lists
+    const userAvatars = generateUserAvatars(task.assignedContacts);
 
     return `
         <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
@@ -209,7 +216,7 @@ function createTaskCardHTML(task) {
             <!-- Render assigned user avatars (SVGs) -->
             <div class="assigned-users-prio-button-wrapper">
                 <div class="assigned-users">
-                    ${userAvatars || "None"}
+                    ${userAvatars}  <!-- This will now display "None" if there are no users -->
                 </div>
 
                 <div class="prio-button-board">
@@ -218,6 +225,7 @@ function createTaskCardHTML(task) {
             </div>
         </div>`;
 }
+
 
 
 function taskCardsOverlay(taskId) {
