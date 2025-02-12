@@ -167,9 +167,8 @@ function getPrioSVG(prio) {
             return `<img src="../assets/img/add-task/medium.svg" alt="Medium">`;
         case 'low':
             return `<img src="../assets/img/add-task/low.svg" alt="Low">`;
-        default:
-            return `<span>Not Set</span>`; // Fallback when prio is not set or invalid
-    }
+        }
+
 }
 
 function createTaskCardHTML(task) {
@@ -203,12 +202,13 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
             <!-- Render assigned user avatars (SVGs) -->
             <div class="assigned-users-prio-button-wrapper">
                 <div class="assigned-users">
-                    ${userAvatars || "None"}
+                    ${userAvatars || ""}
                 </div>
 
                 <div class="prio-button-board">
-                    <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
+                    <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
                 </div>
+
             </div>
         </div>`;
 }
@@ -222,7 +222,7 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
 
     <div class="assigned-users-overlay">
         <p>Assigned to:</p>
-        ${userAvatars || "No User Avatars"}
+        ${userAvatars || ""}
     </div>
 
     <div class="subtasks-list">
@@ -230,9 +230,9 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
         ${subtasksCheckboxes || "No Subtasks"}
     </div>
 
-    <div class="prio-button-board">
-        <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
-    </div>
+      <div class="prio-button-board">
+        <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
+      </div>
 
     <!-- Edit and Delete Buttons -->
     <div class="task-action-buttons">
@@ -308,6 +308,7 @@ async function deleteTaskBtn(taskId, tasks) {
         console.error('Error deleting task:', error);
     }
 }
+
 
 
 // Render function for "To Do" tasks
