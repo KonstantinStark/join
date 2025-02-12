@@ -425,17 +425,31 @@ function validateForm() {
 
 // takes all inputs and saves them to the database
 
+a// Function to transform subtasks array to include title and boolean
+function transformSubtasks(subtasksArray) {
+    return subtasksArray.map(subtask => {
+        return {
+            title: subtask,   // Each subtask is now the 'title'
+            boolean: false    // Defaulting the 'boolean' to false
+        };
+    });
+}
+
+// Usage in the main function
 async function addNewArrayFromInputs() {
-    let assignedContacts  = getSelectedAssignedUsers();  
-    
+    let assignedContacts  = getSelectedAssignedUsers();
+
+    // Use the transformSubtasks function to add 'title' and 'boolean' to each subtask
+    let subtasksArrayWithBoolean = transformSubtasks(subtasksArray);
+
     let newTask = {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
-        assignedContacts : assignedContacts,  
-        prioButton:selectedPrioButton,
+        assignedContacts: assignedContacts,
+        prioButton: selectedPrioButton,
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
-        subtasks: subtasksArray,
+        subtasks: subtasksArrayWithBoolean, // Now contains objects with 'title' and 'boolean'
         boardCategory: "to-do"
     };
 
@@ -448,6 +462,7 @@ async function addNewArrayFromInputs() {
 
     window.location.href = 'board.html';
 }
+
 
 async function postData(path = "", data = {}) {
     await fetch(FIREBASE_URL + path + ".json", {
