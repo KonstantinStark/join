@@ -21,7 +21,7 @@ async function loadTasks() {
 
 /**
  * Fetches data from the given Firebase endpoint.
- */
+ */cd 
 async function fetchData(endpoint) {
     const response = await fetch(FIREBASE_URL + endpoint);
     return await response.json();
