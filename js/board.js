@@ -101,18 +101,20 @@ function setBackgroundColorByCategory(category) {
     return ""; // Default, no class if category doesn't match
 }
 
+// Calculate subtask progress (based on the new 'boolean' field)
 function calculateSubtaskProgress(subtasks) {
     if (!subtasks || subtasks.length === 0) {
         return null; // No subtasks, return null
     }
 
     const totalSubtasks = subtasks.length;
-    const completedSubtasks = subtasks.filter(st => st.completed).length;
+    const completedSubtasks = subtasks.filter(st => st.boolean).length; // Use 'boolean' to check completion
     const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
 
     return { totalSubtasks, completedSubtasks, progressPercentage };
 }
 
+// Generate checkboxes for each subtask (with 'boolean' value indicating whether it is checked)
 function generateSubtaskCheckboxes(subtasks) {
     if (!subtasks || subtasks.length === 0) {
         return "";  // Return a message when no subtasks exist
@@ -120,12 +122,36 @@ function generateSubtaskCheckboxes(subtasks) {
 
     return subtasks.map((subtask, index) => `
         <div class="subtask-checkbox">
-            <input type="checkbox" id="subtask-${index}" ${subtask.completed ? "checked" : ""}>
-            <label for="subtask-${index}">${subtask.title || subtask}</label> <!-- Assuming subtask has a title property -->
+            <input type="checkbox" id="subtask-${index}" ${subtask.boolean ? "checked" : ""} onclick="toggleSubtaskCompletion(${index}, '${subtask.title}')">
+            <label for="subtask-${index}">${subtask.title}</label> <!-- Assuming subtask has a title property -->
         </div>
     `).join(""); // Join all subtasks as individual checkboxes
 }
 
+// Update subtask completion when a checkbox is clicked
+function toggleSubtaskCompletion(index, title) {
+    const taskId = document.getElementById("task-overlay").getAttribute("data-task-id");
+    const task = loadedTasks.find(t => t.id === taskId);
+
+    // Find the corresponding subtask and toggle its 'boolean' value
+    const subtask = task.subtasks.find(st => st.title === title);
+    if (subtask) {
+        subtask.boolean = !subtask.boolean; // Toggle the 'boolean' value
+        updateTaskProgress(task); // Update task progress
+    }
+}
+
+// Update progress bar and related info when a subtask is checked/unchecked
+function updateTaskProgress(task) {
+    const progressData = calculateSubtaskProgress(task.subtasks);
+    const progressBar = document.querySelector(`#task-${task.id} .progress-fill`);
+
+    if (progressData) {
+        progressBar.style.width = `${progressData.progressPercentage}%`;
+        const subtaskText = document.querySelector(`#task-${task.id} .subtask-progress span`);
+        subtaskText.textContent = `${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks`;
+    }
+}
 //user avatars and initials
 
 function generateUserAvatar(user) {
@@ -171,17 +197,18 @@ function getPrioSVG(prio) {
 
 }
 
+// Create task card HTML with updated progress bar
 function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
-    
+
     // Outsource the generation of user avatars and handle empty/undefined lists
     const userAvatars = generateUserAvatars(task.assignedContacts);
-    
-    // Now, use the template function to create the task card HTML
+
     return generateTaskCardTemplate(task, categoryClass, userAvatars, progressData);
 }
 
+// Generate the task card template (including progress bar)
 function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData) {
     return `
         <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
@@ -199,7 +226,6 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
                     <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
                 </div>` : ""}
 
-            <!-- Render assigned user avatars (SVGs) -->
             <div class="assigned-users-prio-button-wrapper">
                 <div class="assigned-users">
                     ${userAvatars || ""}
@@ -208,12 +234,11 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
                 <div class="prio-button-board">
                     <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
                 </div>
-
             </div>
         </div>`;
 }
 
-
+// Generate the task overlay template with subtasks checkboxes
 function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes) {
     return `
     <div class="task-category ${categoryClass}">${task.category}</div>
@@ -230,11 +255,10 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
         ${subtasksCheckboxes || "No Subtasks"}
     </div>
 
-      <div class="prio-button-board">
+    <div class="prio-button-board">
         <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
-      </div>
+    </div>
 
-    <!-- Edit and Delete Buttons -->
     <div class="task-action-buttons">
         <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
         <span class="divider"></span>
@@ -243,8 +267,8 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
     `;
 }
 
+// Show task details in the overlay when a task card is clicked
 function taskCardsOverlay(taskId) {
-
     const task = loadedTasks.find(t => t.id === taskId);
     const overlay = document.getElementById("task-overlay");
     const overlayDetails = document.getElementById("overlay-task-details");
@@ -259,8 +283,10 @@ function taskCardsOverlay(taskId) {
 
     // Show the overlay by removing the 'd-none' class
     overlay.classList.remove("d-none");
-}
 
+    // Store the task ID in the overlay for later reference (used for toggling checkboxes)
+    overlay.setAttribute("data-task-id", task.id);
+}
 
 function closeOverlay() {
 
