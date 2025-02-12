@@ -500,7 +500,8 @@ p {
 .task-overlay-content {
     background-color: white;
     padding: 32px;
-    border-radius: 8px;
+    width: 350px;
+    border-radius: 10px;
     position: relative;
     font-family: Arial, sans-serif;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
