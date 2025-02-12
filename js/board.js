@@ -92,11 +92,11 @@ function calculateSubtaskProgress(subtasks) {
     if (!subtasks || subtasks.length === 0) {
         return null; // No subtasks, return null
     }
-    
+
     const totalSubtasks = subtasks.length;
     const completedSubtasks = subtasks.filter(st => st.completed).length;
     const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
-    
+
     return { totalSubtasks, completedSubtasks, progressPercentage };
 }
 
@@ -189,7 +189,7 @@ function taskCardsOverlay(taskId) {
     // Dynamically build the HTML for the task details
     const categoryClass = setBackgroundColorByCategory(task.category);
     const progressData = calculateSubtaskProgress(task.subtasks);
-    
+
     // Generate the user avatars and user names
     const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");
     const userNames = task.assignedContacts.map(user => generateUserName(user)).join("");
@@ -232,8 +232,9 @@ function taskCardsOverlay(taskId) {
 
     <!-- Edit and Delete Buttons -->
     <div class="task-action-buttons">
-        <button class="edit-button" onclick="editTask(${task.id})">Edit</button>
-        <button class="delete-button" onclick="deleteTaskBtn('${task.id}')">Delete</button>
+    <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
+    <span class="divider"></span>
+    <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
     </div>
 `;
 
@@ -314,7 +315,7 @@ function renderToDoTasks(tasks) {
 // Render function for "In Progress" tasks
 function renderInProgressTasks(tasks) {
     const taskContainer = document.getElementById("in-progress-cards");
-    taskContainer.innerHTML = ""; 
+    taskContainer.innerHTML = "";
     let inProgressTasks = tasks.filter(task => task.boardCategory === "in-progress");
 
     if (inProgressTasks.length > 0) {
@@ -331,7 +332,7 @@ function renderInProgressTasks(tasks) {
 // Render function for "Await Feedback" tasks
 function renderAwaitFeedbackTasks(tasks) {
     const taskContainer = document.getElementById("await-feedback-cards");
-    taskContainer.innerHTML = ""; 
+    taskContainer.innerHTML = "";
     let awaitFeedbackTasks = tasks.filter(task => task.boardCategory === "await-feedback");
 
     if (awaitFeedbackTasks.length > 0) {
@@ -348,7 +349,7 @@ function renderAwaitFeedbackTasks(tasks) {
 // Render function for "Done" tasks
 function renderDoneTasks(tasks) {
     const taskContainer = document.getElementById("done-cards");
-    taskContainer.innerHTML = ""; 
+    taskContainer.innerHTML = "";
     let doneTasks = tasks.filter(task => task.boardCategory === "done");
 
     if (doneTasks.length > 0) {
