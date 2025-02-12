@@ -2,7 +2,8 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 let loadedTasks = [];
 let users = [];
 
-async function loadTasks() {
+// Main function to load tasks with optional search capability
+async function loadTasks(query = '') {
     try {
         const tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
         const responseToJson = await tasksResponse.json();
@@ -16,17 +17,42 @@ async function loadTasks() {
             }
         }
 
-        // Save tasks globally for later use in drop functions
-        loadedTasks = tasks;
+        // If there is a search query, filter tasks; otherwise, return all tasks
+        const filteredTasks = query ? searchTasks(tasks, query) : tasks;
 
-        renderToDoTasks(tasks);
-        renderInProgressTasks(tasks);
-        renderAwaitFeedbackTasks(tasks);
-        renderDoneTasks(tasks);
+        // Save tasks globally for later use in drop functions
+        loadedTasks = filteredTasks;
+
+        // Render the filtered or all tasks
+        renderToDoTasks(filteredTasks);
+        renderInProgressTasks(filteredTasks);
+        renderAwaitFeedbackTasks(filteredTasks);
+        renderDoneTasks(filteredTasks);
+
     } catch (error) {
         console.error("Can't fetch tasks:", error);
     }
 }
+
+// Load all tasks by default when the page loads
+loadTasks();
+
+
+// Separate function for searching tasks based on query
+function searchTasks(tasks, query) {
+    const searchQuery = query.toLowerCase();
+    return tasks.filter(task => 
+        task.title.toLowerCase().startsWith(searchQuery) || 
+        task.description.toLowerCase().startsWith(searchQuery)
+    );
+}
+
+// Listen to changes on the input field and trigger loadTasks with the current query
+document.getElementById('task-search').addEventListener('input', function() {
+    const query = this.value; // Get the current input value
+    loadTasks(query); // Call loadTasks with the search query
+});
+
 
 function startDragging(event, taskId) {
     event.dataTransfer.setData('taskId', taskId); // Store the dragged task ID
