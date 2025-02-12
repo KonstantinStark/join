@@ -2,6 +2,9 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 let loadedTasks = [];
 let users = [];
 
+// Load all tasks by default when the page loads
+loadTasks();
+
 // Main function to load tasks with optional search capability
 async function loadTasks(query = '') {
     try {
@@ -34,17 +37,37 @@ async function loadTasks(query = '') {
     }
 }
 
-// Load all tasks by default when the page loads
-loadTasks();
+// Function to toggle the "No tasks found" message based on search results
+function toggleNoTasksMessage(filteredTasks) {
+    const noTasksMessage = document.getElementById('no-tasks-message');
+    const searchInput = document.getElementById('task-search').value; // Get the current value of the input field
 
+    if (searchInput === '') {
+        // If the input field is empty, hide the "No tasks found" message
+        noTasksMessage.classList.add('d-none');
+    } else if (filteredTasks.length === 0) {
+        // If no tasks found, remove the "d-none" class to show the message
+        noTasksMessage.classList.remove('d-none');
+    } else {
+        // If tasks are found, add the "d-none" class to hide the message
+        noTasksMessage.classList.add('d-none');
+    }
+}
 
-// Separate function for searching tasks based on query
+// Updated searchTasks function
 function searchTasks(tasks, query) {
     const searchQuery = query.toLowerCase();
-    return tasks.filter(task => 
+    
+    // Filter tasks based on the search query
+    const filteredTasks = tasks.filter(task => 
         task.title.toLowerCase().startsWith(searchQuery) || 
         task.description.toLowerCase().startsWith(searchQuery)
     );
+
+    // Call the toggle function to show or hide the message
+    toggleNoTasksMessage(filteredTasks);
+
+    return filteredTasks;
 }
 
 // Listen to changes on the input field and trigger loadTasks with the current query
