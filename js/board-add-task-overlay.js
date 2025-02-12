@@ -10,8 +10,6 @@ function showTaskOverlay() {
 }
 
 
-
-
 //add task file copied in 
     
 let selectedPrioButton = '';
@@ -19,15 +17,12 @@ let subtasksArray = [];
 let assignedContacts  = [];
 let isValid = true; // to validate input fields 
 
-console.log(loadUsers());
 
 //loads medium as initial seleted prio button
 
-function init() {
+prioButtonOnLoad()
+loadUsers()
 
-    prioButtonOnLoad()
-    
-}
 
 // get users from database 
 
