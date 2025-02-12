@@ -1,6 +1,4 @@
 const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.firebasedatabase.app/";
-let loadedTasks = [];
-let users = [];
 
 // Load all tasks by default when the page loads
 loadTasks();
@@ -37,45 +35,7 @@ async function loadTasks(query = '') {
     }
 }
 
-// Function to toggle the "No tasks found" message based on search results
-function toggleNoTasksMessage(filteredTasks) {
-    const noTasksMessage = document.getElementById('no-tasks-message');
-    const searchInput = document.getElementById('task-search').value; // Get the current value of the input field
-
-    if (searchInput === '') {
-        // If the input field is empty, hide the "No tasks found" message
-        noTasksMessage.classList.add('d-none');
-    } else if (filteredTasks.length === 0) {
-        // If no tasks found, remove the "d-none" class to show the message
-        noTasksMessage.classList.remove('d-none');
-    } else {
-        // If tasks are found, add the "d-none" class to hide the message
-        noTasksMessage.classList.add('d-none');
-    }
-}
-
-// Updated searchTasks function
-function searchTasks(tasks, query) {
-    const searchQuery = query.toLowerCase();
-    
-    // Filter tasks based on the search query
-    const filteredTasks = tasks.filter(task => 
-        task.title.toLowerCase().startsWith(searchQuery) || 
-        task.description.toLowerCase().startsWith(searchQuery)
-    );
-
-    // Call the toggle function to show or hide the message
-    toggleNoTasksMessage(filteredTasks);
-
-    return filteredTasks;
-}
-
-// Listen to changes on the input field and trigger loadTasks with the current query
-document.getElementById('task-search').addEventListener('input', function() {
-    const query = this.value; // Get the current input value
-    loadTasks(query); // Call loadTasks with the search query
-});
-
+// drag and drop functionality
 
 function startDragging(event, taskId) {
     event.dataTransfer.setData('taskId', taskId); // Store the dragged task ID
@@ -107,7 +67,6 @@ async function handleDrop(event, newCategory) {
         renderAllTasks(); // Re-render all tasks with updated categories
     }
 }
-
 // Update task in Firebase
 async function updateTaskInDatabase(updatedTask) {
     try {
@@ -127,6 +86,9 @@ function renderAllTasks() {
     renderAwaitFeedbackTasks(loadedTasks);
     renderDoneTasks(loadedTasks);
 }
+
+
+// render functionality for the different taskcards
 
 function setBackgroundColorByCategory(category) {
     if (category === "Technical Task") {
@@ -149,6 +111,22 @@ function calculateSubtaskProgress(subtasks) {
     return { totalSubtasks, completedSubtasks, progressPercentage };
 }
 
+function generateSubtaskCheckboxes(subtasks) {
+    if (!subtasks || subtasks.length === 0) {
+        return "";  // Return a message when no subtasks exist
+    }
+
+    return subtasks.map((subtask, index) => `
+        <div class="subtask-checkbox">
+            <input type="checkbox" id="subtask-${index}" ${subtask.completed ? "checked" : ""}>
+            <label for="subtask-${index}">${subtask.title || subtask}</label> <!-- Assuming subtask has a title property -->
+        </div>
+    `).join(""); // Join all subtasks as individual checkboxes
+}
+
+
+//user avatars and initials
+
 function generateUserAvatar(user) {
     return `
         
@@ -161,6 +139,8 @@ function generateUserAvatar(user) {
     `;
 }
 
+//checks if assignedContacts is an array
+
 function generateUserAvatars(assignedContacts) {
     // Ensure assignedContacts is an array before calling map, and handle empty or undefined
     if (Array.isArray(assignedContacts) && assignedContacts.length > 0) {
@@ -169,11 +149,13 @@ function generateUserAvatars(assignedContacts) {
     return "";  // Return "None" if no users are assigned
 }
 
-
 function generateUserName(user) {
     // Assuming the 'user' object has a 'name' property
     return user.name ? `<p class="user-name">${user.name}</p>` : "<p class='user-name'>No Name</p>";
 }
+
+
+// prio buttons
 
 
 function getPrioSVG(prio) {
@@ -189,7 +171,6 @@ function getPrioSVG(prio) {
             return `<span>Not Set</span>`; // Fallback when prio is not set or invalid
     }
 }
-
 
 function createTaskCardHTML(task) {
     const categoryClass = setBackgroundColorByCategory(task.category);
@@ -216,20 +197,20 @@ function createTaskCardHTML(task) {
             <!-- Render assigned user avatars (SVGs) -->
             <div class="assigned-users-prio-button-wrapper">
                 <div class="assigned-users">
-                    ${userAvatars}  <!-- This will now display "None" if there are no users -->
+                    ${userAvatars || "None"}
                 </div>
 
                 <div class="prio-button-board">
                     <p>${task.prioButton ? getPrioSVG(task.prioButton) : "Not Set"}</p>
                 </div>
             </div>
+
+           
         </div>`;
 }
 
 
-
 function taskCardsOverlay(taskId) {
-    // Find the task from the global tasks array (or the array you are working with)
     const task = loadedTasks.find(t => t.id === taskId);
 
     if (!task) {
@@ -237,50 +218,33 @@ function taskCardsOverlay(taskId) {
         return;
     }
 
-    // Get the overlay element by its ID
     const overlay = document.getElementById("task-overlay");
-
-    // Get the container inside the overlay where we'll show the task details
     const overlayDetails = document.getElementById("overlay-task-details");
 
-    // Dynamically build the HTML for the task details
     const categoryClass = setBackgroundColorByCategory(task.category);
-    const progressData = calculateSubtaskProgress(task.subtasks);
 
-    // Generate the user avatars and user names
-    const userAvatars = task.assignedContacts.map(user => generateUserAvatar(user)).join("");
-    const userNames = task.assignedContacts.map(user => generateUserName(user)).join("");
+    // Outsource the generation of user avatars and handle empty/undefined lists
+    const userAvatars = generateUserAvatars(task.assignedContacts);
+    
 
-    const subtasksCheckboxes = task.subtasks.map((subtask, index) => `
-    <div class="subtask-checkbox">
-        <input type="checkbox" id="subtask-${index}" ${subtask.completed ? "checked" : ""}>
-        <label for="subtask-${index}">${subtask}</label>
-    </div>
-`).join(""); // Join all subtasks as individual checkboxes
+    // Generate subtasks checkboxes using the outsourced function
+    const subtasksCheckboxes = generateSubtaskCheckboxes(task.subtasks);
 
-    // Create the HTML for the task overlay
     const taskDetailsHTML = `
+    
     <div class="task-category ${categoryClass}">${task.category}</div>
     <h3>${task.title}</h3>
     <p>${task.description}</p>
 
-    ${progressData ? `
-        <div class="subtask-progress">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
-            </div>
-            <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
-        </div>` : ""}
-
     <div class="assigned-users-overlay">
         <p>Assigned to:</p>
         ${userAvatars || "No User Avatars"}
-        ${userNames || "No User Names"}
+       
     </div>
 
     <div class="subtasks-list">
         <p>Subtasks:</p>
-        ${subtasksCheckboxes || "No Subtasks"}
+        ${subtasksCheckboxes}
     </div>
 
     <div class="prio-button-board">
@@ -289,19 +253,16 @@ function taskCardsOverlay(taskId) {
 
     <!-- Edit and Delete Buttons -->
     <div class="task-action-buttons">
-    <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
-    <span class="divider"></span>
-    <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
+        <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
+        <span class="divider"></span>
+        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
     </div>
-`;
+    `;
 
-
-    // Insert the task details into the overlay container
     overlayDetails.innerHTML = taskDetailsHTML;
-
-    // Show the overlay by removing the 'd-none' class
     overlay.classList.remove("d-none");
 }
+
 
 
 function closeOverlay() {
@@ -346,9 +307,6 @@ async function deleteTaskBtn(taskId, tasks) {
         console.error('Error deleting task:', error);
     }
 }
-
-
-
 
 
 // Render function for "To Do" tasks
@@ -420,6 +378,44 @@ function renderDoneTasks(tasks) {
     }
 }
 
+// Function to toggle the "No tasks found" message based on search results
+function toggleNoTasksMessage(filteredTasks) {
+    const noTasksMessage = document.getElementById('no-tasks-message');
+    const searchInput = document.getElementById('task-search').value; // Get the current value of the input field
 
-// Call loadTasks() when the page loads
-window.onload = loadTasks;
+    if (searchInput === '') {
+        // If the input field is empty, hide the "No tasks found" message
+        noTasksMessage.classList.add('d-none');
+    } else if (filteredTasks.length === 0) {
+        // If no tasks found, remove the "d-none" class to show the message
+        noTasksMessage.classList.remove('d-none');
+    } else {
+        // If tasks are found, add the "d-none" class to hide the message
+        noTasksMessage.classList.add('d-none');
+    }
+}
+
+// Updated searchTasks function
+function searchTasks(tasks, query) {
+    const searchQuery = query.toLowerCase();
+    
+    // Filter tasks based on the search query
+    const filteredTasks = tasks.filter(task => 
+        task.title.toLowerCase().startsWith(searchQuery) || 
+        task.description.toLowerCase().startsWith(searchQuery)
+    );
+
+    // Call the toggle function to show or hide the message
+    toggleNoTasksMessage(filteredTasks);
+
+    return filteredTasks;
+}
+
+// Listen to changes on the input field and trigger loadTasks with the current query
+document.getElementById('task-search').addEventListener('input', function() {
+    const query = this.value; // Get the current input value
+    loadTasks(query); // Call loadTasks with the search query
+});
+
+
+
