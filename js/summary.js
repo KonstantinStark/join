@@ -17,6 +17,7 @@ async function loadTasks() {
     renderTasksOnBoard(tasks);
     renderTasksInProgress(tasks);
     renderAwaitingFeedback(tasks);
+    renderLatestUrgentDate();
 }
 
 /**
@@ -108,29 +109,39 @@ async function renderAwaitingFeedback(tasks) {
 }
 
 /**
- * Fetches the closest due date for urgent tasks.
+ * Fetches the latest due date for urgent tasks.
  */
-async function getClosestUrgentTaskDate() {
+async function getLatestUrgentTaskDate() {
     const tasksData = await fetchData('/tasks.json');
-    return findClosestUrgentTaskDate(tasksData);
+    return findLatestUrgentTaskDate(tasksData);
 }
 
 /**
- * Finds the closest due date for urgent tasks from the provided data.
+ * Finds the latest due date for urgent tasks from the provided data.
  */
-function findClosestUrgentTaskDate(data) {
-    let closestUrgentDate = null;
+function findLatestUrgentTaskDate(data) {
+    let latestUrgentDate = null;
     Object.keys(data).forEach(key => {
         const task = data[key];
         if (task.prioButton === "urgent" && task.dueDate) {
             const taskDueDate = new Date(task.dueDate);
-            if (!isNaN(taskDueDate.getTime()) && (!closestUrgentDate || taskDueDate < closestUrgentDate)) {
-                closestUrgentDate = taskDueDate;
+            if (!isNaN(taskDueDate.getTime()) && (!latestUrgentDate || taskDueDate > latestUrgentDate)) {
+                latestUrgentDate = taskDueDate;
             }
         }
     });
-    return closestUrgentDate ? closestUrgentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : "No urgent tasks with a due date";
+    return latestUrgentDate ? latestUrgentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : "No urgent tasks with a due date";
 }
+
+/**
+ * Renders the latest urgent task due date in the DOM.
+ */
+async function renderLatestUrgentDate() {
+    const urgentDate = await getLatestUrgentTaskDate();
+    const urgentDatePlaceholder = document.getElementById('urgent-date-placeholder');
+    urgentDatePlaceholder ? urgentDatePlaceholder.textContent = urgentDate : console.error('urgent-date-placeholder element not found');
+}
+
 
 /**
  * Renders the closest urgent task due date in the DOM.
