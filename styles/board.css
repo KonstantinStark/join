@@ -49,6 +49,12 @@
     margin-top: 20px;
 }
 
+.subtask {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .subtask-checkbox {
     appearance: none;
     -webkit-appearance: none;
