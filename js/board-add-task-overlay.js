@@ -425,7 +425,7 @@ function validateForm() {
 
 // takes all inputs and saves them to the database
 
-a// Function to transform subtasks array to include title and boolean
+// Function to transform subtasks array to include title and boolean
 function transformSubtasks(subtasksArray) {
     return subtasksArray.map(subtask => {
         return {

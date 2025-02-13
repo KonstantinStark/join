@@ -8,34 +8,45 @@ loadTasks();
 // Main function to load tasks with optional search capability
 async function loadTasks(query = '') {
     try {
-        const tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
-        const responseToJson = await tasksResponse.json();
-        const tasks = [];
+        const tasksResponse = await fetchTasks();
+        const tasks = parseTasks(tasksResponse);
+        const filteredTasks = filterTasks(tasks, query);
 
-        if (responseToJson) {
-            const keys = Object.keys(responseToJson);
-            for (let i = 0; i < keys.length; i++) {
-                const key = keys[i];
-                tasks.push({ id: key, ...responseToJson[key] });
-            }
-        }
-
-        // If there is a search query, filter tasks; otherwise, return all tasks
-        const filteredTasks = query ? searchTasks(tasks, query) : tasks;
-
-        // Save tasks globally for later use in drop functions
         loadedTasks = filteredTasks;
-
-        // Render the filtered or all tasks
-        renderToDoTasks(filteredTasks);
-        renderInProgressTasks(filteredTasks);
-        renderAwaitFeedbackTasks(filteredTasks);
-        renderDoneTasks(filteredTasks);
-
+        renderTasks(filteredTasks);
     } catch (error) {
         console.error("Can't fetch tasks:", error);
     }
 }
+
+async function fetchTasks() {
+    const tasksResponse = await fetch(FIREBASE_URL + '/tasks.json');
+    return await tasksResponse.json();
+}
+
+function parseTasks(responseToJson) {
+    const tasks = [];
+    if (responseToJson) {
+        const keys = Object.keys(responseToJson);
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            tasks.push({ id: key, ...responseToJson[key] });
+        }
+    }
+    return tasks;
+}
+
+function filterTasks(tasks, query) {
+    return query ? searchTasks(tasks, query) : tasks;
+}
+
+function renderTasks(filteredTasks) {
+    renderToDoTasks(filteredTasks);
+    renderInProgressTasks(filteredTasks);
+    renderAwaitFeedbackTasks(filteredTasks);
+    renderDoneTasks(filteredTasks);
+}
+
 
 // drag and drop functionality
 
@@ -88,6 +99,94 @@ function renderAllTasks() {
     renderAwaitFeedbackTasks(loadedTasks);
     renderDoneTasks(loadedTasks);
 }
+
+// Render function for "To Do" tasks
+function renderToDoTasks(tasks) {
+    const taskContainer = document.getElementById("to-do-cards");
+    taskContainer.innerHTML = "";  // Clear the container before adding tasks
+    let toDoTasks = tasks.filter(task => task.boardCategory === "to-do");
+
+    if (toDoTasks.length > 0) {
+        // If there are "to-do" tasks, create and append task cards
+        toDoTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "to-do" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots">No tasks To do</div>';
+    }
+}
+
+
+// Render function for "In Progress" tasks
+function renderInProgressTasks(tasks) {
+    const taskContainer = document.getElementById("in-progress-cards");
+    taskContainer.innerHTML = "";
+    let inProgressTasks = tasks.filter(task => task.boardCategory === "in-progress");
+
+    if (inProgressTasks.length > 0) {
+        // If there are "in-progress" tasks, create and append task cards
+        inProgressTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "in-progress" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots"">no tasks In progress</div>';
+    }
+}
+
+// Render function for "Await Feedback" tasks
+function renderAwaitFeedbackTasks(tasks) {
+    const taskContainer = document.getElementById("await-feedback-cards");
+    taskContainer.innerHTML = "";
+    let awaitFeedbackTasks = tasks.filter(task => task.boardCategory === "await-feedback");
+
+    if (awaitFeedbackTasks.length > 0) {
+        // If there are "await-feedback" tasks, create and append task cards
+        awaitFeedbackTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "await-feedback" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots">no tasks Awaiting feeback</div>';
+    }
+}
+
+// Render function for "Done" tasks
+function renderDoneTasks(tasks) {
+    const taskContainer = document.getElementById("done-cards");
+    taskContainer.innerHTML = "";
+    let doneTasks = tasks.filter(task => task.boardCategory === "done");
+
+    if (doneTasks.length > 0) {
+        // If there are "done" tasks, create and append task cards
+        doneTasks.forEach(task => {
+            taskContainer.innerHTML += createTaskCardHTML(task);
+        });
+    } else {
+        // If no "done" tasks, display a message in a container with a grey background
+        taskContainer.innerHTML = '<div class="empty-task-slots">No tasks Done</div>';
+    }
+}
+
+// Function to toggle the "No tasks found" message based on search results
+function toggleNoTasksMessage(filteredTasks) {
+    const noTasksMessage = document.getElementById('no-tasks-message');
+    const searchInput = document.getElementById('task-search').value; // Get the current value of the input field
+
+    if (searchInput === '') {
+        // If the input field is empty, hide the "No tasks found" message
+        noTasksMessage.classList.add('d-none');
+    } else if (filteredTasks.length === 0) {
+        // If no tasks found, remove the "d-none" class to show the message
+        noTasksMessage.classList.remove('d-none');
+    } else {
+        // If tasks are found, add the "d-none" class to hide the message
+        noTasksMessage.classList.add('d-none');
+    }
+}
+
+// functions to generate content for taskcards and task card overlays 
 
 
 // render functionality for the different taskcards
@@ -181,7 +280,6 @@ function generateUserName(user) {
     return user.name ? `<p class="user-name">${user.name}</p>` : "<p class='user-name'>No Name</p>";
 }
 
-
 // prio buttons
 
 function getPrioSVG(prio) {
@@ -194,7 +292,6 @@ function getPrioSVG(prio) {
         case 'low':
             return `<img src="../assets/img/add-task/low.svg" alt="Low">`;
         }
-
 }
 
 // Create task card HTML with updated progress bar
@@ -208,79 +305,19 @@ function createTaskCardHTML(task) {
     return generateTaskCardTemplate(task, categoryClass, userAvatars, progressData);
 }
 
-// Generate the task card template (including progress bar)
-function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData) {
-    return `
-        <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
-            ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
-            
-            <p class="task-category ${categoryClass}">${task.category}</p>
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
-
-            ${progressData ? `
-                <div class="subtask-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
-                    </div>
-                    <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
-                </div>` : ""}
-
-            <div class="assigned-users-prio-button-wrapper">
-                <div class="assigned-users">
-                    ${userAvatars || ""}
-                </div>
-
-                <div class="prio-button-board">
-                    <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
-                </div>
-            </div>
-        </div>`;
-}
-
-// Generate the task overlay template with subtasks checkboxes
-function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes) {
-    return `
-    <div class="task-category ${categoryClass}">${task.category}</div>
-    <h3>${task.title}</h3>
-    <p>${task.description}</p>
-
-    <div class="assigned-users-overlay">
-        <p>Assigned to:</p>
-        ${userAvatars || ""}
-    </div>
-
-    <div class="subtasks-list">
-        <p>Subtasks:</p>
-        ${subtasksCheckboxes || "No Subtasks"}
-    </div>
-
-    <div class="prio-button-board">
-        <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
-    </div>
-
-    <div class="task-action-buttons">
-        <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
-        <span class="divider"></span>
-        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
-    </div>
-    `;
-}
 
 // Show task details in the overlay when a task card is clicked
 function taskCardsOverlay(taskId) {
+
     const task = loadedTasks.find(t => t.id === taskId);
     const overlay = document.getElementById("task-overlay");
     const overlayDetails = document.getElementById("overlay-task-details");
-
     const categoryClass = setBackgroundColorByCategory(task.category);
     const userAvatars = generateUserAvatars(task.assignedContacts);
-
     const subtasksCheckboxes = generateSubtaskCheckboxes(task.subtasks);
     const taskDetailsHTML = generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes);
 
     overlayDetails.innerHTML = taskDetailsHTML;
-
     // Show the overlay by removing the 'd-none' class
     overlay.classList.remove("d-none");
 
@@ -295,38 +332,13 @@ function closeOverlay() {
 
 async function deleteTaskBtn(taskId, tasks) {
     try {
-        // Send a DELETE request to Firebase to remove the task
-        let response = await fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, { method: "DELETE" });
+        let response = await sendDeleteRequest(taskId);
 
         if (response.ok) {
-            // Remove the task from the local loadedTasks array
-            const taskIndex = loadedTasks.findIndex(task => task.id === taskId);
-            if (taskIndex !== -1) {
-                loadedTasks.splice(taskIndex, 1);
-            }
-
-            // Remove the task card from the UI (assuming it has an ID with taskId)
-            const taskCard = document.getElementById(`task-card-${taskId}`);
-            if (taskCard) {
-                taskCard.remove();
-            } else {
-                console.error(`Task card with ID 'task-card-${taskId}' not found.`);
-            }
-
-            // Optionally close the task overlay if it's open
-            const overlay = document.getElementById("task-overlay");
-            if (overlay) {
-                overlay.classList.add("d-none");
-            }
-
-            // Log success
-            console.log(`Task with ID: ${taskId} has been deleted from the database and UI.`);
-
-            // Reload the data (or re-render tasks)
-            renderToDoTasks(loadedTasks);  // Pass the updated loadedTasks array
-            renderInProgressTasks(loadedTasks);
-            renderAwaitFeedbackTasks(loadedTasks);
-            renderDoneTasks(loadedTasks);
+            removeTaskFromLocalArray(taskId);
+            removeTaskCardFromUI(taskId);
+            closeTaskOverlay();
+            reloadTasks();
         } else {
             console.error('Failed to delete task:', response.statusText);
         }
@@ -335,93 +347,36 @@ async function deleteTaskBtn(taskId, tasks) {
     }
 }
 
+async function sendDeleteRequest(taskId) {
+    return fetch(`${FIREBASE_URL}/tasks/${taskId}.json`, { method: "DELETE" });
+}
 
-
-// Render function for "To Do" tasks
-function renderToDoTasks(tasks) {
-    const taskContainer = document.getElementById("to-do-cards");
-    taskContainer.innerHTML = "";  // Clear the container before adding tasks
-    let toDoTasks = tasks.filter(task => task.boardCategory === "to-do");
-
-    if (toDoTasks.length > 0) {
-        // If there are "to-do" tasks, create and append task cards
-        toDoTasks.forEach(task => {
-            taskContainer.innerHTML += createTaskCardHTML(task);
-        });
-    } else {
-        // If no "to-do" tasks, display a message in a container with a grey background
-        taskContainer.innerHTML = '<div class="empty-task-slots">No tasks To do</div>';
+function removeTaskFromLocalArray(taskId) {
+    const taskIndex = loadedTasks.findIndex(task => task.id === taskId);
+    if (taskIndex !== -1) {
+        loadedTasks.splice(taskIndex, 1);
     }
 }
 
+function removeTaskCardFromUI(taskId) {
+    const taskCardElement = document.getElementById(`task-card-${taskId}`);
+    taskCardElement && taskCardElement.remove();
+}
 
-// Render function for "In Progress" tasks
-function renderInProgressTasks(tasks) {
-    const taskContainer = document.getElementById("in-progress-cards");
-    taskContainer.innerHTML = "";
-    let inProgressTasks = tasks.filter(task => task.boardCategory === "in-progress");
-
-    if (inProgressTasks.length > 0) {
-        // If there are "in-progress" tasks, create and append task cards
-        inProgressTasks.forEach(task => {
-            taskContainer.innerHTML += createTaskCardHTML(task);
-        });
-    } else {
-        // If no "in-progress" tasks, display a message in a container with a grey background
-        taskContainer.innerHTML = '<div class="empty-task-slots"">no tasks In progress</div>';
+function closeTaskOverlay() {
+    const overlay = document.getElementById("task-overlay");
+    if (overlay) {
+        overlay.classList.add("d-none");
     }
 }
 
-// Render function for "Await Feedback" tasks
-function renderAwaitFeedbackTasks(tasks) {
-    const taskContainer = document.getElementById("await-feedback-cards");
-    taskContainer.innerHTML = "";
-    let awaitFeedbackTasks = tasks.filter(task => task.boardCategory === "await-feedback");
-
-    if (awaitFeedbackTasks.length > 0) {
-        // If there are "await-feedback" tasks, create and append task cards
-        awaitFeedbackTasks.forEach(task => {
-            taskContainer.innerHTML += createTaskCardHTML(task);
-        });
-    } else {
-        // If no "await-feedback" tasks, display a message in a container with a grey background
-        taskContainer.innerHTML = '<div class="empty-task-slots">no tasks Awaiting feeback</div>';
-    }
+function reloadTasks() {
+    renderToDoTasks(loadedTasks);
+    renderInProgressTasks(loadedTasks);
+    renderAwaitFeedbackTasks(loadedTasks);
+    renderDoneTasks(loadedTasks);
 }
 
-// Render function for "Done" tasks
-function renderDoneTasks(tasks) {
-    const taskContainer = document.getElementById("done-cards");
-    taskContainer.innerHTML = "";
-    let doneTasks = tasks.filter(task => task.boardCategory === "done");
-
-    if (doneTasks.length > 0) {
-        // If there are "done" tasks, create and append task cards
-        doneTasks.forEach(task => {
-            taskContainer.innerHTML += createTaskCardHTML(task);
-        });
-    } else {
-        // If no "done" tasks, display a message in a container with a grey background
-        taskContainer.innerHTML = '<div class="empty-task-slots">No tasks Done</div>';
-    }
-}
-
-// Function to toggle the "No tasks found" message based on search results
-function toggleNoTasksMessage(filteredTasks) {
-    const noTasksMessage = document.getElementById('no-tasks-message');
-    const searchInput = document.getElementById('task-search').value; // Get the current value of the input field
-
-    if (searchInput === '') {
-        // If the input field is empty, hide the "No tasks found" message
-        noTasksMessage.classList.add('d-none');
-    } else if (filteredTasks.length === 0) {
-        // If no tasks found, remove the "d-none" class to show the message
-        noTasksMessage.classList.remove('d-none');
-    } else {
-        // If tasks are found, add the "d-none" class to hide the message
-        noTasksMessage.classList.add('d-none');
-    }
-}
 
 // Updated searchTasks function
 function searchTasks(tasks, query) {

@@ -1,0 +1,58 @@
+// Generate the task card template (including progress bar)
+function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData) {
+    return `
+        <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
+            ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
+            
+            <p class="task-category ${categoryClass}">${task.category}</p>
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+
+            ${progressData ? `
+                <div class="subtask-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progressData.progressPercentage}%;"></div>
+                    </div>
+                    <span>${progressData.completedSubtasks}/${progressData.totalSubtasks} Subtasks</span>
+                </div>` : ""}
+
+            <div class="assigned-users-prio-button-wrapper">
+                <div class="assigned-users">
+                    ${userAvatars || ""}
+                </div>
+
+                <div class="prio-button-board">
+                    <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
+                </div>
+            </div>
+        </div>`;
+}
+
+// Generate the task overlay template with subtasks checkboxes
+function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes) {
+    return `
+    <div class="task-category ${categoryClass}">${task.category}</div>
+    <h3>${task.title}</h3>
+    <p>${task.description}</p>
+
+    <div class="assigned-users-overlay">
+        <p>Assigned to:</p>
+        ${userAvatars || ""}
+    </div>
+
+    <div class="subtasks-list">
+        <p>Subtasks:</p>
+        ${subtasksCheckboxes || "No Subtasks"}
+    </div>
+
+    <div class="prio-button-board">
+        <p>${task.prioButton ? getPrioSVG(task.prioButton) : getPrioSVG('medium')}</p>
+    </div>
+
+    <div class="task-action-buttons">
+        <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
+        <span class="divider"></span>
+        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
+    </div>
+    `;
+}
