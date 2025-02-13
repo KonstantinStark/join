@@ -11,7 +11,7 @@ async function init() {
 async function loadTasks() {
     const tasksData = await fetchData('/tasks.json');
     const { taskCount, urgentTaskCount, tasks } = processTasksData(tasksData);
-    renderTaskCount(taskCount);
+    renderToDoCount(tasks);
     renderUrgentTaskCount(urgentTaskCount);
     renderDoneCount(tasks);
     renderTasksOnBoard(tasks);
@@ -21,7 +21,7 @@ async function loadTasks() {
 
 /**
  * Fetches data from the given Firebase endpoint.
- */cd 
+ */
 async function fetchData(endpoint) {
     const response = await fetch(FIREBASE_URL + endpoint);
     return await response.json();
@@ -62,9 +62,11 @@ function mapTaskData(id, taskData) {
 /**
  * Renders the total task count in the DOM.
  */
-function renderTaskCount(taskCount) {
-    document.getElementById('toDoPlaceholder').innerHTML = `${taskCount}`;
+function renderToDoCount(tasks) {
+    const toDoCount = tasks.filter(task => task.boardCategory === "to-do").length;
+    document.getElementById('toDoPlaceholder').innerHTML= `${toDoCount}`;
 }
+
 
 /**
  * Renders the number of urgent tasks in the DOM.
