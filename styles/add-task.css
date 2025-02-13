@@ -455,7 +455,7 @@ input::placeholder {
 
 #subtasks-list {
     width: 430px;
-    height: 80px;
+    height: 60px;
     overflow: scroll;
     overflow-x: hidden;
     background-color: #F6F7F8;
