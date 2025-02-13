@@ -7,19 +7,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#e7e7e7;
-    height:50px;
-    width:250px;
-    color:grey;
-    border:2px dashed lightgrey;
-    border-radius:20px;
-    margin-top:20px;
+    background-color: #e7e7e7;
+    height: 50px;
+    width: 250px;
+    color: grey;
+    border: 2px dashed lightgrey;
+    border-radius: 20px;
+    margin-top: 20px;
 }
 
 .assigned-users-prio-button-wrapper {
     display: flex;
     justify-content: space-between;
-    margin-left:24px;
+    margin-left: 24px;
 }
 
 .assigned-users svg {
@@ -27,7 +27,7 @@
 }
 
 .prio-button-board {
-    margin-right:16px;
+    margin-right: 16px;
 }
 
 .single-task-card {
@@ -50,19 +50,41 @@
 }
 
 .subtask-checkbox {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    width: 25%;
-    justify-content: flex-start;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #6B7280;
+    border-radius: 4px;
+    background-color: #E5E7EB;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 }
 
-.subtask-checkbox input {
-    margin-right: 10px;
+.subtask-checkbox:checked {
+    background-color: #E5E7EB;
+    border-color: #6B7280;
 }
 
-.subtask-checkbox label {
-    font-size: 0.9em;
+.subtask-checkbox:checked::after {
+    content: '✔';
+    font-size: 12px;
+    color: #6B7280;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+label {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #374151;
+    margin-left: 8px;
+    cursor: pointer;
 }
 
 .task-details-container {
@@ -76,9 +98,9 @@
 }
 
 .subtasks-container {
-    width: 25%; 
+    width: 25%;
     overflow-y: auto;
-    max-height: 400px; 
+    max-height: 400px;
 }
 
 .single-task-card.dragging {
@@ -87,12 +109,12 @@
 
 .task-category.technical-task {
     background: #0038FF;
-    color: white; 
+    color: white;
 }
 
 .task-category.user-story {
     background: #1FD7C1;
-    color: white; 
+    color: white;
 }
 
 .subtask-progress {
@@ -112,7 +134,7 @@
 
 .progress-fill {
     height: 100%;
-    background-color: #3b82f6; 
+    background-color: #3b82f6;
     transition: width 0.3s ease-in-out;
 }
 
@@ -127,19 +149,22 @@
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 200px; /* Adjust the width of the tooltip */
+    width: 200px;
+    /* Adjust the width of the tooltip */
     background-color: #2a3647;
     color: #fff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-   
+
     /* Position the tooltip text */
     position: absolute;
     z-index: 1;
-    bottom: 100%; /* Position the tooltip above the input field */
+    bottom: 100%;
+    /* Position the tooltip above the input field */
     left: 50%;
-    transform: translateX(-50%); /* Center the tooltip */
+    transform: translateX(-50%);
+    /* Center the tooltip */
 }
 
 /* Show the tooltip text when you hover over the input field */
@@ -509,7 +534,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
+    z-index: 14;
 }
 
 .overlay-content {

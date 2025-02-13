@@ -220,10 +220,11 @@ function generateSubtaskCheckboxes(subtasks) {
     }
 
     return subtasks.map((subtask, index) => `
-        <div class="subtask-checkbox">
-            <input type="checkbox" id="subtask-${index}" ${subtask.boolean ? "checked" : ""} onclick="toggleSubtaskCompletion(${index}, '${subtask.title}')">
-            <label for="subtask-${index}">${subtask.title}</label> <!-- Assuming subtask has a title property -->
-        </div>
+        <div class="subtask">
+    <input type="checkbox" class="subtask-checkbox" id="subtask-${index}" ${subtask.boolean ? "checked" : ""} 
+        onclick="toggleSubtaskCompletion(${index}, '${subtask.title}')">
+    <label for="subtask-${index}">${subtask.title}</label>
+</div>
     `).join(""); // Join all subtasks as individual checkboxes
 }
 
@@ -291,7 +292,7 @@ function getPrioSVG(prio) {
             return `<img src="../assets/img/add-task/medium.svg" alt="Medium">`;
         case 'low':
             return `<img src="../assets/img/add-task/low.svg" alt="Low">`;
-        }
+    }
 }
 
 // Create task card HTML with updated progress bar
@@ -381,10 +382,10 @@ function reloadTasks() {
 // Updated searchTasks function
 function searchTasks(tasks, query) {
     const searchQuery = query.toLowerCase();
-    
+
     // Filter tasks based on the search query
-    const filteredTasks = tasks.filter(task => 
-        task.title.toLowerCase().startsWith(searchQuery) || 
+    const filteredTasks = tasks.filter(task =>
+        task.title.toLowerCase().startsWith(searchQuery) ||
         task.description.toLowerCase().startsWith(searchQuery)
     );
 
@@ -395,7 +396,7 @@ function searchTasks(tasks, query) {
 }
 
 // Listen to changes on the input field and trigger loadTasks with the current query
-document.getElementById('task-search').addEventListener('input', function() {
+document.getElementById('task-search').addEventListener('input', function () {
     const query = this.value; // Get the current input value
     loadTasks(query); // Call loadTasks with the search query
 });
