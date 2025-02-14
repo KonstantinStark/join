@@ -2,6 +2,7 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 
 let loadedTasks = [];
 
+
 // Load all tasks by default when the page loads
 loadTasks();
 
@@ -116,8 +117,6 @@ function renderToDoTasks(tasks) {
         taskContainer.innerHTML = '<div class="empty-task-slots">No tasks To do</div>';
     }
 }
-
-
 // Render function for "In Progress" tasks
 function renderInProgressTasks(tasks) {
     const taskContainer = document.getElementById("in-progress-cards");
@@ -188,7 +187,6 @@ function toggleNoTasksMessage(filteredTasks) {
 
 // functions to generate content for taskcards and task card overlays 
 
-
 // render functionality for the different taskcards
 
 function setBackgroundColorByCategory(category) {
@@ -213,23 +211,18 @@ function calculateSubtaskProgress(subtasks) {
     return { totalSubtasks, completedSubtasks, progressPercentage };
 }
 
-// Generate checkboxes for each subtask (with 'boolean' value indicating whether it is checked)
+// Function to generate checkboxes for each subtask (with 'boolean' value indicating whether it is checked)
 function generateSubtaskCheckboxes(subtasks) {
     if (!subtasks || subtasks.length === 0) {
         return "";  // Return a message when no subtasks exist
     }
 
-    return subtasks.map((subtask, index) => `
-        <div class="subtask">
-    <input type="checkbox" class="subtask-checkbox" id="subtask-${index}" ${subtask.boolean ? "checked" : ""} 
-        onclick="toggleSubtaskCompletion(${index}, '${subtask.title}')">
-    <label for="subtask-${index}">${subtask.title}</label>
-</div>
-    `).join(""); // Join all subtasks as individual checkboxes
+    return subtasks.map((subtask, index) => generateSubtaskCheckboxTemplate(index, subtask)).join(""); 
 }
 
+
 // Update subtask completion when a checkbox is clicked
-function toggleSubtaskCompletion(index, title) {
+function toggleSubtaskCompletion(title) {
     const taskId = document.getElementById("task-overlay").getAttribute("data-task-id");
     const task = loadedTasks.find(t => t.id === taskId);
 
@@ -254,16 +247,9 @@ function updateTaskProgress(task) {
 }
 //user avatars and initials
 
+// Function to generate the user avatar
 function generateUserAvatar(user) {
-    return `
-        
-        <svg width="40" height="40">
-            <circle cx="20" cy="20" r="16" fill="${user.color}" />
-            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                ${user.initials}
-            </text>
-        </svg>  
-    `;
+    return generateAvatarTemplate(user.color, user.initials);
 }
 
 //checks if assignedContacts is an array
@@ -330,7 +316,7 @@ function closeOverlay() {
     document.getElementById("task-overlay").classList.add("d-none");
 }
 
-async function deleteTaskBtn(taskId, tasks) {
+async function deleteTaskBtn(taskId) {
     try {
         let response = await sendDeleteRequest(taskId);
 
@@ -400,17 +386,19 @@ document.getElementById('task-search').addEventListener('input', function () {
     loadTasks(query); // Call loadTasks with the search query
 });
 
-function showTaskOverlay() {
+function showTaskOverlay(task) {
+    console.log(task);
+
     let overlay = document.getElementById("taskOverlay");
 
-    // Insert the same HTML as you already have in your HTML
+    // Insert the same HTML as you already have in your HTML, but populate just the title for now
     overlay.innerHTML = `
         <div class="overlay-content">
             <div id="hide-taskoverlay-btn" onclick="hideTaskOverlay()">✕</div>
             <div class="test">
                 <div class="subheader">
                     <div class="subheader-wrapper">
-                        <h1>Add Task</h1>
+                        <h1>Edit Task</h1>
                     </div>
                 </div>
 
@@ -423,13 +411,14 @@ function showTaskOverlay() {
                                     Title <span class="required-star-markers">*</span>
                                 </p>
                                 <div class="input-wrapper">
-                                    <input type="text" placeholder="Enter title" id="title-input">
+                                    <input type="text" placeholder="Enter title" id="title-input" value="${task.title || ''}">
                                     <p class="error-message" id="title-error" style="display: none;">
                                         This field is required
                                     </p>
                                 </div>
                             </div>
 
+                            <!-- Revert the rest to the original form without data population -->
                             <div class="decription-input-wrapper">
                                 <p class="input-headers-margin-bottom">Description</p>
                                 <div class="description-input">
@@ -441,9 +430,7 @@ function showTaskOverlay() {
                                 <p class="input-headers-margin-bottom">Assigned to</p>
                                 <div id="assigned-to-dropdown">
                                     <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
-                                        <p class="placeholder-text-non-input-tag-fields">
-                                            Select contacts to assign
-                                        </p>
+                                        <p class="placeholder-text-non-input-tag-fields">Select contacts to assign</p>
                                         <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
                                     </div>
                                     <div id="assigned-to-input" class="d-none">
@@ -483,7 +470,7 @@ function showTaskOverlay() {
                                         <img src="../assets/img/add-task/medium.svg" alt="Medium">
                                     </button>
                                     <button id="low-button" onclick="setPrioButton('low')">
-                                        aLow
+                                        Low
                                         <img src="../assets/img/add-task/low.svg" alt="Low">
                                     </button>
                                 </div>
@@ -551,14 +538,16 @@ function showTaskOverlay() {
             </footer>
         </div>
     `;
-
-    overlay.classList.remove("d-none");
 }
+
+
 
 function hideTaskOverlay() {
     let overlay = document.getElementById("taskOverlay");
     overlay.classList.add("d-none");
 }
+
+console.log(task)
 
 
 

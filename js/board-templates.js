@@ -52,7 +52,30 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
     <div class="task-action-buttons">
         <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
         <span class="divider"></span>
-        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="showTaskOverlay()">
+        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="showTaskOverlay('${task}')">
     </div>
+    `;
+}
+
+function generateAvatarTemplate(color, initials) {
+    return `
+        <svg width="40" height="40">
+            <circle cx="20" cy="20" r="16" fill="${color}" />
+            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
+                ${initials}
+            </text>
+        </svg>  
+    `;
+}
+
+
+// Function to generate a single subtask checkbox template
+function generateSubtaskCheckboxTemplate(index, subtask) {
+    return `
+        <div class="subtask">
+            <input type="checkbox" class="subtask-checkbox" id="subtask-${index}" ${subtask.boolean ? "checked" : ""} 
+                onclick="toggleSubtaskCompletion(${index}, '${subtask.title}')">
+            <label for="subtask-${index}">${subtask.title}</label>
+        </div>
     `;
 }
