@@ -52,7 +52,7 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
     <div class="task-action-buttons">
         <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
         <span class="divider"></span>
-        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="editTask(${task.id})">
+        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="showTaskOverlay()">
     </div>
     `;
 }

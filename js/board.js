@@ -306,7 +306,6 @@ function createTaskCardHTML(task) {
     return generateTaskCardTemplate(task, categoryClass, userAvatars, progressData);
 }
 
-
 // Show task details in the overlay when a task card is clicked
 function taskCardsOverlay(taskId) {
 
@@ -400,6 +399,169 @@ document.getElementById('task-search').addEventListener('input', function () {
     const query = this.value; // Get the current input value
     loadTasks(query); // Call loadTasks with the search query
 });
+
+function showTaskOverlay() {
+    let overlay = document.getElementById("taskOverlay");
+
+    // Insert the same HTML as you already have in your HTML
+    overlay.innerHTML = `
+        <div class="overlay-content">
+            <div id="hide-taskoverlay-btn" onclick="hideTaskOverlay()">✕</div>
+            <div class="test">
+                <div class="subheader">
+                    <div class="subheader-wrapper">
+                        <h1>Add Task</h1>
+                    </div>
+                </div>
+
+                <!-- Add Task Form -->
+                <div class="add-task-wrapper">
+                    <div class="left-side-wrapper">
+                        <div class="input-fields-left-side">
+                            <div class="title-input-wrapper">
+                                <p class="input-headers-margin-bottom">
+                                    Title <span class="required-star-markers">*</span>
+                                </p>
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="Enter title" id="title-input">
+                                    <p class="error-message" id="title-error" style="display: none;">
+                                        This field is required
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="decription-input-wrapper">
+                                <p class="input-headers-margin-bottom">Description</p>
+                                <div class="description-input">
+                                    <input type="text" placeholder="Enter a Description" id="description-input">
+                                </div>
+                            </div>
+
+                            <div class="assigned-to-wrapper">
+                                <p class="input-headers-margin-bottom">Assigned to</p>
+                                <div id="assigned-to-dropdown">
+                                    <div class="assigned-to-toggle-button" tabindex="0" onclick="toggleAssignedToList()">
+                                        <p class="placeholder-text-non-input-tag-fields">
+                                            Select contacts to assign
+                                        </p>
+                                        <img src="../assets/img/add-task/up-down-arrow.svg" alt="">
+                                    </div>
+                                    <div id="assigned-to-input" class="d-none">
+                                        <div class="assigned-to-list" id="assigned-to-list"></div>
+                                    </div>
+                                    <div id="assigned-to-input-svg-below"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="seperator-left-right-side"></div>
+
+                    <div class="right-side-wrapper">
+                        <div class="input-fields-right-side">
+                            <div class="due-date-wrapper">
+                                <p class="input-headers-margin-bottom">
+                                    Due Date <span class="required-star-markers">*</span>
+                                </p>
+                                <div class="due-date-input">
+                                    <input type="date" placeholder="dd/mm/yyyy" id="due-date-input">
+                                </div>
+                                <p class="error-message" id="due-date-error" style="display: none;">
+                                    This field is required
+                                </p>
+                            </div>
+
+                            <div class="prio-buttons-wrapper">
+                                <p class="prio-buttons-header input-headers-margin-bottom">Prio</p>
+                                <div class="prio-buttons">
+                                    <button id="urgent-button" onclick="setPrioButton('urgent')">
+                                        Urgent
+                                        <img src="../assets/img/add-task/urgent.svg" alt="Urgent">
+                                    </button>
+                                    <button id="medium-button" onclick="setPrioButton('medium')">
+                                        Medium
+                                        <img src="../assets/img/add-task/medium.svg" alt="Medium">
+                                    </button>
+                                    <button id="low-button" onclick="setPrioButton('low')">
+                                        aLow
+                                        <img src="../assets/img/add-task/low.svg" alt="Low">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="category-input-wrapper">
+                                <p class="input-headers-margin-bottom">
+                                    Category <span class="required-star-markers">*</span>
+                                </p>
+                                <div class="category-input" id="category-input"
+                                    onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
+                                    <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">
+                                        Select task category
+                                    </p>
+                                    <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
+                                </div>
+                                <p class="error-message" id="category-error" style="display: none;">
+                                    This field is required
+                                </p>
+                                <div id="category-input-content" class="d-none">
+                                    <p onclick="changeCategoryInput('Technical Task')">Technical Task</p>
+                                    <p onclick="changeCategoryInput('User Story')">User Story</p>
+                                </div>
+                            </div>
+
+                            <div id="subtask-default" class="subtask-input-wrapper">
+                                <p class="input-headers-margin-bottom">Subtasks</p>
+                                <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
+                                    <div id="subtask-input">
+                                        Add new subtask
+                                        <img src="../assets/img/add-task/plus.svg" alt="Add Subtask">
+                                    </div>
+                                </div>
+                                <div id="subtasks-list" class="d-none"></div>
+                                <div class="field-required-mediaquery">
+                                    <p>
+                                        <span class="required-star-markers">*</span>
+                                        This field is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Footer -->
+            <footer>
+                <div class="field-required">
+                    <p>
+                        <span class="required-star-markers">*</span>
+                        This field is required
+                    </p>
+                </div>
+                <div class="clear-create-buttons-wrapper">
+                    <button class="clear-task-button" onclick="resetInputFields()">
+                        Clear
+                        <img src="../assets/img/add-task/clear.svg" alt="Clear">
+                    </button>
+                    <button class="create-task-button" onclick="validateForm()">
+                        <p>Create Task</p>
+                        <img src="../assets/img/add-task/check.svg" alt="Create">
+                    </button>
+                </div>
+            </footer>
+        </div>
+    `;
+
+    overlay.classList.remove("d-none");
+}
+
+function hideTaskOverlay() {
+    let overlay = document.getElementById("taskOverlay");
+    overlay.classList.add("d-none");
+}
+
+
+
 
 
 
