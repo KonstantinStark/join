@@ -221,14 +221,12 @@ function generateSubtaskCheckboxes(subtasks) {
     return subtasks.map((subtask, index) => generateSubtaskCheckboxTemplate(index, subtask)).join(""); 
 }
 
-
-// Update subtask completion when a checkbox is clicked
-function toggleSubtaskCompletion(title) {
+function toggleSubtaskCompletion(index) {
     const taskId = document.getElementById("task-overlay").getAttribute("data-task-id");
     const task = loadedTasks.find(t => t.id === taskId);
 
-    // Find the corresponding subtask and toggle its 'boolean' value
-    const subtask = task.subtasks.find(st => st.title === title);
+    // Use the index to directly access the subtask in the task's subtasks array
+    const subtask = task.subtasks[index];  // Use the index directly here
     if (subtask) {
         subtask.boolean = !subtask.boolean; // Toggle the 'boolean' value
         updateTaskProgress(task); // Update task progress
