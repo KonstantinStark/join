@@ -3,6 +3,7 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 let loadedTasks = [];
 
 
+
 // Load all tasks by default when the page loads
 loadTasks();
 
@@ -262,10 +263,16 @@ function generateUserAvatars(assignedContacts) {
     return "";  // Return "None" if no users are assigned
 }
 
-function generateUserName(user) {
-    // Assuming the 'user' object has a 'name' property
-    return user.name ? `<p class="user-name">${user.name}</p>` : "<p class='user-name'>No Name</p>";
+function generateUserNames(task) {
+    // Ensure task has assignedContacts and it's an array before calling map, and handle empty or undefined
+    if (task.assignedContacts && Array.isArray(task.assignedContacts) && task.assignedContacts.length > 0) {
+        return task.assignedContacts.map(user => {
+            return user.name ? `<p class="user-name">${user.name}</p>` : "<p class='user-name'>No Name</p>";
+        }).join("");  // Join the resulting name elements into one string
+    }
+    return "<p class='user-name'>No Assigned Users</p>";  // Fallback if no assigned users
 }
+
 
 // prio buttons
 
@@ -300,8 +307,10 @@ function taskCardsOverlay(taskId) {
     const overlayDetails = document.getElementById("overlay-task-details");
     const categoryClass = setBackgroundColorByCategory(task.category);
     const userAvatars = generateUserAvatars(task.assignedContacts);
+    const userName = generateUserNames(task);
     const subtasksCheckboxes = generateSubtaskCheckboxes(task.subtasks);
-    const taskDetailsHTML = generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes);
+    const taskDetailsHTML = generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes, userName);
+    
 
     overlayDetails.innerHTML = taskDetailsHTML;
     // Show the overlay by removing the 'd-none' class
@@ -547,7 +556,7 @@ function hideTaskOverlay() {
     overlay.classList.add("d-none");
 }
 
-console.log(task)
+
 
 
 

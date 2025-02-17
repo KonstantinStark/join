@@ -16,6 +16,13 @@
     margin-top: 20px;
 }
 
+.assigned-users-overlay {
+
+    display: flex;
+    flex-direction: column;
+  
+}
+
 .assigned-users-prio-button-wrapper {
     display: flex;
     justify-content: space-between;

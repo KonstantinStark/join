@@ -9,7 +9,6 @@ function showTaskOverlay() {
     document.getElementById("taskOverlay").style.display = "flex";
 }
 
-
 //add task file copied in 
     
 let selectedPrioButton = '';

@@ -29,7 +29,7 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
 }
 
 // Generate the task overlay template with subtasks checkboxes
-function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes) {
+function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes, userName) {
     return `
     <div class="task-category ${categoryClass}">${task.category}</div>
     <h3>${task.title}</h3>
@@ -37,8 +37,14 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
 
     <div class="assigned-users-overlay">
         <p>Assigned to:</p>
+        
         ${userAvatars || ""}
+        ${userName || ""}
+        
+        
     </div>
+
+   
 
     <div class="subtasks-list">
         <p>Subtasks:</p>
