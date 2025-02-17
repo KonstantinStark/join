@@ -299,8 +299,9 @@ function createTaskCardHTML(task) {
 // Show task details in the overlay when a task card is clicked
 function taskCardsOverlay(taskId) {
 
-    const task = loadedTasks.find(t => t.id === taskId);
     const overlay = document.getElementById("task-overlay");
+
+    const task = loadedTasks.find(t => t.id === taskId);
     const overlayDetails = document.getElementById("overlay-task-details");
     const categoryClass = setBackgroundColorByCategory(task.category);
     const userAvatars = generateUserAvatars(task.assignedContacts);
@@ -399,6 +400,22 @@ function showEditTaskOverlay(taskId) {
     console.log(task); // Check that task object is logged properly
 
     let overlay = document.getElementById("editTaskOverlay");
+
+    document.getElementById("task-overlay").classList.add('d-none');
+
+    // Generate subtasks HTML to display only titles
+    let subtasksHTML = '';
+    if (task.subtasks && task.subtasks.length > 0) {
+        task.subtasks.forEach(subtask => {
+            subtasksHTML += `
+                <div class="subtask-item">
+                    <p>${subtask.title}</p>
+                </div>
+            `;
+        });
+    } else {
+        subtasksHTML = `<p>No Subtasks</p>`;
+    }
 
     // Populate overlay with task details
     overlay.innerHTML = `
@@ -511,7 +528,7 @@ function showEditTaskOverlay(taskId) {
                                         <img src="../assets/img/add-task/plus.svg" alt="Add Subtask">
                                     </div>
                                 </div>
-                                <div id="subtasks-list" class="d-none"></div>
+                                <div id="subtasks-list">${subtasksHTML}</div>
                                 <div class="field-required-mediaquery">
                                     <p>
                                         <span class="required-star-markers">*</span>
