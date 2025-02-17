@@ -273,7 +273,6 @@ function generateUserNames(task) {
     return "<p class='user-name'>No Assigned Users</p>";  // Fallback if no assigned users
 }
 
-
 // prio buttons
 
 function getPrioSVG(prio) {

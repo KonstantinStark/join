@@ -19,8 +19,15 @@
 .assigned-users-overlay {
 
     display: flex;
+}
+
+.assigned-users-overlay-items {
+
+    display:flex;
     flex-direction: column;
-  
+    justify-content: center;
+ 
+    
 }
 
 .assigned-users-prio-button-wrapper {

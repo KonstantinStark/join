@@ -35,11 +35,14 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
     <h3>${task.title}</h3>
     <p>${task.description}</p>
 
+    <p>Assigned to:</p>
+
     <div class="assigned-users-overlay">
-        <p>Assigned to:</p>
         
-        ${userAvatars || ""}
-        ${userName || ""}
+
+       <span class="assigned-users-overlay-items" >${userAvatars || ""} </span> 
+       <span class="assigned-users-overlay-items">${userName || ""} </span> 
+        
         
         
     </div>
