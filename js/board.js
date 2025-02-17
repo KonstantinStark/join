@@ -392,12 +392,15 @@ document.getElementById('task-search').addEventListener('input', function () {
     loadTasks(query); // Call loadTasks with the search query
 });
 
-function showTaskOverlay(task) {
-    console.log(task);
+function showEditTaskOverlay(taskId) {
+    // Get task data using taskId
+    const task = loadedTasks.find(t => t.id === taskId);
 
-    let overlay = document.getElementById("taskOverlay");
+    console.log(task); // Check that task object is logged properly
 
-    // Insert the same HTML as you already have in your HTML, but populate just the title for now
+    let overlay = document.getElementById("editTaskOverlay");
+
+    // Populate overlay with task details
     overlay.innerHTML = `
         <div class="overlay-content">
             <div id="hide-taskoverlay-btn" onclick="hideTaskOverlay()">✕</div>
@@ -408,7 +411,6 @@ function showTaskOverlay(task) {
                     </div>
                 </div>
 
-                <!-- Add Task Form -->
                 <div class="add-task-wrapper">
                     <div class="left-side-wrapper">
                         <div class="input-fields-left-side">
@@ -417,21 +419,22 @@ function showTaskOverlay(task) {
                                     Title <span class="required-star-markers">*</span>
                                 </p>
                                 <div class="input-wrapper">
-                                    <input type="text" placeholder="Enter title" id="title-input" value="${task.title || ''}">
+                                    <input type="text" placeholder="Enter title" id="title-input" value="${task.title}">
                                     <p class="error-message" id="title-error" style="display: none;">
-                                        This field is required
+                                        This field is required 
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Revert the rest to the original form without data population -->
-                            <div class="decription-input-wrapper">
+                            <!-- Description field -->
+                            <div class="description-input-wrapper">
                                 <p class="input-headers-margin-bottom">Description</p>
                                 <div class="description-input">
-                                    <input type="text" placeholder="Enter a Description" id="description-input">
+                                    <input type="text" placeholder="Enter a Description" id="description-input" value="${task.description}">
                                 </div>
                             </div>
 
+                            <!-- Assigned to field -->
                             <div class="assigned-to-wrapper">
                                 <p class="input-headers-margin-bottom">Assigned to</p>
                                 <div id="assigned-to-dropdown">
@@ -448,6 +451,7 @@ function showTaskOverlay(task) {
                         </div>
                     </div>
 
+                    <!-- Right side section with due date, priority, and category -->
                     <div class="seperator-left-right-side"></div>
 
                     <div class="right-side-wrapper">
@@ -457,7 +461,7 @@ function showTaskOverlay(task) {
                                     Due Date <span class="required-star-markers">*</span>
                                 </p>
                                 <div class="due-date-input">
-                                    <input type="date" placeholder="dd/mm/yyyy" id="due-date-input">
+                                    <input type="date" placeholder="dd/mm/yyyy" id="due-date-input" value="${task.dueDate}">
                                 </div>
                                 <p class="error-message" id="due-date-error" style="display: none;">
                                     This field is required
@@ -486,11 +490,8 @@ function showTaskOverlay(task) {
                                 <p class="input-headers-margin-bottom">
                                     Category <span class="required-star-markers">*</span>
                                 </p>
-                                <div class="category-input" id="category-input"
-                                    onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
-                                    <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">
-                                        Select task category
-                                    </p>
+                                <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
+                                    <p class="placeholder-text-non-input-tag-fields" id="category-input-placeholder">${task.category}</p>
                                     <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
                                 </div>
                                 <p class="error-message" id="category-error" style="display: none;">
@@ -545,6 +546,7 @@ function showTaskOverlay(task) {
         </div>
     `;
 }
+
 
 
 

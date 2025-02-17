@@ -44,10 +44,7 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
        <span class="assigned-users-overlay-items">${userName || ""} </span> 
         
         
-        
     </div>
-
-   
 
     <div class="subtasks-list">
         <p>Subtasks:</p>
@@ -61,7 +58,7 @@ function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksC
     <div class="task-action-buttons">
         <img class="delete-button" src="../assets/img/Property 1=Default.png" alt="Delete" onclick="deleteTaskBtn('${task.id}')">
         <span class="divider"></span>
-        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="showTaskOverlay('${task}')">
+        <img class="edit-button" src="../assets/img/Property 1=Edit2.png" alt="Edit" onclick="showEditTaskOverlay('${task.id}')">
     </div>
     `;
 }
