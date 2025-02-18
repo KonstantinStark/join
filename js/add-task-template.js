@@ -23,16 +23,17 @@ function generateUserHTML(user) {
 /**
  * Generates an SVG representation of a user avatar.
  */
-function generateUserSVG(user) {
+function generateUserSVG(assignedContact) {
     return /*html*/ `
         <svg width="40" height="40">
-            <circle cx="20" cy="20" r="16" fill="${user.color}" />
+            <circle cx="20" cy="20" r="16" fill="${assignedContact.color}" />
             <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                ${user.initials}
+                ${assignedContact.initials}
             </text>
         </svg>
     `;
 }
+
 
 /**
  * Generates an HTML input field for entering subtasks.

@@ -89,46 +89,40 @@ function toggleCheckbox(clickedElement) {
 // Function to collect all selected users in assignedContacts array, change background color and returns it in the end 
 
 function getSelectedAssignedUsers() {
-    const assignedContacts = [];
+    assignedContacts = []; // Reset the assigned contacts array each time
     const checkboxes = document.querySelectorAll('.assign-checkbox');
 
     checkboxes.forEach(checkbox => {
-        const assignedToValue = checkbox.closest('.assigned-to-list-values');
+        let assignedToValue = checkbox.closest('.assigned-to-list-values');
         
         if (checkbox.checked) {
-            // Find the user object based on the ID from the checkbox value
+            // Find the user object based on the checkbox value (ID)
             const selectedUser = users.find(user => user.id === checkbox.value);
-
+            
             if (selectedUser) {
-                // Push the full user object into the assignedContacts array
-                assignedContacts.push(selectedUser);
+                assignedContacts.push(selectedUser); // Push the full user object into the array
             }
 
-            // Optionally add styles for the checked state
-            assignedToValue.classList.add('bg-color-black'); 
+            assignedToValue.classList.add('bg-color-black'); // Add background color for checked checkboxes
         } else {
-            assignedToValue.classList.remove('bg-color-black');
+            assignedToValue.classList.remove('bg-color-black'); // Remove background color for unchecked checkboxes
         }
     });
 
     return assignedContacts;
 }
 
-
-// takes the global assignedContacts array and renders the selected users below the input field
-
+// Render the assigned users below the input field
 function renderAssignedToInputCheckedBelow() {
     let renderAssignedToInputCheckedBelowRef = document.getElementById('assigned-to-input-svg-below');
     renderAssignedToInputCheckedBelowRef.innerHTML = "";  // Clear previous SVGs
 
-    for (let i = 0; i < assignedContacts.length; i++) {
-        const contactId = assignedContacts[i];
-        const user = users.find(u => u.id === contactId);  // Find the user by ID in `users`
-
-        if (user) {
-            renderAssignedToInputCheckedBelowRef.innerHTML += generateUserSVG(user); // Use the SVG template function
+    // Iterate over the assignedContacts array and generate SVG for each user
+    assignedContacts.forEach(assignedContact => {
+        if (assignedContact) {
+            renderAssignedToInputCheckedBelowRef.innerHTML += generateUserSVG(assignedContact);
         }
-    }
+    });
 }
 
 
