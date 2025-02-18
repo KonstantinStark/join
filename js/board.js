@@ -558,12 +558,9 @@ function showEditTaskOverlay(taskId) {
                     </p>
                 </div>
                 <div class="clear-create-buttons-wrapper">
-                    <button class="clear-task-button" onclick="resetInputFields()">
-                        Clear
-                        <img src="../assets/img/add-task/clear.svg" alt="Clear">
-                    </button>
-                    <button class="create-task-button" onclick="validateForm()">
-                        <p>Create Task</p>
+
+                    <button class="create-task-button" onclick="validateFormEdit()">
+                        <p>Ok</p>
                         <img src="../assets/img/add-task/check.svg" alt="Create">
                     </button>
                 </div>
@@ -573,6 +570,8 @@ function showEditTaskOverlay(taskId) {
 
 
 }
+
+// function validateFormEdit() {}
 
 
 
