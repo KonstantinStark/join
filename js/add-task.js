@@ -1,15 +1,17 @@
-let users = [];
+
+//add task file copied in 
+    
 let selectedPrioButton = '';
 let subtasksArray = [];
 let assignedContacts  = [];
 let isValid = true; // to validate input fields 
 
+
 //loads medium as initial seleted prio button
 
-function init() {
-    prioButtonOnLoad()
-    loadUsers();
-}
+prioButtonOnLoad()
+loadUsers()
+
 
 // get users from database 
 
@@ -29,8 +31,6 @@ async function loadUsers() {
             });
         });
     }
-
-    console.log(users);
     renderAssignedToInput();
 }
 
@@ -79,22 +79,31 @@ function toggleCheckbox(clickedElement) {
 // Function to collect all selected users in assignedContacts array, change background color and returns it in the end 
 
 function getSelectedAssignedUsers() {
-    assignedContacts = [];
+    const assignedContacts = [];
     const checkboxes = document.querySelectorAll('.assign-checkbox');
 
     checkboxes.forEach(checkbox => {
-        let assignedToValue = checkbox.closest('.assigned-to-list-values');
+        const assignedToValue = checkbox.closest('.assigned-to-list-values');
         
         if (checkbox.checked) {
-            assignedContacts.push(checkbox.value);
-            assignedToValue.classList.add('bg-color-black'); // Add bg color for checked checkbox
+            // Find the user object based on the ID from the checkbox value
+            const selectedUser = users.find(user => user.id === checkbox.value);
+
+            if (selectedUser) {
+                // Push the full user object into the assignedContacts array
+                assignedContacts.push(selectedUser);
+            }
+
+            // Optionally add styles for the checked state
+            assignedToValue.classList.add('bg-color-black'); 
         } else {
-            assignedToValue.classList.remove('bg-color-black'); // Remove bg color for unchecked checkbox
+            assignedToValue.classList.remove('bg-color-black');
         }
     });
 
     return assignedContacts;
 }
+
 
 // takes the global assignedContacts array and renders the selected users below the input field
 
@@ -453,7 +462,5 @@ async function postData(path = "", data = {}) {
         body: JSON.stringify(data),
     });
 }
-
-
 
 
