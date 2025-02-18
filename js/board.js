@@ -393,6 +393,18 @@ document.getElementById('task-search').addEventListener('input', function () {
     loadTasks(query); // Call loadTasks with the search query
 });
 
+function generateSubtaskHTMLEdit (subtask, index) {
+    return /*html*/ `
+        <li class="subtask-list-items">${subtask.title}
+            <div class="subtask-list-items-img-wrapper">
+                <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="Edit Subtask">
+                <div class="subtask-container-js-images-devider"></div>
+                <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Remove Subtask">
+            </div>
+        </li>
+    `;
+}
+
 function showEditTaskOverlay(taskId) {
     // Get task data using taskId
     const task = loadedTasks.find(t => t.id === taskId);
@@ -403,15 +415,11 @@ function showEditTaskOverlay(taskId) {
 
     document.getElementById("task-overlay").classList.add('d-none');
 
-    // Generate subtasks HTML to display only titles
+    // Generate subtasks HTML to display only titles using the generateSubtaskHTML function
     let subtasksHTML = '';
     if (task.subtasks && task.subtasks.length > 0) {
-        task.subtasks.forEach(subtask => {
-            subtasksHTML += `
-                <div class="subtask-item">
-                    <p>${subtask.title}</p>
-                </div>
-            `;
+        task.subtasks.forEach((subtask, index) => {
+            subtasksHTML += generateSubtaskHTMLEdit (subtask, index);
         });
     } else {
         subtasksHTML = `<p>No Subtasks</p>`;
@@ -528,7 +536,7 @@ function showEditTaskOverlay(taskId) {
                                         <img src="../assets/img/add-task/plus.svg" alt="Add Subtask">
                                     </div>
                                 </div>
-                                <div id="subtasks-list">${subtasksHTML}</div>
+                                <ul id="subtasks-list">${subtasksHTML}</ul>
                                 <div class="field-required-mediaquery">
                                     <p>
                                         <span class="required-star-markers">*</span>
@@ -562,6 +570,8 @@ function showEditTaskOverlay(taskId) {
             </footer>
         </div>
     `;
+
+
 }
 
 
