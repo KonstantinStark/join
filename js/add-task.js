@@ -12,7 +12,6 @@ let isValid = true; // to validate input fields
 prioButtonOnLoad()
 loadUsers()
 
-
 // get users from database 
 
 async function loadUsers() {
