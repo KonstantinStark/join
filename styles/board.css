@@ -30,6 +30,24 @@
     
 }
 
+button.active {
+    color: white;  /* Text color when active */
+    border: 2px solid white;  /* Border when active */
+}
+
+button#urgent-button.active {
+    background-color: #e74c3c; /* Red for urgent */
+}
+
+button#medium-button.active {
+    background-color: #f39c12; /* Yellow for medium */
+}
+
+button#low-button.active {
+    background-color: #27ae60; /* Green for low */
+}
+
+
 .assigned-users-prio-button-wrapper {
     display: flex;
     justify-content: space-between;

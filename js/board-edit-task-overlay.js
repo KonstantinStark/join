@@ -37,6 +37,39 @@ function generateSubtaskHTMLEdit (subtask, index) {
     `;
 }
 
+function activateButtonFromDatabase(taskId) {
+    // Find the task from loadedTasks using taskId
+    const task = loadedTasks.find(t => t.id === taskId);
+
+    if (task) {
+        // Get the priority button value from the task (low, medium, urgent)
+        const prio = task.prioButton;
+
+        // Check if the prio value is valid
+        if (['low', 'medium', 'urgent'].includes(prio)) {
+            // Reset all buttons by removing the 'active' class
+            const prioButtons = document.querySelectorAll('.prio-buttons button');
+            prioButtons.forEach(button => {
+                button.classList.remove('active'); // Remove active class from all buttons
+            });
+
+            // Add the 'active' class to the button corresponding to the priority
+            const activeButton = document.getElementById(`${prio}-button`);
+            if (activeButton) {
+                activeButton.classList.add('active'); // Add 'active' class to the correct button
+            } else {
+                console.warn(`No button found for priority: ${prio}`);
+            }
+        } else {
+            console.warn(`Invalid prioButton value: ${prio}`);
+        }
+    } else {
+        console.error(`Task with ID ${taskId} not found`);
+    }
+}
+
+
+
 function showEditTaskOverlay(taskId) {
     const task = loadedTasks.find(t => t.id === taskId);
 
@@ -201,5 +234,9 @@ function showEditTaskOverlay(taskId) {
             </footer>
         </div>
     `;
+
+    // Now call the function to highlight the priority button
+    activateButtonFromDatabase(taskId);
 }
+
 
