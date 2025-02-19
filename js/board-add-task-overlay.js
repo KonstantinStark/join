@@ -246,11 +246,17 @@ function addSubtaskToArray() {
     let subtaskInput = document.getElementById("subtask-input").value; 
     
     if (subtaskInput) { 
-        subtasksArray.push(subtaskInput); 
+        // Add subtask object with title and subtasks (boolean set to false initially)
+        subtasksArray.push({
+            subtasks: false, 
+            title: subtaskInput
+        }); 
+        
         document.getElementById("subtask-input").value = ""; 
         renderSubtasks(); 
     }
 }
+
 
 function removeSubtask(index) {
     subtasksArray.splice(index, 1);
@@ -284,7 +290,9 @@ function updateSubtask(index) {
     let editedInputValueSubtaskRef = document.getElementById(`edited-input-value-subtask-${index}`);
     
     if (editedInputValueSubtaskRef) {
-        subtasksArray[index] = editedInputValueSubtaskRef.value; // Update the subtasksArray with the new value
+        // Update the title of the subtask object at the specified index
+        subtasksArray[index].title = editedInputValueSubtaskRef.value; 
+        
         renderSubtasks(); // Re-render the subtasks list
     }
 }
@@ -292,14 +300,13 @@ function updateSubtask(index) {
 // clears subtasksArray
 
 function emptySubtaskArrayFull() {
-
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
 
-    let subtaskList = document.getElementById('subtasks-list')
+    let subtaskList = document.getElementById('subtasks-list');
     subtaskList.classList.add('d-none');
-
 }
+
 
 // reset functions for all fields
 
