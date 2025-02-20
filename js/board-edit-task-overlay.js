@@ -11,7 +11,8 @@ function showEditTaskOverlay(title) {
           document.getElementById("edit-title-input").value = task.title;
           document.getElementById("edit-description-input").value = task.description;
           document.getElementById("edit-category-input-placeholder").value = task.category;
-      }
+          document.getElementById("edit-due-date-input").value = task.dueDate;
+      } 
 }
 
 function editRenderAssignedToInput() {
