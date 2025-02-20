@@ -31,7 +31,11 @@ async function loadUsers() {
         });
     }
     renderAssignedToInput();
+   
+
 }
+
+
 
 
 // title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions

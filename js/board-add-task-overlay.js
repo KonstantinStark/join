@@ -17,6 +17,7 @@ let assignedContacts  = [];
 let isValid = true; // to validate input fields 
 
 
+
 //loads medium as initial seleted prio button
 
 prioButtonOnLoad()
@@ -42,6 +43,8 @@ async function loadUsers() {
         });
     }
     renderAssignedToInput();
+    editRenderAssignedToInput()
+   
 }
 
 

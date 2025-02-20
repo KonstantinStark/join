@@ -14,6 +14,60 @@ function showEditTaskOverlay(title) {
       }
 }
 
+function editRenderAssignedToInput() {
+    let assignedToList = document.getElementById("edit-assigned-to-list");
+    assignedToList.innerHTML = ""; // Clear existing content
+
+    // Check if there are users to display
+    if (users.length === 0) {
+        // If no users, display a "Users not found" message
+        assignedToList.innerHTML = "<p>Users not found</p>";
+    } else {
+        // Otherwise, render the users
+        for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+            assignedToList.innerHTML += editGenerateUserHTML(user); // Use the template function
+        }
+    }
+}
+
+function editGenerateUserHTML(user) {
+    return /*html*/ `
+        <div class="assigned-to-list-values" data-user-id="${user.id}">
+            <div class="assigned-to-list-values-image-name" onclick="toggleCheckbox(this)">
+                <p>
+                    <svg width="40" height="40">
+                        <circle cx="20" cy="20" r="16" fill="${user.color}" />
+                        <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
+                            ${user.initials}
+                        </text>
+                    </svg>
+                </p>
+                <p>${user.name}</p>
+            </div>
+            <input id="checkbox-assign-to-${user.id}" type="checkbox" class="assign-checkbox" value="${user.id}" onchange="getSelectedAssignedUsers()">
+        </div>
+    `;
+}
+
+function editToggleAssignedToList() {
+    let toggleAssignedToListRef = document.getElementById('edit-assigned-to-input');
+    toggleAssignedToListRef.classList.toggle('d-block');
+
+    // Only render the assigned inputs below if the list is hidden
+    if (!toggleAssignedToListRef.classList.contains('d-block')) {
+        renderAssignedToInputCheckedBelow();
+    } else {
+        // Clear SVGs if the list is open
+        document.getElementById('assigned-to-input-svg-below').innerHTML = "";
+    }
+
+    // Add an event listener to close the list when clicking outside of it
+    document.addEventListener('click', handleClickOutside);
+}
+
+
+
 function hideEditTaskOverlay() {
     // Hide the edit task overlay
     document.getElementById("editTaskOverlay").style.display = "none";
