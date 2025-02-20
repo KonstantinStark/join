@@ -17,17 +17,13 @@
 }
 
 .assigned-users-overlay {
-
     display: flex;
 }
 
 .assigned-users-overlay-items {
-
     display:flex;
     flex-direction: column;
     justify-content: center;
- 
-    
 }
 
 button.active {

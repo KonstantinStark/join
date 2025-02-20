@@ -58,7 +58,6 @@
 }
 
 @media (max-width: 500px) {
-    input,
     .category-input,
     #category-input-content,
     .prio-buttons {
@@ -94,7 +93,6 @@
 }
 
 @media (max-width: 450px) {
-    input,
     .category-input,
     #category-input-content,
     .prio-buttons,
@@ -118,7 +116,6 @@
 }
 
 @media (max-width: 400px) {
-    input,
     .category-input,
     #category-input-content,
     .prio-buttons,
@@ -142,7 +139,6 @@
 }
 
 @media (max-width: 370px) {
-    input,
     .category-input,
     #category-input-content,
     .prio-buttons {
@@ -165,7 +161,6 @@
 }
 
 @media (max-width: 360px) {
-    input,
     .category-input,
     #category-input-content,
     .prio-buttons,
@@ -189,7 +184,6 @@
 }
 
 @media (max-width: 340px) {
-    input,
     .category-input,
     #category-input-content,
     .prio-buttons,
@@ -197,7 +191,6 @@
         width: 65% !important;
     }
 
-    input,
     .placeholder-text-non-input-tag-fields,
     .assigned-to-list-values-image-name,
     #category-input-content {
