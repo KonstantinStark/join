@@ -96,8 +96,9 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .subtask-list-items {
-        width: 85% !important;
+    .subtask-list-items,
+    #title-input {
+        width:374px !important;
     }
 
     .assigned-to-list,
@@ -119,8 +120,9 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .subtask-list-items {
-        width: 80% !important;
+    .subtask-list-items
+    #title-input{
+        width:352px!important;
     }
 
     .assigned-to-list,
