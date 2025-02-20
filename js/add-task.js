@@ -35,9 +35,6 @@ async function loadUsers() {
 
 }
 
-
-
-
 // title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions
 
 // due date calendar functions

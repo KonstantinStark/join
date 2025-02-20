@@ -56,15 +56,34 @@ function editToggleAssignedToList() {
 
     // Only render the assigned inputs below if the list is hidden
     if (!toggleAssignedToListRef.classList.contains('d-block')) {
-        renderAssignedToInputCheckedBelow();
+        editRenderAssignedToInputCheckedBelow() 
     } else {
         // Clear SVGs if the list is open
-        document.getElementById('assigned-to-input-svg-below').innerHTML = "";
+        document.getElementById('edit-assigned-to-input-svg-below').innerHTML = "";
     }
 
     // Add an event listener to close the list when clicking outside of it
     document.addEventListener('click', handleClickOutside);
 }
+
+function editRenderAssignedToInputCheckedBelow() {
+    let renderAssignedToInputCheckedBelowRef = document.getElementById('edit-assigned-to-input-svg-below');
+    renderAssignedToInputCheckedBelowRef.innerHTML = "";  // Clear previous SVGs
+
+    // Iterate over the assignedContacts array and generate SVG for each user
+    assignedContacts.forEach(assignedContact => {
+        if (assignedContact) {
+            renderAssignedToInputCheckedBelowRef.innerHTML += generateUserSVG(assignedContact);
+        }
+    });
+}
+
+
+
+
+
+
+
 
 
 
