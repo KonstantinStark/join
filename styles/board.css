@@ -717,3 +717,30 @@ p {
 .d-none {
     display: none;
 }
+
+/* board-edit-task  */
+
+#edit-category-input-content {
+    background-color: white;
+    height: 110px;
+    width: 440px;
+    z-index: 100;
+    position: relative;
+    border-radius: 10px;
+    font-size: var(--font-size);
+    border: 1px solid black;
+    padding: 5px;
+   
+}
+
+#edit-category-input-content p {
+    margin-bottom: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+#edit-category-input-content p:hover {
+    background-color: lightgray;
+    border-radius: 5px;
+}

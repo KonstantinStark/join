@@ -19,9 +19,9 @@ function showEditTaskOverlay(title) {
       if (task) {
           document.getElementById("edit-title-input").value = task.title;
           document.getElementById("edit-description-input").value = task.description;
-          document.getElementById("edit-category-input-placeholder").value = task.category;
           document.getElementById("edit-due-date-input").value = task.dueDate;
           editSetPrioButton(task.prioButton);
+          document.getElementById('edit-category-input-placeholder').innerHTML = task.category;
           
          
       } 
@@ -112,6 +112,43 @@ function editSetPrioButton(editPrio) {
     }
 }
 
+// category input field functions
+
+function editToggleRenderCategoryInput() {
+    let renderCategoryInputToggle = document.getElementById('edit-category-input-content');
+    renderCategoryInputToggle.classList.toggle('d-block');
+    
+    // Close the dropdown if clicking outside of the container
+    document.addEventListener('click', function(event) {
+        const categoryInputWrapper = document.getElementById('edit-category-input');
+        if (!categoryInputWrapper.contains(event.target)) {
+            renderCategoryInputToggle.classList.remove('d-block'); // Close the dropdown
+        }
+    });
+}
+
+function editChangeCategoryInput(editSelectedCategory) {
+    const categoryInputPlaceholderRef = document.getElementById('edit-category-input-placeholder');
+    const renderCategoryInputToggle = document.getElementById('edit-category-input-content');
+    const placeholderText = 'Select task category';
+    
+    categoryInputPlaceholderRef.innerHTML = (editSelectedCategory === placeholderText || editSelectedCategory  === categoryInputPlaceholderRef.innerHTML) 
+        ? placeholderText 
+        : editSelectedCategory;
+    
+    renderCategoryInputToggle.classList.add('d-none');
+}
+
+document.getElementById('edit-category-input-placeholder').addEventListener('click', function() {
+    editChangeCategoryInput('Select task category');
+});
+
+// toggles arrow icon when container is clicked
+
+function toggleRotate() {
+    let img = document.getElementById('category-icon');
+    img.classList.toggle('rotate');
+}
 
 
 

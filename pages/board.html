@@ -409,16 +409,16 @@
                               <p class="input-headers-margin-bottom">
                                   Category <span class="required-star-markers">*</span>
                               </p>
-                              <div class="category-input" id="category-input" onclick="toggleRenderCategoryInput(), toggleRotate()" tabindex="0">
-                                  <p class="placeholder-text-non-input-tag-fields" id="edit-category-input-placeholder">${task.category}</p>
-                                  <img src="../assets/img/add-task/up-down-arrow.svg" id="category-icon" alt="">
+                              <div class="category-input" id="edit-category-input" onclick="editToggleRenderCategoryInput(), editToggleRotate()" tabindex="0">
+                                  <p class="placeholder-text-non-input-tag-fields" id="edit-category-input-placeholder"></p>
+                                  <img src="../assets/img/add-task/up-down-arrow.svg" id="edit-category-icon" alt="">
                               </div>
-                              <p class="error-message" id="category-error" style="display: none;">
+                              <p class="error-message" id="edit-category-error" style="display: none;">
                                   This field is required
                               </p>
-                              <div id="category-input-content" class="d-none">
-                                  <p onclick="changeCategoryInput('Technical Task')">Technical Task</p>
-                                  <p onclick="changeCategoryInput('User Story')">User Story</p>
+                              <div id="edit-category-input-content" class="d-none">
+                                  <p onclick="editChangeCategoryInput('Technical Task')">Technical Task</p>
+                                  <p onclick="editChangeCategoryInput('User Story')">User Story</p>
                               </div>
                           </div>
 
