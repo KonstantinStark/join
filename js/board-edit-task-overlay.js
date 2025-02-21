@@ -1,8 +1,17 @@
+function editTest () {
+
+    let test = loadedTasks.assignedContacts.map(contact => contact.initials);
+}
+
+editSelectedPrioButton = '';
+
+
 function showEditTaskOverlay(title) {
     document.getElementById("editTaskOverlay").style.display = "flex";
 
       // Find the task by its title
       const task = loadedTasks.find(t => t.title === title);
+      
 
       console.log(loadedTasks);
       
@@ -12,6 +21,9 @@ function showEditTaskOverlay(title) {
           document.getElementById("edit-description-input").value = task.description;
           document.getElementById("edit-category-input-placeholder").value = task.category;
           document.getElementById("edit-due-date-input").value = task.dueDate;
+          editSetPrioButton(task.prioButton);
+          
+         
       } 
 }
 
@@ -78,6 +90,28 @@ function editRenderAssignedToInputCheckedBelow() {
         }
     });
 }
+
+// function prioButtonOnLoad() {
+
+//     document.getElementById('medium-button').classList.add('active', 'medium');
+// }
+
+function editSetPrioButton(editPrio) {
+    editSelectedPrioButton = editPrio;
+
+    document.getElementById('edit-urgent-button').classList.remove('active', 'urgent');
+    document.getElementById('edit-medium-button').classList.remove('active', 'medium');
+    document.getElementById('edit-low-button').classList.remove('active', 'low');
+
+    if (editPrio === 'urgent') {
+        document.getElementById('edit-urgent-button').classList.add('active', 'urgent');
+    } else if (editPrio  === 'medium') {
+        document.getElementById('edit-medium-button').classList.add('active', 'medium');
+    } else if (editPrio  === 'low') {
+        document.getElementById('edit-low-button').classList.add('active', 'low');
+    }
+}
+
 
 
 
