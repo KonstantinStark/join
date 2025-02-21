@@ -35,6 +35,8 @@ async function loadUsers() {
 
 }
 
+
+
 // title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions
 
 // due date calendar functions
@@ -179,6 +181,8 @@ function setPrioButton(prio) {
     } else if (prio === 'low') {
         document.getElementById('low-button').classList.add('active', 'low');
     }
+
+    
 }
 
 
@@ -422,6 +426,11 @@ function transformSubtasks(subtasksArray) {
 async function addNewArrayFromInputs() {
     let assignedContacts  = getSelectedAssignedUsers();
 
+    if(selectedPrioButton === '') {
+
+        selectedPrioButton = 'medium';
+    }
+    
     // Use the transformSubtasks function to add 'title' and 'boolean' to each subtask
     let subtasksArrayWithBoolean = transformSubtasks(subtasksArray);
 
@@ -429,7 +438,7 @@ async function addNewArrayFromInputs() {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
         assignedContacts: assignedContacts,
-        prioButton: selectedPrioButton,
+        prioButton: selectedPrioButton, 
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
         subtasks: subtasksArrayWithBoolean, // Now contains objects with 'title' and 'boolean'

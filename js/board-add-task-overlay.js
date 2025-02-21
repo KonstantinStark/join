@@ -442,6 +442,11 @@ function transformSubtasks(subtasksArray) {
 async function addNewArrayFromInputs() {
     let assignedContacts  = getSelectedAssignedUsers();
 
+    if(selectedPrioButton === '') {
+
+        selectedPrioButton = 'medium';
+    }
+    
     // Use the transformSubtasks function to add 'title' and 'boolean' to each subtask
     let subtasksArrayWithBoolean = transformSubtasks(subtasksArray);
 

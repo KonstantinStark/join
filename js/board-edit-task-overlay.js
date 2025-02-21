@@ -3,8 +3,6 @@ function editTest () {
     let test = loadedTasks.assignedContacts.map(contact => contact.initials);
 }
 
-editSelectedPrioButton = '';
-
 
 function showEditTaskOverlay(title) {
     document.getElementById("editTaskOverlay").style.display = "flex";
