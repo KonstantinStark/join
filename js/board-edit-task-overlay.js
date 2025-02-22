@@ -53,19 +53,31 @@ function editAssignUsersFromDatabase(assignedContactsFromTask) {
     });
 }
 
-// Function to mark checkboxes as checked for assigned users
+// needs function to reset background color from start 
+
+
+// Function to mark checkboxes as checked for assigned users and change background color
 function editMarkCheckboxesAsChecked() {
+    // First, clear background color from all items
+    
+
+    // Now, loop through the users and set their checkboxes and background color
     editAssignedUsersfromCheckboxes.forEach(user => {
         // Use getElementById to find the checkbox by user.id
         let checkBox = document.getElementById(`checkbox-${user.id}`);
+        
         if (checkBox) {
             checkBox.checked = true; // Set the checkbox to checked
         }
+
+        // Change the background color of the assigned list item for checked users
+        editChangeBackgroundColor(user.id, true);
     });
 
     // Call the function to render the SVG
     editRenderUserSvg();
 }
+
 
 function resetAssignedUsers() {
     // Clear the array
@@ -77,7 +89,6 @@ function resetAssignedUsers() {
         checkbox.checked = false;
     });
 }
-
 
 // Function to handle adding users to the editAssignedUsersfromCheckboxes array and avoiding duplicates
 function editAssignUsersFromDatabase(assignedContactsFromTask) {
@@ -132,26 +143,29 @@ function editRenderAssignedToUsersList() {
 function editRenderAssignedToUsersListTemplate(user) {
     return /*html*/ `
         <label for="checkbox-${user.id}">
-            <div class="assigned-to-list-values">
-            <div class="assigned-to-list-values-image-name" id="assigned-list-items-${user.id}">
-                    <p>
-                        <svg width="40" height="40">
-                            <circle cx="20" cy="20" r="16" fill="${user.color}" />
-                            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                                ${user.initials}
-                            </text>
-                        </svg>
-                    </p>
-                    <p>${user.name}</p>
-                </div>
-            </div>
-            <!-- Wrap user.id in quotes to pass it as a string -->
-            <input 
-                type="checkbox" 
-                id="checkbox-${user.id}" 
-                class="assigned-to-checkboxes" 
-                value="${user.id}" 
-                onchange="editCheckedAssignedUsers('${user.id}')"> <!-- Pass user.id as a string -->
+            <div class="assigned-to-list-values" id="assigned-list-items-${user.id}">
+                <div class="assigned-to-list-values-image-name" >
+                        <p>
+                            <svg width="40" height="40">
+                                <circle cx="20" cy="20" r="16" fill="${user.color}" />
+                                <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
+                                    ${user.initials}
+                                </text>
+                            </svg>
+                        </p>
+                        <p>${user.name}</p>
+                        </div>
+                    
+            
+                <!-- Wrap user.id in quotes to pass it as a string -->
+                <input 
+                    type="checkbox" 
+                    id="checkbox-${user.id}" 
+                    class="assigned-to-checkboxes" 
+                    value="${user.id}" 
+                    onchange="editCheckedAssignedUsers('${user.id}')"> <!-- Pass user.id as a string -->
+
+         </div>
         </label>
     `;
 }
@@ -189,9 +203,6 @@ function editCheckedAssignedUsers(userId) {
     // Re-render the SVG list
     editRenderUserSvg();
 }
-
-
-
 
 // Function to add the user to the assigned users array
 function addUserToAssignedArray(userId) {

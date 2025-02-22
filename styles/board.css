@@ -1,3 +1,12 @@
+/* for edit task */
+
+.assigned-to-checkboxes {
+
+    width:20px;
+}
+
+/* for edit task end*/
+
 #task-cards {
     display: flex;
     flex-direction: column;
