@@ -1,6 +1,9 @@
 let editAssignedUsersfromCheckboxes = [];
 
 function showEditTaskOverlay(title) {
+    // Reset the array and uncheck all checkboxes
+    resetAssignedUsers();
+
     document.getElementById("editTaskOverlay").style.display = "flex";
 
     // Find the task by its title
@@ -17,13 +20,28 @@ function showEditTaskOverlay(title) {
         document.getElementById('edit-category-input-placeholder').innerHTML = task.category;
 
         // Call the new function to handle users and checkboxes
-        editRenderAssignedToFromDatabase(task.assignedContacts);
+        editAssignUsersFromDatabase(task.assignedContacts);
+        // Now mark the checkboxes as checked based on the assigned users
+        editMarkCheckboxesAsChecked();
     }
 }
 
+// Function to reset the assigned users and uncheck all checkboxes
+function resetAssignedUsers() {
+    // Clear the array
+    editAssignedUsersfromCheckboxes = [];
 
-// This function handles both appending users to the array and marking the checkboxes as checked
-function editRenderAssignedToFromDatabase(assignedContactsFromTask) {
+    // Uncheck all checkboxes by their ID
+    assignedContacts.forEach(contact => {
+        let checkBox = document.getElementById(`checkbox-${contact.id}`);
+        if (checkBox) {
+            checkBox.checked = false; // Uncheck the checkbox
+        }
+    });
+}
+
+// Function to handle adding users to the editAssignedUsersfromCheckboxes array and avoiding duplicates
+function editAssignUsersFromDatabase(assignedContactsFromTask) {
     // Reset and copy users from the task
     editAssignedUsersfromCheckboxes = [...assignedContactsFromTask];
 
@@ -33,8 +51,49 @@ function editRenderAssignedToFromDatabase(assignedContactsFromTask) {
             editAssignedUsersfromCheckboxes.push(contact);
         }
     });
+}
 
-    // Now that you have the assigned users, mark their checkboxes as checked
+// Function to mark checkboxes as checked for assigned users
+function editMarkCheckboxesAsChecked() {
+    editAssignedUsersfromCheckboxes.forEach(user => {
+        // Use getElementById to find the checkbox by user.id
+        let checkBox = document.getElementById(`checkbox-${user.id}`);
+        if (checkBox) {
+            checkBox.checked = true; // Set the checkbox to checked
+        }
+    });
+
+    // Call the function to render the SVG
+    editRenderUserSvg();
+}
+
+function resetAssignedUsers() {
+    // Clear the array
+    editAssignedUsersfromCheckboxes = [];
+
+    // Uncheck all checkboxes
+    let checkboxes = document.querySelectorAll('.assigned-to-checkboxes');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+}
+
+
+// Function to handle adding users to the editAssignedUsersfromCheckboxes array and avoiding duplicates
+function editAssignUsersFromDatabase(assignedContactsFromTask) {
+    // Reset and copy users from the task
+    editAssignedUsersfromCheckboxes = [...assignedContactsFromTask];
+
+    // Append assignedContacts to the array if not already in editAssignedUsersfromCheckboxes
+    assignedContacts.forEach(contact => {
+        if (!editAssignedUsersfromCheckboxes.some(user => user.id === contact.id)) {
+            editAssignedUsersfromCheckboxes.push(contact);
+        }
+    });
+}
+
+// Function to mark checkboxes as checked for assigned users
+function editMarkCheckboxesAsChecked() {
     editAssignedUsersfromCheckboxes.forEach(user => {
         // Find the checkbox corresponding to each user
         let checkBox = document.getElementById(`checkbox-${user.id}`);
@@ -42,9 +101,18 @@ function editRenderAssignedToFromDatabase(assignedContactsFromTask) {
             checkBox.checked = true; // Set the checkbox to checked
         }
     });
+
+    // Call the function to render the SVG
+    editRenderUserSvg();
 }
 
+function editToggleAssignedToList() {
+    let toggleAssignedToListRef = document.getElementById('edit-assigned-to-container');
+    toggleAssignedToListRef.classList.toggle('d-none');
 
+    let editRenderUserSvgRef = document.getElementById('edit-render-assigned-svg');
+    editRenderUserSvgRef.classList.toggle('d-none');
+}
 
 function editRenderAssignedToUsersList() {
     let assignedToListRef = document.getElementById("edit-assigned-to-list");
@@ -56,12 +124,11 @@ function editRenderAssignedToUsersList() {
 
     }
 }
-
 function editRenderAssignedToUsersListTemplate(user) {
     return /*html*/ `
         <label for="checkbox-${user.id}">
             <div class="assigned-to-list-values">
-                <div class="assigned-to-list-values-image-name">
+            <div class="assigned-to-list-values-image-name" id="assigned-list-items-${user.id}">
                     <p>
                         <svg width="40" height="40">
                             <circle cx="20" cy="20" r="16" fill="${user.color}" />
@@ -83,23 +150,30 @@ function editRenderAssignedToUsersListTemplate(user) {
         </label>
     `;
 }
-
 // The main function that handles checkbox change
 function editCheckedAssignedUsers(userId) {
     let checkBox = document.getElementById(`checkbox-${userId}`);
+    let assignedListItem = document.getElementById(`assigned-list-items-${userId}`);
 
     // Check if the checkbox is checked
     if (checkBox.checked == true) {
         // Add the user to the array if the checkbox is checked
         addUserToAssignedArray(userId);
+
+        // Change the background color of the container to black
+        assignedListItem.classList.add('bg-color-black');
     } else {
         // If the checkbox is unchecked, remove the user from the array
         removeUserFromAssignedArray(userId);
+
+        // Reset the background color (or change to a different color if desired)
+        assignedListItem.classList.remove('bg-color-black');
     }
 
     // Re-render the SVG list
     editRenderUserSvg();
 }
+
 
 // Function to add the user to the assigned users array
 function addUserToAssignedArray(userId) {
@@ -122,7 +196,7 @@ function removeUserFromAssignedArray(userId) {
 }
 
 function editRenderUserSvg() {
-    let editRenderUserSvgRef = document.getElementById('edit-assigned-to-input-svg-below');
+    let editRenderUserSvgRef = document.getElementById('edit-render-assigned-svg');
     editRenderUserSvgRef.innerHTML = "";  // Clear previous SVGs
 
     // Iterate over the editAssignedUsersfromCheckboxes array and generate SVG for each user
@@ -146,64 +220,6 @@ function editRenderUserSvgTemplate(user) {
 
 
 
-
-
-// function getSelectedAssignedUsers() {
-//     assignedContacts = []; // Reset the assigned contacts array each time
-//     const checkboxes = document.querySelectorAll('.assign-checkbox');
-
-//     checkboxes.forEach(checkbox => {
-//         let assignedToValue = checkbox.closest('.assigned-to-list-values');
-        
-//         if (checkbox.checked) {
-//             // Find the user object based on the checkbox value (ID)
-//             const selectedUser = users.find(user => user.id === checkbox.value);
-            
-//             if (selectedUser) {
-//                 assignedContacts.push(selectedUser); // Push the full user object into the array
-//             }
-
-//             assignedToValue.classList.add('bg-color-black'); // Add background color for checked checkboxes
-//         } else {
-//             assignedToValue.classList.remove('bg-color-black'); // Remove background color for unchecked checkboxes
-//         }
-//     });
-
-//     return assignedContacts;
-// }
-
-function editToggleAssignedToList() {
-    let toggleAssignedToListRef = document.getElementById('edit-assigned-to-input');
-    toggleAssignedToListRef.classList.toggle('d-block');
-
-    // Only render the assigned inputs below if the list is hidden
-    if (!toggleAssignedToListRef.classList.contains('d-block')) {
-        editRenderAssignedToInputCheckedBelow() 
-    } else {
-        // Clear SVGs if the list is open
-        document.getElementById('edit-assigned-to-input-svg-below').innerHTML = "";
-    }
-
-    // Add an event listener to close the list when clicking outside of it
-    document.addEventListener('click', handleClickOutside);
-}
-
-function editRenderAssignedToInputCheckedBelow() {
-    let renderAssignedToInputCheckedBelowRef = document.getElementById('edit-assigned-to-input-svg-below');
-    renderAssignedToInputCheckedBelowRef.innerHTML = "";  // Clear previous SVGs
-
-    // Iterate over the assignedContacts array and generate SVG for each user
-    assignedContacts.forEach(assignedContact => {
-        if (assignedContact) {
-            renderAssignedToInputCheckedBelowRef.innerHTML += generateUserSVG(assignedContact);
-        }
-    });
-}
-
-// function prioButtonOnLoad() {
-
-//     document.getElementById('medium-button').classList.add('active', 'medium');
-// }
 
 function editSetPrioButton(editPrio) {
     editSelectedPrioButton = editPrio;
@@ -271,6 +287,7 @@ function toggleRotate() {
 function hideEditTaskOverlay() {
     // Hide the edit task overlay
     document.getElementById("editTaskOverlay").style.display = "none";
+   
     
   
 }
