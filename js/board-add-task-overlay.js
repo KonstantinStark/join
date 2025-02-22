@@ -15,22 +15,21 @@ let selectedPrioButton = '';
 let subtasksArray = [];
 let assignedContacts  = [];
 let isValid = true; // to validate input fields 
-
-
+let users = [];
 
 //loads medium as initial seleted prio button
 
 prioButtonOnLoad()
 loadUsers()
 
-
-// get users from database 
-
+// Get users from the database
 async function loadUsers() {
     let userResponse = await fetch(FIREBASE_URL + '/users.json');
     let responseToJson = await userResponse.json();
 
-    users = [];
+    // Clear the global users array and populate it with new data
+    users.length = 0;  // Clear the global array (preserves the reference)
+
     if (responseToJson) {
         Object.keys(responseToJson).forEach(key => {
             users.push({
@@ -42,9 +41,10 @@ async function loadUsers() {
             });
         });
     }
-    renderAssignedToInput();
-    editRenderAssignedToInput()
-   
+
+    // Now you can call your render functions with the updated global users array
+    renderAssignedToInput();  
+    editRenderAssignedToUsersList();
 }
 
 
