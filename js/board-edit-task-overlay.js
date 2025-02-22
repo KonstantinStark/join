@@ -92,14 +92,19 @@ function editAssignUsersFromDatabase(assignedContactsFromTask) {
     });
 }
 
-// Function to mark checkboxes as checked for assigned users
+// Function to mark checkboxes as checked for assigned users and change background color
+
 function editMarkCheckboxesAsChecked() {
     editAssignedUsersfromCheckboxes.forEach(user => {
-        // Find the checkbox corresponding to each user
+        // Use getElementById to find the checkbox by user.id
         let checkBox = document.getElementById(`checkbox-${user.id}`);
+
         if (checkBox) {
             checkBox.checked = true; // Set the checkbox to checked
         }
+
+        // Change the background color of the assigned list item
+        editChangeBackgroundColor(user.id, true);
     });
 
     // Call the function to render the SVG
@@ -150,10 +155,21 @@ function editRenderAssignedToUsersListTemplate(user) {
         </label>
     `;
 }
+
+function editChangeBackgroundColor(userId, isChecked) {
+    let assignedListItem = document.getElementById(`assigned-list-items-${userId}`);
+    
+    if (assignedListItem) {
+        if (isChecked) {
+            assignedListItem.classList.add('bg-color-black');
+        } else {
+            assignedListItem.classList.remove('bg-color-black');
+        }
+    }
+}
 // The main function that handles checkbox change
 function editCheckedAssignedUsers(userId) {
     let checkBox = document.getElementById(`checkbox-${userId}`);
-    let assignedListItem = document.getElementById(`assigned-list-items-${userId}`);
 
     // Check if the checkbox is checked
     if (checkBox.checked == true) {
@@ -161,18 +177,20 @@ function editCheckedAssignedUsers(userId) {
         addUserToAssignedArray(userId);
 
         // Change the background color of the container to black
-        assignedListItem.classList.add('bg-color-black');
+        editChangeBackgroundColor(userId, true);
     } else {
         // If the checkbox is unchecked, remove the user from the array
         removeUserFromAssignedArray(userId);
 
         // Reset the background color (or change to a different color if desired)
-        assignedListItem.classList.remove('bg-color-black');
+        editChangeBackgroundColor(userId, false);
     }
 
     // Re-render the SVG list
     editRenderUserSvg();
 }
+
+
 
 
 // Function to add the user to the assigned users array
