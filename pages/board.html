@@ -422,17 +422,27 @@
                               </div>
                           </div>
 
-                          <div id="subtask-default" class="subtask-input-wrapper">
-                              <p class="input-headers-margin-bottom">Subtasks</p>
-                              <div class="subtask-input" id="subtask-container" onclick="renderEntrySubtask()">
-                                  <div id="subtask-input">
-                                      Add new subtask
-                                      <img src="../assets/img/add-task/plus.svg" alt="Add Subtask">
-                                  </div>
-                              </div>
-                              <ul id="subtasks-list">
-                                  ${task.subtasks.map((subtask, index) => generateSubtaskHTMLEdit(subtask, index)).join('')}
-                              </ul>
+                          <div class="edit-subtask-wrapper">
+
+                              <div class="edit-subtask-input-wrapper">
+
+                              <input type="text" placeholder="Enter a Subtask" class="edit-subtask-input" id="editSubtaskInput">
+                              <span onclick="editAddSubtaskInputToArray()">add</span>
+
+                            </div>
+
+                            <div class="edit-subtask-list" id="editSubtaskList"></div>
+                          
+                      
+                            </div>
+
+
+
+                          </div>
+
+
+
+                              
                               <div class="field-required-mediaquery">
                                   <p>
                                       <span class="required-star-markers">*</span>

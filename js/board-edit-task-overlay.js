@@ -1,3 +1,11 @@
+function hideEditTaskOverlay() {
+    // Hide the edit task overlay
+    document.getElementById("editTaskOverlay").style.display = "none";
+   
+    
+  
+}
+
 let editAssignedUsersfromCheckboxes = [];
 
 function showEditTaskOverlay(title) {
@@ -249,7 +257,6 @@ function editRenderUserSvgTemplate(user) {
 
 
 
-
 function editSetPrioButton(editPrio) {
     editSelectedPrioButton = editPrio;
 
@@ -304,22 +311,197 @@ function toggleRotate() {
     img.classList.toggle('rotate');
 }
 
+//subtasks functions
 
+// Array to store the subtasks
+let editSubtaskArray = [];
 
+function editAddSubtaskInputToArray() {
+    // Get the value from the input field
+    let renderSubtaskListRef = document.getElementById('editSubtaskInput');
+    let subtaskValue = renderSubtaskListRef.value.trim(); // .trim() removes extra spaces
 
+    // Check if the value is not empty
+    if (subtaskValue) {
+        // Create an object to represent the subtask with title and completed set to false by default
+        let newSubtask = { 
+            title: subtaskValue, 
+            boolean: false 
+        };
 
+        editSubtaskArray.push(newSubtask);
 
+        renderSubtaskListRef.value = '';
+    }
 
-
-
-
-function hideEditTaskOverlay() {
-    // Hide the edit task overlay
-    document.getElementById("editTaskOverlay").style.display = "none";
-   
-    
-  
+    renderSubtaskInputEntrys()
 }
+
+function renderSubtaskInputEntrys() {
+    let renderSubtaskInputEntrysRef = document.getElementById('editSubtaskList');
+    
+    // Initialize a string to accumulate the list items
+    let subtasks = '';
+    
+    // Loop through the array using a traditional for loop
+    for (let i = 0; i < editSubtaskArray.length; i++) {
+        let subtask = editSubtaskArray[i];
+        subtasks = `<li>${subtask.title}</li>`; // Accumulate each subtask in the string
+    }
+
+    // Render the list template with the accumulated subtasks
+    renderSubtaskInputEntrysRef.innerHTML += renderSubtaskInputEntrysTemplate(subtasks);
+}
+
+function renderSubtaskInputEntrysTemplate(subtasks) {
+    // Return the final HTML structure with the subtasks included
+    return /*html*/ `
+        <ul>
+            <div> ${subtasks}
+            <img src="../assets/img/add-task/clear.svg" onclick="" alt="Clear Subtask">
+            <img src="../assets/img/add-task/subtask-check.svg" onclick="" alt="Add Subtask">  
+            </div>
+        </ul>
+    `;
+}
+
+
+
+
+
+
+// function renderEntrySubtask() {
+//     let subtaskContainer = document.getElementById('subtask-container');
+//     subtaskContainer.innerHTML = generateEntrySubtaskHTML(); // Use the template function
+
+//     // Focus the input field
+//     document.getElementById('subtask-input').focus();
+// }
+
+
+
+// function addSubtaskToArray() {
+//     let subtaskInput = document.getElementById("subtask-input").value; 
+    
+//     if (subtaskInput) { 
+//         subtasksArray.push(subtaskInput); 
+//         document.getElementById("subtask-input").value = ""; 
+//         renderSubtasks(); 
+//     }
+// }
+
+// function removeSubtask(index) {
+//     subtasksArray.splice(index, 1);
+//     renderSubtasks();
+// }
+
+// function renderSubtasks() {
+//     let subtasksList = document.getElementById("subtasks-list");
+//     subtasksList.innerHTML = ""; // Clear previous subtasks
+
+//     subtasksArray.forEach((subtask, index) => {
+//         subtasksList.innerHTML += generateSubtaskHTML(subtask, index); // Use the template function
+//     });
+
+//     // Ensure the subtasks list is visible
+//     subtasksList.classList.remove('d-none');
+// }
+
+
+// function renderSubtasksEdit() {
+//     let subtasksList = document.getElementById("subtasks-list");
+//     subtasksList.innerHTML = ""; // Clear previous subtasks
+
+//     subtasksArray.forEach((subtask, index) => {
+//         subtasksList.innerHTML += generateSubtaskEditHTML(subtask, index); // Use the template function
+//     });
+// }
+
+
+// function updateSubtask(index) {
+//     let editedInputValueSubtaskRef = document.getElementById(`edited-input-value-subtask-${index}`);
+    
+//     if (editedInputValueSubtaskRef) {
+//         subtasksArray[index] = editedInputValueSubtaskRef.value; // Update the subtasksArray with the new value
+//         renderSubtasks(); // Re-render the subtasks list
+//     }
+// }
+
+// // clears subtasksArray
+
+// function emptySubtaskArrayFull() {
+
+//     subtasksArray.splice(0, subtasksArray.length);
+//     renderSubtasks();
+
+//     let subtaskList = document.getElementById('subtasks-list')
+//     subtaskList.classList.add('d-none');
+
+// }
+
+// function generateEntrySubtaskHTML() {
+//     return /*html*/ `
+//         <div id="subtask-container-js">
+//             <input type="text" id="subtask-input" name="subtask" placeholder="Subtask">
+//             <div id="subtask-container-js-images">
+//                 <img src="../assets/img/add-task/clear.svg" onclick="emptySubtaskArrayFull()" alt="Clear Subtask">
+//                 <div class="subtask-container-js-images-devider"></div>
+//                 <img src="../assets/img/add-task/subtask-check.svg" onclick="addSubtaskToArray()" alt="Add Subtask">  
+//             </div>
+//         </div>
+//     `;
+// }
+
+// /**
+//  * Generates an HTML representation of a subtask.
+//  */
+// function generateSubtaskHTML(subtask, index) {
+//     return /*html*/ `
+//         <li class="subtask-list-items">${subtask} 
+//             <div class="subtask-list-items-img-wrapper">
+//                 <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="Edit Subtask">
+//                 <div class="subtask-container-js-images-devider"></div>
+//                 <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Remove Subtask">
+//             </div>
+//         </li>
+//     `;
+// }
+
+// /**
+//  * Generates an HTML input field for editing a subtask.
+//  */
+// function generateSubtaskEditHTML(subtask, index) {
+//     return /*html*/ `
+//         <li class="subtask-list-items">
+//             <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
+//             <div class="edit-images-subtasks-wrapper">
+//                 <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Delete">
+//                 <div class="subtask-container-js-images-devider"></div>
+//                 <img src="../assets/img/add-task/subtask-check.svg" onclick="updateSubtask(${index})" alt="Save">
+//             </div>
+//         </li>
+//     `;
+// }
+
+
+
+
+// // Function to transform subtasks array to include title and boolean
+// function transformSubtasks(subtasksArray) {
+//     return subtasksArray.map(subtask => {
+//         return {
+//             title: subtask,   // Each subtask is now the 'title'
+//             boolean: false    // Defaulting the 'boolean' to false
+//         };
+//     });
+// }
+
+
+
+
+
+
+
 
 // function showEditTaskOverlay(taskId) {
 //     const task = loadedTasks.find(t => t.id === taskId);

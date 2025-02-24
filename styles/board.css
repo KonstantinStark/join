@@ -5,6 +5,18 @@
     width:20px;
 }
 
+.edit-subtask-input-wrapper {
+
+    border:2px solid black;
+}
+
+.edit-subtask-input {
+
+    max-width:400px;
+    border:none
+}
+
+
 /* for edit task end*/
 
 #task-cards {
