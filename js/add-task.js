@@ -185,7 +185,6 @@ function setPrioButton(prio) {
     
 }
 
-
 // category input field functions
 
 function toggleRenderCategoryInput() {

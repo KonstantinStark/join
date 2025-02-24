@@ -332,7 +332,6 @@ function editAssignSubtasksFromDatabase(taskSubtasksFromTask) {
     });
 }
 
-
 function editAddSubtaskInputToArray() {
     // Get the value from the input field
     let renderSubtaskListRef = document.getElementById('editSubtaskInput');
@@ -379,10 +378,12 @@ function renderSubtaskInputEntrysTemplate(subtask) {
     return /*html*/ `
         <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
             <ul>
-                <li>
+                <li class="edit-subtask-list-items-single">
                     <span>${subtask.title}</span>
-                    <img src="../assets/img/add-task/subtask-check.svg" class="d-none" onclick="editEditSubtaskFromList(${subtask.id})" alt="Edit Subtask">
-                    <img src="../assets/img/add-task/clear.svg" class="d-none" onclick="deleteSubtask(${subtask.id})" alt="Clear Subtask">
+                    <div>
+                        <img src="../assets/img/add-task/subtask-check.svg" class="d-none" onclick="editEditSubtaskFromList(${subtask.id})" alt="Edit Subtask">
+                        <img src="../assets/img/add-task/clear.svg" class="d-none" onclick="deleteSubtask(${subtask.id})" alt="Clear Subtask">
+                    </div>
                 </li>
             </ul>  
         </div>
@@ -409,15 +410,21 @@ function editEditSubtaskFromListTemplate(subtask) {
     return /*html*/ `
         <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
             <ul>
-                <li>
+                <li class="edit-subtask-list-items-single">
                     <input type="text" value="${subtask.title}" id="editSubtaskInput-${subtask.id}">
-                    <img src="../assets/img/add-task/subtask-check.svg" onclick="saveSubtaskEdit(${subtask.id})" alt="Save Subtask">
-                    <img src="../assets/img/add-task/clear.svg" onclick="cancelEdit(${subtask.id})" alt="Cancel Edit">
+                    <div>
+                        <img src="../assets/img/add-task/subtask-check.svg" onclick="saveSubtaskEdit(${subtask.id})" alt="Save Subtask">
+                        <img src="../assets/img/add-task/clear.svg" onclick="cancelEdit(${subtask.id})" alt="Cancel Edit">
+                    </div>
+
+                   
                 </li>
             </ul>  
         </div>
     `;
 }
+
+
 
 // Save the edit of a subtask
 function saveSubtaskEdit(id) {
@@ -440,6 +447,64 @@ function deleteSubtask(id) {
     editSubtaskArray = editSubtaskArray.filter(task => task.id !== id);  // Remove the subtask from the array
     editRenderSubtaskInputEntrys();  // Re-render the list
 }
+
+// function saveUpdatedTask() {
+//     const updatedTask = {
+//         id: task.id, // Make sure task.id is set
+//         title: document.getElementById("edit-title-input").value,
+//         description: document.getElementById("edit-description-input").value,
+//         dueDate: document.getElementById("edit-due-date-input").value,
+//         prioButton: getPrioButtonValue(), // Assuming you have a function to get this value
+//         category: document.getElementById('edit-category-input-placeholder').innerHTML,
+//         assignedContacts: editAssignedUsersfromCheckboxes, // Updated assigned users
+//         subtasks: editSubtaskArray,  // Updated subtasks
+//     };
+
+//     // Now send the updated task to the database
+//     editUpdateTaskToDatabase(updatedTask);
+// }
+
+// // Function to send the updated task to the Firebase database
+// async function editUpdateTaskToDatabase(updatedTask) {
+//     try {
+//         const taskId = updatedTask.id;  // Get the task ID
+//         const updatedTaskData = {
+//             title: updatedTask.title,
+//             description: updatedTask.description,
+//             dueDate: updatedTask.dueDate,
+//             prioButton: updatedTask.prioButton,
+//             category: updatedTask.category,
+//             assignedContacts: updatedTask.assignedContacts,
+//             subtasks: updatedTask.subtasks, // Include the updated subtasks array
+//         };
+
+//         // Make the PUT request to update the task in the database
+//         const response = await fetch(FIREBASE_URL + `/tasks/${taskId}.json`, {
+//             method: 'PUT', // PUT for replacing the task
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(updatedTaskData), // Send the updated task data as JSON
+//         });
+
+//         if (!response.ok) {
+//             throw new Error('Failed to update the task.');
+//         }
+
+//         // Optionally, handle the success response
+//         console.log('Task updated successfully');
+
+//         // Provide feedback to the user (you can display a success message or a toast)
+//         alert('Task has been updated successfully!');
+        
+//         // Optionally, update the UI or reload the tasks list after the update
+//         refreshTaskList();
+        
+//     } catch (error) {
+//         console.error("Error updating task:", error);
+//         alert("Error updating task. Please try again later.");
+//     }
+// }
 
 
 
