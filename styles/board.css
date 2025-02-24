@@ -16,6 +16,31 @@
     border:none
 }
 
+/* .edit-subtask-list-items {
+
+    border-bottom: 2px solid black;
+} */
+
+/* Hide images by default */
+
+li:hover img {
+    display: inline-block;
+    opacity: 1;
+}
+
+/* Add this CSS rule */
+.border-bottom-turquoise {
+    border-bottom: 2px solid turquoise;
+}
+
+
+
+.edit-subtask-list-items input {
+
+    width:200px !important;
+    border:none;
+}
+
 
 /* for edit task end*/
 
@@ -597,6 +622,7 @@ p {
     padding: 20px;
     border-radius: 8px;
     width: 100%;
+    height:1000px;
     max-width: 1200px;
     position: relative;
     font-family: Arial, sans-serif;

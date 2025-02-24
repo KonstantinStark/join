@@ -1,10 +1,9 @@
 function hideEditTaskOverlay() {
     // Hide the edit task overlay
     document.getElementById("editTaskOverlay").style.display = "none";
-   
-    
-  
+
 }
+
 
 let editAssignedUsersfromCheckboxes = [];
 
@@ -31,6 +30,11 @@ function showEditTaskOverlay(title) {
         editAssignUsersFromDatabase(task.assignedContacts);
         // Now mark the checkboxes as checked based on the assigned users
         editMarkCheckboxesAsChecked();
+
+        editAssignSubtasksFromDatabase(task.subtasks);
+
+        editAddSubtaskInputToArray();
+
     }
 }
 
@@ -316,6 +320,19 @@ function toggleRotate() {
 // Array to store the subtasks
 let editSubtaskArray = [];
 
+function editAssignSubtasksFromDatabase(taskSubtasksFromTask) {
+    // Reset and copy subtasks from the task
+    editSubtaskArray = [...taskSubtasksFromTask];
+
+    // Append subtasks to the array if not already in editSubtasksArray
+    subtasksArray.forEach(subtask => {
+        if (!editSubtasksArray.some(existingSubtask => existingSubtask.id === subtask.id)) {
+            editSubtasksArray.push(subtask);
+        }
+    });
+}
+
+
 function editAddSubtaskInputToArray() {
     // Get the value from the input field
     let renderSubtaskListRef = document.getElementById('editSubtaskInput');
@@ -323,21 +340,25 @@ function editAddSubtaskInputToArray() {
 
     // Check if the value is not empty
     if (subtaskValue) {
-        // Create an object to represent the subtask with title and completed set to false by default
+        // Create an object to represent the subtask with title, completed set to false by default, and a unique id
         let newSubtask = { 
+            id: editSubtaskArray.length + 1, // Create a unique id (using length here to increment id)
             title: subtaskValue, 
             boolean: false 
         };
 
+        // Push the new subtask to the array
         editSubtaskArray.push(newSubtask);
 
+        // Clear the input field
         renderSubtaskListRef.value = '';
     }
 
-    renderSubtaskInputEntrys()
+    // Re-render the list of subtasks
+    editRenderSubtaskInputEntrys();
 }
 
-function renderSubtaskInputEntrys() {
+function editRenderSubtaskInputEntrys() {
     let renderSubtaskInputEntrysRef = document.getElementById('editSubtaskList');
     
     // Initialize a string to accumulate the list items
@@ -346,24 +367,81 @@ function renderSubtaskInputEntrys() {
     // Loop through the array using a traditional for loop
     for (let i = 0; i < editSubtaskArray.length; i++) {
         let subtask = editSubtaskArray[i];
-        subtasks = `<li>${subtask.title}</li>`; // Accumulate each subtask in the string
+        subtasks += renderSubtaskInputEntrysTemplate(subtask); // Append each subtask's HTML to the string
     }
 
     // Render the list template with the accumulated subtasks
-    renderSubtaskInputEntrysRef.innerHTML += renderSubtaskInputEntrysTemplate(subtasks);
+    renderSubtaskInputEntrysRef.innerHTML = subtasks;  // Set the final innerHTML with all subtasks
 }
 
-function renderSubtaskInputEntrysTemplate(subtasks) {
-    // Return the final HTML structure with the subtasks included
+// Render each individual subtask as HTML
+function renderSubtaskInputEntrysTemplate(subtask) {
     return /*html*/ `
-        <ul>
-            <div> ${subtasks}
-            <img src="../assets/img/add-task/clear.svg" onclick="" alt="Clear Subtask">
-            <img src="../assets/img/add-task/subtask-check.svg" onclick="" alt="Add Subtask">  
-            </div>
-        </ul>
+        <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
+            <ul>
+                <li>
+                    <span>${subtask.title}</span>
+                    <img src="../assets/img/add-task/subtask-check.svg" class="d-none" onclick="editEditSubtaskFromList(${subtask.id})" alt="Edit Subtask">
+                    <img src="../assets/img/add-task/clear.svg" class="d-none" onclick="deleteSubtask(${subtask.id})" alt="Clear Subtask">
+                </li>
+            </ul>  
+        </div>
     `;
 }
+
+// Function to handle editing a specific subtask
+function editEditSubtaskFromList(id) {
+    let subtask = editSubtaskArray.find(task => task.id === id);  // Get the specific subtask
+    if (subtask) {
+        let editSubtaskListItemsRef = document.getElementById(`editSubtaskListItems-${id}`);
+        
+        // Add the border-bottom style to the specific subtask
+        editSubtaskListItemsRef.classList.add('border-bottom-turquoise');
+        
+        // Replace with editable template
+        editSubtaskListItemsRef.innerHTML = editEditSubtaskFromListTemplate(subtask);  
+    }
+}
+
+
+// Render the editable version of the subtask (input field)
+function editEditSubtaskFromListTemplate(subtask) {
+    return /*html*/ `
+        <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
+            <ul>
+                <li>
+                    <input type="text" value="${subtask.title}" id="editSubtaskInput-${subtask.id}">
+                    <img src="../assets/img/add-task/subtask-check.svg" onclick="saveSubtaskEdit(${subtask.id})" alt="Save Subtask">
+                    <img src="../assets/img/add-task/clear.svg" onclick="cancelEdit(${subtask.id})" alt="Cancel Edit">
+                </li>
+            </ul>  
+        </div>
+    `;
+}
+
+// Save the edit of a subtask
+function saveSubtaskEdit(id) {
+    let editedValue = document.getElementById(`editSubtaskInput-${id}`).value;
+    let subtask = editSubtaskArray.find(task => task.id === id);
+    
+    if (subtask) {
+        subtask.title = editedValue;  // Update the title with the edited value
+        editRenderSubtaskInputEntrys();  // Re-render the list
+    }
+}
+
+// Cancel editing the subtask
+function cancelEdit(id) {
+    editRenderSubtaskInputEntrys();  // Re-render the list without saving changes
+}
+
+// Delete the subtask
+function deleteSubtask(id) {
+    editSubtaskArray = editSubtaskArray.filter(task => task.id !== id);  // Remove the subtask from the array
+    editRenderSubtaskInputEntrys();  // Re-render the list
+}
+
+
 
 
 
