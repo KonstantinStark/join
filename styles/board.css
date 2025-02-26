@@ -9,6 +9,9 @@
 
     border:1px solid grey;
     border-radius:5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .edit-subtask-input-wrapper:focus-within {
@@ -16,8 +19,29 @@
     
 }
 
+.edit-subtask-input-imgs {
+    
+    display: flex;
+    gap:5px;
+}
+
+.seperator-imgs {
+
+    background-color: grey;
+    width:2px;
+    height:25px;
+    
+}
+
+
+.edit-subtask-input-imgs img {
+    
+    width:25px;
+    height:24px;
+}
+
 .edit-subtask-input {
-    max-width: 400px;
+    max-width: 300px;
     padding: 10px;
     border:none;
   

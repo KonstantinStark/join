@@ -427,9 +427,13 @@
                               <div class="edit-subtask-input-wrapper">
 
                               <input type="text" placeholder="Enter a Subtask" class="edit-subtask-input" id="editSubtaskInput">
-                              <span onclick="">d</span>
-                              <span onclick="editAddSubtaskInputToArray()">a</span>
-
+                              <div class="edit-subtask-input-imgs">
+                                  <img src="../assets/img/add-task/clear.svg" onclick="" alt="Cancel Edit">
+                                  <div class="seperator-imgs"></div>
+                                  <img src="../assets/img/add-task/subtask-check.svg" onclick="editAddSubtaskInputToArray()" alt="Save Subtask">
+                              </div>
+                             
+                  
                             </div>
 
                             <div class="edit-subtask-list" id="editSubtaskList"></div>

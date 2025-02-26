@@ -414,8 +414,10 @@ function editEditSubtaskFromListTemplate(subtask) {
                     <input type="text" value="${subtask.title}" id="editSubtaskInput-${subtask.id}">
                     <div>
                         <img src="../assets/img/add-task/subtask-check.svg" onclick="saveSubtaskEdit(${subtask.id})" alt="Save Subtask">
+                        <div class="seperator-imgs"></div>
                         <img src="../assets/img/add-task/clear.svg" onclick="cancelEdit(${subtask.id})" alt="Cancel Edit">
                     </div>
+            
 
                    
                 </li>
