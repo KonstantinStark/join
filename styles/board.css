@@ -25,6 +25,30 @@
     gap:5px;
 }
 
+.edit-subtask-list-items-single {
+
+    display: flex;
+    align-items: center;
+}
+
+.edit-subtask-list-items-single-imgs {
+
+    display: flex;
+    gap:5px;
+  
+}
+
+.edit-subtask-list-items-single input {
+
+    border:none;
+    height:20px !important;
+}
+
+.edit-subtask-list-items-single input:focus {
+
+    border:none;
+}
+
 .seperator-imgs {
 
     background-color: grey;

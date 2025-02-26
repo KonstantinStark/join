@@ -1,21 +1,27 @@
 
 let editAssignedUsersfromCheckboxes = [];
 let editSubtaskArray = [];
+let taskID;
+// toggles arrow icon when container is clicked
 
+// function toggleRotate() {
+//     let img = document.getElementById('category-icon');
+//     img.classList.toggle('rotate');
+// }
 
 function hideEditTaskOverlay() {
 
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
 }
 
-function showEditTaskOverlay(title) {
+function showEditTaskOverlay(taskID) {
 
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
 
     //remove checkboxes from assigned to list
     resetAssignedUsersCheckboxes();
 
-    const task = loadedTasks.find(t => t.title === title);
+    const task = loadedTasks.find(t => t.id === taskID);
 
     if (task) {
         editRenderEditTaskOverlayContentFromDatabase(task);
@@ -29,8 +35,8 @@ function editRenderEditTaskOverlayContentFromDatabase(task) {
     editSetPrioButton(task.prioButton);
     document.getElementById('edit-category-input-placeholder').innerHTML = task.category;
     editAssignUsersFromDatabase(task.assignedContacts);
-    editAssignSubtasksFromDatabase(task.subtasks);
-    editAddSubtaskInputToArray();
+    editSubtasksFromDatabase(task.subtasks);
+   
 }
 
 
@@ -192,6 +198,7 @@ function editRenderVisualsForAssignedUsersfromDatabase() {
     editRenderUserSvg();
 }
 
+// low, medium, urgent buttons functionality
 
 function editSetPrioButton(editPrio) {
     editSelectedPrioButton = editPrio;
@@ -240,29 +247,8 @@ document.getElementById('edit-category-input-placeholder').addEventListener('cli
     editChangeCategoryInput('Select task category');
 });
 
-// toggles arrow icon when container is clicked
-
-function toggleRotate() {
-    let img = document.getElementById('category-icon');
-    img.classList.toggle('rotate');
-}
-
 //subtasks functions
 
-// Array to store the subtasks
-
-
-function editAssignSubtasksFromDatabase(taskSubtasksFromTask) {
-    // Reset and copy subtasks from the task
-    editSubtaskArray = [...taskSubtasksFromTask];
-
-    // Append subtasks to the array if not already in editSubtasksArray
-    subtasksArray.forEach(subtask => {
-        if (!editSubtasksArray.some(existingSubtask => existingSubtask.id === subtask.id)) {
-            editSubtasksArray.push(subtask);
-        }
-    });
-}
 
 function editAddSubtaskInputToArray() {
     // Get the value from the input field
@@ -312,7 +298,7 @@ function renderSubtaskInputEntrysTemplate(subtask) {
             <ul>
                 <li class="edit-subtask-list-items-single">
                     <span>${subtask.title}</span>
-                    <div>
+                    <div class="edit-subtask-list-items-single-imgs">
                         <img src="../assets/img/add-task/subtask-check.svg" class="d-none" onclick="editEditSubtaskFromList(${subtask.id})" alt="Edit Subtask">
                         <img src="../assets/img/add-task/clear.svg" class="d-none" onclick="deleteSubtask(${subtask.id})" alt="Clear Subtask">
                     </div>
@@ -343,14 +329,12 @@ function editEditSubtaskFromListTemplate(subtask) {
             <ul>
                 <li class="edit-subtask-list-items-single">
                     <input type="text" value="${subtask.title}" id="editSubtaskInput-${subtask.id}">
-                    <div>
+                    <div class="edit-subtask-list-items-single-imgs">
                         <img src="../assets/img/add-task/subtask-check.svg" onclick="saveSubtaskEdit(${subtask.id})" alt="Save Subtask">
                         <div class="seperator-imgs"></div>
                         <img src="../assets/img/add-task/clear.svg" onclick="cancelEdit(${subtask.id})" alt="Cancel Edit">
                     </div>
             
-
-                   
                 </li>
             </ul>  
         </div>
@@ -380,6 +364,19 @@ function deleteSubtask(id) {
     editRenderSubtaskInputEntrys();  // Re-render the list
 }
 
+function editSubtasksFromDatabase(taskSubtasksFromTask) {
+    // Reset and copy subtasks from the task
+    editSubtaskArray = [...taskSubtasksFromTask];
+
+    // Append subtasks to the array if not already in editSubtasksArray
+    subtasksArray.forEach(subtask => {
+        if (!editSubtaskArray.some(existingSubtask => existingSubtask.id === subtask.id)) {
+            editSubtaskArray.push(subtask);
+        }
+    });
+
+    editAddSubtaskInputToArray();
+}
 
 
 

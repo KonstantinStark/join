@@ -35,8 +35,6 @@ async function loadUsers() {
 
 }
 
-
-
 // title and desscription get handled at the end of the script addNewArrayFromInputs function, since they dont need fancy functions
 
 // due date calendar functions
@@ -416,7 +414,8 @@ function transformSubtasks(subtasksArray) {
     return subtasksArray.map(subtask => {
         return {
             title: subtask,   // Each subtask is now the 'title'
-            boolean: false    // Defaulting the 'boolean' to false
+            boolean: false,    // Defaulting the 'boolean' to false
+            id: subtasksArray.length + 1,
         };
     });
 }
