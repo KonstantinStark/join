@@ -411,14 +411,15 @@ function validateForm() {
 
 // Function to transform subtasks array to include title and boolean
 function transformSubtasks(subtasksArray) {
-    return subtasksArray.map(subtask => {
+    return subtasksArray.map((subtask, index) => {
         return {
             title: subtask,   // Each subtask is now the 'title'
             boolean: false,    // Defaulting the 'boolean' to false
-            id: subtasksArray.length + 1,
+            id: index + 1,     // Assign a unique ID based on the index
         };
     });
 }
+
 
 // Usage in the main function
 async function addNewArrayFromInputs() {
