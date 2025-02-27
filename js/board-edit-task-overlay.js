@@ -9,6 +9,7 @@ let taskID;
 //     img.classList.toggle('rotate');
 // }
 
+
 function hideEditTaskOverlay() {
 
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
@@ -20,12 +21,14 @@ function showEditTaskOverlay(taskID) {
 
     //remove checkboxes from assigned to list
     resetAssignedUsersCheckboxes();
+    
 
     const task = loadedTasks.find(t => t.id === taskID);
 
-    if (task) {
-        editRenderEditTaskOverlayContentFromDatabase(task);
-    }
+   
+    editRenderEditTaskOverlayContentFromDatabase(task);
+
+    
 }
 
 function editRenderEditTaskOverlayContentFromDatabase(task) {
@@ -36,6 +39,8 @@ function editRenderEditTaskOverlayContentFromDatabase(task) {
     document.getElementById('edit-category-input-placeholder').innerHTML = task.category;
     editAssignUsersFromDatabase(task.assignedContacts);
     editSubtasksFromDatabase(task.subtasks);
+
+    renderFooter(task);
    
 }
 
@@ -377,6 +382,78 @@ function editSubtasksFromDatabase(taskSubtasksFromTask) {
 
     editAddSubtaskInputToArray();
 }
+
+function renderFooter(task) {
+    let renderFooterRef = document.getElementById('editTaskFooter');
+    renderFooterRef.innerHTML += renderFooterTemplate(task);
+}
+
+function renderFooterTemplate(task) {
+    return /*html*/ `
+    <div class="field-required">
+        <p>
+            <span class="required-star-markers">*</span>
+            This field is required
+        </p>
+    </div>
+    <div class="clear-create-buttons-wrapper" id="okButtonWrapper">
+        <button class="create-task-button" onclick="saveTaskEdit('${task.id}')">
+            <p>Ok</p> 
+            <img src="../assets/img/add-task/check.svg" alt="Create">
+        </button>
+    </div>
+    `;
+}
+
+function saveTaskEdit(taskID) {
+ 
+    const newTitle = document.getElementById("edit-title-input").value;
+    const newDescription = document.getElementById("edit-description-input").value;
+    const newDueDate = document.getElementById("edit-due-date-input").value;
+    
+    const updatedData = {
+        title: newTitle,
+        description: newDescription,
+        dueDate: newDueDate,
+        
+    };
+    
+    // Now you can use `updatedData` to update the task in the database or wherever needed
+    
+    
+    // Now you can use `updatedData` to update the task in the database or wherever needed
+    
+
+    updateTaskInDatabase(taskID, updatedData);
+
+    
+    document.getElementById("editTaskOverlay").classList.toggle("d-none");
+
+   
+    
+}
+
+async function updateTaskInDatabase(taskID, updatedData) {
+    
+    const taskUrl = `${FIREBASE_URL}/tasks/${taskID}.json`;  
+
+    const response = await fetch(taskUrl, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to update task');
+    }
+}
+
+
+
+
+
 
 
 
