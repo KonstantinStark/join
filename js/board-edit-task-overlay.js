@@ -2,6 +2,7 @@
 let editAssignedUsersfromCheckboxes = [];
 let editSubtaskArray = [];
 let taskID;
+let editSelectedPrioButton  = '';
 // toggles arrow icon when container is clicked
 
 // function toggleRotate() {
@@ -385,7 +386,7 @@ function editSubtasksFromDatabase(taskSubtasksFromTask) {
 
 function renderFooter(task) {
     let renderFooterRef = document.getElementById('editTaskFooter');
-    renderFooterRef.innerHTML += renderFooterTemplate(task);
+    renderFooterRef.innerHTML = renderFooterTemplate(task);
 }
 
 function renderFooterTemplate(task) {
@@ -406,32 +407,32 @@ function renderFooterTemplate(task) {
 }
 
 function saveTaskEdit(taskID) {
- 
     const newTitle = document.getElementById("edit-title-input").value;
     const newDescription = document.getElementById("edit-description-input").value;
     const newDueDate = document.getElementById("edit-due-date-input").value;
-    
+    const newContacts = editAssignedUsersfromCheckboxes;
+    const newPrioButton = editSelectedPrioButton;
+    const newCategory =  document.getElementById("edit-category-input-placeholder").innerHTML
+    const newSubtasks = editSubtaskArray; 
+
+   
     const updatedData = {
         title: newTitle,
         description: newDescription,
         dueDate: newDueDate,
-        
+        assignedContacts: newContacts, 
+        prioButton: newPrioButton,
+        category: newCategory,
+        subtasks: newSubtasks,
     };
-    
-    // Now you can use `updatedData` to update the task in the database or wherever needed
-    
-    
-    // Now you can use `updatedData` to update the task in the database or wherever needed
-    
-
-    updateTaskInDatabase(taskID, updatedData);
-
-    
-    document.getElementById("editTaskOverlay").classList.toggle("d-none");
 
    
-    
+    updateTaskInDatabase(taskID, updatedData);
+
+    document.getElementById("editTaskOverlay").classList.toggle("d-none");
+
 }
+
 
 async function updateTaskInDatabase(taskID, updatedData) {
     

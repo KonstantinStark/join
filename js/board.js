@@ -2,6 +2,7 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 
 let loadedTasks = [];
 
+
 console.log(loadedTasks)
 
 // Load all tasks by default when the page loads
