@@ -407,39 +407,45 @@ function renderFooterTemplate(task) {
 }
 
 function saveTaskEdit(taskID) {
+    // Get new values from the inputs
     const newTitle = document.getElementById("edit-title-input").value;
     const newDescription = document.getElementById("edit-description-input").value;
     const newDueDate = document.getElementById("edit-due-date-input").value;
     const newContacts = editAssignedUsersfromCheckboxes;
     const newPrioButton = editSelectedPrioButton;
-    const newCategory =  document.getElementById("edit-category-input-placeholder").innerHTML
-    const newSubtasks = editSubtaskArray; 
+    const newCategory = document.getElementById("edit-category-input-placeholder").innerHTML;
+    const newSubtasks = editSubtaskArray;
 
-   
+    // Prepare updated data
     const updatedData = {
         title: newTitle,
         description: newDescription,
         dueDate: newDueDate,
-        assignedContacts: newContacts, 
+        assignedContacts: newContacts,
         prioButton: newPrioButton,
         category: newCategory,
         subtasks: newSubtasks,
     };
 
-   
-    updateTaskInDatabase(taskID, updatedData);
+    // Update the task in the database and also update locally in one go
+    updateTaskInDatabase(taskID, updatedData)
+        .then(() => {
+            // Re-render the task card (overlay) with the updated data
+            taskCardsOverlay(taskID);
+            loadTasks();
+        })
+        .catch((error) => {
+            console.error("Error updating task:", error);
+        });
 
+    // Close the edit overlay
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
-
-    
-
 }
 
-
 async function updateTaskInDatabase(taskID, updatedData) {
-    
-    const taskUrl = `${FIREBASE_URL}/tasks/${taskID}.json`;  
+    const taskUrl = `${FIREBASE_URL}/tasks/${taskID}.json`;  // Update task URL based on taskID
 
+    // Update the task in the database first
     const response = await fetch(taskUrl, {
         method: 'PATCH',
         headers: {
@@ -451,8 +457,16 @@ async function updateTaskInDatabase(taskID, updatedData) {
     if (!response.ok) {
         throw new Error('Failed to update task');
     }
-}
 
+    // If the task is successfully updated in the database, update it locally in 'loadedTasks'
+    const taskIndex = loadedTasks.findIndex(t => t.id === taskID);
+    if (taskIndex !== -1) {
+        // Merge the updated data into the existing task
+        loadedTasks[taskIndex] = { ...loadedTasks[taskIndex], ...updatedData };
+    }
+
+    return response;  // Ensure the update was successful
+}
 
 
 
