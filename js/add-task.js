@@ -9,8 +9,12 @@ let isValid = true; // to validate input fields
 
 //loads medium as initial seleted prio button
 
-prioButtonOnLoad()
-loadUsers()
+function init() {
+
+    prioButtonOnLoad()
+    loadUsers()
+   
+}
 
 // get users from database 
 
