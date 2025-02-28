@@ -431,6 +431,8 @@ function saveTaskEdit(taskID) {
 
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
 
+    
+
 }
 
 

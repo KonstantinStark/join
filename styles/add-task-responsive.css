@@ -60,7 +60,8 @@
 @media (max-width: 500px) {
     .category-input,
     #category-input-content,
-    .prio-buttons {
+    .prio-buttons,
+    .test {
         width: 90% !important;
     }
 
@@ -97,7 +98,8 @@
     #category-input-content,
     .prio-buttons,
     .subtask-list-items,
-    #title-input {
+    #title-input,
+    .test {
         width:374px !important;
     }
 
