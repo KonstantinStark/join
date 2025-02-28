@@ -79,12 +79,12 @@ async function handleDrop(event, newCategory) {
 
     if (task) {
         task.boardCategory = newCategory; // Update the task's category
-        await updateTaskInDatabase(task); // Update the task in Firebase
+        await updateTaskAfterDragging(task); // Update the task in Firebase
         renderAllTasks(); // Re-render all tasks with updated categories
     }
 }
 // Update task in Firebase
-async function updateTaskInDatabase(updatedTask) {
+async function updateTaskAfterDragging(updatedTask) {
     try {
         await fetch(FIREBASE_URL + `/tasks/${updatedTask.id}.json`, {
             method: 'PATCH',
