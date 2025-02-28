@@ -61,7 +61,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .test {
+    .test-lul {
         width: 90% !important;
     }
 
@@ -99,7 +99,7 @@
     .prio-buttons,
     .subtask-list-items,
     #title-input,
-    .test {
+    test-lul {
         width:374px !important;
     }
 
