@@ -61,7 +61,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .test-lul {
+    .input-resp{
         width: 90% !important;
     }
 
@@ -99,7 +99,7 @@
     .prio-buttons,
     .subtask-list-items,
     #title-input,
-    test-lul {
+    input-resp {
         width:374px !important;
     }
 
@@ -122,8 +122,10 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
+    .input-resp,
     .subtask-list-items
-    #title-input{
+    #title-input
+    #input-resp{
         width:352px!important;
     }
 
@@ -145,7 +147,8 @@
 @media (max-width: 370px) {
     .category-input,
     #category-input-content,
-    .prio-buttons {
+    .prio-buttons,
+    .input-resp {
         width: 75% !important;
     }
 
@@ -168,6 +171,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
+    .input-resp,
     .subtask-list-items {
         width: 70% !important;
     }
@@ -191,6 +195,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
+    .input-resp
     .subtask-list-items {
         width: 65% !important;
     }
@@ -256,6 +261,7 @@
 @media (max-width: 320px) {
     .category-input,
     .prio-buttons,
+    .input-resp,
     #category-input-content {
         width: 60% !important;
     }
