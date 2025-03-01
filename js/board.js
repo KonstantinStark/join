@@ -245,17 +245,37 @@ function generateSubtaskCheckboxes(subtasks) {
     return subtasks.map((subtask, index) => generateSubtaskCheckboxTemplate(index, subtask)).join(""); 
 }
 
-function toggleSubtaskCompletion(index) {
+async function toggleSubtaskCompletion(index) {
     const taskId = document.getElementById("task-overlay").getAttribute("data-task-id");
     const task = loadedTasks.find(t => t.id === taskId);
 
     // Use the index to directly access the subtask in the task's subtasks array
-    const subtask = task.subtasks[index];  // Use the index directly here
+    const subtask = task.subtasks[index];
     if (subtask) {
         subtask.boolean = !subtask.boolean; // Toggle the 'boolean' value
-        updateTaskProgress(task); // Update task progress
+        
+        // After toggling the completion status, update task progress
+        updateTaskProgress(task); // You can add a function to update task progress
+
+        // Push the updated task to Firebase
+        await updateDatabaseCheckboxes(task);
     }
 }
+
+async function updateDatabaseCheckboxes(task) {
+    // Assuming you're using Firebase Realtime Database, use a PUT request to overwrite the task
+    const response = await fetch(`${FIREBASE_URL}/tasks/${task.id}.json`, {
+        method: 'PUT', // PUT will replace the task completely
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task), // Send the entire updated task object
+    });
+
+    const updatedTask = await response.json();
+    console.log('Task successfully updated in Firebase', updatedTask);
+}
+
 
 // Update progress bar and related info when a subtask is checked/unchecked
 function updateTaskProgress(task) {
