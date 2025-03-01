@@ -1,10 +1,18 @@
-// Generate the task card template (including progress bar)
 function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData) {
     return `
+
+          <p onclick="renderCategoryMenu('${task.id}')"><-></p>
+          
+          <!-- Category Menu will be rendered here -->
+          <div id="categoryMenu-${task.id}" class="d-none"></div>
+
         <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
             
-            <p class="task-category ${categoryClass}">${task.category}</p>
+            <div class="task-cards-header-wrapper">
+                <p class="task-category ${categoryClass}">${task.category}</p>
+            </div>
+            
             <h3>${task.title}</h3>
             <p>${task.description}</p>
 
@@ -27,6 +35,7 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
             </div>
         </div>`;
 }
+
 
 // Generate the task overlay template with subtasks checkboxes
 function generateTaskOverlayTemplate(task, categoryClass, userAvatars, subtasksCheckboxes, userName) {

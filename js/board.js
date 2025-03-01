@@ -422,6 +422,39 @@ function hideTaskOverlay() {
     overlay.classList.add("d-none");
 }
 
+function renderCategoryMenu(taskId) {
+    const categoryMenuRef = document.getElementById(`categoryMenu-${taskId}`);
+
+    categoryMenuRef.classList.toggle("d-none")
+  
+        categoryMenuRef.innerHTML = renderCategoryMenuTemplate(taskId); // Render category options for this task
+    
+}
+
+// Template that renders the category options for the task
+function renderCategoryMenuTemplate(taskId) {
+    return `
+    <div class="category-menu">
+        <ul>
+            <li onclick="moveTaskCategory('to-do', '${taskId}')">To Do</li>
+            <li onclick="moveTaskCategory('in-progress', '${taskId}')">In Progress</li>
+            <li onclick="moveTaskCategory('await-feedback', '${taskId}')">Await Feedback</li>
+            <li onclick="moveTaskCategory('done', '${taskId}')">Done</li>
+        </ul>
+    </div>
+    `;
+}
+
+function moveTaskCategory(newCategory, taskId) {
+    // Find the task by taskId
+    const task = loadedTasks.find(t => t.id === taskId);
+
+    if (task) {
+        task.boardCategory = newCategory; // Update the task's category
+        updateTaskAfterDragging(task); // Update task in the backend
+        renderAllTasks(); // Re-render the task list with updated categories
+    }
+}
 
 
 

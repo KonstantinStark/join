@@ -140,6 +140,12 @@ li:hover img {
     flex-direction: column;
 }
 
+.task-cards-header-wrapper {
+
+    display: flex;
+    gap:20px;
+}
+
 .empty-task-slots {
     display: flex;
     justify-content: center;
