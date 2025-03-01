@@ -19,6 +19,11 @@
     
 }
 
+.grey-background{
+
+   background-color: lightgrey;
+}
+
 .edit-subtask-input-imgs {
     
     display: flex;
@@ -566,7 +571,9 @@ label {
     flex-direction: column;
     margin-top: 15px;
     gap: 15px;
-    min-height: 400px;
+    min-height: 600px;
+    border-radius:20px;
+    width:300px;
 }
 
 .media-query {

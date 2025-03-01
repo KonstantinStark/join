@@ -50,6 +50,7 @@ function renderTasks(filteredTasks) {
 
 // drag and drop functionality
 
+// Start dragging - add a class for tilt effect and store task ID
 function startDragging(event, taskId) {
     event.dataTransfer.setData('taskId', taskId); // Store the dragged task ID
     // Add the dragging class to tilt the container
@@ -60,18 +61,38 @@ function startDragging(event, taskId) {
 function endDragging(event) {
     // Remove the dragging class to stop the tilt effect
     event.target.classList.remove('dragging');
+    
+    // Remove 'grey-background' from all columns once the drag ends
+    removeHighlight();
 }
 
 // Allow task container to accept drops
 function allowDrop(event) {
     event.preventDefault();
+
+    // Remove the 'grey-background' class from all columns first
+    removeHighlight();
+
+    // Ensure the target is the correct drop container
+    if (event.target.classList.contains('drop-target')) {
+        event.target.classList.add("grey-background");
+    }
+}
+
+// Function to remove the grey-background highlight from all columns
+function removeHighlight() {
+    document.getElementById("done-cards").classList.remove("grey-background");
+    document.getElementById("to-do-cards").classList.remove("grey-background");
+    document.getElementById("in-progress-cards").classList.remove("grey-background");
+    document.getElementById("await-feedback-cards").classList.remove("grey-background");
 }
 
 // Handle drop event
 async function handleDrop(event, newCategory) {
     event.preventDefault();
 
-    const taskId = event.dataTransfer.getData('taskId'); // Get task ID from drag event
+    // Get task ID from drag event
+    const taskId = event.dataTransfer.getData('taskId');
     const task = loadedTasks.find(t => t.id === taskId); // Find task by ID
 
     if (task) {
@@ -79,7 +100,12 @@ async function handleDrop(event, newCategory) {
         await updateTaskAfterDragging(task); // Update the task in Firebase
         renderAllTasks(); // Re-render all tasks with updated categories
     }
+
+    // Clear the highlight after drop
+    removeHighlight();
 }
+
+
 // Update task in Firebase
 async function updateTaskAfterDragging(updatedTask) {
     try {
