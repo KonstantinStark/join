@@ -21,14 +21,11 @@
     height: 100px;
     background-color: white;
     z-index: 100;
-    position: fixed; 
+    position: absolute; 
     border-radius:20px;
     font-size: 20px;
     
-
 }
-
-
 
 .edit-subtask-input-wrapper {
 

@@ -5,6 +5,12 @@
     --font-size-responsive: 1.1rem
 }
 
+* {
+    scrollbar-width: thin; 
+    scrollbar-color: #a8a8a8 transparent; 
+}
+
+
 .main {
     background-color: #F6F7F8;
     height: 100vh;
