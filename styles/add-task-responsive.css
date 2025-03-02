@@ -61,7 +61,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .input-resp{
+    .input-fields-resp{
         width: 90% !important;
     }
 
@@ -98,8 +98,7 @@
     #category-input-content,
     .prio-buttons,
     .subtask-list-items,
-    #title-input,
-    input-resp {
+    .input-fields-resp {
         width:374px !important;
     }
 
@@ -123,9 +122,9 @@
     #category-input-content,
     .prio-buttons,
     .input-resp,
+    .input-fields-resp
     .subtask-list-items
-    #title-input
-    #input-resp{
+    {
         width:352px!important;
     }
 
@@ -148,7 +147,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .input-resp {
+    .input-fields-resp {
         width: 75% !important;
     }
 
@@ -171,7 +170,7 @@
     .category-input,
     #category-input-content,
     .prio-buttons,
-    .input-resp,
+    .input-fields-resp,
     .subtask-list-items {
         width: 70% !important;
     }
@@ -196,8 +195,8 @@
     #category-input-content,
     .prio-buttons,
     .input-resp
-    .subtask-list-items {
-        width: 65% !important;
+    .input-fields-resp {
+        width:286px !important;
     }
 
     .placeholder-text-non-input-tag-fields,
@@ -262,8 +261,9 @@
     .category-input,
     .prio-buttons,
     .input-resp,
-    #category-input-content {
-        width: 60% !important;
+    #category-input-content,
+    .input-fields-resp {
+        width:264px !important;
     }
 
     [id^="edited-input-value-subtask-"] {
