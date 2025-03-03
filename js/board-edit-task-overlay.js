@@ -3,13 +3,6 @@ let editAssignedUsersfromCheckboxes = [];
 let editSubtaskArray = [];
 let taskID;
 let editSelectedPrioButton  = '';
-// toggles arrow icon when container is clicked
-
-// function toggleRotate() {
-//     let img = document.getElementById('category-icon');
-//     img.classList.toggle('rotate');
-// }
-
 
 function hideEditTaskOverlay() {
 
