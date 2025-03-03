@@ -290,7 +290,7 @@ function editRenderSubtaskInputEntrys() {
     // Loop through the array using a traditional for loop
     for (let i = 0; i < editSubtaskArray.length; i++) {
         let subtask = editSubtaskArray[i];
-        subtasks += renderSubtaskInputEntrysTemplate(subtask); // Append each subtask's HTML to the string
+        subtasks += renderEditRSubtaskInputEntrysTemplate(subtask); // Append each subtask's HTML to the string
     }
 
     // Render the list template with the accumulated subtasks
@@ -298,9 +298,10 @@ function editRenderSubtaskInputEntrys() {
 }
 
 // Render each individual subtask as HTML
-function renderSubtaskInputEntrysTemplate(subtask) {
+function renderEditRSubtaskInputEntrysTemplate(subtask) {
     return /*html*/ `
-        <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
+    
+        <div id="editSubtaskListItems-${subtask.id}">
             <ul>
                 <li class="edit-subtask-list-items-single">
                     <span>${subtask.title}</span>

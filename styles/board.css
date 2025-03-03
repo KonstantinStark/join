@@ -3,138 +3,34 @@
     scrollbar-color: #a8a8a8 transparent; 
 }
 
-/* for edit task */
-
-.assigned-to-checkboxes {
-
-    width:20px;
-}
-
 .task-card-template-wrapper {
 
-  display: flex;
-  position: relative;
-
-}
-
-.rendered-category-menu {
-    height: 125px;
-    background-color: white;
-    z-index: 100;
-    position: absolute;
-    border-radius: 10px;
-    font-size: 16px;
-    margin-right: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-category-menu-btn {
-
-    display: none;
-}
-
-.edit-subtask-input-wrapper {
-
-    border:1px solid grey;
-    border-radius:5px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.edit-subtask-input-wrapper:focus-within {
-    border: 2px solid #29ABE2;
-    
-}
-
-.grey-background{
-
-   background-color: lightgrey;
-}
-
-.edit-subtask-input-imgs {
-    
-    display: flex;
-    gap:5px;
-}
-
-.edit-subtask-list-items-single {
-
-    display: flex;
-    align-items: center;
-}
-
-.edit-subtask-list-items-single-imgs {
-
-    display: flex;
-    gap:5px;
+    position: relative;
   
-}
-
-.edit-subtask-list-items-single input {
-
-    border:none;
-    height:20px !important;
-}
-
-.edit-subtask-list-items-single input:focus {
-
-    border:none;
-}
-
-.seperator-imgs {
-
-    background-color: grey;
-    width:2px;
-    height:25px;   
-}
-
-.edit-subtask-input-imgs img {
-    
-    width:25px;
-    height:24px;
-}
-
-.edit-subtask-input {
-    max-width: 300px;
-    padding: 10px;
-    border:none;
+  }
   
-}
-
-.edit-subtask-input:focus {
-    max-width: 400px;
-    padding: 10px;
-    border:none;
+  .rendered-category-menu {
+      height: 125px;
+      background-color: white;
+      z-index: 100;
+      position: absolute;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-right: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
   
-}
+  .mobile-category-menu-btn {
+  
+      display: none;
+  }
 
-.edit-subtask-list-items-single {
+  .grey-background{
 
-    display:flex;
-    justify-content: space-between;
-    height:40px;
-}
-
-.edit-subtask-list-items-single:focus  {
-
-    max-width: 400px;
-    padding: 10px;
-    border:none;
-    height:10px;
-
-
-}
-
-
-
-
-
-/* .edit-subtask-list-items {
-
-    border-bottom: 2px solid black;
-} */
-
+    background-color: lightgrey;
+ }
+  
 /* Hide images by default */
 
 li:hover img {
