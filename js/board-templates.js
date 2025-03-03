@@ -35,7 +35,7 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
 
                 <div class="mobile-category-menu">
 
-                    <p onclick="renderCategoryMenu('${task.id}')"><-></p>
+                    <p onclick="renderCategoryMenu('${task.id}')">&#8597</p>
                     
                     <!-- Category Menu will be rendered here -->
                     <div id="categoryMenu-${task.id}" class="d-none rendered-category-menu"></div>
