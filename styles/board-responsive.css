@@ -30,7 +30,8 @@
     .boards .board-tasks {
         flex-direction: row;
         flex-wrap: wrap;
-        min-height: unset;
+        min-height: 250px;
+   
     }
 
     .board-tasks .task-view {

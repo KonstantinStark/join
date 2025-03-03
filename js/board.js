@@ -469,12 +469,19 @@ function moveTaskCategory(newCategory, taskId) {
     // Find the task by taskId
     const task = loadedTasks.find(t => t.id === taskId);
 
+    
+
     if (task) {
         task.boardCategory = newCategory; // Update the task's category
         updateTaskAfterDragging(task); // Update task in the backend
         renderAllTasks(); // Re-render the task list with updated categories
     }
+
+   
+
+    
 }
+
 
 
 
