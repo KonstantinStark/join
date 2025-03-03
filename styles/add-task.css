@@ -10,11 +10,11 @@
     scrollbar-color: #a8a8a8 transparent; 
 }
 
-
 .main {
     background-color: #F6F7F8;
     height: 100vh;
     overflow-x: hidden;
+    padding-bottom:200px;
 }
 
 .placeholder-text-non-input-tag-fields {
