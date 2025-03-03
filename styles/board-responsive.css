@@ -168,6 +168,10 @@
     .userStory {
         padding: 6px 10px;
     }
+
+    .mobile-category-menu {
+        display: block;
+    }
 }
 
 @media (max-width: 360px) {
