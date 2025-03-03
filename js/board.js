@@ -2,10 +2,21 @@ const FIREBASE_URL = "https://remotestorage-128cc-default-rtdb.europe-west1.fire
 
 let loadedTasks = [];
 
-// Load all tasks by default when the page loads
-loadTasks();
+/**
+ * Loads all tasks when the page loads.
+ */
+function initBoard() {
+    
+    loadTasks();
 
-// Main function to load tasks with optional search capability
+}
+/**
+ * Loads and renders tasks, with an optional search query to filter the tasks.
+ * 
+ * This function fetches tasks from a server, parses them, and then filters the tasks 
+ * based on the provided search query. The filtered tasks are then rendered on the page.
+ * If no query is provided, all tasks are displayed.
+ */
 async function loadTasks(query = '') {
     try {
         const tasksResponse = await fetchTasks();
@@ -425,7 +436,7 @@ function searchTasks(tasks, query) {
         task.description.toLowerCase().startsWith(searchQuery)
     );
 
-    // Call the toggle function to show or hide the message
+   
     toggleNoTasksMessage(filteredTasks);
 
     return filteredTasks;
@@ -442,12 +453,14 @@ function hideTaskOverlay() {
     overlay.classList.add("d-none");
 }
 
+// category menu to move tasks on phone
+
 function renderCategoryMenu(taskId) {
     const categoryMenuRef = document.getElementById(`categoryMenu-${taskId}`);
 
     categoryMenuRef.classList.toggle("d-none")
   
-        categoryMenuRef.innerHTML = renderCategoryMenuTemplate(taskId); // Render category options for this task
+        categoryMenuRef.innerHTML = renderCategoryMenuTemplate(taskId); 
     
 }
 
@@ -469,16 +482,11 @@ function moveTaskCategory(newCategory, taskId) {
     // Find the task by taskId
     const task = loadedTasks.find(t => t.id === taskId);
 
-    
-
     if (task) {
         task.boardCategory = newCategory; // Update the task's category
         updateTaskAfterDragging(task); // Update task in the backend
         renderAllTasks(); // Re-render the task list with updated categories
     }
-
-   
-
     
 }
 
