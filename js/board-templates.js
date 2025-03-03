@@ -6,6 +6,14 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
 
         <div id="task-${task.id}" class="single-task-card" draggable="true" onclick="taskCardsOverlay('${task.id}')"
             ondragstart="startDragging(event, '${task.id}')" ondrop="handleDrop(event, '${task.boardCategory}')" ondragover="allowDrop(event)">
+
+            
+                  <div class="mobile-category-menu">
+                
+                    <!-- Category Menu will be rendered here -->
+                    <div id="categoryMenu-${task.id}" class="d-none rendered-category-menu"></div>
+                
+                </div> 
             
                 <div class="task-cards-header-wrapper">
                     <p class="task-category ${categoryClass}">${task.category}</p>
@@ -13,6 +21,7 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
                 
                 <h3>${task.title}</h3>
                 <p>${task.description}</p>
+               
 
                 ${progressData ? `
                     <div class="subtask-progress">
@@ -33,14 +42,8 @@ function generateTaskCardTemplate(task, categoryClass, userAvatars, progressData
                 </div>
             </div>
 
-                <div class="mobile-category-menu">
-
-                    <p onclick="renderCategoryMenu('${task.id}')">&#8597</p>
-                    
-                    <!-- Category Menu will be rendered here -->
-                    <div id="categoryMenu-${task.id}" class="d-none rendered-category-menu"></div>
-                
-            </div> 
+            
+             <p onclick="renderCategoryMenu('${task.id}')" class="mobile-category-menu-btn" >&#8597</p>
         </div>
         
         `;

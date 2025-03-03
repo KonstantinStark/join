@@ -172,6 +172,11 @@
     .mobile-category-menu {
         display: block;
     }
+
+    .mobile-category-menu-btn  {
+
+        display: block;
+    }
 }
 
 @media (max-width: 360px) {
