@@ -1,30 +1,28 @@
-
 let editAssignedUsersfromCheckboxes = [];
 let editSubtaskArray = [];
 let taskID;
 let editSelectedPrioButton  = '';
 
+/**
+ * Hides the edit task overlay.
+ */
 function hideEditTaskOverlay() {
-
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
 }
 
+/**
+ * Shows the edit task overlay.
+ */
 function showEditTaskOverlay(taskID) {
-
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
-
-    //remove checkboxes from assigned to list
     resetAssignedUsersCheckboxes();
-    
-
     const task = loadedTasks.find(t => t.id === taskID);
-
-   
     editRenderEditTaskOverlayContentFromDatabase(task);
-
-    
 }
 
+/**
+ * Renders the edit task overlay content from the database.
+ */
 function editRenderEditTaskOverlayContentFromDatabase(task) {
     document.getElementById("edit-title-input").value = task.title;
     document.getElementById("edit-description-input").value = task.description;
@@ -33,98 +31,71 @@ function editRenderEditTaskOverlayContentFromDatabase(task) {
     document.getElementById('edit-category-input-placeholder').innerHTML = task.category;
     editAssignUsersFromDatabase(task.assignedContacts);
     editSubtasksFromDatabase(task.subtasks);
-
     renderFooter(task);
-   
 }
 
-
+/**
+ * Toggles the assigned to list.
+ */
 function editToggleAssignedToList() {
     let toggleAssignedToListRef = document.getElementById('edit-assigned-to-container');
     toggleAssignedToListRef.classList.toggle('d-none');
-
     let editRenderUserSvgRef = document.getElementById('edit-render-assigned-svg');
     editRenderUserSvgRef.classList.toggle('d-none');
 }
 
+/**
+ * Renders the assigned to users list.
+ */
 function editRenderAssignedToUsersList() {
     let assignedToListRef = document.getElementById("edit-assigned-to-list");
-    assignedToListRef.innerHTML = ""; // Clear existing content
-
+    assignedToListRef.innerHTML = "";
     for (let i = 0; i < users.length; i++) {
         let user = users[i];
-        assignedToListRef.innerHTML += editRenderAssignedToUsersListTemplate(user); // Use the template function
-
+        assignedToListRef.innerHTML += editRenderAssignedToUsersListTemplate(user);
     }
 }
-function editRenderAssignedToUsersListTemplate(user) {
-    return /*html*/ `
-        <label for="checkbox-${user.id}">
-            <div class="assigned-to-list-values" id="assigned-list-items-${user.id}">
-                <div class="assigned-to-list-values-image-name" >
-                        <p>
-                            <svg width="40" height="40">
-                                <circle cx="20" cy="20" r="16" fill="${user.color}" />
-                                <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                                    ${user.initials}
-                                </text>
-                            </svg>
-                        </p>
-                        <p>${user.name}</p>
-                        </div>
-                    
-            
-                <!-- Wrap user.id in quotes to pass it as a string -->
-                <input 
-                    type="checkbox" 
-                    id="checkbox-${user.id}" 
-                    class="assigned-to-checkboxes" 
-                    value="${user.id}" 
-                    onchange="editCheckedAssignedUsers('${user.id}')"> <!-- Pass user.id as a string -->
 
-         </div>
-        </label>
-    `;
-}
-
+/**
+ * Checks the assigned users.
+ */
 function editCheckedAssignedUsers(userId) {
     let checkBox = document.getElementById(`checkbox-${userId}`);
-
     if (checkBox.checked == true) {
-
         addUserToAssignedArray(userId);
         editChangeBackgroundColor(userId, true);
-
     } else {
-        
         removeUserFromAssignedArray(userId);
         editChangeBackgroundColor(userId, false);
     }
-
     editRenderUserSvg();
 }
 
-// Function to add the user to the assigned users array
+/**
+ * Adds the user to the assigned users array.
+ */
 function addUserToAssignedArray(userId) {
     let checkedUser = users.find(user => user.id === userId);
-
     if (checkedUser && !editAssignedUsersfromCheckboxes.includes(checkedUser)) {
         editAssignedUsersfromCheckboxes.push(checkedUser);
     }
 }
 
-// Function to remove the user from the assigned users array
+/**
+ * Removes the user from the assigned users array.
+ */
 function removeUserFromAssignedArray(userId) {
     let checkedUserIndex = editAssignedUsersfromCheckboxes.findIndex(user => user.id === userId);
-
     if (checkedUserIndex !== -1) {
         editAssignedUsersfromCheckboxes.splice(checkedUserIndex, 1);
     }
 }
 
+/**
+ * Changes the background color of the assigned user.
+ */
 function editChangeBackgroundColor(userId, isChecked) {
     let assignedListItem = document.getElementById(`assigned-list-items-${userId}`);
-    
     if (assignedListItem) {
         if (isChecked) {
             assignedListItem.classList.add('bg-color-black');
@@ -134,10 +105,12 @@ function editChangeBackgroundColor(userId, isChecked) {
     }
 }
 
+/**
+ * Renders the user SVG.
+ */
 function editRenderUserSvg() {
     let editRenderUserSvgRef = document.getElementById('edit-render-assigned-svg');
-    editRenderUserSvgRef.innerHTML = "";  
-
+    editRenderUserSvgRef.innerHTML = "";
     editAssignedUsersfromCheckboxes.forEach(user => {
         if (user) {
             editRenderUserSvgRef.innerHTML += editRenderUserSvgTemplate(user);
@@ -145,100 +118,87 @@ function editRenderUserSvg() {
     });
 }
 
-function editRenderUserSvgTemplate(user) {
-    return /*html*/ `
-        <svg width="40" height="40">
-            <circle cx="20" cy="20" r="16" fill="${user.color}" />
-            <text x="20" y="22" text-anchor="middle" fill="white" font-size="14" font-family="Arial" dy=".35em">
-                ${user.initials}
-            </text>
-        </svg>
-    `;
-}
-
+/**
+ * Resets the assigned users checkboxes.
+ */
 function resetAssignedUsersCheckboxes() {
     editAssignedUsersfromCheckboxes = [];
-
     let checkboxes = document.querySelectorAll('.assigned-to-checkboxes');
     checkboxes.forEach(checkbox => {
-        checkbox.checked = false; 
-        
+        checkbox.checked = false;
         const userId = checkbox.value;
-
-        editChangeBackgroundColor(userId, false); 
+        editChangeBackgroundColor(userId, false);
     });
 }
 
- // Append assignedContacts to the array if not already in editAssignedUsersfromCheckboxes
-
+/**
+ * Assigns users from the database.
+ */
 function editAssignUsersFromDatabase(assignedContactsFromTask) {
-    
     editAssignedUsersfromCheckboxes = [...assignedContactsFromTask];
-
     assignedContacts.forEach(contact => {
         if (!editAssignedUsersfromCheckboxes.some(user => user.id === contact.id)) {
             editAssignedUsersfromCheckboxes.push(contact);
         }
     });
-
     editRenderVisualsForAssignedUsersfromDatabase();
 }
 
+/**
+ * Renders visuals for assigned users from the database.
+ */
 function editRenderVisualsForAssignedUsersfromDatabase() {
     editAssignedUsersfromCheckboxes.forEach(user => {
         let checkBox = document.getElementById(`checkbox-${user.id}`);
-
         if (checkBox) {
-            checkBox.checked = true; 
+            checkBox.checked = true;
         }
         editChangeBackgroundColor(user.id, true);
     });
-
     editRenderUserSvg();
 }
 
-// low, medium, urgent buttons functionality
-
+/**
+ * Sets the priority button.
+ */
 function editSetPrioButton(editPrio) {
     editSelectedPrioButton = editPrio;
-
     document.getElementById('edit-urgent-button').classList.remove('active', 'urgent');
     document.getElementById('edit-medium-button').classList.remove('active', 'medium');
     document.getElementById('edit-low-button').classList.remove('active', 'low');
-
     if (editPrio === 'urgent') {
         document.getElementById('edit-urgent-button').classList.add('active', 'urgent');
-    } else if (editPrio  === 'medium') {
+    } else if (editPrio === 'medium') {
         document.getElementById('edit-medium-button').classList.add('active', 'medium');
-    } else if (editPrio  === 'low') {
+    } else if (editPrio === 'low') {
         document.getElementById('edit-low-button').classList.add('active', 'low');
     }
 }
 
-// category input field functions
-
+/**
+ * Toggles the render category input.
+ */
 function editToggleRenderCategoryInput() {
     let renderCategoryInputToggle = document.getElementById('edit-category-input-content');
     renderCategoryInputToggle.classList.toggle('d-block');
-    
-    // Close the dropdown if clicking outside of the container
     document.addEventListener('click', function(event) {
         const categoryInputWrapper = document.getElementById('edit-category-input');
         if (!categoryInputWrapper.contains(event.target)) {
-            renderCategoryInputToggle.classList.remove('d-block'); // Close the dropdown
+            renderCategoryInputToggle.classList.remove('d-block');
         }
     });
 }
 
+/**
+ * Changes the category input.
+ */
 function editChangeCategoryInput(editSelectedCategory) {
     const categoryInputPlaceholderRef = document.getElementById('edit-category-input-placeholder');
     const renderCategoryInputToggle = document.getElementById('edit-category-input-content');
     const placeholderText = 'Select task category';
-    
-    categoryInputPlaceholderRef.innerHTML = (editSelectedCategory === placeholderText || editSelectedCategory  === categoryInputPlaceholderRef.innerHTML) 
+    categoryInputPlaceholderRef.innerHTML = (editSelectedCategory === placeholderText || editSelectedCategory === categoryInputPlaceholderRef.innerHTML) 
         ? placeholderText 
         : editSelectedCategory;
-    
     renderCategoryInputToggle.classList.add('d-none');
 }
 
@@ -246,166 +206,104 @@ document.getElementById('edit-category-input-placeholder').addEventListener('cli
     editChangeCategoryInput('Select task category');
 });
 
-//subtasks functions
-
-
+/**
+ * Adds a subtask input to the array.
+ */
 function editAddSubtaskInputToArray() {
-    // Get the value from the input field
     let renderSubtaskListRef = document.getElementById('editSubtaskInput');
-    let subtaskValue = renderSubtaskListRef.value.trim(); // .trim() removes extra spaces
-
-    // Check if the value is not empty
+    let subtaskValue = renderSubtaskListRef.value.trim();
     if (subtaskValue) {
-        // Create an object to represent the subtask with title, completed set to false by default, and a unique id
         let newSubtask = { 
-            id: editSubtaskArray.length + 1, // Create a unique id (using length here to increment id)
+            id: editSubtaskArray.length + 1,
             title: subtaskValue, 
             boolean: false 
         };
-
-        // Push the new subtask to the array
         editSubtaskArray.push(newSubtask);
-
-        // Clear the input field
         renderSubtaskListRef.value = '';
     }
-
-    // Re-render the list of subtasks
     editRenderSubtaskInputEntrys();
 }
 
+/**
+ * Renders the subtask input entries.
+ */
 function editRenderSubtaskInputEntrys() {
     let renderSubtaskInputEntrysRef = document.getElementById('editSubtaskList');
-    
-    // Initialize a string to accumulate the list items
     let subtasks = '';
-    
-    // Loop through the array using a traditional for loop
     for (let i = 0; i < editSubtaskArray.length; i++) {
         let subtask = editSubtaskArray[i];
-        subtasks += renderEditRSubtaskInputEntrysTemplate(subtask); // Append each subtask's HTML to the string
+        subtasks += renderEditRSubtaskInputEntrysTemplate(subtask);
     }
-
-    // Render the list template with the accumulated subtasks
-    renderSubtaskInputEntrysRef.innerHTML = subtasks;  // Set the final innerHTML with all subtasks
+    renderSubtaskInputEntrysRef.innerHTML = subtasks;
 }
 
-// Render each individual subtask as HTML
-function renderEditRSubtaskInputEntrysTemplate(subtask) {
-    return /*html*/ `
-    
-        <div id="editSubtaskListItems-${subtask.id}">
-            <ul>
-                <li class="edit-subtask-list-items-single">
-                    <span>${subtask.title}</span>
-                    <div class="edit-subtask-list-items-single-imgs">
-                        <img src="../assets/img/add-task/subtask-check.svg" class="d-none" onclick="editEditSubtaskFromList(${subtask.id})" alt="Edit Subtask">
-                        <img src="../assets/img/add-task/clear.svg" class="d-none" onclick="deleteSubtask(${subtask.id})" alt="Clear Subtask">
-                    </div>
-                </li>
-            </ul>  
-        </div>
-    `;
-}
-
-// Function to handle editing a specific subtask
+/**
+ * Handles editing a specific subtask.
+ */
 function editEditSubtaskFromList(id) {
-    let subtask = editSubtaskArray.find(task => task.id === id);  // Get the specific subtask
+    let subtask = editSubtaskArray.find(task => task.id === id);
     if (subtask) {
         let editSubtaskListItemsRef = document.getElementById(`editSubtaskListItems-${id}`);
-        
-        // Add the border-bottom style to the specific subtask
         editSubtaskListItemsRef.classList.add('border-bottom-turquoise');
-        
-        // Replace with editable template
         editSubtaskListItemsRef.innerHTML = editEditSubtaskFromListTemplate(subtask);  
     }
 }
 
-// Render the editable version of the subtask (input field)
-function editEditSubtaskFromListTemplate(subtask) {
-    return /*html*/ `
-        <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
-            <ul>
-                <li class="edit-subtask-list-items-single">
-                    <input type="text" value="${subtask.title}" id="editSubtaskInput-${subtask.id}">
-                    <div class="edit-subtask-list-items-single-imgs">
-                        <img src="../assets/img/add-task/subtask-check.svg" onclick="saveSubtaskEdit(${subtask.id})" alt="Save Subtask">
-                        <div class="seperator-imgs"></div>
-                        <img src="../assets/img/add-task/clear.svg" onclick="cancelEdit(${subtask.id})" alt="Cancel Edit">
-                    </div>
-            
-                </li>
-            </ul>  
-        </div>
-    `;
-}
-
-// Save the edit of a subtask
+/**
+ * Saves the edit of a subtask.
+ */
 function saveSubtaskEdit(id) {
     let editedValue = document.getElementById(`editSubtaskInput-${id}`).value;
     let subtask = editSubtaskArray.find(task => task.id === id);
-    
     if (subtask) {
-        subtask.title = editedValue;  // Update the title with the edited value
-        editRenderSubtaskInputEntrys();  // Re-render the list
+        subtask.title = editedValue;
+        editRenderSubtaskInputEntrys();
     }
 }
 
-// Cancel editing the subtask
+/**
+ * Cancels editing the subtask.
+ */
 function cancelEdit(id) {
-    editSubtaskArray = editSubtaskArray.filter(task => task.id !== id); 
-    editRenderSubtaskInputEntrys();  // Re-render the list without saving changes
+    editSubtaskArray = editSubtaskArray.filter(task => task.id !== id);
+    editRenderSubtaskInputEntrys();
 }
 
-// Delete the subtask
+/**
+ * Deletes the subtask.
+ */
 function deleteSubtask(id) {
-    editSubtaskArray = editSubtaskArray.filter(task => task.id !== id);  // Remove the subtask from the array
-    editRenderSubtaskInputEntrys();  // Re-render the list
+    editSubtaskArray = editSubtaskArray.filter(task => task.id !== id);
+    editRenderSubtaskInputEntrys();
 }
 
+/**
+ * Loads subtasks from the database.
+ */
 function editSubtasksFromDatabase(taskSubtasksFromTask) {
-    // Check if taskSubtasksFromTask is an array
     if (Array.isArray(taskSubtasksFromTask)) {
-        // Reset and copy subtasks from the task
         editSubtaskArray = [...taskSubtasksFromTask];
-
-        // Append subtasks to the array if not already in editSubtasksArray
         subtasksArray.forEach(subtask => {
             if (!editSubtaskArray.some(existingSubtask => existingSubtask.id === subtask.id)) {
                 editSubtaskArray.push(subtask);
             }
         });
-
         editAddSubtaskInputToArray();
     } 
 }
 
-
+/**
+ * Renders the footer.
+ */
 function renderFooter(task) {
     let renderFooterRef = document.getElementById('editTaskFooter');
     renderFooterRef.innerHTML = renderFooterTemplate(task);
 }
 
-function renderFooterTemplate(task) {
-    return /*html*/ `
-    <div class="field-required">
-        <p>
-            <span class="required-star-markers">*</span>
-            This field is required
-        </p>
-    </div>
-    <div class="clear-create-buttons-wrapper" id="okButtonWrapper">
-        <button class="create-task-button" onclick="saveTaskEdit('${task.id}')">
-            <p>Ok</p> 
-            <img src="../assets/img/add-task/check.svg" alt="Create">
-        </button>
-    </div>
-    `;
-}
-
+/**
+ * Saves the task edit.
+ */
 function saveTaskEdit(taskID) {
-    // Get new values from the inputs
     const newTitle = document.getElementById("edit-title-input").value;
     const newDescription = document.getElementById("edit-description-input").value;
     const newDueDate = document.getElementById("edit-due-date-input").value;
@@ -414,7 +312,6 @@ function saveTaskEdit(taskID) {
     const newCategory = document.getElementById("edit-category-input-placeholder").innerHTML;
     const newSubtasks = editSubtaskArray;
 
-    // Prepare updated data
     const updatedData = {
         title: newTitle,
         description: newDescription,
@@ -425,10 +322,8 @@ function saveTaskEdit(taskID) {
         subtasks: newSubtasks,
     };
 
-    // Update the task in the database and also update locally in one go
     updateTaskInDatabase(taskID, updatedData)
         .then(() => {
-            // Re-render the task card (overlay) with the updated data
             taskCardsOverlay(taskID);
             loadTasks();
         })
@@ -436,14 +331,14 @@ function saveTaskEdit(taskID) {
             console.error("Error updating task:", error);
         });
 
-    // Close the edit overlay
     document.getElementById("editTaskOverlay").classList.toggle("d-none");
 }
 
+/**
+ * Updates the task in the database.
+ */
 async function updateTaskInDatabase(taskID, updatedData) {
-    const taskUrl = `${FIREBASE_URL}/tasks/${taskID}.json`;  // Update task URL based on taskID
-
-    // Update the task in the database first
+    const taskUrl = `${FIREBASE_URL}/tasks/${taskID}.json`;
     const response = await fetch(taskUrl, {
         method: 'PATCH',
         headers: {
@@ -456,14 +351,12 @@ async function updateTaskInDatabase(taskID, updatedData) {
         throw new Error('Failed to update task');
     }
 
-    // If the task is successfully updated in the database, update it locally in 'loadedTasks'
     const taskIndex = loadedTasks.findIndex(t => t.id === taskID);
     if (taskIndex !== -1) {
-        // Merge the updated data into the existing task
         loadedTasks[taskIndex] = { ...loadedTasks[taskIndex], ...updatedData };
     }
 
-    return response;  // Ensure the update was successful
+    return response;
 }
 
 
