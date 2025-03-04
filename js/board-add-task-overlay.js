@@ -249,17 +249,11 @@ function addSubtaskToArray() {
     let subtaskInput = document.getElementById("subtask-input").value; 
     
     if (subtaskInput) { 
-        // Add subtask object with title and subtasks (boolean set to false initially)
-        subtasksArray.push({
-            subtasks: false, 
-            title: subtaskInput
-        }); 
-        
+        subtasksArray.push(subtaskInput); 
         document.getElementById("subtask-input").value = ""; 
         renderSubtasks(); 
     }
 }
-
 
 function removeSubtask(index) {
     subtasksArray.splice(index, 1);
@@ -293,9 +287,7 @@ function updateSubtask(index) {
     let editedInputValueSubtaskRef = document.getElementById(`edited-input-value-subtask-${index}`);
     
     if (editedInputValueSubtaskRef) {
-        // Update the title of the subtask object at the specified index
-        subtasksArray[index].title = editedInputValueSubtaskRef.value; 
-        
+        subtasksArray[index] = editedInputValueSubtaskRef.value; // Update the subtasksArray with the new value
         renderSubtasks(); // Re-render the subtasks list
     }
 }
@@ -303,13 +295,14 @@ function updateSubtask(index) {
 // clears subtasksArray
 
 function emptySubtaskArrayFull() {
+
     subtasksArray.splice(0, subtasksArray.length);
     renderSubtasks();
 
-    let subtaskList = document.getElementById('subtasks-list');
+    let subtaskList = document.getElementById('subtasks-list')
     subtaskList.classList.add('d-none');
-}
 
+}
 
 // reset functions for all fields
 
@@ -430,13 +423,15 @@ function validateForm() {
 
 // Function to transform subtasks array to include title and boolean
 function transformSubtasks(subtasksArray) {
-    return subtasksArray.map(subtask => {
+    return subtasksArray.map((subtask, index) => {
         return {
             title: subtask,   // Each subtask is now the 'title'
-            boolean: false    // Defaulting the 'boolean' to false
+            boolean: false,    // Defaulting the 'boolean' to false
+            id: index + 1,     // Assign a unique ID based on the index
         };
     });
 }
+
 
 // Usage in the main function
 async function addNewArrayFromInputs() {
@@ -454,7 +449,7 @@ async function addNewArrayFromInputs() {
         title: document.getElementById("title-input").value,
         description: document.getElementById("description-input").value,
         assignedContacts: assignedContacts,
-        prioButton: selectedPrioButton,
+        prioButton: selectedPrioButton, 
         dueDate: document.getElementById("due-date-input").value,
         category: document.getElementById("category-input-placeholder").innerHTML,
         subtasks: subtasksArrayWithBoolean, // Now contains objects with 'title' and 'boolean'
@@ -481,4 +476,5 @@ async function postData(path = "", data = {}) {
         body: JSON.stringify(data),
     });
 }
+
 

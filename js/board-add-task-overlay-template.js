@@ -34,6 +34,7 @@ function generateUserSVG(assignedContact) {
     `;
 }
 
+
 /**
  * Generates an HTML input field for entering subtasks.
  */
@@ -55,7 +56,7 @@ function generateEntrySubtaskHTML() {
  */
 function generateSubtaskHTML(subtask, index) {
     return /*html*/ `
-        <li class="subtask-list-items">${subtask.title} 
+        <li class="subtask-list-items">${subtask} 
             <div class="subtask-list-items-img-wrapper">
                 <img src="../assets/img/add-task/pen.svg" onclick="renderSubtasksEdit(${index})" alt="Edit Subtask">
                 <div class="subtask-container-js-images-devider"></div>
@@ -65,10 +66,13 @@ function generateSubtaskHTML(subtask, index) {
     `;
 }
 
+/**
+ * Generates an HTML input field for editing a subtask.
+ */
 function generateSubtaskEditHTML(subtask, index) {
     return /*html*/ `
         <li class="subtask-list-items">
-            <input id="edited-input-value-subtask-${index}" type="text" value="${subtask.title}">
+            <input id="edited-input-value-subtask-${index}" type="text" value="${subtask}">
             <div class="edit-images-subtasks-wrapper">
                 <img src="../assets/img/add-task/subtask-bin.svg" onclick="removeSubtask(${index})" alt="Delete">
                 <div class="subtask-container-js-images-devider"></div>
@@ -77,4 +81,3 @@ function generateSubtaskEditHTML(subtask, index) {
         </li>
     `;
 }
-
