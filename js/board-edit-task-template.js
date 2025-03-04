@@ -1,3 +1,6 @@
+/**
+ * Renders the assigned to users list template.
+ */
 function editRenderAssignedToUsersListTemplate(user) {
     return /*html*/ `
         <label for="checkbox-${user.id}">
@@ -13,9 +16,7 @@ function editRenderAssignedToUsersListTemplate(user) {
                         </p>
                         <p>${user.name}</p>
                         </div>
-                    
-            
-                <!-- Wrap user.id in quotes to pass it as a string -->
+                        
                 <input 
                     type="checkbox" 
                     id="checkbox-${user.id}" 
@@ -28,6 +29,9 @@ function editRenderAssignedToUsersListTemplate(user) {
     `;
 }
 
+/**
+ * Renders the user SVG template.
+ */
 function editRenderUserSvgTemplate(user) {
     return /*html*/ `
         <svg width="40" height="40">
@@ -39,7 +43,9 @@ function editRenderUserSvgTemplate(user) {
     `;
 }
 
-// Render each individual subtask as HTML
+/**
+ * Renders the subtask input entries template.
+ */
 function renderEditRSubtaskInputEntrysTemplate(subtask) {
     return /*html*/ `
     
@@ -57,7 +63,9 @@ function renderEditRSubtaskInputEntrysTemplate(subtask) {
     `;
 }
 
-// Render the editable version of the subtask (input field)
+/**
+ * Renders the editable version of the subtask (input field).
+ */
 function editEditSubtaskFromListTemplate(subtask) {
     return /*html*/ `
         <div class="edit-subtask-list-items" id="editSubtaskListItems-${subtask.id}">
@@ -76,6 +84,9 @@ function editEditSubtaskFromListTemplate(subtask) {
     `;
 }
 
+/**
+ * Renders the footer template.
+ */
 function renderFooterTemplate(task) {
     return /*html*/ `
     <div class="field-required">
