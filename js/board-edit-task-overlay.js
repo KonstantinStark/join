@@ -365,18 +365,22 @@ function deleteSubtask(id) {
 }
 
 function editSubtasksFromDatabase(taskSubtasksFromTask) {
-    // Reset and copy subtasks from the task
-    editSubtaskArray = [...taskSubtasksFromTask];
+    // Check if taskSubtasksFromTask is an array
+    if (Array.isArray(taskSubtasksFromTask)) {
+        // Reset and copy subtasks from the task
+        editSubtaskArray = [...taskSubtasksFromTask];
 
-    // Append subtasks to the array if not already in editSubtasksArray
-    subtasksArray.forEach(subtask => {
-        if (!editSubtaskArray.some(existingSubtask => existingSubtask.id === subtask.id)) {
-            editSubtaskArray.push(subtask);
-        }
-    });
+        // Append subtasks to the array if not already in editSubtasksArray
+        subtasksArray.forEach(subtask => {
+            if (!editSubtaskArray.some(existingSubtask => existingSubtask.id === subtask.id)) {
+                editSubtaskArray.push(subtask);
+            }
+        });
 
-    editAddSubtaskInputToArray();
+        editAddSubtaskInputToArray();
+    } 
 }
+
 
 function renderFooter(task) {
     let renderFooterRef = document.getElementById('editTaskFooter');
