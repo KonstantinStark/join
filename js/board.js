@@ -491,22 +491,6 @@ function renderCategoryMenu(taskId) {
 }
 
 /**
- * Returns the HTML template for the category menu.
- */
-function renderCategoryMenuTemplate(taskId) {
-    return `
-    <div class="category-menu">
-        <ul>
-            <li onclick="moveTaskCategory('to-do', '${taskId}')">To Do</li>
-            <li onclick="moveTaskCategory('in-progress', '${taskId}')">In Progress</li>
-            <li onclick="moveTaskCategory('await-feedback', '${taskId}')">Await Feedback</li>
-            <li onclick="moveTaskCategory('done', '${taskId}')">Done</li>
-        </ul>
-    </div>
-    `;
-}
-
-/**
  * Moves a task to a new category.
  */
 function moveTaskCategory(newCategory, taskId) {
